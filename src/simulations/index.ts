@@ -81,6 +81,30 @@ simulations["s6-pi-estimation"] = S6PiEstimation;
 simulations["s6-integration"] = S6Integration;
 simulations["s6-mcmc"] = S6MCMC;
 
+// S7 - Ideal Gas & Equipartition
+import { S7IdealGasLaw, S7Equipartition, S7HeatCapacity } from "./S7IdealGas";
+simulations["s7-ideal-gas-law"] = S7IdealGasLaw;
+simulations["s7-equipartition"] = S7Equipartition;
+simulations["s7-heat-capacity"] = S7HeatCapacity;
+
+// S8 - Heat Engines & Carnot Cycle
+import { S8CarnotCycle, S8HeatEngine, S8SecondLaw } from "./S8HeatEngines";
+simulations["s8-carnot-cycle"] = S8CarnotCycle;
+simulations["s8-heat-engine"] = S8HeatEngine;
+simulations["s8-second-law"] = S8SecondLaw;
+
+// S9 - Free Energy & Phase Equilibria
+import { S9Helmholtz, S9VanDerWaals, S9PhaseDiagram } from "./S9FreeEnergy";
+simulations["s9-helmholtz"] = S9Helmholtz;
+simulations["s9-van-der-waals"] = S9VanDerWaals;
+simulations["s9-phase-diagram"] = S9PhaseDiagram;
+
+// S10 - Fluctuations & Response
+import { S10EnergyFluctuations, S10FluctuationDissipation, S10Brownian } from "./S10Fluctuations";
+simulations["s10-energy-fluctuations"] = S10EnergyFluctuations;
+simulations["s10-fluctuation-dissipation"] = S10FluctuationDissipation;
+simulations["s10-brownian"] = S10Brownian;
+
 export function getSimulation(chapterId: string, sectionId: string): Component | undefined {
   return simulations[`${chapterId}-${sectionId}`];
 }

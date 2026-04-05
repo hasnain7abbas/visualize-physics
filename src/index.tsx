@@ -9,8 +9,10 @@ import { initTheme } from "./lib/theme";
 
 initTheme();
 
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 const App = () => (
-  <Router root={Layout}>
+  <Router root={Layout} base={base}>
     <Route path="/" component={Home} />
     <Route path="/chapter/:id" component={ChapterPage} />
   </Router>

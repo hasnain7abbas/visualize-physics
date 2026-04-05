@@ -1,4 +1,4 @@
-import { Component, For } from "solid-js";
+import { Component, For, createSignal, onMount } from "solid-js";
 import { A } from "@solidjs/router";
 import { CatLogo } from "../components/CatLogo";
 import { chapterGroups, allChapters, type Chapter } from "../lib/chapters-data";
@@ -97,7 +97,36 @@ const ChapterCard: Component<{ chapter: Chapter; index: number }> = (
   );
 };
 
-export const Home: Component = () => {
+/* ─── Floating equation particle ─────────────────────────── */
+const FloatingEquation: Component<{
+  eq: string;
+  x: number;
+  y: number;
+  delay: number;
+  duration: number;
+}> = (props) => (
+  <div
+    class="absolute pointer-events-none select-none"
+    style={{
+      left: `${props.x}%`,
+      top: `${props.y}%`,
+      animation: `float ${props.duration}s ease-in-out infinite`,
+      "animation-delay": `${props.delay}s`,
+      "font-size": "11px",
+      "font-family": "'JetBrains Mono', monospace",
+      color: "var(--text-muted)",
+      opacity: 0.18,
+    }}
+  >
+    {props.eq}
+  </div>
+);
+
+/* ─── Welcome Hero ───────────────────────────────────────── */
+const WelcomeHero: Component = () => {
+  const [visible, setVisible] = createSignal(false);
+  onMount(() => setTimeout(() => setVisible(true), 50));
+
   const totalSections = allChapters.reduce(
     (sum, ch) => sum + ch.sections.length,
     0
@@ -109,79 +138,212 @@ export const Home: Component = () => {
     0
   );
 
+  const floatingEqs = [
+    { eq: "E = mc\u00B2", x: 8, y: 15, delay: 0, duration: 4.2 },
+    { eq: "\u03C8 = \u03B1|0\u27E9 + \u03B2|1\u27E9", x: 78, y: 12, delay: 1.5, duration: 5.1 },
+    { eq: "S = k\u0299 ln \u03A9", x: 85, y: 55, delay: 0.8, duration: 3.8 },
+    { eq: "F = -kT ln Z", x: 5, y: 65, delay: 2.2, duration: 4.6 },
+    { eq: "\u2202\u03C8/\u2202t = H\u03C8", x: 70, y: 75, delay: 1.0, duration: 5.5 },
+    { eq: "PV = NkT", x: 15, y: 40, delay: 3.0, duration: 4.0 },
+    { eq: "\u0394x\u0394p \u2265 \u0127/2", x: 60, y: 30, delay: 0.5, duration: 3.5 },
+    { eq: "f(v) \u221D v\u00B2e^{-\u03B2mv\u00B2/2}", x: 88, y: 35, delay: 2.8, duration: 4.8 },
+  ];
+
   return (
-    <div class="min-h-screen" style={{ background: "var(--bg-primary)" }}>
-      {/* Hero section */}
-      <section class="relative px-4 sm:px-8 pt-8 sm:pt-14 pb-6 sm:pb-10 overflow-hidden">
-        <div
-          class="absolute inset-0 opacity-[0.03]"
-          style={{
-            "background-image":
-              "radial-gradient(circle, var(--text-primary) 1px, transparent 1px)",
-            "background-size": "24px 24px",
-          }}
-        />
+    <section
+      class="relative px-4 sm:px-8 pt-8 sm:pt-12 pb-8 sm:pb-14 overflow-hidden transition-all duration-700"
+      style={{ opacity: visible() ? 1 : 0, transform: visible() ? "none" : "translateY(12px)" }}
+    >
+      {/* Dot grid background */}
+      <div
+        class="absolute inset-0 opacity-[0.03]"
+        style={{
+          "background-image":
+            "radial-gradient(circle, var(--text-primary) 1px, transparent 1px)",
+          "background-size": "24px 24px",
+        }}
+      />
 
-        <div class="relative max-w-4xl mx-auto text-center">
-          <div class="flex justify-center mb-4 sm:mb-5 animate-float">
-            <CatLogo size={56} />
+      {/* Floating equations */}
+      <For each={floatingEqs}>
+        {(eq) => <FloatingEquation {...eq} />}
+      </For>
+
+      {/* Gradient orbs */}
+      <div
+        class="absolute -top-20 -right-20 w-80 h-80 rounded-full opacity-[0.06] blur-3xl"
+        style={{ background: "linear-gradient(135deg, #8b5cf6, #06b6d4)" }}
+      />
+      <div
+        class="absolute -bottom-20 -left-20 w-60 h-60 rounded-full opacity-[0.05] blur-3xl"
+        style={{ background: "linear-gradient(135deg, #ec4899, #f59e0b)" }}
+      />
+
+      <div class="relative max-w-4xl mx-auto text-center">
+        {/* Cat mascot */}
+        <div class="flex justify-center mb-5 animate-float">
+          <div class="relative">
+            <div
+              class="absolute inset-0 rounded-full blur-xl opacity-30"
+              style={{ background: "var(--accent)", transform: "scale(1.5)" }}
+            />
+            <CatLogo size={64} />
           </div>
+        </div>
 
-          <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight mb-2 sm:mb-3 animate-slide-up">
-            <span class="gradient-text">Visualize Physics</span>
-          </h1>
+        {/* Welcome badge */}
+        <div
+          class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest mb-5 animate-slide-up"
+          style={{
+            background: "var(--accent-light)",
+            color: "var(--accent)",
+            border: "1px solid var(--accent)",
+            "border-color": "color-mix(in srgb, var(--accent) 25%, transparent)",
+          }}
+        >
+          <span class="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "var(--accent)" }} />
+          Interactive Physics Lab
+        </div>
 
-          <p
-            class="text-sm sm:text-base font-medium mb-2 animate-slide-up stagger-1"
-            style={{ color: "var(--text-secondary)" }}
+        {/* Title */}
+        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight mb-3 animate-slide-up stagger-1">
+          <span class="gradient-text">Visualize Physics</span>
+        </h1>
+
+        {/* Subtitle */}
+        <p
+          class="text-base sm:text-lg font-medium mb-3 animate-slide-up stagger-2"
+          style={{ color: "var(--text-secondary)" }}
+        >
+          See the invisible. Feel the abstract. Understand the universe.
+        </p>
+
+        {/* Description */}
+        <p
+          class="text-sm max-w-2xl mx-auto leading-relaxed mb-6 animate-slide-up stagger-3"
+          style={{ color: "var(--text-muted)" }}
+        >
+          Dive into quantum mechanics and statistical physics through
+          real-time interactive simulations. From quantum superposition
+          to the Boltzmann distribution, from Ising phase transitions to
+          Carnot engines — every concept is alive, visual, and hands-on.
+          Powered by Rust for blazing-fast computation.
+        </p>
+
+        {/* Feature highlights */}
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl mx-auto mb-8 animate-slide-up stagger-4">
+          <div
+            class="card p-4 text-center hover:scale-105 transition-transform"
+            style={{ border: "1px solid var(--border)" }}
           >
-            A Visual Introduction to Quantum & Statistical Physics
-          </p>
-
-          <p
-            class="text-sm max-w-xl mx-auto leading-relaxed animate-slide-up stagger-2"
-            style={{ color: "var(--text-muted)" }}
+            <div class="text-xl mb-1">
+              {"\u{1F52C}"}
+            </div>
+            <div class="text-xs font-semibold mb-1" style={{ color: "var(--text-primary)" }}>
+              Real Simulations
+            </div>
+            <div class="text-[10px]" style={{ color: "var(--text-muted)" }}>
+              Not animations — real physics computed in real time
+            </div>
+          </div>
+          <div
+            class="card p-4 text-center hover:scale-105 transition-transform"
+            style={{ border: "1px solid var(--border)" }}
           >
-            Interactive simulations powered by Rust. Every concept mapped to the
-            statistical tools that make it work — from Born rule probabilities
-            to Shannon entropy.
-          </p>
-
-          <div class="flex justify-center gap-8 mt-7 animate-slide-up stagger-3">
-            <div class="text-center">
-              <div class="text-2xl font-bold gradient-text">
-                {allChapters.length}
-              </div>
-              <div
-                class="text-[10px] uppercase tracking-widest font-medium"
-                style={{ color: "var(--text-muted)" }}
-              >
-                Chapters
-              </div>
+            <div class="text-xl mb-1">
+              {"\u{1F9EE}"}
             </div>
-            <div class="text-center">
-              <div class="text-2xl font-bold gradient-text">
-                {totalSections}
-              </div>
-              <div
-                class="text-[10px] uppercase tracking-widest font-medium"
-                style={{ color: "var(--text-muted)" }}
-              >
-                Sections
-              </div>
+            <div class="text-xs font-semibold mb-1" style={{ color: "var(--text-primary)" }}>
+              Statistical Tools
             </div>
-            <div class="text-center">
-              <div class="text-2xl font-bold gradient-text">{totalTools}</div>
-              <div
-                class="text-[10px] uppercase tracking-widest font-medium"
-                style={{ color: "var(--text-muted)" }}
-              >
-                Statistical Tools
-              </div>
+            <div class="text-[10px]" style={{ color: "var(--text-muted)" }}>
+              {totalTools}+ tools mapped to every concept
+            </div>
+          </div>
+          <div
+            class="card p-4 text-center hover:scale-105 transition-transform"
+            style={{ border: "1px solid var(--border)" }}
+          >
+            <div class="text-xl mb-1">
+              {"\u{1F4D0}"}
+            </div>
+            <div class="text-xs font-semibold mb-1" style={{ color: "var(--text-primary)" }}>
+              KaTeX Math
+            </div>
+            <div class="text-[10px]" style={{ color: "var(--text-muted)" }}>
+              Beautiful equations alongside every simulation
             </div>
           </div>
         </div>
-      </section>
+
+        {/* Stats row */}
+        <div class="flex justify-center gap-8 animate-slide-up stagger-5">
+          <div class="text-center">
+            <div class="text-2xl sm:text-3xl font-bold gradient-text">
+              {allChapters.length}
+            </div>
+            <div
+              class="text-[10px] uppercase tracking-widest font-medium"
+              style={{ color: "var(--text-muted)" }}
+            >
+              Chapters
+            </div>
+          </div>
+          <div
+            class="w-px"
+            style={{ background: "var(--border)" }}
+          />
+          <div class="text-center">
+            <div class="text-2xl sm:text-3xl font-bold gradient-text">
+              {totalSections}
+            </div>
+            <div
+              class="text-[10px] uppercase tracking-widest font-medium"
+              style={{ color: "var(--text-muted)" }}
+            >
+              Sections
+            </div>
+          </div>
+          <div
+            class="w-px"
+            style={{ background: "var(--border)" }}
+          />
+          <div class="text-center">
+            <div class="text-2xl sm:text-3xl font-bold gradient-text">
+              {totalTools}
+            </div>
+            <div
+              class="text-[10px] uppercase tracking-widest font-medium"
+              style={{ color: "var(--text-muted)" }}
+            >
+              Statistical Tools
+            </div>
+          </div>
+        </div>
+
+        {/* CTA arrow */}
+        <div class="mt-8 animate-slide-up stagger-6">
+          <div
+            class="text-xs font-medium mb-2"
+            style={{ color: "var(--text-muted)" }}
+          >
+            Pick a chapter below to begin exploring
+          </div>
+          <div style={{ color: "var(--text-muted)", "font-size": "18px" }} class="animate-float">
+            {"\u2193"}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+/* ─── Home Page ──────────────────────────────────────────── */
+export const Home: Component = () => {
+  return (
+    <div class="min-h-screen" style={{ background: "var(--bg-primary)" }}>
+      {/* Welcome hero */}
+      <WelcomeHero />
 
       {/* Chapter groups */}
       <For each={chapterGroups}>
@@ -282,7 +444,6 @@ export const Home: Component = () => {
               and statistical physics concepts into playful, hands-on
               simulations — because if you can see it, you can understand it.
             </p>
-
           </div>
         </div>
       </section>

@@ -941,6 +941,332 @@ const statisticalPhysics: Chapter[] = [
       },
     ],
   },
+  {
+    id: "s7",
+    num: "S7",
+    title: "Ideal Gas & Equipartition",
+    description:
+      "The ideal gas is the cornerstone of statistical physics. PV = NkT connects microscopic particle motion to macroscopic pressure. The equipartition theorem assigns kT/2 of energy to each degree of freedom.",
+    color: "#0891b2",
+    icon: "\u{1F4A8}",
+    shortDesc: "PV = NkT & degrees of freedom",
+    sections: [
+      {
+        id: "ideal-gas-law",
+        title: "The Ideal Gas Law",
+        description:
+          "Pressure is simply the result of countless molecular collisions with the container walls. PV = NkT emerges from averaging over the chaotic motion of all particles.",
+        statisticalTools: [
+          { name: "Kinetic Theory", desc: "P = (1/3) n m \u27E8v\u00B2\u27E9. Pressure from averaging molecular impacts on the walls. Connects microscopic motion to macroscopic pressure." },
+          { name: "Law of Large Numbers", desc: "With ~10\u00B2\u00B3 molecules, fluctuations in P are negligible. The average pressure is essentially exact \u2014 thermodynamics emerges from statistics." },
+          { name: "Equation of State", desc: "PV = NkT. The simplest equation of state. Relates pressure, volume, and temperature for non-interacting particles." },
+          { name: "Avogadro's Number", desc: "N_A = 6.022\u00D710\u00B2\u00B3. The bridge between molecular (k_B) and molar (R = N_A k_B) descriptions of the same physics." },
+          { name: "Pressure Fluctuations", desc: "\u0394P/P ~ 1/\u221AN. With N ~ 10\u00B2\u00B3, fluctuations are ~ 10\u207B\u00B9\u00B2. Pressure is deterministic for all practical purposes." },
+          { name: "Root Mean Square Speed", desc: "v_rms = \u221A(3kT/m). Directly from \u27E8mv\u00B2/2\u27E9 = 3kT/2. Faster for lighter molecules and higher temperatures." },
+          { name: "Dalton's Law", desc: "Total pressure = sum of partial pressures. Each species contributes independently: P_total = \u03A3 n_i kT." },
+          { name: "Boyle's and Charles's Laws", desc: "Special cases of PV = NkT: P \u221D 1/V at fixed T (Boyle), V \u221D T at fixed P (Charles). Historical precursors to the full gas law." },
+          { name: "Mean Free Path", desc: "\u03BB = 1/(n\u03C3). Average distance between collisions. At STP: \u03BB \u2248 70 nm for air. Sets the scale for transport phenomena." },
+          { name: "Collision Frequency", desc: "f = n\u03C3 v_mean. Number of collisions per unit time. Determines rates of chemical reactions and transport." },
+        ],
+        keyEquations: [
+          "PV = Nk_BT",
+          "P = \\frac{1}{3} n m \\langle v^2 \\rangle",
+          "\\langle E_{\\text{kin}} \\rangle = \\frac{3}{2} Nk_BT",
+        ],
+        conceptSummary:
+          "Watch gas particles bounce inside a container. Adjust N, T, and V to see pressure change according to PV = NkT.",
+      },
+      {
+        id: "equipartition",
+        title: "The Equipartition Theorem",
+        description:
+          "Each quadratic degree of freedom contributes exactly kT/2 to the average energy. Translations, rotations, vibrations \u2014 each gets its fair share.",
+        statisticalTools: [
+          { name: "Degrees of Freedom", desc: "Monatomic: 3 translational. Diatomic: 3 translational + 2 rotational (+ 2 vibrational at high T). Each contributes kT/2." },
+          { name: "Quadratic Contribution", desc: "For any energy term \u03B1q\u00B2 in the Hamiltonian: \u27E8\u03B1q\u00B2\u27E9 = kT/2. Applies to kinetic (mv\u00B2/2) and potential (kx\u00B2/2) terms alike." },
+          { name: "Heat Capacity Prediction", desc: "C_v = (f/2)Nk_B where f = number of active DOF. Monatomic: 3Nk/2. Diatomic: 5Nk/2 (room T)." },
+          { name: "Frozen Degrees of Freedom", desc: "Quantum mechanics freezes DOF when kT \u226A \u0127\u03C9. Vibrations freeze first (\u03B8_vib ~ 1000K), then rotations (\u03B8_rot ~ 10K)." },
+          { name: "Adiabatic Index \u03B3", desc: "\u03B3 = C_p/C_v = (f+2)/f. Monatomic: 5/3, diatomic: 7/5. Determines speed of sound and adiabatic processes." },
+          { name: "Dulong-Petit Law", desc: "C_v = 3Nk_B for solids (6 quadratic DOF per atom: 3 kinetic + 3 potential). Works well at high T but fails at low T." },
+          { name: "Classical vs Quantum Regime", desc: "Equipartition is a high-temperature (classical) result. Fails when kT \u226A energy level spacing \u0394E." },
+          { name: "Virial Theorem", desc: "For power-law potentials V \u221D r\u207F: \u27E8T\u27E9 = (n/2)\u27E8V\u27E9. Equipartition is the n=2 case." },
+        ],
+        keyEquations: [
+          "\\langle E \\rangle = \\frac{f}{2} Nk_BT",
+          "C_v = \\frac{f}{2} Nk_B",
+          "\\gamma = \\frac{f+2}{f}",
+        ],
+        conceptSummary:
+          "Switch between monatomic, diatomic, and polyatomic molecules. See how energy distributes equally across all active degrees of freedom.",
+      },
+      {
+        id: "heat-capacity",
+        title: "Heat Capacity: Einstein & Debye Models",
+        description:
+          "Classical theory predicts C_v = 3Nk always. But experiments show C_v vanishes at low T. Einstein and Debye explained this by quantizing vibrations.",
+        statisticalTools: [
+          { name: "Einstein Model", desc: "All atoms vibrate at the same frequency \u03C9_E. C_v = 3Nk_B (\u03B8_E/T)\u00B2 e^{\u03B8_E/T}/(e^{\u03B8_E/T}-1)\u00B2. Captures the quantum freeze-out." },
+          { name: "Debye Model", desc: "Vibration frequencies range from 0 to \u03C9_D (Debye cutoff). C_v \u221D T\u00B3 at low T (Debye T\u00B3 law). More realistic than Einstein." },
+          { name: "Einstein Temperature \u03B8_E", desc: "\u03B8_E = \u0127\u03C9_E/k_B. When T \u226A \u03B8_E, vibrations freeze and C_v \u2192 0 exponentially. Typically \u03B8_E ~ 200-400 K for solids." },
+          { name: "Debye Temperature \u03B8_D", desc: "\u03B8_D = \u0127\u03C9_D/k_B. The temperature scale separating quantum (T \u226A \u03B8_D) from classical (T \u226B \u03B8_D) behavior." },
+          { name: "Debye T\u00B3 Law", desc: "At low T: C_v = (12\u03C0\u2074/5)Nk_B(T/\u03B8_D)\u00B3. Matches experiment beautifully. The cubic power law comes from the phonon density of states." },
+          { name: "Phonon Density of States", desc: "g(\u03C9) \u221D \u03C9\u00B2 in the Debye model (3D). This quadratic density of states gives the T\u00B3 low-temperature behavior." },
+          { name: "Classical Limit", desc: "For T \u226B \u03B8_D (or \u03B8_E): C_v \u2192 3Nk_B. The Dulong-Petit value. All quantum effects washed out by thermal energy." },
+          { name: "Quantum Harmonic Oscillator", desc: "\u27E8E\u27E9 = \u0127\u03C9/(e^{\u0127\u03C9/kT}-1) + \u0127\u03C9/2. The building block of both Einstein and Debye models." },
+        ],
+        keyEquations: [
+          "C_v^{\\text{Ein}} = 3Nk_B \\left(\\frac{\\theta_E}{T}\\right)^{\\!2} \\frac{e^{\\theta_E/T}}{(e^{\\theta_E/T}-1)^2}",
+          "C_v^{\\text{Debye}} \\sim \\frac{12\\pi^4}{5} Nk_B \\left(\\frac{T}{\\theta_D}\\right)^{\\!3} \\;(T \\ll \\theta_D)",
+          "C_v \\to 3Nk_B \\;\\text{(classical limit)}",
+        ],
+        conceptSummary:
+          "Compare Einstein and Debye heat capacity curves. See how both approach the classical Dulong-Petit limit at high T, but differ at low T.",
+      },
+    ],
+  },
+  {
+    id: "s8",
+    num: "S8",
+    title: "Heat Engines & Carnot Cycle",
+    description:
+      "Heat engines convert thermal energy into work. The Carnot cycle sets the ultimate limit on efficiency. The second law of thermodynamics says entropy always increases.",
+    color: "#ea580c",
+    icon: "\u{2699}\u{FE0F}",
+    shortDesc: "Thermodynamic cycles & efficiency",
+    sections: [
+      {
+        id: "carnot-cycle",
+        title: "The Carnot Cycle",
+        description:
+          "The most efficient possible heat engine uses two isotherms and two adiabats. Sadi Carnot proved that no engine operating between Th and Tc can beat \u03B7 = 1 - Tc/Th.",
+        statisticalTools: [
+          { name: "Isothermal Process", desc: "At constant T: \u0394E = 0 (ideal gas), so Q = W = NkT ln(V_f/V_i). All heat absorbed becomes work." },
+          { name: "Adiabatic Process", desc: "No heat exchange: Q = 0, so \u0394E = -W. Temperature changes as TV^{\u03B3-1} = const. Faster than isothermal." },
+          { name: "PV Diagram", desc: "The area enclosed by the cycle in the PV plane equals the net work output. Larger area = more work per cycle." },
+          { name: "Carnot Efficiency", desc: "\u03B7 = 1 - T_c/T_h. Depends only on reservoir temperatures. Independent of working substance. The theoretical maximum." },
+          { name: "Reversibility", desc: "The Carnot cycle is reversible: run it backward and it becomes a heat pump. Irreversible engines always have \u03B7 < \u03B7_Carnot." },
+          { name: "Entropy is a State Function", desc: "\u222E dS = 0 for the Carnot cycle. Q_h/T_h = Q_c/T_c. This is what makes entropy well-defined." },
+          { name: "Work = Area in PV Plane", desc: "W = \u222E P dV. The enclosed area of any closed cycle gives the net work. Visualize work as geometric area." },
+          { name: "Clausius Inequality", desc: "\u222E \u03B4Q/T \u2264 0, with equality for reversible processes. The mathematical statement of the second law." },
+        ],
+        keyEquations: [
+          "\\eta_{\\text{Carnot}} = 1 - \\frac{T_c}{T_h}",
+          "W = Q_h - Q_c = Q_h\\left(1 - \\frac{T_c}{T_h}\\right)",
+          "\\frac{Q_h}{T_h} = \\frac{Q_c}{T_c}",
+        ],
+        conceptSummary:
+          "Adjust hot and cold reservoir temperatures and trace the Carnot cycle on a PV diagram. See efficiency change in real time.",
+      },
+      {
+        id: "heat-engine",
+        title: "Heat Engine Efficiency",
+        description:
+          "A heat engine absorbs heat Q_h from a hot reservoir, does work W, and dumps waste heat Q_c to a cold reservoir. Energy conservation: Q_h = W + Q_c.",
+        statisticalTools: [
+          { name: "First Law (Energy Conservation)", desc: "Q_h = W + Q_c. Energy in = work out + waste heat. No engine can output more work than heat absorbed." },
+          { name: "Thermal Efficiency", desc: "\u03B7 = W/Q_h = 1 - Q_c/Q_h. The fraction of absorbed heat converted to work. Always less than 1." },
+          { name: "Carnot Bound", desc: "\u03B7 \u2264 1 - T_c/T_h for any engine. Achieving equality requires reversible operation (infinitely slow)." },
+          { name: "Coefficient of Performance", desc: "For a heat pump: COP = Q_h/W. For a refrigerator: COP = Q_c/W. Can be greater than 1!" },
+          { name: "Entropy Production", desc: "\u0394S_total = Q_c/T_c - Q_h/T_h \u2265 0. Equality only for reversible engines. Real engines always produce entropy." },
+          { name: "Kelvin-Planck Statement", desc: "No engine operating in a cycle can convert heat completely into work. Some waste heat Q_c is always required." },
+          { name: "Clausius Statement", desc: "Heat cannot spontaneously flow from cold to hot. A refrigerator requires work input." },
+          { name: "Endoreversible Engine", desc: "\u03B7 = 1 - \u221A(T_c/T_h) (Curzon-Ahlborn). A more realistic efficiency limit accounting for finite heat transfer rates." },
+        ],
+        keyEquations: [
+          "\\eta = \\frac{W}{Q_h} = 1 - \\frac{Q_c}{Q_h}",
+          "\\eta \\leq 1 - \\frac{T_c}{T_h}",
+          "\\Delta S_{\\text{total}} = \\frac{Q_c}{T_c} - \\frac{Q_h}{T_h} \\geq 0",
+        ],
+        conceptSummary:
+          "Adjust efficiency and see energy flow through a heat engine. Watch what happens when you try to exceed the Carnot limit.",
+      },
+      {
+        id: "second-law",
+        title: "The Second Law & Entropy Increase",
+        description:
+          "Entropy of an isolated system never decreases. Heat flows from hot to cold, never the reverse. This arrow of time emerges from statistics: there are overwhelmingly more disordered states.",
+        statisticalTools: [
+          { name: "Clausius Inequality", desc: "\u0394S \u2265 Q/T. For irreversible processes, entropy increases by more than Q/T. Equality only for reversible processes." },
+          { name: "Entropy Production Rate", desc: "\u03C3 = dS_total/dt \u2265 0. The rate of entropy production is always non-negative. Zero at equilibrium." },
+          { name: "Thermal Equilibrium", desc: "Two systems in thermal contact reach T_a = T_b, maximizing total entropy. dS/dE = 1/T defines temperature." },
+          { name: "Statistical Arrow of Time", desc: "Entropy increase is overwhelmingly probable for macroscopic systems. The probability of a decrease ~ e^{-N}. Essentially impossible." },
+          { name: "Heat Death", desc: "Maximum entropy state: uniform temperature everywhere. No gradients = no work possible. The ultimate equilibrium." },
+          { name: "Gibbs' H-Theorem", desc: "H = \u03A3 p_i ln p_i decreases (entropy increases) until the distribution is Boltzmann. Mathematical proof of equilibration." },
+          { name: "Irreversibility", desc: "Real processes always produce entropy: friction, mixing, heat conduction across \u0394T. Reversible processes are idealizations." },
+          { name: "Loschmidt Paradox", desc: "How does irreversibility emerge from time-reversible microscopic laws? Resolution: initial conditions break time symmetry." },
+        ],
+        keyEquations: [
+          "\\Delta S_{\\text{total}} \\geq 0",
+          "\\Delta S = \\frac{Q_{\\text{cold}}}{T_{\\text{cold}}} - \\frac{Q_{\\text{hot}}}{T_{\\text{hot}}} > 0",
+          "\\frac{1}{T} = \\frac{\\partial S}{\\partial E}",
+        ],
+        conceptSummary:
+          "Watch two systems at different temperatures exchange heat. Entropy always increases until equilibrium is reached.",
+      },
+    ],
+  },
+  {
+    id: "s9",
+    num: "S9",
+    title: "Free Energy & Phase Equilibria",
+    description:
+      "Free energy F = E - TS determines equilibrium at fixed temperature. The van der Waals equation captures the liquid-gas transition. Phase diagrams map the states of matter.",
+    color: "#059669",
+    icon: "\u{1F9EA}",
+    shortDesc: "Thermodynamic potentials & phases",
+    sections: [
+      {
+        id: "helmholtz",
+        title: "Helmholtz Free Energy",
+        description:
+          "At constant temperature, nature minimizes the Helmholtz free energy F = E - TS. At low T, energy dominates. At high T, entropy wins.",
+        statisticalTools: [
+          { name: "Helmholtz Free Energy F", desc: "F = E - TS = -kT ln Z. The natural potential for fixed T and V. Minimum at equilibrium." },
+          { name: "Competition: E vs TS", desc: "At low T: F \u2248 E (energy dominates, ordered states win). At high T: F \u2248 -TS (entropy dominates, disordered states win)." },
+          { name: "Gibbs Free Energy G", desc: "G = F + PV = H - TS. Natural for fixed T and P (most lab conditions). Phase transitions occur where G is minimized." },
+          { name: "Maxwell Relations", desc: "Cross-derivatives of potentials are equal: (\u2202S/\u2202V)_T = (\u2202P/\u2202T)_V, etc. Connect measurable quantities." },
+          { name: "Legendre Transforms", desc: "F(T,V) from E(S,V) by replacing S with T. G(T,P) from F(T,V) by replacing V with P. Systematic construction." },
+          { name: "Variational Principle", desc: "F is minimized by the Boltzmann distribution. Any other distribution gives F' > F. Proves uniqueness of equilibrium." },
+          { name: "Work and Free Energy", desc: "Maximum work extractable at constant T: W_max = -\u0394F. Free energy is \u201Cfree\u201D to do work." },
+          { name: "Fluctuation Formula", desc: "F = -kT ln Z. Since Z = \u03A3 e^{-\u03B2E_i}, free energy packages all thermodynamic information." },
+        ],
+        keyEquations: [
+          "F = E - TS = -k_BT \\ln Z",
+          "dF = -S\\,dT - P\\,dV",
+          "G = F + PV = -k_BT \\ln Z + PV",
+        ],
+        conceptSummary:
+          "Watch E, TS, and F compete as temperature changes. See which dominates and how it determines the equilibrium state.",
+      },
+      {
+        id: "van-der-waals",
+        title: "Van der Waals Gas",
+        description:
+          "Real gases have attractive interactions and finite molecular volume. The van der Waals equation (P + a/V\u00B2)(V - b) = NkT predicts the liquid-gas transition.",
+        statisticalTools: [
+          { name: "Van der Waals Equation", desc: "(P + a/V\u00B2)(V - b) = NkT. Parameter a: attractive interactions. Parameter b: excluded volume. Reduces to ideal gas when a=b=0." },
+          { name: "Critical Point", desc: "T_c = 8a/(27bk), P_c = a/(27b\u00B2), V_c = 3Nb. The point where liquid and gas become indistinguishable." },
+          { name: "Reduced Variables", desc: "P* = P/P_c, V* = V/V_c, T* = T/T_c. Law of corresponding states: all VdW gases look the same in reduced variables." },
+          { name: "Van der Waals Loop", desc: "Below T_c, the isotherm has an unphysical region where dP/dV > 0. Real system phase-separates instead." },
+          { name: "Maxwell Construction", desc: "Replace the loop with a horizontal line at P where equal areas are cut above and below. Gives the true coexistence pressure." },
+          { name: "Spinodal and Binodal", desc: "Binodal: coexistence curve (equilibrium boundary). Spinodal: limit of metastability (dP/dV = 0). Between them: metastable." },
+          { name: "Lever Rule", desc: "In the two-phase region, the fraction of liquid vs gas is determined by the lever rule on the horizontal tie line." },
+          { name: "Virial Expansion", desc: "P = nkT(1 + B_2/V + B_3/V\u00B2 + ...). VdW gives B_2 = b - a/kT. Systematic expansion in density." },
+        ],
+        keyEquations: [
+          "\\left(P + \\frac{a}{V^2}\\right)(V - b) = Nk_BT",
+          "T_c = \\frac{8a}{27bk_B},\\quad P_c = \\frac{a}{27b^2}",
+          "P^* = \\frac{8T^*}{3V^* - 1} - \\frac{3}{V^{*2}}",
+        ],
+        conceptSummary:
+          "Explore van der Waals isotherms. Below Tc, see the unphysical loop and the Maxwell construction that replaces it.",
+      },
+      {
+        id: "phase-diagram",
+        title: "Phase Diagrams",
+        description:
+          "A phase diagram maps which state of matter (solid, liquid, gas) is stable at each (T, P). Boundaries mark phase transitions; special points mark where phases merge.",
+        statisticalTools: [
+          { name: "Triple Point", desc: "The unique (T,P) where solid, liquid, and gas coexist simultaneously. For water: 273.16 K, 611.7 Pa. Defines the Kelvin scale." },
+          { name: "Critical Point", desc: "The endpoint of the liquid-gas boundary. Above T_c, no distinction between liquid and gas: only a supercritical fluid." },
+          { name: "Clausius-Clapeyron Equation", desc: "dP/dT = \u0394H/(T\u0394V). Slope of phase boundaries. Steep for solid-liquid (small \u0394V), gentle for liquid-gas (large \u0394V)." },
+          { name: "First-Order Transitions", desc: "Latent heat, discontinuous density change, entropy change. The liquid-gas and solid-liquid lines are first-order." },
+          { name: "Second-Order Transitions", desc: "No latent heat, continuous density, but discontinuous heat capacity. The critical point is second-order." },
+          { name: "Supercritical Fluid", desc: "Above T_c and P_c: a state with liquid-like density but gas-like viscosity. No phase boundary to cross." },
+          { name: "Phase Rule (Gibbs)", desc: "F = C - P + 2. Degrees of freedom F for C components and P phases. At the triple point: F = 0 (fixed)." },
+          { name: "Latent Heat", desc: "L = T\u0394S = T(S_gas - S_liquid). Energy absorbed during the phase transition at constant T and P." },
+        ],
+        keyEquations: [
+          "\\frac{dP}{dT} = \\frac{\\Delta H}{T\\,\\Delta V}",
+          "F = C - P + 2 \\;\\text{(Gibbs phase rule)}",
+          "L = T\\,\\Delta S",
+        ],
+        conceptSummary:
+          "Navigate a PT phase diagram. Move the state point across boundaries and see the phase transition happen.",
+      },
+    ],
+  },
+  {
+    id: "s10",
+    num: "S10",
+    title: "Fluctuations & Response",
+    description:
+      "Thermodynamic quantities fluctuate. These fluctuations are not noise \u2014 they encode response functions. The fluctuation-dissipation theorem unifies spontaneous fluctuations with system response.",
+    color: "#7c3aed",
+    icon: "\u{1F4CA}",
+    shortDesc: "Noise, response & Brownian motion",
+    sections: [
+      {
+        id: "energy-fluctuations",
+        title: "Energy Fluctuations & Heat Capacity",
+        description:
+          "The variance of energy in the canonical ensemble equals kT\u00B2 C_v. Larger systems have relatively smaller fluctuations: \u0394E/E ~ 1/\u221AN.",
+        statisticalTools: [
+          { name: "Canonical Fluctuations", desc: "\u27E8(\u0394E)\u00B2\u27E9 = kT\u00B2 C_v = -\u2202\u00B2 ln Z/\u2202\u03B2\u00B2. Energy fluctuations directly give heat capacity." },
+          { name: "Relative Fluctuations", desc: "\u0394E/\u27E8E\u27E9 ~ 1/\u221AN. For 10\u00B2\u00B3 particles, fluctuations are ~ 10\u207B\u00B9\u00B2. Thermodynamics is exact in the thermodynamic limit." },
+          { name: "Gamma Distribution", desc: "For N independent oscillators, total energy E ~ \u0393(N, kT). Approaches Gaussian for large N by CLT." },
+          { name: "Central Limit Theorem", desc: "Sum of N independent energies has Gaussian fluctuations. Variance = N \u00D7 single-particle variance. Width ~ \u221AN." },
+          { name: "Thermodynamic Limit", desc: "N \u2192 \u221E with N/V fixed. Extensive quantities grow as N, fluctuations as \u221AN. Intensive quantities become sharp." },
+          { name: "Specific Heat from Fluctuations", desc: "C_v = \u27E8(\u0394E)\u00B2\u27E9/kT\u00B2. Measuring energy fluctuations = measuring heat capacity. Two routes to the same quantity." },
+          { name: "Negative Heat Capacity", desc: "In gravitational systems (stars), C_v < 0. Adding energy makes the system expand and cool. Not extensive systems." },
+          { name: "Higher Cumulants", desc: "Third cumulant = skewness. Fourth = kurtosis. Each connects to a higher derivative of ln Z. All vanish relative to N." },
+        ],
+        keyEquations: [
+          "\\langle (\\Delta E)^2 \\rangle = k_BT^2 C_v",
+          "\\frac{\\Delta E}{\\langle E \\rangle} \\sim \\frac{1}{\\sqrt{N}}",
+          "C_v = -\\frac{\\partial^2 \\ln Z}{\\partial \\beta^2}",
+        ],
+        conceptSummary:
+          "Sample energies from a canonical ensemble. Watch fluctuations shrink as N grows, confirming \u0394E/E ~ 1/\u221AN.",
+      },
+      {
+        id: "fluctuation-dissipation",
+        title: "Fluctuation-Dissipation Theorem",
+        description:
+          "The fluctuation-dissipation theorem says that spontaneous thermal fluctuations (noise) and the system\u2019s response to an external perturbation (dissipation) are two sides of the same coin.",
+        statisticalTools: [
+          { name: "Magnetic Susceptibility", desc: "\u03C7 = \u2202\u27E8M\u27E9/\u2202h = \u03B2\u27E8(\u0394M)\u00B2\u27E9. Response to a field equals magnetization fluctuations times \u03B2. The FDT." },
+          { name: "Compressibility", desc: "\u03BA_T = -V\u207B\u00B9\u2202V/\u2202P = \u27E8(\u0394N)\u00B2\u27E9/(n\u00B2kTV). Density fluctuations give compressibility." },
+          { name: "Noise and Dissipation", desc: "Systems that dissipate energy (friction, resistance) also generate noise (Brownian motion, Johnson noise)." },
+          { name: "Johnson-Nyquist Noise", desc: "\u27E8V\u00B2\u27E9 = 4k_BTR\u0394f. Voltage noise across a resistor R. Thermal fluctuations drive electrical noise." },
+          { name: "Einstein Relation", desc: "D = k_BT/\u03B3. Diffusion (fluctuation) and friction (dissipation) are linked by temperature." },
+          { name: "Onsager Reciprocal Relations", desc: "L_ij = L_ji. Cross-transport coefficients are symmetric. A consequence of microscopic time-reversibility." },
+          { name: "Green-Kubo Relations", desc: "Transport coefficients from autocorrelation functions: D = \u222B\u27E8v(0)v(t)\u27E9 dt. Fluctuations determine transport." },
+          { name: "Linear Response Theory", desc: "\u27E8A(t)\u27E9 = \u27E8A\u27E9_0 + \u222B \u03C7(t-t') F(t') dt'. Response is proportional to perturbation for small forces." },
+        ],
+        keyEquations: [
+          "\\chi = \\beta \\langle (\\Delta M)^2 \\rangle",
+          "D = \\frac{k_BT}{\\gamma}",
+          "C_v = \\frac{\\langle (\\Delta E)^2 \\rangle}{k_BT^2}",
+        ],
+        conceptSummary:
+          "Measure magnetization fluctuations and susceptibility independently \u2014 then verify they agree via the fluctuation-dissipation theorem.",
+      },
+      {
+        id: "brownian",
+        title: "Brownian Motion & Langevin Equation",
+        description:
+          "A dust grain buffeted by invisible molecules traces a random path. The Langevin equation mdv/dt = -\u03B3v + F_random captures this: friction competes with thermal kicks.",
+        statisticalTools: [
+          { name: "Langevin Equation", desc: "mdv/dt = -\u03B3v + \u03B7(t). Deterministic friction plus random force. The prototype stochastic differential equation." },
+          { name: "Einstein Relation", desc: "D = k_BT/\u03B3. Connects microscopic fluctuations (D) to macroscopic friction (\u03B3). Temperature mediates." },
+          { name: "Mean Squared Displacement", desc: "\u27E8r\u00B2(t)\u27E9 = 2dDt for long times. Ballistic (\u221D t\u00B2) at short times, diffusive (\u221D t) at long times. Crossover at t ~ m/\u03B3." },
+          { name: "Velocity Autocorrelation", desc: "\u27E8v(0)v(t)\u27E9 = (kT/m)e^{-\u03B3t/m}. Exponential decay with time constant \u03C4 = m/\u03B3." },
+          { name: "Stokes Drag", desc: "\u03B3 = 6\u03C0\u03B7R for a sphere of radius R in fluid of viscosity \u03B7. Connects particle size to diffusion." },
+          { name: "Ornstein-Uhlenbeck Process", desc: "The velocity of a Brownian particle. Gaussian, stationary, Markov. The most analytically tractable stochastic process." },
+          { name: "Euler-Maruyama Method", desc: "x_{n+1} = x_n + a(x_n)\u0394t + b(x_n)\u221A\u0394t \u03BE_n. Numerical integration of stochastic differential equations." },
+          { name: "Diffusion Coefficient", desc: "D = lim_{t\u2192\u221E} \u27E8r\u00B2\u27E9/(2dt). Extract D from trajectory data by fitting MSD vs time." },
+        ],
+        keyEquations: [
+          "m\\frac{dv}{dt} = -\\gamma v + \\sqrt{2\\gamma k_BT}\\;\\xi(t)",
+          "\\langle r^2(t) \\rangle = 2dDt",
+          "D = \\frac{k_BT}{\\gamma}",
+        ],
+        conceptSummary:
+          "Watch a Brownian particle wander through 2D space. Adjust friction and temperature to see how the trajectory and MSD change.",
+      },
+    ],
+  },
 ];
 
 // ─── EXPORTS ────────────────────────────────────────────────────────
