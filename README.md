@@ -6,7 +6,7 @@
 
 ### A Visual Introduction to Quantum & Statistical Physics
 
-**If you can see it, you can understand it.**
+**See the invisible. Feel the abstract. Understand the universe.**
 
 [![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/hasnain7abbas/visualize-physics/releases)
 [![Tauri](https://img.shields.io/badge/Tauri-FFC131?style=for-the-badge&logo=tauri&logoColor=white)](https://tauri.app)
@@ -24,69 +24,110 @@
 
 </div>
 
-## ✨ Features
+## Screenshots
 
-- 🎯 **18 Interactive Simulations** — Every section has a working, hands-on visualization
-- 🧮 **200+ Statistical Tools** — Exhaustive coverage from Born rule to Shannon entropy, each with expandable explanations
-- 📐 **Beautiful Math** — KaTeX-rendered equations that look like a textbook
-- 🌙 **Dark & Light Mode** — Easy on the eyes, any time of day
-- ⚡ **Rust-Powered Backend** — High-performance computation via Tauri
-- 🖥️ **Native Desktop App** — Runs offline, no browser needed
-- 🎨 **Polished UI** — Color-coded chapters, smooth animations, intuitive navigation
+<div align="center">
 
----
+### Welcome Screen
+<img src="screenshots/home-welcome.png" alt="Welcome Screen" width="800" />
 
-## 📚 Chapters
+### Interactive Simulations
+<p>
+<img src="screenshots/quantum-probability.png" alt="Quantum Probability" width="400" />
+<img src="screenshots/carnot-cycle.png" alt="Carnot Cycle" width="400" />
+</p>
+<p>
+<img src="screenshots/boltzmann-world.png" alt="Boltzmann Distribution" width="400" />
+<img src="screenshots/ideal-gas.png" alt="Ideal Gas & Equipartition" width="400" />
+</p>
+<p>
+<img src="screenshots/ising-model.png" alt="Ising Model & Phase Transitions" width="400" />
+<img src="screenshots/dark-mode-chapter.png" alt="Free Energy (Dark Mode)" width="400" />
+</p>
 
-The app is organized into **two major sections** with **11 chapters** and **33 interactive sections**, each with **300+ statistical tools** that have their own mini-simulations:
+### Dark Mode
+<img src="screenshots/dark-mode.png" alt="Dark Mode" width="800" />
 
-### ⚛️ Quantum Physics
-
-| Chapter | Topics | Statistical Tools |
-|---------|--------|-------------------|
-| **Q1 — Quantum Probability** | Superposition · Measurement & Collapse · Probability Amplitudes | Born Rule, Bayes' Theorem, Interference, Bernoulli Trials, Markov Chains |
-| **Q2 — Spin & Stern-Gerlach** | Single SG · Sequential SG · Expectation Values & Uncertainty | Binomial Distribution, Hypothesis Testing, Uncertainty Relations, MLE |
-| **Q3 — Wavefunctions** | Particle in a Box · Gaussian Wavepackets · Heisenberg Uncertainty | PDFs, CDFs, Fourier Transforms, Cramér-Rao Bound, Fisher Information |
-| **Q4 — Quantum Tunneling** | Barrier Penetration · Alpha Decay · Resonant Tunneling | WKB Approximation, Gamow Factor, Breit-Wigner, Lorentzian, Survival Analysis |
-| **Q5 — Harmonic Oscillator** | Energy Levels · Coherent States · Zero-Point Energy | Hermite Polynomials, Poisson Distribution, Planck Distribution, Partition Functions |
-
-### 🔥 Statistical Physics
-
-| Chapter | Topics | Statistical Tools |
-|---------|--------|-------------------|
-| **S1 — The Boltzmann World** | Maxwell-Boltzmann · Boltzmann Energy · Partition Functions | Chi/Gamma Distributions, Monte Carlo, Metropolis-Hastings, Equipartition |
-| **S2 — Quantum Statistics** | Fermions vs Bosons · Fermi-Dirac · Bose-Einstein Condensation | Combinatorics, Polylogarithms, Zeta Functions, Grand Canonical Ensemble |
-| **S3 — Entropy & Information** | Microstates · Entropy of Mixing · Shannon/Gibbs Entropy | KL Divergence, Mutual Information, MaxEnt, Landauer's Principle |
-| **S4 — Random Walks** | 1D Walk · 2D Brownian Motion · Diffusion Equation | CLT, Wiener Process, Lévy Flights, Einstein Relation, Gambler's Ruin |
-| **S5 — Ising Model** | 2D Ising · Phase Transition · Critical Phenomena | Metropolis Algorithm, Critical Exponents, Universality, Renormalization Group |
-| **S6 — Monte Carlo Methods** | Estimating π · MC Integration · MCMC | Importance Sampling, Acceptance-Rejection, Gibbs Sampling, Convergence Diagnostics |
+</div>
 
 ---
 
-## 🎮 Simulations
+## Features
+
+- **30+ Interactive Simulations** — Every section has a working, hands-on visualization
+- **407+ Statistical Tools** — Exhaustive coverage from Born rule to Shannon entropy, each with expandable explanations and mini-simulations
+- **Beautiful Math** — KaTeX-rendered equations that look like a textbook
+- **Dark & Light Mode** — Easy on the eyes, any time of day
+- **Rust-Powered Backend** — High-performance computation via Tauri
+- **Native Desktop App** — Runs offline with .exe and .msi installers
+- **Web Version** — Try it instantly at [hasnain7abbas.github.io/visualize-physics](https://hasnain7abbas.github.io/visualize-physics/)
+- **Polished UI** — Color-coded chapters, smooth animations, floating equations, intuitive navigation
+
+---
+
+## Chapters
+
+The app is organized into **two major sections** with **15 chapters**, **45 interactive sections**, and **407+ statistical tools**:
+
+### Quantum Physics
+
+| Chapter | Topics | Highlights |
+|---------|--------|------------|
+| **Q1 — Quantum Probability** | Superposition · Measurement & Collapse · Probability Amplitudes | Born Rule, Bernoulli Trials, Interference, Markov Chains |
+| **Q2 — Spin & Stern-Gerlach** | Single SG · Sequential SG · Expectation Values | Binomial Distribution, Hypothesis Testing, MLE |
+| **Q3 — Wavefunctions** | Particle in a Box · Wavepackets · Heisenberg Uncertainty | Fourier Transforms, Fisher Information, Cramér-Rao |
+| **Q4 — Quantum Tunneling** | Barrier Penetration · Alpha Decay · Resonant Tunneling | WKB, Gamow Factor, Breit-Wigner, Survival Analysis |
+| **Q5 — Harmonic Oscillator** | Energy Levels · Coherent States · Zero-Point Energy | Hermite Polynomials, Poisson Distribution, Planck Distribution |
+
+### Statistical Physics
+
+| Chapter | Topics | Highlights |
+|---------|--------|------------|
+| **S1 — The Boltzmann World** | Maxwell-Boltzmann · Boltzmann Energy · Partition Functions | Chi/Gamma Distributions, Metropolis-Hastings, Equipartition |
+| **S2 — Quantum Statistics** | Fermions vs Bosons · Fermi-Dirac · Bose-Einstein | Combinatorics, Polylogarithms, Grand Canonical Ensemble |
+| **S3 — Entropy & Information** | Microstates · Entropy of Mixing · Shannon/Gibbs Entropy | KL Divergence, Mutual Information, Landauer's Principle |
+| **S4 — Random Walks** | 1D Walk · 2D Brownian Motion · Diffusion Equation | CLT, Wiener Process, Levy Flights, Einstein Relation |
+| **S5 — Ising Model** | 2D Ising · Phase Transition · Critical Phenomena | Metropolis Algorithm, Critical Exponents, Renormalization Group |
+| **S6 — Monte Carlo Methods** | Estimating pi · MC Integration · MCMC | Importance Sampling, Gibbs Sampling, Convergence Diagnostics |
+| **S7 — Ideal Gas & Equipartition** | Ideal Gas Law · Equipartition Theorem · Heat Capacity | Kinetic Theory, Degrees of Freedom, Einstein/Debye Models |
+| **S8 — Heat Engines & Carnot** | Carnot Cycle · Engine Efficiency · Second Law | PV Diagrams, Carnot Efficiency, Clausius Inequality |
+| **S9 — Free Energy & Phases** | Helmholtz Free Energy · Van der Waals · Phase Diagrams | Maxwell Construction, Critical Point, Clausius-Clapeyron |
+| **S10 — Fluctuations & Response** | Energy Fluctuations · Fluctuation-Dissipation · Brownian Motion | Langevin Equation, Johnson-Nyquist Noise, Green-Kubo Relations |
+
+---
+
+## Simulations
 
 Every section has a **fully interactive simulation**, and every statistical tool has its own **mini-simulation** when clicked:
 
 | Simulation | Description |
 |------------|-------------|
-| 🎲 **Quantum Superposition** | Adjust α/β amplitudes and measure qubits — histogram converges to Born rule |
-| 🧲 **Stern-Gerlach Chain** | Build Z→X→Z sequences and see information destruction |
-| 🚧 **Quantum Tunneling** | Watch wavefunctions decay inside barriers, adjust height/width |
-| 🧲 **2D Ising Model** | Run Metropolis on a spin lattice, watch order emerge below T_c |
-| 🎯 **Monte Carlo π** | Throw random darts and estimate π with 1/√N convergence |
-| 📊 **Shannon Entropy** | Drag probability sliders, see H, D_KL, mutual information live |
-| 🔬 **Each Statistical Tool** | Click any tool → mini-simulation appears (distributions, random walks, Markov chains...) |
+| **Quantum Superposition** | Adjust amplitudes, measure qubits, watch histogram converge to Born rule |
+| **Stern-Gerlach Chain** | Build Z-X-Z sequences, see information destruction in action |
+| **Quantum Tunneling** | Watch wavefunctions decay inside barriers, adjust height/width |
+| **Ideal Gas** | Animated particles bouncing in a container, PV = NkT in real time |
+| **Carnot Cycle** | Animated PV diagram with isotherms and adiabats, live efficiency |
+| **Maxwell-Boltzmann** | Sample particle speeds, histogram converges to theory curve |
+| **2D Ising Model** | Run Metropolis on a spin lattice, watch order emerge below T_c |
+| **Van der Waals** | Explore isotherms, see the Maxwell construction below T_c |
+| **Phase Diagram** | Navigate P-T space, cross phase boundaries with visual effects |
+| **Brownian Motion** | 2D Langevin trajectory with MSD tracking (Einstein relation) |
+| **Fluctuation-Dissipation** | Verify chi = beta * variance(M) for a paramagnet |
+| **Monte Carlo pi** | Throw random darts and estimate pi with 1/sqrt(N) convergence |
+| **Shannon Entropy** | Drag probability sliders, see H, D_KL, mutual information live |
 
 ---
 
-## 📥 Download
+## Download
 
 > **Windows only** (macOS and Linux coming soon)
 
 | File | Description |
 |------|-------------|
-| [📦 `.msi` Installer](https://github.com/hasnain7abbas/visualize-physics/releases/latest) | Standard Windows installer (recommended) |
-| [⚡ `.exe` Setup](https://github.com/hasnain7abbas/visualize-physics/releases/latest) | NSIS installer (smaller download) |
+| [**.msi** Installer](https://github.com/hasnain7abbas/visualize-physics/releases/latest) | Standard Windows installer (recommended) |
+| [**.exe** Setup](https://github.com/hasnain7abbas/visualize-physics/releases/latest) | NSIS installer (smaller download) |
+
+Or try the **web version** instantly: [hasnain7abbas.github.io/visualize-physics](https://hasnain7abbas.github.io/visualize-physics/)
 
 Or build from source:
 
@@ -100,7 +141,7 @@ npm run tauri build
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 <div align="center">
 
@@ -126,13 +167,16 @@ nalgebra = "0.33"     # Linear algebra
 
 ---
 
-## 🗺️ Roadmap
+## Roadmap
 
-- [x] 6 chapters with 18 interactive sections
-- [x] 200+ statistical tools with descriptions
+- [x] 15 chapters with 45 interactive sections
+- [x] 407+ statistical tools with descriptions and mini-simulations
 - [x] KaTeX math rendering
 - [x] Dark/Light theme
+- [x] Welcome hero with floating equations
 - [x] Windows .exe and .msi installers
+- [x] GitHub Pages web deployment
+- [x] Statistical physics foundations (Ideal Gas, Carnot, Free Energy, Fluctuations)
 - [ ] D3.js advanced visualizations (scatter plots, heatmaps)
 - [ ] Rust-powered Monte Carlo backends for all simulations
 - [ ] macOS and Linux builds
@@ -143,27 +187,27 @@ nalgebra = "0.33"     # Linear algebra
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Whether it's:
 
-- 🐛 Bug reports
-- 💡 Feature suggestions
-- 🎨 UI/UX improvements
-- 📝 Documentation
-- 🧪 New simulations
+- Bug reports
+- Feature suggestions
+- UI/UX improvements
+- Documentation
+- New simulations
 
 Please open an [issue](https://github.com/hasnain7abbas/visualize-physics/issues) or submit a PR.
 
 ---
 
-## 👨‍💻 About
+## About
 
 <div align="center">
 
-**Made with ❤️ by [Hasnain Abbas](mailto:hsnanrzee1160@gmail.com)**
+**Made with passion by [Hasnain Abbas](mailto:hsnanrzee1160@gmail.com)**
 
-Passionate about making physics intuitive through interactive visualization.
+Transforming abstract quantum mechanics and statistical physics into playful, hands-on simulations — because if you can see it, you can understand it.
 
 *Inspired by [Seeing Theory](https://seeing-theory.brown.edu/) by Daniel Kunin, Brown University.*
 *Non-commercial educational project.*
@@ -174,7 +218,7 @@ Passionate about making physics intuitive through interactive visualization.
 
 <div align="center">
 
-If you find this useful, please consider giving it a ⭐
+If you find this useful, please consider giving it a star!
 
 [![Star History Chart](https://api.star-history.com/svg?repos=hasnain7abbas/visualize-physics&type=Date)](https://star-history.com/#hasnain7abbas/visualize-physics&Date)
 
