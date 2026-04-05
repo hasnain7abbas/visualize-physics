@@ -106,7 +106,7 @@ const FloatingEquation: Component<{
   duration: number;
 }> = (props) => (
   <div
-    class="absolute pointer-events-none select-none"
+    class="absolute pointer-events-none select-none floating-eq"
     style={{
       left: `${props.x}%`,
       top: `${props.y}%`,
@@ -142,11 +142,11 @@ const WelcomeHero: Component = () => {
     { eq: "E = mc\u00B2", x: 8, y: 15, delay: 0, duration: 4.2 },
     { eq: "\u03C8 = \u03B1|0\u27E9 + \u03B2|1\u27E9", x: 78, y: 12, delay: 1.5, duration: 5.1 },
     { eq: "S = k\u0299 ln \u03A9", x: 85, y: 55, delay: 0.8, duration: 3.8 },
-    { eq: "F = -kT ln Z", x: 5, y: 65, delay: 2.2, duration: 4.6 },
-    { eq: "\u2202\u03C8/\u2202t = H\u03C8", x: 70, y: 75, delay: 1.0, duration: 5.5 },
+    { eq: "L = T \u2212 V", x: 5, y: 65, delay: 2.2, duration: 4.6 },
+    { eq: "F = \u2212GMm/r\u00B2", x: 70, y: 75, delay: 1.0, duration: 5.5 },
     { eq: "PV = NkT", x: 15, y: 40, delay: 3.0, duration: 4.0 },
     { eq: "\u0394x\u0394p \u2265 \u0127/2", x: 60, y: 30, delay: 0.5, duration: 3.5 },
-    { eq: "f(v) \u221D v\u00B2e^{-\u03B2mv\u00B2/2}", x: 88, y: 35, delay: 2.8, duration: 4.8 },
+    { eq: "q\u0307 = \u2202H/\u2202p", x: 88, y: 35, delay: 2.8, duration: 4.8 },
   ];
 
   return (
@@ -169,13 +169,13 @@ const WelcomeHero: Component = () => {
         {(eq) => <FloatingEquation {...eq} />}
       </For>
 
-      {/* Gradient orbs */}
+      {/* Gradient orbs — hidden on small mobile to prevent overflow */}
       <div
-        class="absolute -top-20 -right-20 w-80 h-80 rounded-full opacity-[0.06] blur-3xl"
+        class="absolute -top-20 -right-20 w-80 h-80 rounded-full opacity-[0.06] blur-3xl hidden sm:block"
         style={{ background: "linear-gradient(135deg, #8b5cf6, #06b6d4)" }}
       />
       <div
-        class="absolute -bottom-20 -left-20 w-60 h-60 rounded-full opacity-[0.05] blur-3xl"
+        class="absolute -bottom-20 -left-20 w-60 h-60 rounded-full opacity-[0.05] blur-3xl hidden sm:block"
         style={{ background: "linear-gradient(135deg, #ec4899, #f59e0b)" }}
       />
 
@@ -223,11 +223,11 @@ const WelcomeHero: Component = () => {
           class="text-sm max-w-2xl mx-auto leading-relaxed mb-6 animate-slide-up stagger-3"
           style={{ color: "var(--text-muted)" }}
         >
-          Dive into quantum mechanics and statistical physics through
-          real-time interactive simulations. From quantum superposition
-          to the Boltzmann distribution, from Ising phase transitions to
-          Carnot engines — every concept is alive, visual, and hands-on.
-          Powered by Rust for blazing-fast computation.
+          Explore physics through real-time interactive simulations —
+          from classical mechanics to quantum physics to statistical
+          thermodynamics. Projectile motion, double pendulums, Kepler
+          orbits, Boltzmann distributions, Ising models, and more —
+          every concept is alive, visual, and hands-on.
         </p>
 
         {/* Feature highlights */}
@@ -440,9 +440,10 @@ export const Home: Component = () => {
               style={{ color: "var(--text-secondary)" }}
             >
               Passionate about making physics intuitive through interactive
-              visualization. This project transforms abstract quantum mechanics
-              and statistical physics concepts into playful, hands-on
-              simulations — because if you can see it, you can understand it.
+              visualization. This project transforms abstract physics concepts —
+              from classical mechanics to quantum theory to statistical
+              thermodynamics — into playful, hands-on simulations. Because
+              if you can see it, you can understand it.
             </p>
           </div>
         </div>

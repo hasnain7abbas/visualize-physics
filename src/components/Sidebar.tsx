@@ -41,7 +41,7 @@ export const Sidebar: Component = () => {
             Visualize Physics
           </div>
           <div class="text-[10px] font-medium tracking-widest uppercase" style={{ color: "var(--text-muted)" }}>
-            Quantum & Stats
+            Interactive Lab
           </div>
         </div>
         {/* Close button on mobile */}

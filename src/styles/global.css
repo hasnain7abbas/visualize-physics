@@ -203,3 +203,46 @@ body {
 .glow-card:hover::before {
   opacity: 1;
 }
+
+/* ─── Mobile responsiveness fixes ─────────────────────────── */
+
+/* Simulation stat cards: stack on very small screens */
+@media (max-width: 480px) {
+  .card .grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.375rem;
+  }
+  .card .grid-cols-3 .text-lg,
+  .card .grid-cols-3 .text-xl {
+    font-size: 0.875rem;
+  }
+  .card .grid-cols-3 .text-\[10px\] {
+    font-size: 9px;
+  }
+}
+
+/* Simulation SVGs: ensure they scale and don't overflow */
+.card svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Prevent simulation slider rows from overflowing on mobile */
+@media (max-width: 640px) {
+  .card .grid-cols-3:not(.text-center) {
+    grid-template-columns: 1fr;
+  }
+  .card .flex.gap-4 {
+    flex-wrap: wrap;
+  }
+  .card input[type="range"] {
+    min-width: 0;
+  }
+}
+
+/* Floating equations: hide on mobile to prevent overlap */
+@media (max-width: 640px) {
+  .floating-eq {
+    display: none !important;
+  }
+}

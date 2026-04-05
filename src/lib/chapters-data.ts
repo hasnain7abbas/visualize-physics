@@ -1269,6 +1269,707 @@ const statisticalPhysics: Chapter[] = [
   },
 ];
 
+// ─── CLASSICAL MECHANICS ────────────────────────────────────────────
+
+const classicalMechanics: Chapter[] = [
+  {
+    id: "c1",
+    num: "C1",
+    title: "Projectile Motion",
+    description:
+      "Beyond the ideal parabola — real projectiles experience air drag, wind, and on a rotating Earth, the Coriolis force. Comparing ideal vs realistic trajectories reveals the power and limits of simple models.",
+    color: "#E07A5F",
+    icon: "🎯",
+    shortDesc: "Drag, wind & Coriolis",
+    sections: [
+      {
+        id: "ideal-projectile",
+        title: "Ideal Parabolic Trajectory",
+        description:
+          "In a uniform gravitational field with no air resistance, the trajectory is a perfect parabola. Decomposing motion into independent horizontal and vertical components gives exact analytic solutions.",
+        statisticalTools: [
+          { name: "Kinematic Equations", desc: "x(t) = v₀ cos θ · t, y(t) = v₀ sin θ · t − ½gt². The foundation of projectile motion — constant velocity horizontally, constant acceleration vertically." },
+          { name: "Range Formula", desc: "R = v₀² sin 2θ / g. Maximum range at θ = 45°. Symmetric about 45° — complementary angles give equal range." },
+          { name: "Maximum Height", desc: "H = v₀² sin²θ / 2g. Reached at t = v₀ sin θ / g, exactly half the total flight time." },
+          { name: "Flight Time", desc: "T = 2v₀ sin θ / g. Time-symmetric trajectory — the ascent and descent mirror each other in the ideal case." },
+          { name: "Trajectory Equation", desc: "y(x) = x tan θ − gx²/(2v₀² cos²θ). Eliminates time to give the parabolic path directly." },
+          { name: "Galilean Decomposition", desc: "Horizontal and vertical motions are independent. This decomposition is the key insight that makes projectile motion exactly solvable." },
+          { name: "Energy Conservation", desc: "½mv² + mgy = const. The projectile trades kinetic for potential energy and back, total mechanical energy is conserved." },
+          { name: "Envelope of Trajectories", desc: "The parabola of safety: y = v₀²/2g − gx²/2v₀². No projectile with speed v₀ can reach points beyond this curve." },
+          { name: "Impact Velocity", desc: "The speed at impact equals the launch speed (same height). The angle changes but |v| is conserved by energy." },
+          { name: "Parametric Curves", desc: "The trajectory (x(t), y(t)) is a parametric curve. Varying the launch angle sweeps out a family of parabolas." },
+        ],
+        keyEquations: [
+          "x(t) = v_0 \\cos\\theta \\cdot t",
+          "y(t) = v_0 \\sin\\theta \\cdot t - \\tfrac{1}{2}g t^2",
+          "R = \\frac{v_0^2 \\sin 2\\theta}{g}",
+        ],
+        conceptSummary:
+          "Launch a projectile and watch the ideal parabolic trajectory. Vary angle and speed to find maximum range at 45°.",
+      },
+      {
+        id: "drag-effects",
+        title: "Air Resistance & Drag",
+        description:
+          "Real projectiles experience drag proportional to velocity squared. This breaks the parabolic symmetry — the descent is steeper than the ascent, range is reduced, and optimal angle drops below 45°.",
+        statisticalTools: [
+          { name: "Quadratic Drag Force", desc: "F_drag = −½ρCᴅA|v|v. Proportional to v² and opposing motion. Dominates at high Reynolds number (turbulent flow)." },
+          { name: "Drag Coefficient", desc: "Cᴅ depends on shape: ~0.47 for a sphere, ~0.04 for a streamlined body. Dimensionless measure of aerodynamic resistance." },
+          { name: "Terminal Velocity", desc: "v_term = √(2mg/ρCᴅA). When drag equals gravity, acceleration ceases. Reached asymptotically during free fall." },
+          { name: "Reynolds Number", desc: "Re = ρvL/μ. Determines flow regime: laminar (Re < 2000) vs turbulent (Re > 4000). Most projectiles are turbulent." },
+          { name: "Asymmetric Trajectory", desc: "With drag, the descent is steeper than the ascent. The projectile spends more time falling because it has lost kinetic energy." },
+          { name: "Optimal Launch Angle", desc: "With drag, the optimal angle drops below 45° (typically 38°–42° for balls). Drag penalizes height more than horizontal distance." },
+          { name: "RK4 Integration", desc: "4th-order Runge-Kutta solves the coupled ODEs numerically. Four evaluations per step give O(h⁴) accuracy." },
+          { name: "Velocity-Dependent Forces", desc: "When force depends on velocity, the ODE is nonlinear. No closed-form solution exists — numerical methods are essential." },
+          { name: "Energy Dissipation", desc: "Drag converts kinetic energy to heat. Total mechanical energy decreases monotonically. Impact speed < launch speed." },
+          { name: "Stokes Drag (Linear)", desc: "F = −6πμRv. Valid at low Reynolds number (small, slow objects). Gives exponential velocity decay." },
+        ],
+        keyEquations: [
+          "m\\mathbf{a} = -mg\\,\\hat{y} - \\tfrac{1}{2}\\rho C_D A |\\mathbf{v}|\\,\\mathbf{v}",
+          "v_{\\text{term}} = \\sqrt{\\frac{2mg}{\\rho C_D A}}",
+          "\\theta_{\\text{opt}} < 45^\\circ \\text{ with drag}",
+        ],
+        conceptSummary:
+          "Toggle drag on/off to compare ideal vs realistic trajectories. See the parabolic symmetry break and range decrease.",
+      },
+      {
+        id: "coriolis-wind",
+        title: "Coriolis Effect & Wind",
+        description:
+          "On a rotating Earth, projectiles deflect sideways — rightward in the northern hemisphere. Add wind and the trajectory becomes a fully 3D problem requiring numerical solution.",
+        statisticalTools: [
+          { name: "Coriolis Force", desc: "F_Cor = −2m(Ω × v). An inertial force in the rotating frame. Deflects moving objects perpendicular to their velocity." },
+          { name: "Earth's Angular Velocity", desc: "Ω = 7.292 × 10⁻⁵ rad/s. One full rotation per sidereal day (23h 56m 4s)." },
+          { name: "Latitude Dependence", desc: "Vertical component of Coriolis: 2Ωv sin φ. Maximum at poles (φ = 90°), zero at equator. φ is the latitude." },
+          { name: "Foucault Pendulum", desc: "Precesses at rate Ω sin φ. Demonstrates Earth's rotation. The rotation plane appears to turn due to Coriolis force." },
+          { name: "Wind Force", desc: "F_wind = ½ρCᴅA|v_rel|v_rel where v_rel = v − v_wind. Drag is relative to the air, not the ground." },
+          { name: "Crosswind Deflection", desc: "Side wind causes lateral drift proportional to wind speed and flight time. Critical for long-range projectiles and sports." },
+          { name: "Headwind vs Tailwind", desc: "Headwind reduces range (higher relative speed → more drag). Tailwind extends range. Asymmetric effect due to v² drag." },
+          { name: "Magnus Effect", desc: "Spinning projectiles experience a lateral force: F ∝ ω × v. Explains curved balls in sports (spin bowling, curveballs)." },
+          { name: "Rotating Reference Frames", desc: "In a non-inertial frame, fictitious forces appear: Coriolis (−2mΩ×v) and centrifugal (−mΩ×(Ω×r))." },
+          { name: "Eötvös Effect", desc: "Moving east → lighter (centrifugal increases). Moving west → heavier. Measurable correction for precise gravimetry." },
+        ],
+        keyEquations: [
+          "\\mathbf{F}_{\\text{Cor}} = -2m(\\boldsymbol{\\Omega} \\times \\mathbf{v})",
+          "\\delta x \\approx \\frac{1}{3}\\Omega \\cos\\phi \\cdot g t^3",
+          "\\mathbf{v}_{\\text{rel}} = \\mathbf{v} - \\mathbf{v}_{\\text{wind}}",
+        ],
+        conceptSummary:
+          "Enable Coriolis and wind effects to see the full complexity of real-world projectile motion. Watch the sideways deflection grow with latitude.",
+      },
+    ],
+  },
+  {
+    id: "c2",
+    num: "C2",
+    title: "Double Pendulum",
+    description:
+      "Two pendulums linked end-to-end create one of the simplest systems exhibiting deterministic chaos. Tiny changes in initial conditions lead to wildly different trajectories — the hallmark of sensitive dependence.",
+    color: "#8B5CF6",
+    icon: "🔗",
+    shortDesc: "Chaos & sensitivity",
+    sections: [
+      {
+        id: "pendulum-dynamics",
+        title: "Double Pendulum Dynamics",
+        description:
+          "The double pendulum has two degrees of freedom (θ₁, θ₂) and its equations of motion are derived from the Lagrangian. At small angles it's well-behaved; at large angles, chaos emerges.",
+        statisticalTools: [
+          { name: "Lagrangian Formulation", desc: "L = T − V. For the double pendulum, T includes coupled kinetic terms and V is the sum of gravitational potential energies." },
+          { name: "Euler-Lagrange Equations", desc: "d/dt(∂L/∂θ̇ᵢ) − ∂L/∂θᵢ = 0. Yields two coupled second-order ODEs for θ₁(t) and θ₂(t)." },
+          { name: "Generalized Coordinates", desc: "θ₁ and θ₂ are natural generalized coordinates — they describe the configuration completely with no constraints to enforce." },
+          { name: "Equations of Motion", desc: "The full EOMs involve (m₁+m₂), m₂, L₁, L₂, and coupling terms m₂L₁L₂cos(θ₁−θ₂). Highly nonlinear." },
+          { name: "Small-Angle Approximation", desc: "For small θ, sin θ ≈ θ and cos θ ≈ 1. The EOMs linearize to coupled harmonic oscillators with normal modes." },
+          { name: "Energy Conservation", desc: "E = T + V = const (no friction). The total energy is a first integral of motion — a useful check on numerical accuracy." },
+          { name: "Kinetic Energy (Coupled)", desc: "T = ½(m₁+m₂)L₁²θ̇₁² + ½m₂L₂²θ̇₂² + m₂L₁L₂θ̇₁θ̇₂cos(θ₁−θ₂). The cross-term couples the two pendulums." },
+          { name: "Potential Energy", desc: "V = −(m₁+m₂)gL₁cos θ₁ − m₂gL₂cos θ₂. Measured from the pivot point downward." },
+          { name: "Mass Matrix", desc: "The kinetic energy defines a position-dependent mass matrix M(θ). The EOMs become M(θ)θ̈ = f(θ, θ̇)." },
+          { name: "Numerical Integration (RK4)", desc: "Convert to 4 first-order ODEs (θ₁, θ₂, ω₁, ω₂) and integrate with 4th-order Runge-Kutta for accuracy." },
+        ],
+        keyEquations: [
+          "L = \\tfrac{1}{2}(m_1{+}m_2)L_1^2\\dot{\\theta}_1^2 + \\tfrac{1}{2}m_2 L_2^2\\dot{\\theta}_2^2 + m_2 L_1 L_2 \\dot{\\theta}_1\\dot{\\theta}_2\\cos(\\theta_1{-}\\theta_2) + (m_1{+}m_2)gL_1\\cos\\theta_1 + m_2 g L_2\\cos\\theta_2",
+          "\\frac{d}{dt}\\frac{\\partial L}{\\partial \\dot{\\theta}_i} - \\frac{\\partial L}{\\partial \\theta_i} = 0",
+          "E = T + V = \\text{const}",
+        ],
+        conceptSummary:
+          "Watch the double pendulum swing with trailing paths. Adjust masses and lengths to see the transition from regular to chaotic motion.",
+      },
+      {
+        id: "phase-space",
+        title: "Phase Space & Poincaré Sections",
+        description:
+          "Phase space (θ vs θ̇) reveals the structure hidden in chaotic motion. Regular orbits trace closed curves; chaotic orbits fill regions ergodically. Poincaré sections slice through this structure.",
+        statisticalTools: [
+          { name: "Phase Space", desc: "The space of all possible states (θ₁, θ₂, ω₁, ω₂). The double pendulum lives in a 4D phase space." },
+          { name: "Phase Portrait", desc: "A plot of θ vs ω (or θ̇). Trajectories never cross in phase space — the flow is deterministic." },
+          { name: "Poincaré Section", desc: "Sample the trajectory each time it crosses a chosen plane (e.g., θ₂ = 0, ω₂ > 0). Regular motion → discrete points; chaos → scattered dots." },
+          { name: "Torus Structure", desc: "At low energy, phase-space trajectories lie on 2D tori in the 4D space. Poincaré sections reveal these as closed curves." },
+          { name: "KAM Theorem", desc: "Kolmogorov-Arnold-Moser: most invariant tori survive small perturbations. They break up only when the perturbation exceeds a threshold." },
+          { name: "Ergodicity", desc: "In chaotic regions, a single trajectory eventually visits every accessible region of phase space. Time averages equal phase-space averages." },
+          { name: "Liouville's Theorem", desc: "Phase-space volume is conserved under Hamiltonian flow. A cloud of initial conditions deforms but never shrinks or expands." },
+          { name: "Recurrence (Poincaré)", desc: "A bounded Hamiltonian system returns arbitrarily close to its initial state — but the recurrence time can be astronomically long." },
+          { name: "Action-Angle Variables", desc: "For integrable systems, the phase space can be parameterized by actions Jᵢ (conserved) and angles φᵢ (evolving linearly in time)." },
+          { name: "Stroboscopic Map", desc: "Sample the state at fixed time intervals. For a periodically driven system, this reduces continuous dynamics to a discrete map." },
+        ],
+        keyEquations: [
+          "\\text{Poincar\\'{e} section: } \\theta_2 = 0,\\; \\dot{\\theta}_2 > 0",
+          "\\oint \\mathbf{p} \\cdot d\\mathbf{q} = \\text{const (action)}",
+          "\\frac{d}{dt}\\rho(\\mathbf{q},\\mathbf{p}) = 0 \\;\\text{(Liouville)}",
+        ],
+        conceptSummary:
+          "View the phase-space trajectory of θ₁ vs ω₁. At low energy see regular loops; at high energy see the chaotic sea fill in.",
+      },
+      {
+        id: "chaos-lyapunov",
+        title: "Chaos & Lyapunov Exponents",
+        description:
+          "Chaos means exponential sensitivity to initial conditions. Two pendulums started with a tiny difference in angle diverge exponentially — the Lyapunov exponent quantifies how fast.",
+        statisticalTools: [
+          { name: "Sensitive Dependence", desc: "The hallmark of chaos: nearby trajectories separate exponentially. A difference of 0.001° grows to macroscopic divergence." },
+          { name: "Lyapunov Exponent", desc: "λ = lim(t→∞) (1/t) ln|δ(t)/δ(0)|. Positive λ means chaos. Measures the average exponential rate of divergence." },
+          { name: "Butterfly Effect", desc: "A poetic description of sensitive dependence. Small perturbations get amplified into large-scale unpredictability." },
+          { name: "Deterministic Chaos", desc: "The system is fully deterministic (no randomness), yet long-term prediction is impossible because errors grow exponentially." },
+          { name: "Prediction Horizon", desc: "t_pred ≈ (1/λ) ln(Δ_tol/δ₀). Beyond this time, the trajectory is effectively unpredictable for a given initial uncertainty δ₀." },
+          { name: "Kolmogorov-Sinai Entropy", desc: "h_KS = Σλᵢ (sum over positive Lyapunov exponents). Measures the rate of information production by the chaotic system." },
+          { name: "Fractal Dimension", desc: "Strange attractors (in dissipative systems) have non-integer dimension. For the double pendulum (Hamiltonian), the phase space is filled." },
+          { name: "Mixing", desc: "Chaotic systems mix phase-space regions like stirring cream into coffee. Any initial region gets stretched and folded throughout the space." },
+          { name: "Lyapunov Spectrum", desc: "A system with n degrees of freedom has 2n Lyapunov exponents. For Hamiltonian systems, they come in ±pairs (sum = 0)." },
+          { name: "Numerical Divergence Test", desc: "Run two simulations with Δθ = 10⁻³° and plot |Δθ(t)|. Exponential growth on a log plot gives the Lyapunov exponent as the slope." },
+        ],
+        keyEquations: [
+          "|\\delta(t)| \\approx |\\delta_0|\\, e^{\\lambda t}",
+          "\\lambda = \\lim_{t\\to\\infty} \\frac{1}{t} \\ln\\frac{|\\delta(t)|}{|\\delta(0)|}",
+          "t_{\\text{pred}} \\approx \\frac{1}{\\lambda}\\ln\\frac{\\Delta_{\\text{tol}}}{\\delta_0}",
+        ],
+        conceptSummary:
+          "Run two pendulums side by side with a 0.001° difference. Watch them diverge and estimate the Lyapunov exponent from the divergence rate.",
+      },
+    ],
+  },
+  {
+    id: "c3",
+    num: "C3",
+    title: "Central Force Orbits",
+    description:
+      "The Kepler problem — motion under an inverse-square force — produces ellipses, parabolas, and hyperbolas. Modifying the force law reveals precessing orbits and the deep structure of Bertrand's theorem.",
+    color: "#0EA5E9",
+    icon: "🪐",
+    shortDesc: "Kepler & beyond",
+    sections: [
+      {
+        id: "kepler-orbits",
+        title: "Kepler Orbits & Conic Sections",
+        description:
+          "Under Newtonian gravity (F ∝ 1/r²), bound orbits are ellipses. The eccentricity determines the shape: circles, ellipses, parabolas, or hyperbolas — all conic sections.",
+        statisticalTools: [
+          { name: "Newton's Law of Gravitation", desc: "F = −GMm/r². The inverse-square law produces closed elliptical orbits — one of nature's remarkable mathematical facts." },
+          { name: "Kepler's First Law", desc: "Orbits are conic sections with the force center at one focus. Bound orbits (E < 0) are ellipses." },
+          { name: "Kepler's Second Law", desc: "Equal areas in equal times: dA/dt = L/2m = const. A direct consequence of angular momentum conservation." },
+          { name: "Kepler's Third Law", desc: "T² ∝ a³. The orbital period squared is proportional to the semi-major axis cubed. T² = 4π²a³/GM." },
+          { name: "Orbital Elements", desc: "Six parameters define an orbit: semi-major axis a, eccentricity e, inclination i, argument of periapse ω, longitude of node Ω, true anomaly ν." },
+          { name: "Eccentricity", desc: "e = 0 (circle), 0 < e < 1 (ellipse), e = 1 (parabola), e > 1 (hyperbola). Determines the orbit's shape." },
+          { name: "Vis-Viva Equation", desc: "v² = GM(2/r − 1/a). Relates speed to position for any point on the orbit. The energy-orbit connection." },
+          { name: "Specific Orbital Energy", desc: "ε = −GM/2a. Negative for bound orbits, zero for parabolic escape, positive for hyperbolic trajectories." },
+          { name: "Angular Momentum", desc: "L = r × p = mr²θ̇. Conserved for any central force. Determines the orbit's shape and orientation." },
+          { name: "Velocity-Verlet Integration", desc: "Symplectic integrator: x(t+dt) = x + v·dt + ½a·dt², v(t+dt) = v + ½(a_old + a_new)·dt. Conserves energy long-term." },
+        ],
+        keyEquations: [
+          "r(\\theta) = \\frac{a(1-e^2)}{1 + e\\cos\\theta}",
+          "v^2 = GM\\left(\\frac{2}{r} - \\frac{1}{a}\\right)",
+          "T^2 = \\frac{4\\pi^2}{GM}\\,a^3",
+        ],
+        conceptSummary:
+          "Launch an orbiting body and watch it trace an ellipse. Vary initial velocity to see circles, ellipses, parabolas, and hyperbolas.",
+      },
+      {
+        id: "effective-potential",
+        title: "Effective Potential & Orbit Classification",
+        description:
+          "Reducing the 2D orbit problem to 1D radial motion using an effective potential V_eff(r). Energy diagrams classify orbits by their turning points.",
+        statisticalTools: [
+          { name: "Effective Potential", desc: "V_eff(r) = V(r) + L²/2mr². The centrifugal barrier L²/2mr² prevents the orbiting body from reaching r = 0 (for L ≠ 0)." },
+          { name: "Centrifugal Barrier", desc: "L²/2mr² → ∞ as r → 0. Angular momentum creates an effective repulsion at short range, stabilizing orbits." },
+          { name: "Turning Points", desc: "Where E = V_eff(r). The radial velocity vanishes — the orbit reaches perihelion (closest) or aphelion (farthest)." },
+          { name: "Circular Orbit Condition", desc: "dV_eff/dr = 0 at r = r_c. The radius where centrifugal and gravitational forces exactly balance." },
+          { name: "Orbit Stability", desc: "d²V_eff/dr² > 0 at r_c means stable circular orbit. Small perturbations cause radial oscillations (slightly elliptical orbit)." },
+          { name: "Energy Diagram", desc: "Plot E and V_eff(r) together. The allowed region is where E ≥ V_eff. The orbit oscillates between the turning points." },
+          { name: "Radial Equation", desc: "½mṙ² + V_eff(r) = E. The 2D orbit reduces to 1D radial motion in an effective potential — an enormous simplification." },
+          { name: "Apsidal Angle", desc: "The angle swept between successive perihelion passages. For 1/r² force: exactly π (closed orbit). Otherwise the orbit precesses." },
+          { name: "Orbit Equation", desc: "u(θ) = 1/r(θ) satisfies the Binet equation: d²u/dθ² + u = −(m/L²)(1/u²)F(1/u)." },
+          { name: "Escape Energy", desc: "E ≥ 0 for escape. The minimum velocity to escape from radius r: v_esc = √(2GM/r)." },
+        ],
+        keyEquations: [
+          "V_{\\text{eff}}(r) = -\\frac{GMm}{r} + \\frac{L^2}{2mr^2}",
+          "E = \\tfrac{1}{2}m\\dot{r}^2 + V_{\\text{eff}}(r)",
+          "v_{\\text{esc}} = \\sqrt{\\frac{2GM}{r}}",
+        ],
+        conceptSummary:
+          "See V_eff(r) plotted alongside the total energy line. Turning points mark perihelion and aphelion. Change L to reshape the potential.",
+      },
+      {
+        id: "force-law-variation",
+        title: "Non-Newtonian Force Laws",
+        description:
+          "What if gravity were not 1/r²? Bertrand's theorem says only 1/r² and r (harmonic) produce closed orbits. Other power laws create fascinating precessing rosette patterns.",
+        statisticalTools: [
+          { name: "Bertrand's Theorem", desc: "Only F ∝ 1/r² and F ∝ r yield closed orbits for all bound initial conditions. Every other power law produces precession." },
+          { name: "Power-Law Forces", desc: "F ∝ 1/rⁿ for general n. n = 2 (gravity), n = 3 (inverse cube — critical case), n = 1 (2D gravity), n = −1 (harmonic)." },
+          { name: "Orbital Precession", desc: "For near-circular orbits with F ∝ 1/rⁿ, the apsidal angle is π/√(3−n). Deviations from n = 2 cause the orbit to precess." },
+          { name: "Rosette Orbits", desc: "Non-closed orbits trace beautiful rosette patterns. The orbit precesses, and the pattern depends on the force law exponent." },
+          { name: "Mercury's Precession", desc: "43 arcsec/century unexplained by Newtonian gravity. General relativity adds an effective 1/r⁴ correction to the potential." },
+          { name: "Yukawa Potential", desc: "V(r) = −(k/r)e^{−r/a}. Screened Coulomb potential — arises in nuclear physics and plasma physics. Produces precessing orbits." },
+          { name: "Logarithmic Potential", desc: "V(r) = k ln(r). Produces flat rotation curves — relevant to galaxy dynamics and the dark matter problem." },
+          { name: "Inverse Cube Force", desc: "F ∝ 1/r³. The critical case — orbits spiral inward or outward. No stable circular orbits exist." },
+          { name: "Homogeneity & Virial Theorem", desc: "For F ∝ rⁿ: ⟨T⟩ = (n+1)/2 ⟨V⟩. The virial theorem connects time-averaged kinetic and potential energies." },
+          { name: "Laplace-Runge-Lenz Vector", desc: "A = p × L − mkr̂. Conserved only for 1/r² force. Its conservation is why Kepler orbits close — extra symmetry beyond angular momentum." },
+        ],
+        keyEquations: [
+          "\\text{Bertrand: closed orbits only for } F \\propto 1/r^2 \\text{ and } F \\propto r",
+          "\\Delta\\phi = \\frac{\\pi}{\\sqrt{3-n}} \\;\\text{(apsidal angle for } F \\propto r^{-n}\\text{)}",
+          "\\mathbf{A} = \\mathbf{p} \\times \\mathbf{L} - mk\\hat{\\mathbf{r}}",
+        ],
+        conceptSummary:
+          "Change the force-law exponent and watch orbits precess into rosettes. Only n = 2 and n = −1 give closed paths — Bertrand's theorem in action.",
+      },
+    ],
+  },
+  {
+    id: "c4",
+    num: "C4",
+    title: "Rigid Body Rotation",
+    description:
+      "A spinning rigid body obeys Euler's equations — three coupled nonlinear ODEs for angular velocity. The surprising tennis racket theorem shows that rotation about the intermediate axis is unstable.",
+    color: "#D946EF",
+    icon: "🎲",
+    shortDesc: "Euler's equations & stability",
+    sections: [
+      {
+        id: "euler-equations",
+        title: "Euler's Equations of Motion",
+        description:
+          "In the body-fixed frame, torque-free rotation is governed by Euler's equations. The angular velocity vector traces curves on the energy and angular momentum ellipsoids.",
+        statisticalTools: [
+          { name: "Euler's Equations", desc: "I₁ω̇₁ = (I₂−I₃)ω₂ω₃, and cyclic permutations. Torque-free rotation in the body frame — nonlinear coupling between axes." },
+          { name: "Principal Moments of Inertia", desc: "I₁, I₂, I₃ are the eigenvalues of the inertia tensor. Diagonalizing I gives the body's natural rotation axes." },
+          { name: "Inertia Tensor", desc: "Iᵢⱼ = Σm_k(r²δᵢⱼ − xᵢxⱼ). A 3×3 symmetric matrix encoding the mass distribution's resistance to rotation." },
+          { name: "Body-Fixed Frame", desc: "A coordinate system that rotates with the body. Euler's equations are simplest here — the inertia tensor is constant." },
+          { name: "Angular Momentum Vector", desc: "L = Iω. In the body frame, L precesses (its components change). In the lab frame, L is conserved (torque-free)." },
+          { name: "Rotational Kinetic Energy", desc: "T = ½ω·I·ω = ½(I₁ω₁² + I₂ω₂² + I₃ω₃²). Conserved for torque-free rotation — defines the energy ellipsoid." },
+          { name: "Euler Angles", desc: "Three angles (φ, θ, ψ) relating body frame to lab frame. Precession (φ̇), nutation (θ̇), and spin (ψ̇)." },
+          { name: "Symmetric Top", desc: "I₁ = I₂ ≠ I₃. Euler's equations simplify: ω₃ = const, and ω₁, ω₂ undergo uniform precession about the symmetry axis." },
+          { name: "Asymmetric Top", desc: "I₁ ≠ I₂ ≠ I₃. The general case — solutions involve Jacobi elliptic functions. Rich dynamical behavior." },
+          { name: "Conservation Laws", desc: "Two conserved quantities: energy T = const and angular momentum magnitude |L| = const. These define two ellipsoids in ω-space." },
+        ],
+        keyEquations: [
+          "I_1\\dot{\\omega}_1 = (I_2 - I_3)\\omega_2 \\omega_3",
+          "I_2\\dot{\\omega}_2 = (I_3 - I_1)\\omega_3 \\omega_1",
+          "I_3\\dot{\\omega}_3 = (I_1 - I_2)\\omega_1 \\omega_2",
+        ],
+        conceptSummary:
+          "Set the principal moments I₁, I₂, I₃ and initial angular velocity. Watch the 3D body rotate and the angular velocity evolve.",
+      },
+      {
+        id: "polhode",
+        title: "Polhode & Energy Ellipsoid",
+        description:
+          "The angular velocity vector traces a curve (polhode) on the intersection of the energy ellipsoid and the angular momentum sphere. This geometric picture reveals all possible motions.",
+        statisticalTools: [
+          { name: "Polhode", desc: "The path of ω(t) on the energy ellipsoid in the body frame. Determined by the intersection of the energy and L² surfaces." },
+          { name: "Herpolhode", desc: "The path of ω(t) in the lab (space) frame. More complex — the body-fixed polhode is 'rolled' on the invariable plane." },
+          { name: "Energy Ellipsoid", desc: "I₁ω₁² + I₂ω₂² + I₃ω₃² = 2T. All states with a given energy lie on this ellipsoid in ω-space." },
+          { name: "Angular Momentum Sphere", desc: "I₁²ω₁² + I₂²ω₂² + I₃²ω₃² = L². All states with a given |L| lie on this sphere." },
+          { name: "Intersection Curves", desc: "The polhode is the intersection of the energy ellipsoid and L² sphere. Different energy/L ratios give different topology." },
+          { name: "Separatrix", desc: "The critical polhode through the unstable (intermediate axis) fixed points. Separates qualitatively different types of motion." },
+          { name: "Jacobi Elliptic Functions", desc: "The exact solution of Euler's equations: ω₁(t) = A·cn(Ωt, k), etc. Periodic functions generalizing sin and cos." },
+          { name: "Precession Rate", desc: "For a symmetric top (I₁ = I₂): Ω_prec = (I₃ − I₁)ω₃/I₁. The rate at which ω₁, ω₂ rotate around the symmetry axis." },
+          { name: "Nutation", desc: "Oscillation of the symmetry axis about the precession direction. The 'wobble' superimposed on steady precession." },
+          { name: "Free Precession of Earth", desc: "Earth is an oblate spheroid: Chandler wobble ≈ 433 days. Euler predicted 305 days — the difference is due to Earth's elasticity." },
+        ],
+        keyEquations: [
+          "I_1 \\omega_1^2 + I_2 \\omega_2^2 + I_3 \\omega_3^2 = 2T",
+          "I_1^2 \\omega_1^2 + I_2^2 \\omega_2^2 + I_3^2 \\omega_3^2 = L^2",
+          "\\Omega_{\\text{prec}} = \\frac{(I_3-I_1)\\omega_3}{I_1}",
+        ],
+        conceptSummary:
+          "Visualize the polhode curve on the energy ellipsoid. See how angular velocity traces closed paths whose topology changes at the separatrix.",
+      },
+      {
+        id: "tennis-racket",
+        title: "Tennis Racket Theorem",
+        description:
+          "Rotation about the axis with the intermediate moment of inertia is unstable. A spinning book or phone flips unexpectedly — the Dzhanibekov effect, proven by the intermediate axis theorem.",
+        statisticalTools: [
+          { name: "Intermediate Axis Theorem", desc: "For I₁ < I₂ < I₃: rotation about axis 2 is unstable. Small perturbations grow exponentially — the axis flips 180°." },
+          { name: "Linear Stability Analysis", desc: "Linearize Euler's equations around steady rotation. Eigenvalues of the Jacobian: real (unstable) for intermediate axis, imaginary (stable) for major/minor." },
+          { name: "Dzhanibekov Effect", desc: "A wing nut in zero gravity spontaneously flips while spinning about its intermediate axis. Demonstrated on the ISS — dramatic visual proof." },
+          { name: "Fixed Points of Euler's Equations", desc: "Steady rotation about any principal axis (ω along ê₁, ê₂, or ê₃). Two are stable (max/min I), one is unstable (intermediate I)." },
+          { name: "Saddle Point Dynamics", desc: "The intermediate axis is a saddle point in phase space. Trajectories approach along one direction and recede along another." },
+          { name: "Flip Period", desc: "The time between flips depends on how close the initial condition is to pure intermediate-axis rotation. Closer → longer period." },
+          { name: "Phase Portrait", desc: "Plot ω₁ vs ω₂ (or ω₂ vs ω₃) to see the saddle structure. Separatrices divide stable and flipping regions." },
+          { name: "Heteroclinic Orbit", desc: "The separatrix connects the two saddle points (±ê₂ rotation). The system approaches one asymptotically but never reaches it." },
+          { name: "Energy-Momentum Classification", desc: "The ratio T/L² determines which axes can be rotation axes. The intermediate axis is always a saddle in this ratio." },
+          { name: "Real-World Examples", desc: "Spinning phones, tennis rackets, books, T-handles. Any object with three distinct principal moments exhibits this instability." },
+        ],
+        keyEquations: [
+          "I_1 < I_2 < I_3 \\Rightarrow \\hat{e}_2 \\text{ rotation unstable}",
+          "\\delta\\omega \\sim e^{\\pm\\gamma t},\\; \\gamma = \\omega_2\\sqrt{\\frac{(I_2-I_1)(I_3-I_2)}{I_1 I_3}}",
+          "\\text{Stable: } \\hat{e}_1 \\text{ (max I) and } \\hat{e}_3 \\text{ (min I)}",
+        ],
+        conceptSummary:
+          "Spin the rigid body about each axis. See stable precession for max/min axes and dramatic flipping for the intermediate axis.",
+      },
+    ],
+  },
+  {
+    id: "c5",
+    num: "C5",
+    title: "Coupled Oscillators",
+    description:
+      "Masses connected by springs oscillate in coordinated patterns called normal modes. Each mode vibrates at a single frequency, and any motion is a superposition of these fundamental patterns.",
+    color: "#14B8A6",
+    icon: "🔔",
+    shortDesc: "Normal modes & dispersion",
+    sections: [
+      {
+        id: "normal-modes",
+        title: "Normal Modes & Eigenfrequencies",
+        description:
+          "The normal modes of N coupled oscillators are found by diagonalizing the dynamical matrix. Each mode is a collective motion where all masses oscillate at the same frequency with fixed amplitude ratios.",
+        statisticalTools: [
+          { name: "Dynamical Matrix", desc: "Kx = ω²Mx, where K is the stiffness matrix and M is the mass matrix. The eigenvalues ω² give normal mode frequencies." },
+          { name: "Eigenvalue Problem", desc: "det(K − ω²M) = 0. Solving this characteristic equation yields N normal mode frequencies for N coupled oscillators." },
+          { name: "Eigenvectors", desc: "Each eigenvalue ω² has an eigenvector giving the relative amplitudes of each mass in that mode. These are the mode shapes." },
+          { name: "Two Coupled Pendulums", desc: "The simplest case: symmetric mode (in-phase, ω₋) and antisymmetric mode (out-of-phase, ω₊). Beat frequency = ω₊ − ω₋." },
+          { name: "Beat Phenomenon", desc: "Exciting a single pendulum creates beats: energy oscillates between the two pendulums at the beat frequency Δω = ω₊ − ω₋." },
+          { name: "Orthogonality of Modes", desc: "Normal modes are orthogonal with respect to both K and M. Any motion can be decomposed into a unique sum of modes." },
+          { name: "Modal Decomposition", desc: "x(t) = Σ Aₙ cos(ωₙt + φₙ) × (mode shape)ₙ. Each normal mode evolves independently — the power of the normal mode basis." },
+          { name: "Spring Constant Matrix", desc: "For identical springs k: K is tridiagonal with 2k on diagonal and −k on off-diagonals (fixed endpoints)." },
+          { name: "Boundary Conditions", desc: "Fixed endpoints: modes are sin(nπx/L). Free endpoints: modes are cos(nπx/L). The boundary conditions select the allowed modes." },
+          { name: "Degeneracy", desc: "When two modes have the same frequency (e.g., due to symmetry), any linear combination is also a normal mode." },
+        ],
+        keyEquations: [
+          "(K - \\omega^2 M)\\mathbf{x} = 0",
+          "\\omega_\\pm^2 = \\frac{k}{m} \\pm \\frac{k_c}{m} \\;\\text{(two oscillators)}",
+          "\\mathbf{x}(t) = \\sum_n A_n \\cos(\\omega_n t + \\phi_n)\\,\\mathbf{e}_n",
+        ],
+        conceptSummary:
+          "Watch N masses on springs vibrate. Click each normal mode to see it individually, or combine modes to create complex motion.",
+      },
+      {
+        id: "mode-superposition",
+        title: "Superposition & Energy Transfer",
+        description:
+          "Any motion of the coupled system is a superposition of normal modes. Displacing a single mass excites multiple modes, creating beats and energy transfer between masses.",
+        statisticalTools: [
+          { name: "Principle of Superposition", desc: "For linear systems, the sum of solutions is also a solution. Normal modes form a complete basis for all possible motions." },
+          { name: "Fourier Decomposition", desc: "Decompose any initial condition into normal mode amplitudes by projecting onto the mode shapes. The inverse of modal synthesis." },
+          { name: "Energy in Each Mode", desc: "Eₙ = ½mωₙ²Aₙ². Each normal mode carries a fixed fraction of the total energy — modes don't exchange energy." },
+          { name: "Energy Transfer (Beats)", desc: "When a single mass is displaced, energy sloshes between masses at the beat frequency. This is superposition of modes." },
+          { name: "Recurrence Time", desc: "If all ωₙ are commensurate (rational ratios), the motion is periodic. Otherwise, it's quasiperiodic — never exactly repeats." },
+          { name: "Initial Condition Decomposition", desc: "Given x(0) and ẋ(0), find mode amplitudes Aₙ and phases φₙ by solving a linear system using mode orthogonality." },
+          { name: "Amplitude Modulation", desc: "Superposing two close frequencies creates amplitude modulation (beats). The envelope oscillates at (ω₊ − ω₋)/2." },
+          { name: "Phase Velocity", desc: "v_ph = ω/k. The speed at which a single frequency wave crest moves. Different from group velocity for dispersive systems." },
+          { name: "Group Velocity", desc: "v_g = dω/dk. The speed at which a wave packet (energy) propagates. Equals phase velocity only for non-dispersive systems." },
+          { name: "FFT Spectrum", desc: "Fast Fourier Transform of the motion reveals peaks at the normal mode frequencies. A computational tool for mode identification." },
+        ],
+        keyEquations: [
+          "A_n = \\frac{\\mathbf{e}_n \\cdot M \\cdot \\mathbf{x}(0)}{\\mathbf{e}_n \\cdot M \\cdot \\mathbf{e}_n}",
+          "\\Delta\\omega = \\omega_+ - \\omega_- \\;\\text{(beat frequency)}",
+          "E_n = \\tfrac{1}{2}m\\omega_n^2 A_n^2",
+        ],
+        conceptSummary:
+          "Displace one mass and watch energy bounce between them. Use sliders to mix normal mode amplitudes and phases.",
+      },
+      {
+        id: "dispersion-relation",
+        title: "Dispersion Relation & Continuum Limit",
+        description:
+          "For a chain of N oscillators, the normal mode frequencies follow a dispersion relation ω(k). As N → ∞, this becomes the dispersion relation of a continuous string or lattice.",
+        statisticalTools: [
+          { name: "Dispersion Relation", desc: "ω(k) = 2√(k/m)|sin(ka/2)|. For a monatomic chain with spacing a. Relates frequency to wavevector." },
+          { name: "Brillouin Zone", desc: "−π/a < k ≤ π/a. The range of distinct wavevectors. Modes outside this zone are aliases of modes inside." },
+          { name: "First Brillouin Zone", desc: "Due to the discrete lattice, wavelengths shorter than 2a are indistinguishable from longer ones. k is periodic with period 2π/a." },
+          { name: "Acoustic Branch", desc: "ω → 0 as k → 0. Low-frequency modes where adjacent atoms move in phase — sound waves. ω ≈ v_s|k| for small k." },
+          { name: "Optical Branch", desc: "Appears in diatomic chains. High-frequency modes where adjacent atoms move out of phase. Gap between acoustic and optical branches." },
+          { name: "Speed of Sound", desc: "v_s = dω/dk|_{k=0} = a√(k/m). The slope of the dispersion curve at k = 0 gives the long-wavelength sound speed." },
+          { name: "Continuum Limit", desc: "As a → 0 and N → ∞ (with Na = L fixed), the discrete chain becomes a continuous string with wave equation ∂²y/∂t² = c²∂²y/∂x²." },
+          { name: "Phonons", desc: "Quantized lattice vibrations. Each normal mode k has energy ℏω(k)(n + ½). The quantum version of classical normal modes." },
+          { name: "Density of States", desc: "g(ω) = dN/dω. The number of modes per unit frequency. Diverges at the band edge (Van Hove singularity)." },
+          { name: "Band Gap", desc: "Frequency range with no propagating modes. Occurs between acoustic and optical branches in diatomic chains." },
+        ],
+        keyEquations: [
+          "\\omega(k) = 2\\sqrt{\\frac{\\kappa}{m}}\\left|\\sin\\frac{ka}{2}\\right|",
+          "v_s = a\\sqrt{\\frac{\\kappa}{m}} \\;\\text{(speed of sound)}",
+          "-\\frac{\\pi}{a} < k \\leq \\frac{\\pi}{a} \\;\\text{(Brillouin zone)}",
+        ],
+        conceptSummary:
+          "Increase N from 2 to 20 and watch the dispersion curve ω(k) take shape. See how discrete modes approach the continuous limit.",
+      },
+    ],
+  },
+  {
+    id: "c6",
+    num: "C6",
+    title: "Lagrangian Mechanics",
+    description:
+      "The Lagrangian L = T − V reformulates mechanics in terms of energies and generalized coordinates. It handles constraints naturally and reveals deep connections between symmetries and conservation laws.",
+    color: "#F59E0B",
+    icon: "📐",
+    shortDesc: "Generalized coordinates & constraints",
+    sections: [
+      {
+        id: "atwood-machine",
+        title: "Atwood Machine",
+        description:
+          "Two masses connected by a string over a pulley — a constrained system with one degree of freedom. The Lagrangian approach handles the constraint effortlessly.",
+        statisticalTools: [
+          { name: "Generalized Coordinates", desc: "Choose one variable q (e.g., the height of mass m₁). The constraint (string length) determines the other mass's position automatically." },
+          { name: "Constraint Forces Eliminated", desc: "The Lagrangian method never needs the tension T. It's a constraint force that does no virtual work — eliminated by construction." },
+          { name: "Lagrangian", desc: "L = T − V = ½(m₁+m₂)q̇² − (m₁−m₂)gq. A single variable, single equation of motion." },
+          { name: "Equation of Motion", desc: "q̈ = (m₁−m₂)g/(m₁+m₂). Uniform acceleration — the Atwood machine 'dilutes' gravity by the factor (m₁−m₂)/(m₁+m₂)." },
+          { name: "Effective Mass", desc: "m_eff = m₁ + m₂. Both masses contribute to inertia because the string couples their motion." },
+          { name: "Virtual Work Principle", desc: "Constraint forces do no work in virtual displacements consistent with constraints. This is why they drop out of the Lagrangian." },
+          { name: "Newtonian Comparison", desc: "The Newtonian approach requires two free-body diagrams and eliminating the tension T. The Lagrangian does it in one equation." },
+          { name: "Energy Conservation", desc: "E = ½(m₁+m₂)q̇² + (m₁−m₂)gq = const. Total energy is conserved — the system is conservative." },
+          { name: "Generalized Momentum", desc: "p = ∂L/∂q̇ = (m₁+m₂)q̇. The canonical momentum conjugate to q." },
+          { name: "D'Alembert's Principle", desc: "Σ(Fᵢ − mᵢaᵢ)·δrᵢ = 0. The bridge between Newton's laws and the Lagrangian formulation." },
+        ],
+        keyEquations: [
+          "L = \\tfrac{1}{2}(m_1+m_2)\\dot{q}^2 - (m_1-m_2)gq",
+          "\\ddot{q} = \\frac{(m_1-m_2)}{(m_1+m_2)}\\,g",
+          "p = (m_1+m_2)\\dot{q}",
+        ],
+        conceptSummary:
+          "Watch the Atwood machine accelerate. Compare the Lagrangian (one equation) vs Newtonian (two FBDs + tension) approaches side by side.",
+      },
+      {
+        id: "bead-on-hoop",
+        title: "Bead on a Rotating Hoop",
+        description:
+          "A bead slides on a circular hoop rotating about its vertical axis. Above a critical angular velocity, the bottom becomes unstable and the bead rises to a new equilibrium — a pitchfork bifurcation.",
+        statisticalTools: [
+          { name: "Rotating Frame Lagrangian", desc: "L = ½m(R²θ̇² + R²ω²sin²θ) − mgR(1−cosθ). The hoop's rotation adds a centrifugal potential term." },
+          { name: "Effective Potential", desc: "V_eff(θ) = −½mR²ω²sin²θ + mgR(1−cosθ). Competition between gravity (pulls down) and centrifugal force (pushes out)." },
+          { name: "Critical Angular Velocity", desc: "ω_c = √(g/R). Below ω_c: one stable equilibrium at θ = 0 (bottom). Above ω_c: bottom becomes unstable, two new equilibria appear." },
+          { name: "Pitchfork Bifurcation", desc: "At ω = ω_c, the system undergoes a supercritical pitchfork bifurcation. The single fixed point splits into three (one unstable, two stable)." },
+          { name: "Equilibrium Angle", desc: "cos θ_eq = g/(Rω²) for ω > ω_c. The bead rises to an angle that balances gravity against centrifugal force." },
+          { name: "Small Oscillation Frequency", desc: "About the stable equilibrium, the bead oscillates at a frequency determined by d²V_eff/dθ² at the equilibrium point." },
+          { name: "Equation of Motion", desc: "mR²θ̈ = mRω²sinθ cosθ − mgsinθ. Gravity vs centrifugal force, both modulated by geometry." },
+          { name: "Phase Portrait", desc: "Plot θ vs θ̇ for different ω. Below ω_c: a center at θ = 0. Above ω_c: two centers flanking a saddle at θ = 0." },
+          { name: "Symmetry Breaking", desc: "Above ω_c, the bead must choose left or right — the Z₂ symmetry θ ↔ −θ is spontaneously broken." },
+          { name: "Analogy to Phase Transitions", desc: "Mathematically identical to a second-order phase transition. ω is the control parameter, θ_eq is the order parameter." },
+        ],
+        keyEquations: [
+          "V_{\\text{eff}}(\\theta) = -\\tfrac{1}{2}mR^2\\omega^2\\sin^2\\!\\theta + mgR(1-\\cos\\theta)",
+          "\\omega_c = \\sqrt{g/R}",
+          "\\cos\\theta_{\\text{eq}} = \\frac{g}{R\\omega^2}\\;(\\omega > \\omega_c)",
+        ],
+        conceptSummary:
+          "Increase the hoop's angular velocity past ω_c and watch the bead rise from the bottom to a new equilibrium. A beautiful bifurcation.",
+      },
+      {
+        id: "sliding-wedge",
+        title: "Block on a Sliding Wedge",
+        description:
+          "A block slides down a frictionless wedge that itself slides on a frictionless surface. Two degrees of freedom, one constraint — the Lagrangian handles this coupled motion elegantly.",
+        statisticalTools: [
+          { name: "Two Generalized Coordinates", desc: "X (wedge position on table) and s (block position along the wedge slope). Two degrees of freedom for two moving objects." },
+          { name: "Coupled Lagrangian", desc: "L includes cross terms because the block's velocity in the lab frame depends on both Ẋ and ṡ. The wedge and block are dynamically coupled." },
+          { name: "Constraint: Block on Wedge", desc: "The block stays on the wedge surface — this geometric constraint is automatically satisfied by choosing s as a coordinate." },
+          { name: "Momentum Conservation", desc: "No external horizontal force → total horizontal momentum P_x = (M+m)Ẋ + mṡcosα = const. A first integral of the motion." },
+          { name: "Reduced Mass", desc: "μ = Mm/(M+m). Appears in the equation of motion for the relative coordinate. The effective mass of the coupled system." },
+          { name: "Wedge Acceleration", desc: "The wedge recoils as the block slides down. Heavier wedge (M >> m) → less recoil. Equal masses → significant coupling." },
+          { name: "Block Acceleration", desc: "The block's acceleration down the slope depends on both gravity and the wedge's recoil. It's less than g sinα due to the wedge's freedom." },
+          { name: "Normal Force (from Lagrange multipliers)", desc: "If needed, add the constraint with a Lagrange multiplier λ to find the normal force N = λ between block and wedge." },
+          { name: "Energy Conservation", desc: "E = ½(M+m)Ẋ² + ½m(ṡ² + 2ṡẊcosα) + mgs sinα = const. Total mechanical energy is conserved." },
+          { name: "Comparison: Newtonian vs Lagrangian", desc: "Newtonian: 4 equations with N and friction to eliminate. Lagrangian: 2 equations directly. The power of generalized coordinates." },
+        ],
+        keyEquations: [
+          "L = \\tfrac{1}{2}(M+m)\\dot{X}^2 + \\tfrac{1}{2}m\\dot{s}^2 + m\\dot{s}\\dot{X}\\cos\\alpha - mgs\\sin\\alpha",
+          "(M+m)\\ddot{X} + m\\ddot{s}\\cos\\alpha = 0",
+          "m\\ddot{s} + m\\ddot{X}\\cos\\alpha = mg\\sin\\alpha",
+        ],
+        conceptSummary:
+          "Watch a block slide down a wedge that slides on a table. See momentum conservation as the wedge recoils. Vary the mass ratio.",
+      },
+    ],
+  },
+  {
+    id: "c7",
+    num: "C7",
+    title: "Hamiltonian Phase Space",
+    description:
+      "Hamilton's equations reformulate mechanics in phase space (q, p). The phase portrait reveals fixed points, separatrices, and the topology of motion. Liouville's theorem ensures the phase-space flow is incompressible.",
+    color: "#3B82F6",
+    icon: "🌀",
+    shortDesc: "Phase portraits & Liouville",
+    sections: [
+      {
+        id: "phase-portraits",
+        title: "Phase Portraits & Hamilton's Equations",
+        description:
+          "The Hamiltonian H(q,p) generates time evolution via q̇ = ∂H/∂p and ṗ = −∂H/∂q. Contour lines of H are the trajectories in phase space.",
+        statisticalTools: [
+          { name: "Hamilton's Equations", desc: "q̇ = ∂H/∂p, ṗ = −∂H/∂q. Two first-order ODEs replacing Newton's single second-order equation. Phase space is the natural setting." },
+          { name: "Hamiltonian", desc: "H(q,p) = T + V = p²/2m + V(q). For natural systems, H equals the total energy and is conserved." },
+          { name: "Phase Space", desc: "The space of (q, p) pairs. Each point represents a complete state of the system — position AND momentum." },
+          { name: "Phase Portrait", desc: "The family of trajectories H(q,p) = E for all E. Contour lines of H form the phase portrait." },
+          { name: "Harmonic Oscillator", desc: "H = p²/2m + ½kq². Phase portrait: concentric ellipses centered at origin. All orbits are periodic with the same frequency." },
+          { name: "Simple Pendulum", desc: "H = p²/2mL² − mgL cos q. Librational orbits (oscillation) near bottom, rotational orbits (going over top) at high energy." },
+          { name: "Morse Potential", desc: "V(q) = D(1 − e^{−αq})². Models molecular bonds. Finite number of bound states, dissociation at high energy." },
+          { name: "Quartic Potential", desc: "V(q) = ¼λq⁴. No harmonic term — purely anharmonic. The double-well V(q) = −½μq² + ¼λq⁴ has two minima." },
+          { name: "Double Well Potential", desc: "V(q) = λ(q² − a²)². Two stable equilibria at q = ±a separated by a barrier. Rich phase portrait with figure-eight separatrix." },
+          { name: "Canonical Transformations", desc: "Coordinate changes (q,p) → (Q,P) that preserve Hamilton's equations. The Hamiltonian framework is invariant under these." },
+        ],
+        keyEquations: [
+          "\\dot{q} = \\frac{\\partial H}{\\partial p},\\quad \\dot{p} = -\\frac{\\partial H}{\\partial q}",
+          "H(q,p) = \\frac{p^2}{2m} + V(q) = E",
+          "\\{f,H\\} = \\dot{f}\\;\\text{(Poisson bracket)}",
+        ],
+        conceptSummary:
+          "Choose a potential V(q) and see the phase portrait fill in. Click anywhere in phase space to launch a trajectory following Hamilton's equations.",
+      },
+      {
+        id: "liouville",
+        title: "Liouville's Theorem",
+        description:
+          "A cloud of initial conditions in phase space evolves like an incompressible fluid — it deforms but its volume is preserved. This is Liouville's theorem, the foundation of statistical mechanics.",
+        statisticalTools: [
+          { name: "Liouville's Theorem", desc: "dρ/dt = 0 along trajectories. Phase-space density is conserved. Equivalently, ∇·(ρv) = 0 — the flow is divergence-free." },
+          { name: "Phase Space Volume", desc: "∫dq dp over a region of initial conditions. Liouville: this volume is constant as the region evolves under Hamiltonian flow." },
+          { name: "Incompressible Flow", desc: "∂q̇/∂q + ∂ṗ/∂p = ∂²H/∂q∂p − ∂²H/∂p∂q = 0. Hamilton's equations automatically make the flow divergence-free." },
+          { name: "Filamentation", desc: "While volume is preserved, the shape can deform wildly. The cloud stretches into thin filaments — information is 'lost' in practice." },
+          { name: "Coarse Graining", desc: "Dividing phase space into finite cells. Fine filaments fill cells uniformly → apparent increase in entropy. The origin of irreversibility." },
+          { name: "Gibbs Entropy", desc: "S = −k∫ρ ln ρ dq dp. Constant under Hamiltonian evolution (Liouville). Increases only under coarse-graining." },
+          { name: "Statistical Mechanics Connection", desc: "Liouville's theorem justifies the microcanonical ensemble: all accessible microstates are equally likely at equilibrium." },
+          { name: "Poincaré Recurrence", desc: "A bounded Hamiltonian system returns arbitrarily close to its initial state. But the recurrence time grows exponentially with system size." },
+          { name: "Symplectic Structure", desc: "Hamiltonian flow preserves the symplectic 2-form ω = dq ∧ dp. Liouville's theorem is a consequence of this deeper structure." },
+          { name: "Numerical Test", desc: "Evolve a grid of points and compute the convex hull area. It should remain constant — a test of the integrator's symplecticity." },
+        ],
+        keyEquations: [
+          "\\frac{d\\rho}{dt} = \\frac{\\partial\\rho}{\\partial t} + \\{\\rho, H\\} = 0",
+          "\\frac{\\partial \\dot{q}}{\\partial q} + \\frac{\\partial \\dot{p}}{\\partial p} = 0",
+          "\\int dq\\,dp = \\text{const}",
+        ],
+        conceptSummary:
+          "Watch a cloud of phase-space points evolve. The cloud stretches and deforms but its area is conserved — Liouville's theorem in action.",
+      },
+      {
+        id: "fixed-points",
+        title: "Fixed Points & Separatrices",
+        description:
+          "Fixed points of the Hamiltonian flow are equilibria. Stable equilibria are centers (elliptic), unstable ones are saddles (hyperbolic). Separatrices divide phase space into qualitatively different regions.",
+        statisticalTools: [
+          { name: "Fixed Points", desc: "Where q̇ = 0 and ṗ = 0 simultaneously. For H = p²/2m + V(q): p = 0 and V'(q) = 0. Equilibria of the potential." },
+          { name: "Center (Elliptic)", desc: "At a local minimum of V(q). Phase-space trajectories are closed loops — stable oscillation. Eigenvalues are purely imaginary: ±iω." },
+          { name: "Saddle (Hyperbolic)", desc: "At a local maximum of V(q). Trajectories approach along one direction, recede along another. Eigenvalues are real: ±γ." },
+          { name: "Separatrix", desc: "The trajectory through a saddle point. Divides phase space into regions with qualitatively different dynamics (e.g., oscillation vs rotation)." },
+          { name: "Pendulum Separatrix", desc: "For the pendulum, the separatrix is at E = mgL. Below: oscillation (libration). Above: full rotation. On it: asymptotic approach to top." },
+          { name: "Homoclinic Orbit", desc: "A separatrix that starts and ends at the same saddle point. Forms a loop — infinite period orbit." },
+          { name: "Heteroclinic Orbit", desc: "A separatrix connecting two different saddle points. Traversed in infinite time in both directions." },
+          { name: "Linear Stability Analysis", desc: "Linearize Hamilton's equations near a fixed point. The Jacobian eigenvalues determine stability type." },
+          { name: "Bifurcation", desc: "As a parameter changes, fixed points can appear, disappear, or change stability. The qualitative phase portrait changes at bifurcation values." },
+          { name: "Index Theory", desc: "The topological index of a fixed point: +1 for centers and saddles, characterizes the winding of the flow around the point." },
+        ],
+        keyEquations: [
+          "V'(q_0) = 0 \\;\\Rightarrow\\; \\text{fixed point at } (q_0, 0)",
+          "V''(q_0) > 0 \\;\\Rightarrow\\; \\text{center},\\quad V''(q_0) < 0 \\;\\Rightarrow\\; \\text{saddle}",
+          "\\omega = \\sqrt{V''(q_0)/m} \\;\\text{(oscillation frequency near center)}",
+        ],
+        conceptSummary:
+          "Identify fixed points and separatrices in the phase portrait. See how the topology changes when you deform the potential.",
+      },
+    ],
+  },
+  {
+    id: "c8",
+    num: "C8",
+    title: "Noether's Theorem",
+    description:
+      "Every continuous symmetry of the Lagrangian corresponds to a conserved quantity. Time translation → energy, space translation → momentum, rotation → angular momentum. The deepest theorem in classical mechanics.",
+    color: "#10B981",
+    icon: "💎",
+    shortDesc: "Symmetry & conservation",
+    sections: [
+      {
+        id: "time-energy",
+        title: "Time Translation → Energy Conservation",
+        description:
+          "If the Lagrangian doesn't depend explicitly on time (∂L/∂t = 0), then energy is conserved. Time-translation symmetry is the origin of energy conservation.",
+        statisticalTools: [
+          { name: "Noether's Theorem", desc: "For every continuous symmetry of the action S = ∫L dt, there is a conserved quantity. The most profound result in theoretical physics." },
+          { name: "Time Translation Symmetry", desc: "If L has no explicit time dependence, the physics is the same today as tomorrow. The Lagrangian is invariant under t → t + ε." },
+          { name: "Energy (Hamiltonian)", desc: "H = Σpᵢq̇ᵢ − L. The conserved quantity from time-translation symmetry. Equals T + V for natural systems." },
+          { name: "dH/dt = −∂L/∂t", desc: "If ∂L/∂t = 0 then dH/dt = 0 and energy is conserved. Explicitly time-dependent forces (e.g., parametric driving) break this." },
+          { name: "Action Principle", desc: "δS = 0 where S = ∫L dt. The equations of motion extremize the action. Noether's theorem connects symmetries of S to conservation laws." },
+          { name: "Explicit vs Implicit Time Dependence", desc: "A swinging pendulum has implicit t-dependence (through θ(t)), but L has no explicit t. Energy is still conserved." },
+          { name: "Parametric Oscillator", desc: "L = ½m(q̇² − ω(t)²q²). The time-varying frequency ω(t) breaks time symmetry → energy is NOT conserved (parametric amplification)." },
+          { name: "Dissipative Systems", desc: "Friction breaks time-reversal symmetry (not exactly the same as time-translation). Energy decreases — no conservation law from Noether." },
+          { name: "Conserved Current", desc: "Noether's theorem also applies to field theories: ∂_μ j^μ = 0. The conserved 'charge' is Q = ∫j⁰ d³x." },
+          { name: "First Integral", desc: "A conserved quantity is also called a first integral of the equations of motion. It reduces the dimensionality of the problem by one." },
+        ],
+        keyEquations: [
+          "\\frac{\\partial L}{\\partial t} = 0 \\;\\Rightarrow\\; H = \\sum p_i \\dot{q}_i - L = \\text{const}",
+          "\\frac{dH}{dt} = -\\frac{\\partial L}{\\partial t}",
+          "\\delta S = 0 \\;\\Rightarrow\\; \\text{Euler-Lagrange equations}",
+        ],
+        conceptSummary:
+          "See a system evolve and watch the energy stay constant. Then break time symmetry with a time-dependent parameter and watch energy change.",
+      },
+      {
+        id: "space-momentum",
+        title: "Space Translation → Momentum Conservation",
+        description:
+          "If the Lagrangian doesn't depend on position (∂L/∂x = 0), then linear momentum is conserved. Homogeneity of space guarantees momentum conservation.",
+        statisticalTools: [
+          { name: "Spatial Homogeneity", desc: "If L is unchanged when the entire system is shifted by Δx, there's no preferred position. Space translation is a symmetry." },
+          { name: "Generalized Momentum", desc: "pᵢ = ∂L/∂q̇ᵢ. The canonical momentum conjugate to qᵢ. If L doesn't depend on qᵢ, then ṗᵢ = 0 (conserved)." },
+          { name: "Cyclic Coordinate", desc: "If ∂L/∂qᵢ = 0, qᵢ is called cyclic (or ignorable). Its conjugate momentum pᵢ is automatically conserved." },
+          { name: "Linear Momentum", desc: "p = mv for a free particle. For a system, P_total = Σmᵢvᵢ. Conserved when there's no external force (space-translation symmetry)." },
+          { name: "Center of Mass", desc: "R_cm = Σmᵢrᵢ/M_total. Moves at constant velocity when momentum is conserved: Ṙ_cm = P/M = const." },
+          { name: "Newton's Third Law", desc: "Internal forces cancel in pairs → total momentum is conserved. This is the Newtonian manifestation of spatial homogeneity." },
+          { name: "Collision Problems", desc: "Momentum conservation simplifies collision analysis. In the CM frame, the problem reduces to a single-body scattering problem." },
+          { name: "Translational vs Internal Degrees of Freedom", desc: "Separate q_cm and relative coordinates. The CM moves freely; internal dynamics depend only on relative separations." },
+          { name: "Gauge Momentum", desc: "In EM: pᵢ = mq̇ᵢ + qAᵢ. The canonical momentum includes the vector potential contribution — not just mechanical momentum." },
+          { name: "Broken Translation Symmetry", desc: "An external potential V(x) breaks spatial homogeneity → momentum is NOT conserved. The force F = −dV/dx changes momentum." },
+        ],
+        keyEquations: [
+          "\\frac{\\partial L}{\\partial x} = 0 \\;\\Rightarrow\\; p_x = \\frac{\\partial L}{\\partial \\dot{x}} = \\text{const}",
+          "\\dot{p}_i = \\frac{\\partial L}{\\partial q_i}",
+          "\\mathbf{P}_{\\text{total}} = \\sum_i m_i \\mathbf{v}_i = \\text{const}",
+        ],
+        conceptSummary:
+          "Move a system through space and see that physics doesn't change. Then add a potential to break the symmetry and watch momentum change.",
+      },
+      {
+        id: "rotation-angular",
+        title: "Rotation → Angular Momentum Conservation",
+        description:
+          "If the Lagrangian is invariant under rotations (isotropy of space), angular momentum is conserved. This is why planets maintain their orbital planes and why spinning tops stay upright.",
+        statisticalTools: [
+          { name: "Rotational Symmetry", desc: "L is unchanged when the entire system is rotated by angle δφ. Isotropy of space — no preferred direction." },
+          { name: "Angular Momentum", desc: "L = r × p. The conserved quantity associated with rotational symmetry. Vector quantity — magnitude AND direction are conserved." },
+          { name: "Cyclic Angle", desc: "If ∂L/∂φ = 0 (L doesn't depend on the azimuthal angle), then L_z = ∂L/∂φ̇ is conserved. The φ coordinate is cyclic." },
+          { name: "Central Force", desc: "V(r) depends only on |r|, not direction. Full rotational symmetry → all three components of L are conserved." },
+          { name: "Axial Symmetry", desc: "V depends on r and θ but not φ. Only L_z (component along symmetry axis) is conserved." },
+          { name: "Orbital vs Spin Angular Momentum", desc: "L_orbital = r × p (motion around a center). L_spin = Iω (intrinsic rotation). Both separately conserved if no torque." },
+          { name: "Torque and Angular Momentum", desc: "τ = dL/dt. If the external torque is zero (rotational symmetry), angular momentum is conserved." },
+          { name: "Kepler's Second Law Revisited", desc: "dA/dt = L/2m = const is angular momentum conservation in disguise. Equal areas in equal times." },
+          { name: "Precession of a Top", desc: "With a torque (gravity), L changes direction but not magnitude. The top precesses — L traces a cone." },
+          { name: "Conservation in Collisions", desc: "Angular momentum is conserved in all collisions (about any point). Combined with energy and linear momentum for full solution." },
+        ],
+        keyEquations: [
+          "\\frac{\\partial L}{\\partial \\phi} = 0 \\;\\Rightarrow\\; L_z = mr^2\\dot{\\phi} = \\text{const}",
+          "\\mathbf{L} = \\mathbf{r} \\times \\mathbf{p} = \\text{const}",
+          "\\boldsymbol{\\tau} = \\frac{d\\mathbf{L}}{dt}",
+        ],
+        conceptSummary:
+          "Rotate a central-force system and see that physics is unchanged. Watch angular momentum L stay constant as the orbit evolves.",
+      },
+    ],
+  },
+];
+
 // ─── EXPORTS ────────────────────────────────────────────────────────
 
 export const chapterGroups: ChapterGroup[] = [
@@ -1284,11 +1985,18 @@ export const chapterGroups: ChapterGroup[] = [
     subtitle: "From particles to thermodynamics",
     chapters: statisticalPhysics,
   },
+  {
+    id: "classical",
+    title: "Classical Mechanics",
+    subtitle: "From Newton to Lagrange and Hamilton",
+    chapters: classicalMechanics,
+  },
 ];
 
 export const allChapters: Chapter[] = [
   ...quantumPhysics,
   ...statisticalPhysics,
+  ...classicalMechanics,
 ];
 
 export function getChapter(id: string): Chapter | undefined {

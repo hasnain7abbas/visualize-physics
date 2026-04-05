@@ -4,7 +4,7 @@
 
 # Visualize Physics
 
-### A Visual Introduction to Quantum & Statistical Physics
+### An Interactive Companion for Graduate Physics
 
 **See the invisible. Feel the abstract. Understand the universe.**
 
@@ -54,20 +54,21 @@
 
 ## Features
 
-- **30+ Interactive Simulations** — Every section has a working, hands-on visualization
-- **407+ Statistical Tools** — Exhaustive coverage from Born rule to Shannon entropy, each with expandable explanations and mini-simulations
+- **54+ Interactive Simulations** — Every section has a working, hands-on visualization
+- **640+ Conceptual Tools** — Exhaustive coverage from Born rule to Noether's theorem, each with expandable explanations and mini-simulations
 - **Beautiful Math** — KaTeX-rendered equations that look like a textbook
 - **Dark & Light Mode** — Easy on the eyes, any time of day
 - **Rust-Powered Backend** — High-performance computation via Tauri
 - **Native Desktop App** — Runs offline with .exe and .msi installers
 - **Web Version** — Try it instantly at [hasnain7abbas.github.io/visualize-physics](https://hasnain7abbas.github.io/visualize-physics/)
+- **Fully Responsive** — Works on desktop, tablet, and mobile
 - **Polished UI** — Color-coded chapters, smooth animations, floating equations, intuitive navigation
 
 ---
 
 ## Chapters
 
-The app is organized into **two major sections** with **15 chapters**, **45 interactive sections**, and **407+ statistical tools**:
+The app covers **three major areas** of physics with **23 chapters**, **69 interactive sections**, and **640+ conceptual tools**:
 
 ### Quantum Physics
 
@@ -94,27 +95,42 @@ The app is organized into **two major sections** with **15 chapters**, **45 inte
 | **S9 — Free Energy & Phases** | Helmholtz Free Energy · Van der Waals · Phase Diagrams | Maxwell Construction, Critical Point, Clausius-Clapeyron |
 | **S10 — Fluctuations & Response** | Energy Fluctuations · Fluctuation-Dissipation · Brownian Motion | Langevin Equation, Johnson-Nyquist Noise, Green-Kubo Relations |
 
+### Classical Mechanics
+
+| Chapter | Topics | Highlights |
+|---------|--------|------------|
+| **C1 — Projectile Motion** | Ideal Trajectory · Air Drag · Coriolis & Wind | RK4 Integration, Terminal Velocity, Magnus Effect |
+| **C2 — Double Pendulum** | Pendulum Dynamics · Phase Space · Chaos & Lyapunov | Lagrangian EOM, Poincaré Sections, Sensitive Dependence |
+| **C3 — Central Force Orbits** | Kepler Orbits · Effective Potential · Force Law Variation | Velocity-Verlet, Bertrand's Theorem, Rosette Orbits |
+| **C4 — Rigid Body Rotation** | Euler's Equations · Polhode · Tennis Racket Theorem | 3D Wireframe, Jacobi Elliptic Functions, Dzhanibekov Effect |
+| **C5 — Coupled Oscillators** | Normal Modes · Superposition · Dispersion Relation | Eigenvalue Problem, Brillouin Zone, Phonons |
+| **C6 — Lagrangian Mechanics** | Atwood Machine · Bead on Hoop · Sliding Wedge | Generalized Coordinates, Pitchfork Bifurcation, Constraints |
+| **C7 — Hamiltonian Phase Space** | Phase Portraits · Liouville's Theorem · Fixed Points | Hamilton's Equations, Symplectic Flow, Separatrices |
+| **C8 — Noether's Theorem** | Time → Energy · Space → Momentum · Rotation → Angular Momentum | Symmetry Breaking Demos, Conservation Law Visualization |
+
 ---
 
 ## Simulations
 
-Every section has a **fully interactive simulation**, and every statistical tool has its own **mini-simulation** when clicked:
+Every section has a **fully interactive simulation**, and every conceptual tool has its own **mini-simulation** when clicked:
 
 | Simulation | Description |
 |------------|-------------|
 | **Quantum Superposition** | Adjust amplitudes, measure qubits, watch histogram converge to Born rule |
 | **Stern-Gerlach Chain** | Build Z-X-Z sequences, see information destruction in action |
 | **Quantum Tunneling** | Watch wavefunctions decay inside barriers, adjust height/width |
+| **Double Pendulum** | Animated chaos with trailing paths, phase space, Lyapunov divergence |
+| **Kepler Orbits** | Launch orbits, vary force laws, see rosette precession patterns |
+| **Rigid Body Rotation** | 3D wireframe spinning with Euler's equations, tennis racket instability |
+| **Coupled Oscillators** | Normal modes of N masses on springs, dispersion relation |
+| **Lagrangian Mechanics** | Atwood machine, bead on rotating hoop with bifurcation |
+| **Hamiltonian Phase Space** | Click to launch trajectories, Liouville area preservation |
+| **Noether's Theorem** | Toggle symmetry breaking to see conservation laws fail |
 | **Ideal Gas** | Animated particles bouncing in a container, PV = NkT in real time |
 | **Carnot Cycle** | Animated PV diagram with isotherms and adiabats, live efficiency |
-| **Maxwell-Boltzmann** | Sample particle speeds, histogram converges to theory curve |
 | **2D Ising Model** | Run Metropolis on a spin lattice, watch order emerge below T_c |
-| **Van der Waals** | Explore isotherms, see the Maxwell construction below T_c |
-| **Phase Diagram** | Navigate P-T space, cross phase boundaries with visual effects |
 | **Brownian Motion** | 2D Langevin trajectory with MSD tracking (Einstein relation) |
-| **Fluctuation-Dissipation** | Verify chi = beta * variance(M) for a paramagnet |
 | **Monte Carlo pi** | Throw random darts and estimate pi with 1/sqrt(N) convergence |
-| **Shannon Entropy** | Drag probability sliders, see H, D_KL, mutual information live |
 
 ---
 
@@ -169,19 +185,21 @@ nalgebra = "0.33"     # Linear algebra
 
 ## Roadmap
 
-- [x] 15 chapters with 45 interactive sections
-- [x] 407+ statistical tools with descriptions and mini-simulations
+- [x] 23 chapters with 69 interactive sections
+- [x] 640+ conceptual tools with descriptions and mini-simulations
+- [x] Classical Mechanics module (8 chapters: projectiles, pendulums, orbits, rigid body, oscillators, Lagrangian, Hamiltonian, Noether)
 - [x] KaTeX math rendering
 - [x] Dark/Light theme
 - [x] Welcome hero with floating equations
 - [x] Windows .exe and .msi installers
 - [x] GitHub Pages web deployment
-- [x] Statistical physics foundations (Ideal Gas, Carnot, Free Energy, Fluctuations)
+- [x] Mobile responsive design
+- [ ] Electrodynamics module (electric/magnetic fields, EM waves, Lorentz force)
+- [ ] Waves & Oscillations module (wave equation, interference, Fourier, Doppler)
 - [ ] D3.js advanced visualizations (scatter plots, heatmaps)
 - [ ] Rust-powered Monte Carlo backends for all simulations
 - [ ] macOS and Linux builds
 - [ ] Bloch sphere 3D visualization
-- [ ] Phase space plots
 - [ ] Export simulation data as CSV
 - [ ] Localization (i18n)
 
@@ -207,7 +225,7 @@ Please open an [issue](https://github.com/hasnain7abbas/visualize-physics/issues
 
 **Made with passion by [Hasnain Abbas](mailto:hsnanrzee1160@gmail.com)**
 
-Transforming abstract quantum mechanics and statistical physics into playful, hands-on simulations — because if you can see it, you can understand it.
+Transforming abstract physics — from classical mechanics to quantum theory to statistical thermodynamics — into playful, hands-on simulations. Because if you can see it, you can understand it.
 
 *Inspired by [Seeing Theory](https://seeing-theory.brown.edu/) by Daniel Kunin, Brown University.*
 *Non-commercial educational project.*

@@ -105,6 +105,54 @@ simulations["s10-energy-fluctuations"] = S10EnergyFluctuations;
 simulations["s10-fluctuation-dissipation"] = S10FluctuationDissipation;
 simulations["s10-brownian"] = S10Brownian;
 
+// C1 - Projectile Motion
+import { C1IdealProjectile, C1DragEffects, C1CoriolisWind } from "./C1ProjectileMotion";
+simulations["c1-ideal-projectile"] = C1IdealProjectile;
+simulations["c1-drag-effects"] = C1DragEffects;
+simulations["c1-coriolis-wind"] = C1CoriolisWind;
+
+// C2 - Double Pendulum
+import { C2PendulumDynamics, C2PhaseSpace, C2ChaosLyapunov } from "./C2DoublePendulum";
+simulations["c2-pendulum-dynamics"] = C2PendulumDynamics;
+simulations["c2-phase-space"] = C2PhaseSpace;
+simulations["c2-chaos-lyapunov"] = C2ChaosLyapunov;
+
+// C3 - Central Force Orbits
+import { C3KeplerOrbits, C3EffectivePotential, C3ForceLawVariation } from "./C3CentralForce";
+simulations["c3-kepler-orbits"] = C3KeplerOrbits;
+simulations["c3-effective-potential"] = C3EffectivePotential;
+simulations["c3-force-law-variation"] = C3ForceLawVariation;
+
+// C4 - Rigid Body Rotation
+import { C4EulerEquations, C4Polhode, C4TennisRacket } from "./C4RigidBody";
+simulations["c4-euler-equations"] = C4EulerEquations;
+simulations["c4-polhode"] = C4Polhode;
+simulations["c4-tennis-racket"] = C4TennisRacket;
+
+// C5 - Coupled Oscillators
+import { C5NormalModes, C5ModeSuperposition, C5DispersionRelation } from "./C5CoupledOscillators";
+simulations["c5-normal-modes"] = C5NormalModes;
+simulations["c5-mode-superposition"] = C5ModeSuperposition;
+simulations["c5-dispersion-relation"] = C5DispersionRelation;
+
+// C6 - Lagrangian Mechanics
+import { C6AtwoodMachine, C6BeadOnHoop, C6SlidingWedge } from "./C6Lagrangian";
+simulations["c6-atwood-machine"] = C6AtwoodMachine;
+simulations["c6-bead-on-hoop"] = C6BeadOnHoop;
+simulations["c6-sliding-wedge"] = C6SlidingWedge;
+
+// C7 - Hamiltonian Phase Space
+import { C7PhasePortraits, C7Liouville, C7FixedPoints } from "./C7HamiltonianPhaseSpace";
+simulations["c7-phase-portraits"] = C7PhasePortraits;
+simulations["c7-liouville"] = C7Liouville;
+simulations["c7-fixed-points"] = C7FixedPoints;
+
+// C8 - Noether's Theorem
+import { C8TimeEnergy, C8SpaceMomentum, C8RotationAngular } from "./C8NoetherTheorem";
+simulations["c8-time-energy"] = C8TimeEnergy;
+simulations["c8-space-momentum"] = C8SpaceMomentum;
+simulations["c8-rotation-angular"] = C8RotationAngular;
+
 export function getSimulation(chapterId: string, sectionId: string): Component | undefined {
   return simulations[`${chapterId}-${sectionId}`];
 }
