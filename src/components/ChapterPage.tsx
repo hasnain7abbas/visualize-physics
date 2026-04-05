@@ -3,6 +3,7 @@ import { Dynamic } from "solid-js/web";
 import { useParams, A } from "@solidjs/router";
 import { getChapter, type Chapter, type Section, type StatTool } from "../lib/chapters-data";
 import { MathBlock } from "./MathBlock";
+import { ToolMiniSim } from "./ToolMiniSim";
 import { getSimulation } from "../simulations";
 
 // ─── Interactive tool item ───────────────────────────────────────────
@@ -35,12 +36,15 @@ const ToolItem: Component<{ tool: StatTool; color: string }> = (props) => {
             {props.tool.name}
           </div>
           {expanded() && (
-            <div
-              class="text-[11px] mt-1 leading-relaxed animate-fade-in"
-              style={{ color: "var(--text-muted)" }}
-            >
-              {props.tool.desc}
-            </div>
+            <>
+              <div
+                class="text-[11px] mt-1 leading-relaxed animate-fade-in"
+                style={{ color: "var(--text-muted)" }}
+              >
+                {props.tool.desc}
+              </div>
+              <ToolMiniSim toolName={props.tool.name} />
+            </>
           )}
         </div>
         <span

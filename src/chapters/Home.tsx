@@ -283,36 +283,6 @@ export const Home: Component = () => {
               simulations — because if you can see it, you can understand it.
             </p>
 
-            <div class="flex justify-center gap-6 mt-6">
-              <div class="text-center">
-                <div
-                  class="text-xs font-semibold"
-                  style={{ color: "var(--text-primary)" }}
-                >
-                  Built with
-                </div>
-                <div class="flex gap-2 mt-1.5">
-                  {["Tauri", "Rust", "SolidJS", "D3.js"].map((tech) => (
-                    <span
-                      class="text-[10px] px-2 py-0.5 rounded-full font-medium"
-                      style={{
-                        background: "var(--bg-secondary)",
-                        color: "var(--text-secondary)",
-                      }}
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="text-center mt-5">
-            <p class="text-[11px]" style={{ color: "var(--text-muted)" }}>
-              Inspired by "Seeing Theory" by Daniel Kunin, Brown University.
-              Non-commercial educational project.
-            </p>
           </div>
         </div>
       </section>

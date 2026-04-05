@@ -51,6 +51,36 @@ simulations["s3-microstates"] = S3Microstates;
 simulations["s3-entropy-mixing"] = S3EntropyMixing;
 simulations["s3-shannon-entropy"] = S3ShannonEntropy;
 
+// Q4 - Quantum Tunneling
+import { Q4Tunneling, Q4AlphaDecay, Q4ResonantTunneling } from "./Q4Tunneling";
+simulations["q4-tunneling"] = Q4Tunneling;
+simulations["q4-alpha-decay"] = Q4AlphaDecay;
+simulations["q4-resonant-tunneling"] = Q4ResonantTunneling;
+
+// Q5 - Quantum Harmonic Oscillator
+import { Q5EnergyLevels, Q5CoherentStates, Q5ZeroPoint } from "./Q5HarmonicOsc";
+simulations["q5-energy-levels"] = Q5EnergyLevels;
+simulations["q5-coherent-states"] = Q5CoherentStates;
+simulations["q5-zero-point"] = Q5ZeroPoint;
+
+// S4 - Random Walks
+import { S4Walk1D, S4Walk2D, S4Diffusion } from "./S4RandomWalks";
+simulations["s4-1d-walk"] = S4Walk1D;
+simulations["s4-2d-walk"] = S4Walk2D;
+simulations["s4-diffusion"] = S4Diffusion;
+
+// S5 - Ising Model
+import { S5Ising2D, S5PhaseTransition, S5Critical } from "./S5IsingModel";
+simulations["s5-ising-2d"] = S5Ising2D;
+simulations["s5-phase-transition"] = S5PhaseTransition;
+simulations["s5-critical"] = S5Critical;
+
+// S6 - Monte Carlo
+import { S6PiEstimation, S6Integration, S6MCMC } from "./S6MonteCarlo";
+simulations["s6-pi-estimation"] = S6PiEstimation;
+simulations["s6-integration"] = S6Integration;
+simulations["s6-mcmc"] = S6MCMC;
+
 export function getSimulation(chapterId: string, sectionId: string): Component | undefined {
   return simulations[`${chapterId}-${sectionId}`];
 }
