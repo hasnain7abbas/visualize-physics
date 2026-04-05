@@ -16,8 +16,9 @@
 [![GitHub release](https://img.shields.io/github/v/release/hasnain7abbas/visualize-physics?style=flat-square&color=06b6d4)](https://github.com/hasnain7abbas/visualize-physics/releases)
 [![License](https://img.shields.io/badge/license-MIT-10b981?style=flat-square)](LICENSE)
 [![Stars](https://img.shields.io/github/stars/hasnain7abbas/visualize-physics?style=flat-square&color=f59e0b)](https://github.com/hasnain7abbas/visualize-physics/stargazers)
+[![Website](https://img.shields.io/badge/Try%20Online-hasnain7abbas.github.io-8b5cf6?style=flat-square)](https://hasnain7abbas.github.io/visualize-physics/)
 
-[Download](#-download) · [Features](#-features) · [Chapters](#-chapters) · [Tech Stack](#-tech-stack) · [Contributing](#-contributing)
+[Try Online](https://hasnain7abbas.github.io/visualize-physics/) · [Download](#-download) · [Features](#-features) · [Chapters](#-chapters) · [Contributing](#-contributing)
 
 ---
 
@@ -37,38 +38,44 @@
 
 ## 📚 Chapters
 
-The app is organized into **two major sections** with **6 chapters** and **18 interactive sections**:
+The app is organized into **two major sections** with **11 chapters** and **33 interactive sections**, each with **300+ statistical tools** that have their own mini-simulations:
 
 ### ⚛️ Quantum Physics
 
 | Chapter | Topics | Statistical Tools |
 |---------|--------|-------------------|
-| **Q1 — Quantum Probability** | Superposition & State Vectors · Measurement & Collapse · Probability Amplitudes | Born Rule, Bayes' Theorem, Interference, Bernoulli Trials, Markov Chains |
-| **Q2 — Spin & Stern-Gerlach** | Single SG Apparatus · Sequential SG · Expectation Values & Uncertainty | Binomial Distribution, Hypothesis Testing, Uncertainty Relations, MLE |
-| **Q3 — Wavefunctions & Uncertainty** | Particle in a Box · Gaussian Wavepackets · Heisenberg Uncertainty Principle | PDFs, CDFs, Fourier Transforms, Cramér-Rao Bound, Fisher Information |
+| **Q1 — Quantum Probability** | Superposition · Measurement & Collapse · Probability Amplitudes | Born Rule, Bayes' Theorem, Interference, Bernoulli Trials, Markov Chains |
+| **Q2 — Spin & Stern-Gerlach** | Single SG · Sequential SG · Expectation Values & Uncertainty | Binomial Distribution, Hypothesis Testing, Uncertainty Relations, MLE |
+| **Q3 — Wavefunctions** | Particle in a Box · Gaussian Wavepackets · Heisenberg Uncertainty | PDFs, CDFs, Fourier Transforms, Cramér-Rao Bound, Fisher Information |
+| **Q4 — Quantum Tunneling** | Barrier Penetration · Alpha Decay · Resonant Tunneling | WKB Approximation, Gamow Factor, Breit-Wigner, Lorentzian, Survival Analysis |
+| **Q5 — Harmonic Oscillator** | Energy Levels · Coherent States · Zero-Point Energy | Hermite Polynomials, Poisson Distribution, Planck Distribution, Partition Functions |
 
 ### 🔥 Statistical Physics
 
 | Chapter | Topics | Statistical Tools |
 |---------|--------|-------------------|
-| **S1 — The Boltzmann World** | Maxwell-Boltzmann Distribution · Boltzmann Energy · Partition Functions | Chi/Gamma Distributions, Monte Carlo, Metropolis-Hastings, Equipartition |
+| **S1 — The Boltzmann World** | Maxwell-Boltzmann · Boltzmann Energy · Partition Functions | Chi/Gamma Distributions, Monte Carlo, Metropolis-Hastings, Equipartition |
 | **S2 — Quantum Statistics** | Fermions vs Bosons · Fermi-Dirac · Bose-Einstein Condensation | Combinatorics, Polylogarithms, Zeta Functions, Grand Canonical Ensemble |
-| **S3 — Entropy & Information** | Microstates & Macrostates · Entropy of Mixing · Shannon/Gibbs Entropy | KL Divergence, Mutual Information, MaxEnt, Landauer's Principle |
+| **S3 — Entropy & Information** | Microstates · Entropy of Mixing · Shannon/Gibbs Entropy | KL Divergence, Mutual Information, MaxEnt, Landauer's Principle |
+| **S4 — Random Walks** | 1D Walk · 2D Brownian Motion · Diffusion Equation | CLT, Wiener Process, Lévy Flights, Einstein Relation, Gambler's Ruin |
+| **S5 — Ising Model** | 2D Ising · Phase Transition · Critical Phenomena | Metropolis Algorithm, Critical Exponents, Universality, Renormalization Group |
+| **S6 — Monte Carlo Methods** | Estimating π · MC Integration · MCMC | Importance Sampling, Acceptance-Rejection, Gibbs Sampling, Convergence Diagnostics |
 
 ---
 
-## 🎮 Simulations Preview
+## 🎮 Simulations
 
-Each section includes a **fully interactive simulation**. Here are some highlights:
+Every section has a **fully interactive simulation**, and every statistical tool has its own **mini-simulation** when clicked:
 
 | Simulation | Description |
 |------------|-------------|
-| 🎲 **Quantum Superposition** | Adjust α/β amplitudes and measure qubits — watch the histogram converge to Born rule predictions |
-| 🧲 **Stern-Gerlach Chain** | Build Z→X→Z measurement sequences and see information destruction in action |
-| 🌊 **Particle in a Box** | Visualize wavefunctions for different quantum numbers, superpose states |
-| 🔥 **Maxwell-Boltzmann** | Sample thousands of particles and watch the speed histogram match theory |
-| ❄️ **Bose-Einstein Condensation** | Cool bosons through T_c and watch ground state occupation explode |
-| 📊 **Shannon Entropy** | Drag probability sliders and see H, D_KL, and mutual information update live |
+| 🎲 **Quantum Superposition** | Adjust α/β amplitudes and measure qubits — histogram converges to Born rule |
+| 🧲 **Stern-Gerlach Chain** | Build Z→X→Z sequences and see information destruction |
+| 🚧 **Quantum Tunneling** | Watch wavefunctions decay inside barriers, adjust height/width |
+| 🧲 **2D Ising Model** | Run Metropolis on a spin lattice, watch order emerge below T_c |
+| 🎯 **Monte Carlo π** | Throw random darts and estimate π with 1/√N convergence |
+| 📊 **Shannon Entropy** | Drag probability sliders, see H, D_KL, mutual information live |
+| 🔬 **Each Statistical Tool** | Click any tool → mini-simulation appears (distributions, random walks, Markov chains...) |
 
 ---
 
