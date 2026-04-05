@@ -82,6 +82,22 @@ body {
   background: var(--text-muted);
 }
 
+/* Hide scrollbar for mobile tab strips */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Mobile responsive sidebar width */
+@media (max-width: 1023px) {
+  :root {
+    --sidebar-width: 260px;
+  }
+}
+
 /* Animations */
 @keyframes fadeIn {
   from { opacity: 0; }

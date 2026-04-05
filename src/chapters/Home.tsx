@@ -112,7 +112,7 @@ export const Home: Component = () => {
   return (
     <div class="min-h-screen" style={{ background: "var(--bg-primary)" }}>
       {/* Hero section */}
-      <section class="relative px-8 pt-14 pb-10 overflow-hidden">
+      <section class="relative px-4 sm:px-8 pt-8 sm:pt-14 pb-6 sm:pb-10 overflow-hidden">
         <div
           class="absolute inset-0 opacity-[0.03]"
           style={{
@@ -123,16 +123,16 @@ export const Home: Component = () => {
         />
 
         <div class="relative max-w-4xl mx-auto text-center">
-          <div class="flex justify-center mb-5 animate-float">
-            <CatLogo size={72} />
+          <div class="flex justify-center mb-4 sm:mb-5 animate-float">
+            <CatLogo size={56} />
           </div>
 
-          <h1 class="text-4xl font-extrabold tracking-tight mb-3 animate-slide-up">
+          <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight mb-2 sm:mb-3 animate-slide-up">
             <span class="gradient-text">Visualize Physics</span>
           </h1>
 
           <p
-            class="text-base font-medium mb-2 animate-slide-up stagger-1"
+            class="text-sm sm:text-base font-medium mb-2 animate-slide-up stagger-1"
             style={{ color: "var(--text-secondary)" }}
           >
             A Visual Introduction to Quantum & Statistical Physics
@@ -186,7 +186,7 @@ export const Home: Component = () => {
       {/* Chapter groups */}
       <For each={chapterGroups}>
         {(group) => (
-          <section class="px-8 pb-10">
+          <section class="px-4 sm:px-8 pb-6 sm:pb-10">
             <div class="max-w-5xl mx-auto">
               {/* Group header */}
               <div class="flex items-center gap-3 mb-5">
@@ -226,7 +226,7 @@ export const Home: Component = () => {
       </For>
 
       {/* About section */}
-      <section class="px-8 pb-14">
+      <section class="px-4 sm:px-8 pb-8 sm:pb-14">
         <div class="max-w-3xl mx-auto">
           <div
             class="card p-8 text-center"
