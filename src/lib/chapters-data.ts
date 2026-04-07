@@ -1970,6 +1970,272 @@ const classicalMechanics: Chapter[] = [
   },
 ];
 
+// ─── ELECTRODYNAMICS ───────────────────────────────────────────────
+
+const electrodynamics: Chapter[] = [
+  {
+    id: "e1",
+    num: "E1",
+    title: "Electric Fields & Coulomb's Law",
+    description:
+      "Electric charges create fields that permeate space. The electric field E at any point is the superposition of contributions from all charges, each following Coulomb's inverse-square law. Visualizing these fields reveals the elegant geometry of electrostatics.",
+    color: "#3b82f6",
+    icon: "⚡",
+    shortDesc: "Charges, fields & potentials",
+    sections: [
+      {
+        id: "point-charges",
+        title: "Point Charges & Field Arrows",
+        description:
+          "Place charges in space and watch the electric field emerge. Each charge contributes E = kq r̂/r² and the total field is the vector sum — the superposition principle in action.",
+        statisticalTools: [
+          { name: "Coulomb's Law", desc: "\\mathbf{F} = k_e \\frac{q_1 q_2}{r^2}\\hat{r}. The fundamental force law between point charges. Like charges repel, opposites attract, with inverse-square dependence." },
+          { name: "Electric Field Definition", desc: "\\mathbf{E} = \\mathbf{F}/q_{\\text{test}}. The field is force per unit test charge — it exists at every point in space whether or not a test charge is present." },
+          { name: "Superposition Principle", desc: "\\mathbf{E}_{\\text{total}} = \\sum_i \\mathbf{E}_i. Fields from multiple charges add as vectors. This linearity is one of the most powerful features of electrostatics." },
+          { name: "Coulomb Constant", desc: "k_e = 8.99 \\times 10^9 \\text{ N·m}^2/\\text{C}^2 = 1/(4\\pi\\varepsilon_0). Sets the strength scale of electrostatic interactions." },
+          { name: "Electric Dipole", desc: "Two equal and opposite charges separated by distance d. The dipole moment \\mathbf{p} = q\\mathbf{d} characterizes the system. Far away, the field falls as 1/r³." },
+          { name: "Field Visualization (Quiver Plot)", desc: "Arrows at grid points show field direction and magnitude. Arrow length/color encodes |E|. Reveals the vector nature of the electric field." },
+          { name: "Inverse-Square Law", desc: "Field strength falls as 1/r². Doubling distance quarters the field. This is a consequence of Gauss's law and 3D geometry." },
+          { name: "Point Charge Symmetry", desc: "A single point charge has spherical symmetry — the field is purely radial and equal at all points equidistant from the charge." },
+          { name: "Charge Conservation", desc: "Electric charge is conserved in all processes. Charges can be transferred but never created or destroyed." },
+          { name: "Test Charge Concept", desc: "A vanishingly small positive charge used to probe the field without disturbing the source charges. The field exists independently of the probe." },
+        ],
+        keyEquations: [
+          "\\mathbf{E} = k_e \\frac{q}{r^2}\\hat{r}",
+          "\\mathbf{E}_{\\text{total}} = \\sum_i k_e \\frac{q_i}{r_i^2}\\hat{r}_i",
+          "k_e = \\frac{1}{4\\pi\\varepsilon_0} = 8.99 \\times 10^9 \\text{ N·m}^2/\\text{C}^2",
+        ],
+        conceptSummary:
+          "Drag charges around and watch the electric field arrows update in real-time. Try dipole and quadrupole presets to see classic field patterns.",
+      },
+      {
+        id: "field-lines",
+        title: "Electric Field Lines",
+        description:
+          "Field lines are curves tangent to the electric field at every point. They start on positive charges and end on negative charges (or extend to infinity). Their density encodes field strength.",
+        statisticalTools: [
+          { name: "Field Line Rules", desc: "Lines originate on +q and terminate on −q. They never cross (the field has a unique direction at each point). Density of lines ∝ |E|." },
+          { name: "Streamline Integration", desc: "Trace a field line by taking small steps along \\mathbf{E}: \\mathbf{r}_{n+1} = \\mathbf{r}_n + \\hat{E}\\,\\Delta s. Euler integration of the field direction." },
+          { name: "Dipole Field Lines", desc: "Lines curve from + to − charge, forming characteristic loops. Far from the dipole, the pattern resembles a single higher-order source." },
+          { name: "Line Density & Field Strength", desc: "More lines per unit area means stronger field. This is why lines crowd near charges and spread apart at large distances." },
+          { name: "Gauss's Law Connection", desc: "The number of field lines through a closed surface ∝ enclosed charge. This is the geometric content of \\oint \\mathbf{E}\\cdot d\\mathbf{A} = Q_{\\text{enc}}/\\varepsilon_0." },
+          { name: "Field Line Topology", desc: "Field lines partition space into regions. The topology changes at critical points (saddle points) where E = 0 between like charges." },
+          { name: "Seed Point Selection", desc: "Lines are seeded uniformly in angle around each positive charge. The number of seeds per charge is proportional to |q| for accurate representation." },
+          { name: "No Closed Field Lines (Electrostatics)", desc: "Electrostatic field lines never form closed loops. This is because \\nabla \\times \\mathbf{E} = 0 — the field is conservative." },
+          { name: "Symmetry in Field Patterns", desc: "A charge configuration's symmetry is reflected in its field line pattern. Dipoles have mirror symmetry; quadrupoles have 4-fold symmetry." },
+          { name: "Far-Field Behavior", desc: "Far from any bounded charge distribution, the field looks like that of a point charge Q = \\sum q_i. Higher multipole terms decay faster." },
+        ],
+        keyEquations: [
+          "\\frac{d\\mathbf{r}}{ds} = \\hat{E}(\\mathbf{r})",
+          "\\oint \\mathbf{E} \\cdot d\\mathbf{A} = \\frac{Q_{\\text{enc}}}{\\varepsilon_0}",
+          "\\text{Line density} \\propto |\\mathbf{E}|",
+        ],
+        conceptSummary:
+          "Watch field lines stream from positive to negative charges. Increase lines per charge to see the field structure in finer detail.",
+      },
+      {
+        id: "equipotentials",
+        title: "Equipotential Contours",
+        description:
+          "Equipotential lines connect points of equal electric potential V. They are always perpendicular to field lines. No work is done moving a charge along an equipotential — it's the electrostatic analog of a contour map.",
+        statisticalTools: [
+          { name: "Electric Potential", desc: "V = k_e q/r. A scalar field — easier to compute than the vector field E. The potential from multiple charges simply adds: V = \\sum k_e q_i/r_i." },
+          { name: "Gradient Relation", desc: "\\mathbf{E} = -\\nabla V. The field points from high to low potential, perpendicular to equipotential surfaces. Magnitude: |E| = |dV/dr|." },
+          { name: "Equipotential Perpendicularity", desc: "Field lines cross equipotentials at right angles everywhere. This is because E = −∇V, and the gradient is always perpendicular to level sets." },
+          { name: "Marching Squares Algorithm", desc: "A grid-based contour extraction method. Each cell's corners are classified as above/below the contour level, determining line segment placement." },
+          { name: "Potential Energy", desc: "U = qV. A charge q in a potential V has potential energy qV. Positive charges roll downhill in potential; negative charges roll uphill." },
+          { name: "Superposition of Potentials", desc: "V_{\\text{total}} = \\sum V_i. Scalar addition is simpler than vector addition of fields. Compute V first, then take −∇V to get E." },
+          { name: "Conductor Equipotentials", desc: "The surface of a conductor is an equipotential. In equilibrium, E is perpendicular to the surface and zero inside." },
+          { name: "Potential of a Dipole", desc: "V = k_e p \\cos\\theta / r^2. Falls as 1/r² (faster than monopole 1/r). Equipotentials are not spheres but distorted surfaces." },
+          { name: "Work & Path Independence", desc: "W = −q\\Delta V. Work depends only on endpoints, not path. This is because \\nabla \\times \\mathbf{E} = 0 (conservative field)." },
+          { name: "Logarithmic Contour Spacing", desc: "Near a point charge, V ∝ 1/r. Equal spacing in V gives logarithmically spaced contours — they crowd near the charge." },
+        ],
+        keyEquations: [
+          "V = \\sum_i k_e \\frac{q_i}{r_i}",
+          "\\mathbf{E} = -\\nabla V",
+          "W_{A \\to B} = -q(V_B - V_A)",
+        ],
+        conceptSummary:
+          "See equipotential contours perpendicular to field lines. Red contours mark positive potential, blue marks negative. Move charges to reshape the landscape.",
+      },
+    ],
+  },
+  {
+    id: "e2",
+    num: "E2",
+    title: "Magnetic Fields & Biot-Savart",
+    description:
+      "Moving charges and currents create magnetic fields. The Biot-Savart law gives the field from any current distribution, while Ampère's law provides elegant shortcuts for symmetric geometries. Magnetic fields form closed loops — there are no magnetic monopoles.",
+    color: "#8b5cf6",
+    icon: "🧲",
+    shortDesc: "Currents, coils & Ampère's law",
+    sections: [
+      {
+        id: "wire-field",
+        title: "Field of a Current-Carrying Wire",
+        description:
+          "An infinite straight wire carrying current I produces circular magnetic field lines centered on the wire. The field strength decreases as 1/r — the simplest application of the Biot-Savart law.",
+        statisticalTools: [
+          { name: "Biot-Savart Law", desc: "d\\mathbf{B} = \\frac{\\mu_0}{4\\pi} \\frac{I\\,d\\mathbf{l} \\times \\hat{r}}{r^2}. The fundamental law for computing B from any current distribution. Analogous to Coulomb's law for E." },
+          { name: "Infinite Wire Result", desc: "B = \\mu_0 I / (2\\pi r). Derived by integrating Biot-Savart along the full wire. Field is purely azimuthal (tangent to circles around the wire)." },
+          { name: "Right-Hand Rule", desc: "Curl the fingers of your right hand in the direction of B; your thumb points along the current. Determines the circulation direction of field lines." },
+          { name: "Permeability of Free Space", desc: "\\mu_0 = 4\\pi \\times 10^{-7} \\text{ T·m/A}. The magnetic constant, analogous to \\varepsilon_0 for electric fields." },
+          { name: "1/r Decay", desc: "Unlike electric fields (1/r²), the wire's field falls as 1/r. This is because the wire is one-dimensional — one fewer dimension to spread over." },
+          { name: "Magnetic Field Units", desc: "Tesla (T) = kg/(A·s²). Earth's field ≈ 50 μT. An MRI machine ≈ 1.5–3 T. A wire at 1 m carrying 1 A produces 0.2 μT." },
+          { name: "Current Direction Convention", desc: "Dot (⊙) means current out of the page. Cross (⊗) means current into the page. The field circulates accordingly via the right-hand rule." },
+          { name: "Superposition of Wire Fields", desc: "Fields from multiple wires add as vectors. Parallel currents attract; antiparallel currents repel (basis of the SI ampere definition)." },
+          { name: "Force Between Parallel Wires", desc: "F/L = \\mu_0 I_1 I_2 / (2\\pi d). Two parallel wires carrying current in the same direction attract. This defined the ampere before 2019." },
+          { name: "Cylindrical Symmetry", desc: "The wire has translational and rotational symmetry about its axis. By symmetry, B has only an azimuthal component and depends only on r." },
+        ],
+        keyEquations: [
+          "B = \\frac{\\mu_0 I}{2\\pi r}",
+          "d\\mathbf{B} = \\frac{\\mu_0}{4\\pi} \\frac{I\\,d\\mathbf{l} \\times \\hat{r}}{r^2}",
+          "\\mu_0 = 4\\pi \\times 10^{-7} \\text{ T·m/A}",
+        ],
+        conceptSummary:
+          "Toggle current direction and adjust magnitude. Watch the circular field pattern and how B decreases with distance from the wire.",
+      },
+      {
+        id: "helmholtz-coils",
+        title: "Helmholtz Coils",
+        description:
+          "Two identical coils separated by one radius create a remarkably uniform magnetic field in the central region. This Helmholtz configuration is the standard technique for producing uniform fields in laboratories.",
+        statisticalTools: [
+          { name: "On-Axis Field of a Loop", desc: "B(z) = \\frac{\\mu_0 I R^2}{2(R^2 + z^2)^{3/2}}. The field on the axis of a circular loop. Maximum at the center, falling off as 1/z³ far away." },
+          { name: "Helmholtz Condition", desc: "Separation d = R (one radius). At this spacing, the second derivative d²B/dz² vanishes at the midpoint, giving maximum uniformity." },
+          { name: "Superposition of Two Loops", desc: "B_{\\text{total}}(z) = B_1(z - d/2) + B_2(z + d/2). Each coil contributes; the sum has a flat region between the coils when d = R." },
+          { name: "Field Uniformity", desc: "At d = R, the field varies less than 1% over a central region ~R/4 in extent. Crucial for NMR, particle beam steering, and calibration." },
+          { name: "Anti-Helmholtz Configuration", desc: "Same geometry but opposite currents. Produces a linear field gradient dB/dz at the center. Used in magneto-optical traps (MOTs)." },
+          { name: "Taylor Expansion of B(z)", desc: "B(z) = B_0 + B''z²/2 + \\cdots. Helmholtz condition sets B'' = 0. The next nonzero term is B'''' — giving 4th-order uniformity." },
+          { name: "Practical Coil Design", desc: "Real Helmholtz coils have finite wire thickness, multiple turns, and resistance. The ideal single-turn result is corrected by winding geometry." },
+          { name: "Magnetic Flux", desc: "\\Phi_B = \\int \\mathbf{B} \\cdot d\\mathbf{A}. Total flux through a surface. For a loop, Φ = BA when B is uniform and perpendicular." },
+          { name: "Inductance", desc: "A coil's inductance L relates current to flux: \\Phi = LI. Energy stored: U = LI²/2. Helmholtz pairs have mutual inductance." },
+          { name: "Biot-Savart for Loops", desc: "Integrate dB contributions around the loop circumference. On-axis: all components cancel except along the axis by symmetry." },
+        ],
+        keyEquations: [
+          "B(z) = \\frac{\\mu_0 I R^2}{2(R^2 + z^2)^{3/2}}",
+          "d = R \\quad \\text{(Helmholtz condition)}",
+          "B_{\\text{center}} = \\left(\\frac{4}{5}\\right)^{3/2} \\frac{\\mu_0 I}{R}",
+        ],
+        conceptSummary:
+          "Adjust coil separation and watch the field profile. At d = R the central field becomes remarkably uniform — the Helmholtz sweet spot.",
+      },
+      {
+        id: "amperes-law",
+        title: "Ampère's Law",
+        description:
+          "The line integral of B around any closed path equals μ₀ times the enclosed current. This powerful law lets you compute fields for symmetric configurations without doing a full Biot-Savart integration.",
+        statisticalTools: [
+          { name: "Ampère's Law (Integral Form)", desc: "\\oint \\mathbf{B} \\cdot d\\mathbf{l} = \\mu_0 I_{\\text{enc}}. The circulation of B around a closed path depends only on the total current threading the loop." },
+          { name: "Amperian Loop", desc: "A mathematical closed curve chosen to exploit symmetry. For a wire: a circle centered on the wire. B is constant and tangent on this path." },
+          { name: "Enclosed vs External Currents", desc: "Only currents passing through the loop contribute to \\oint B·dl. External currents create fields but their contributions cancel around the loop." },
+          { name: "Sign Convention", desc: "Use the right-hand rule: curl fingers along the integration path; thumb points in the positive current direction. Currents opposing this are negative." },
+          { name: "Line Integral Computation", desc: "\\oint \\mathbf{B} \\cdot d\\mathbf{l} \\approx \\sum_i \\mathbf{B}(\\mathbf{r}_i) \\cdot \\Delta\\mathbf{l}_i. Numerically: sample B at points around the path and sum dot products." },
+          { name: "Solenoid Application", desc: "For an ideal solenoid: B = \\mu_0 n I inside, B = 0 outside. Apply Ampère's law to a rectangular path crossing the solenoid wall." },
+          { name: "Toroid Application", desc: "For a toroid: B = \\mu_0 N I / (2\\pi r) inside the torus, zero outside. N = total turns, r = distance from center." },
+          { name: "Differential Form", desc: "\\nabla \\times \\mathbf{B} = \\mu_0 \\mathbf{J}. The curl of B at a point equals μ₀ times the current density there. Local version of Ampère's law." },
+          { name: "Maxwell's Correction", desc: "\\oint \\mathbf{B} \\cdot d\\mathbf{l} = \\mu_0(I_{\\text{enc}} + \\varepsilon_0 \\frac{d\\Phi_E}{dt}). The displacement current term completes the law for time-varying fields." },
+          { name: "Path Independence of Circulation", desc: "The value of \\oint B·dl is the same for all paths enclosing the same current. You can deform the path freely without changing the integral." },
+        ],
+        keyEquations: [
+          "\\oint \\mathbf{B} \\cdot d\\mathbf{l} = \\mu_0 I_{\\text{enc}}",
+          "\\nabla \\times \\mathbf{B} = \\mu_0 \\mathbf{J}",
+          "B_{\\text{solenoid}} = \\mu_0 n I",
+        ],
+        conceptSummary:
+          "Draw an Amperian loop around current-carrying wires. Watch the line integral equal μ₀I_enclosed — regardless of loop shape or size.",
+      },
+    ],
+  },
+  {
+    id: "e3",
+    num: "E3",
+    title: "Electromagnetic Waves",
+    description:
+      "Maxwell's equations predict that oscillating electric and magnetic fields propagate through space as waves at the speed of light. These electromagnetic waves carry energy and momentum, and their polarization describes the geometry of the oscillating fields.",
+    color: "#06b6d4",
+    icon: "🌊",
+    shortDesc: "Propagation, polarization & energy",
+    sections: [
+      {
+        id: "plane-wave",
+        title: "Plane Wave Propagation",
+        description:
+          "A plane electromagnetic wave has E and B oscillating perpendicular to each other and to the direction of propagation. The wave travels at c = 1/√(μ₀ε₀) — the speed of light.",
+        statisticalTools: [
+          { name: "Wave Equation", desc: "\\nabla^2 \\mathbf{E} = \\mu_0 \\varepsilon_0 \\frac{\\partial^2 \\mathbf{E}}{\\partial t^2}. Derived from Maxwell's equations. Solutions are waves traveling at c = 1/\\sqrt{\\mu_0 \\varepsilon_0}." },
+          { name: "Plane Wave Solution", desc: "\\mathbf{E} = E_0 \\sin(kz - \\omega t)\\,\\hat{x}. A wave propagating in z with E oscillating in x. The simplest solution to the wave equation." },
+          { name: "Wave Speed", desc: "c = \\lambda f = \\omega/k = 1/\\sqrt{\\mu_0\\varepsilon_0} \\approx 3 \\times 10^8 \\text{ m/s}. The speed of light emerges naturally from electromagnetic theory." },
+          { name: "Dispersion Relation", desc: "\\omega = ck. In vacuum, all frequencies travel at the same speed. In a medium, c → c/n where n is the refractive index." },
+          { name: "E-B Relationship", desc: "|E| = c|B|. The electric and magnetic fields oscillate in phase with a fixed ratio. In SI units, E is much larger than cB numerically." },
+          { name: "Transverse Nature", desc: "Both E and B are perpendicular to the propagation direction k̂. EM waves are transverse waves — there is no longitudinal component in vacuum." },
+          { name: "Wavelength-Frequency Relation", desc: "\\lambda = c/f. Radio waves: λ ~ meters. Visible light: λ ~ 400-700 nm. X-rays: λ ~ 0.01-10 nm." },
+          { name: "Maxwell's Equations", desc: "The four laws (Gauss E, Gauss B, Faraday, Ampère-Maxwell) together predict EM waves. The displacement current term is essential." },
+          { name: "Wave Number & Angular Frequency", desc: "k = 2\\pi/\\lambda, \\omega = 2\\pi f. The spatial and temporal periodicities of the wave. Phase velocity: v_p = ω/k." },
+          { name: "Superposition of Waves", desc: "EM waves satisfy a linear equation, so any sum of solutions is also a solution. This leads to interference, diffraction, and beating." },
+        ],
+        keyEquations: [
+          "\\mathbf{E} = E_0 \\sin(kz - \\omega t)\\,\\hat{x}",
+          "\\mathbf{B} = \\frac{E_0}{c} \\sin(kz - \\omega t)\\,\\hat{y}",
+          "c = \\frac{1}{\\sqrt{\\mu_0 \\varepsilon_0}} \\approx 3 \\times 10^8 \\text{ m/s}",
+        ],
+        conceptSummary:
+          "Watch E (orange) and B (blue) oscillate perpendicular to each other as the wave propagates. Adjust wavelength and amplitude to see different wave regimes.",
+      },
+      {
+        id: "polarization",
+        title: "Polarization States",
+        description:
+          "The polarization of an EM wave describes how the electric field vector traces a pattern in the plane perpendicular to propagation. Linear, circular, and elliptical polarizations arise from different amplitude ratios and phase differences between orthogonal components.",
+        statisticalTools: [
+          { name: "Linear Polarization", desc: "E oscillates along a fixed line: \\mathbf{E} = E_0 \\cos(\\omega t)\\,\\hat{n}. The simplest polarization. Produced by antennas and many lasers." },
+          { name: "Circular Polarization", desc: "E_x = E_0\\cos(\\omega t),\\; E_y = E_0\\cos(\\omega t \\pm \\pi/2). The tip of E traces a circle. Right-circular: clockwise when viewed head-on; left-circular: counterclockwise." },
+          { name: "Elliptical Polarization", desc: "E_x = E_{0x}\\cos(\\omega t),\\; E_y = E_{0y}\\cos(\\omega t + \\delta). General case: the tip traces an ellipse. Linear and circular are special cases." },
+          { name: "Phase Difference δ", desc: "\\delta = 0 → linear. \\delta = \\pi/2,\\; E_{0x} = E_{0y} → circular. Other values → elliptical. δ controls the 'openness' of the ellipse." },
+          { name: "Jones Vector", desc: "\\mathbf{J} = \\begin{pmatrix} E_{0x} \\\\ E_{0y} e^{i\\delta} \\end{pmatrix}. A compact complex representation of the polarization state." },
+          { name: "Polarization by Reflection", desc: "At Brewster's angle \\theta_B = \\arctan(n_2/n_1), the reflected wave is perfectly linearly polarized. Used in polarizing optics." },
+          { name: "Quarter-Wave Plate", desc: "Introduces a π/2 phase shift between orthogonal components. Converts linear to circular polarization and vice versa." },
+          { name: "Malus's Law", desc: "I = I_0 \\cos^2\\theta. Intensity transmitted through a polarizer tilted at angle θ to the polarization direction." },
+          { name: "Axis Ratio", desc: "The ratio of semi-minor to semi-major axis of the polarization ellipse. 0 = linear, 1 = circular, between = elliptical." },
+          { name: "Stokes Parameters", desc: "S_0, S_1, S_2, S_3 describe polarization including partial polarization. Measurable quantities, unlike the Jones vector which requires coherence." },
+        ],
+        keyEquations: [
+          "E_x = E_{0x}\\cos(\\omega t),\\quad E_y = E_{0y}\\cos(\\omega t + \\delta)",
+          "\\text{Circular: } \\delta = \\pm\\pi/2,\\; E_{0x} = E_{0y}",
+          "I = I_0 \\cos^2\\theta \\quad \\text{(Malus's law)}",
+        ],
+        conceptSummary:
+          "Switch between polarization modes and watch the E-field vector trace lines, circles, or ellipses. Adjust the phase difference δ to morph between states.",
+      },
+      {
+        id: "poynting-vector",
+        title: "Poynting Vector & Energy Flow",
+        description:
+          "Electromagnetic waves carry energy. The Poynting vector S = (1/μ₀)(E × B) gives the power flow per unit area. The time-averaged intensity is what we measure as the brightness of light.",
+        statisticalTools: [
+          { name: "Poynting Vector", desc: "\\mathbf{S} = \\frac{1}{\\mu_0}(\\mathbf{E} \\times \\mathbf{B}). Gives the power per unit area (W/m²) flowing through space. Direction = energy propagation direction." },
+          { name: "Instantaneous Intensity", desc: "S = \\frac{E_0^2}{\\mu_0 c}\\sin^2(kz - \\omega t). Oscillates between 0 and a maximum at twice the wave frequency." },
+          { name: "Time-Averaged Intensity", desc: "\\langle S \\rangle = \\frac{E_0^2}{2\\mu_0 c} = \\frac{1}{2}c\\varepsilon_0 E_0^2. The average power flow — what detectors measure over many cycles." },
+          { name: "Energy Density", desc: "u = \\frac{1}{2}\\varepsilon_0 E^2 + \\frac{1}{2\\mu_0}B^2. Electric and magnetic contributions are equal in a plane wave: u_E = u_B." },
+          { name: "Energy Conservation", desc: "\\frac{\\partial u}{\\partial t} + \\nabla \\cdot \\mathbf{S} = 0. Energy density decreases where the Poynting flux diverges (energy flows away)." },
+          { name: "Radiation Pressure", desc: "P = S/c (absorbed) or 2S/c (reflected). Light carries momentum p = U/c. This is the basis of solar sails." },
+          { name: "Inverse-Square Law for Intensity", desc: "I \\propto 1/r^2 for a point source. Total power P = 4\\pi r^2 I is conserved as the wave spreads spherically." },
+          { name: "E-B Equipartition", desc: "In an EM wave, the electric and magnetic energy densities are always equal: ½ε₀E² = B²/(2μ₀). Energy is shared equally." },
+          { name: "Electromagnetic Momentum", desc: "\\mathbf{g} = \\mathbf{S}/c^2 = \\varepsilon_0(\\mathbf{E} \\times \\mathbf{B}). EM fields carry momentum density, exerting radiation pressure on surfaces." },
+          { name: "Power Transmitted", desc: "P = \\int \\mathbf{S} \\cdot d\\mathbf{A}. Integrate Poynting vector over a surface to get total power crossing it." },
+        ],
+        keyEquations: [
+          "\\mathbf{S} = \\frac{1}{\\mu_0}(\\mathbf{E} \\times \\mathbf{B})",
+          "\\langle S \\rangle = \\frac{E_0^2}{2\\mu_0 c}",
+          "u = \\frac{1}{2}\\varepsilon_0 E^2 + \\frac{B^2}{2\\mu_0}",
+        ],
+        conceptSummary:
+          "See the Poynting vector pulsate with the wave. Energy flows in the propagation direction, oscillating at twice the wave frequency. Compare instantaneous and time-averaged intensity.",
+      },
+    ],
+  },
+];
+
 // ─── EXPORTS ────────────────────────────────────────────────────────
 
 export const chapterGroups: ChapterGroup[] = [
@@ -1991,12 +2257,19 @@ export const chapterGroups: ChapterGroup[] = [
     subtitle: "From Newton to Lagrange and Hamilton",
     chapters: classicalMechanics,
   },
+  {
+    id: "electrodynamics",
+    title: "Electrodynamics",
+    subtitle: "Fields, forces & electromagnetic waves",
+    chapters: electrodynamics,
+  },
 ];
 
 export const allChapters: Chapter[] = [
   ...quantumPhysics,
   ...statisticalPhysics,
   ...classicalMechanics,
+  ...electrodynamics,
 ];
 
 export function getChapter(id: string): Chapter | undefined {

@@ -153,6 +153,24 @@ simulations["c8-time-energy"] = C8TimeEnergy;
 simulations["c8-space-momentum"] = C8SpaceMomentum;
 simulations["c8-rotation-angular"] = C8RotationAngular;
 
+// E1 - Electric Fields & Coulomb's Law
+import { E1PointCharges, E1FieldLines, E1Equipotentials } from "./E1ElectricField";
+simulations["e1-point-charges"] = E1PointCharges;
+simulations["e1-field-lines"] = E1FieldLines;
+simulations["e1-equipotentials"] = E1Equipotentials;
+
+// E2 - Magnetic Fields & Biot-Savart
+import { E2WireField, E2HelmholtzCoils, E2AmperesLaw } from "./E2MagneticField";
+simulations["e2-wire-field"] = E2WireField;
+simulations["e2-helmholtz-coils"] = E2HelmholtzCoils;
+simulations["e2-amperes-law"] = E2AmperesLaw;
+
+// E3 - Electromagnetic Waves
+import { E3PlaneWave, E3Polarization, E3PoyntingVector } from "./E3EMWaves";
+simulations["e3-plane-wave"] = E3PlaneWave;
+simulations["e3-polarization"] = E3Polarization;
+simulations["e3-poynting-vector"] = E3PoyntingVector;
+
 export function getSimulation(chapterId: string, sectionId: string): Component | undefined {
   return simulations[`${chapterId}-${sectionId}`];
 }
