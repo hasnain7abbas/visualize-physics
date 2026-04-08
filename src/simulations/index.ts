@@ -171,6 +171,24 @@ simulations["e3-plane-wave"] = E3PlaneWave;
 simulations["e3-polarization"] = E3Polarization;
 simulations["e3-poynting-vector"] = E3PoyntingVector;
 
+// W1 - Wave Equation in 1D
+import { W1StandingWaves, W1FourierModes, W1EnergyDensity } from "./W1WaveEquation";
+simulations["w1-standing-waves"] = W1StandingWaves;
+simulations["w1-fourier-modes"] = W1FourierModes;
+simulations["w1-energy-density"] = W1EnergyDensity;
+
+// W2 - Wave Interference & Diffraction
+import { W2SingleSlit, W2DoubleSlit, W2DiffractionGrating } from "./W2Interference";
+simulations["w2-single-slit"] = W2SingleSlit;
+simulations["w2-double-slit"] = W2DoubleSlit;
+simulations["w2-diffraction-grating"] = W2DiffractionGrating;
+
+// W3 - Doppler Effect
+import { W3MovingSource, W3MachCone, W3ObserverFrequency } from "./W3DopplerEffect";
+simulations["w3-moving-source"] = W3MovingSource;
+simulations["w3-mach-cone"] = W3MachCone;
+simulations["w3-observer-frequency"] = W3ObserverFrequency;
+
 export function getSimulation(chapterId: string, sectionId: string): Component | undefined {
   return simulations[`${chapterId}-${sectionId}`];
 }

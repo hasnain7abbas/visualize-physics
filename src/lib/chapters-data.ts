@@ -2236,6 +2236,272 @@ const electrodynamics: Chapter[] = [
   },
 ];
 
+// ─── WAVES & OSCILLATIONS ──────────────────────────────────────────
+
+const wavesOscillations: Chapter[] = [
+  {
+    id: "w1",
+    num: "W1",
+    title: "Wave Equation in 1D",
+    description:
+      "The one-dimensional wave equation governs vibrations of strings, sound in tubes, and many other physical systems. Standing waves arise from boundary conditions, and any initial shape can be decomposed into a superposition of normal modes via Fourier analysis.",
+    color: "#f59e0b",
+    icon: "\u{1F3B5}",
+    shortDesc: "Vibrating strings & harmonics",
+    sections: [
+      {
+        id: "standing-waves",
+        title: "Standing Waves & Normal Modes",
+        description:
+          "A string fixed at both ends supports only discrete standing wave modes. The nth mode has n half-wavelengths fitting in the string length, with nodes at fixed positions and antinodes where amplitude is maximum.",
+        statisticalTools: [
+          { name: "Wave Equation", desc: "\\frac{\\partial^2 y}{\\partial t^2} = c^2 \\frac{\\partial^2 y}{\\partial x^2} where c = \\sqrt{T/\\mu}. Describes transverse displacement y(x,t) of a string with tension T and linear density \\mu." },
+          { name: "Normal Mode Solutions", desc: "y_n(x,t) = A_n \\sin(n\\pi x/L)\\cos(\\omega_n t). Each mode is a standing wave with n half-wavelengths in the string of length L." },
+          { name: "Mode Frequencies", desc: "\\omega_n = n\\pi c/L, \\quad f_n = n f_1. Frequencies are integer multiples of the fundamental f_1 = c/(2L). This is why strings produce harmonic overtones." },
+          { name: "Wavelength Quantization", desc: "\\lambda_n = 2L/n. The boundary conditions (fixed ends) allow only discrete wavelengths. This is analogous to quantum mechanical boundary conditions." },
+          { name: "Nodes & Antinodes", desc: "Nodes: points where y=0 always (at x = kL/n). Antinodes: points of maximum displacement (midway between nodes). Mode n has n+1 nodes including endpoints." },
+          { name: "Superposition Principle", desc: "The general solution is y(x,t) = \\sum_{n=1}^{\\infty} A_n \\sin(n\\pi x/L)\\cos(\\omega_n t + \\phi_n). Any vibration is a sum of normal modes." },
+          { name: "Wave Speed", desc: "c = \\sqrt{T/\\mu}. Increasing tension raises pitch; increasing mass density lowers it. This is how musicians tune stringed instruments." },
+          { name: "Boundary Conditions", desc: "Fixed ends: y(0,t) = y(L,t) = 0. Free ends: \\partial y/\\partial x = 0 at the boundary. Mixed conditions produce different mode shapes." },
+          { name: "Fundamental Frequency", desc: "f_1 = c/(2L) = \\frac{1}{2L}\\sqrt{T/\\mu}. The lowest resonant frequency of the string. All higher modes are harmonics." },
+          { name: "Phase Velocity", desc: "v_{ph} = \\omega/k = c. For the ideal string, all frequencies travel at the same speed — no dispersion." },
+        ],
+        keyEquations: [
+          "\\frac{\\partial^2 y}{\\partial t^2} = c^2 \\frac{\\partial^2 y}{\\partial x^2}",
+          "y_n(x,t) = A_n \\sin\\!\\left(\\frac{n\\pi x}{L}\\right)\\cos(\\omega_n t)",
+          "f_n = \\frac{n}{2L}\\sqrt{\\frac{T}{\\mu}}",
+        ],
+        conceptSummary:
+          "Select a normal mode and watch the string vibrate. Higher modes have more nodes and higher frequencies. Notice how nodes remain stationary while antinodes oscillate with maximum amplitude.",
+      },
+      {
+        id: "fourier-modes",
+        title: "Fourier Decomposition",
+        description:
+          "Any initial string shape can be expressed as a sum of sinusoidal normal modes. The Fourier coefficients determine how much each harmonic contributes. Adding more harmonics improves the approximation of the original shape.",
+        statisticalTools: [
+          { name: "Fourier Series", desc: "f(x) = \\sum_{n=1}^{\\infty} b_n \\sin(n\\pi x/L). Any function satisfying the boundary conditions can be expanded in the sine basis of normal modes." },
+          { name: "Fourier Coefficients", desc: "b_n = \\frac{2}{L}\\int_0^L f(x)\\sin(n\\pi x/L)\\,dx. The projection of the initial shape onto each normal mode. Larger |b_n| means mode n contributes more." },
+          { name: "Pluck Shape (Triangle)", desc: "A string plucked at position x_0 forms a triangle. Its Fourier coefficients decay as 1/n^2, so high harmonics are suppressed — producing a mellow tone." },
+          { name: "Strike Shape (Gaussian)", desc: "A narrow Gaussian impulse excites many harmonics roughly equally. Its coefficients decay as e^{-n^2}, giving a bright initial attack that quickly mellows." },
+          { name: "Square Pulse", desc: "A rectangular initial shape has coefficients b_n \\propto 1/n (for odd n). The slow decay means many high harmonics — producing a harsh, buzzy sound." },
+          { name: "Gibbs Phenomenon", desc: "Near a discontinuity, the Fourier series overshoots by about 9%. This ringing never disappears no matter how many terms are added — it only gets narrower." },
+          { name: "Parseval's Theorem", desc: "\\frac{2}{L}\\int_0^L |f(x)|^2 dx = \\sum_{n=1}^{\\infty} |b_n|^2. Total energy is the sum of energies in each mode. Energy is conserved in Fourier space." },
+          { name: "Convergence Rate", desc: "Smoother functions have faster-decaying Fourier coefficients. Discontinuities → 1/n, cusps → 1/n^2, smooth → exponential decay." },
+          { name: "Orthogonality", desc: "\\int_0^L \\sin(m\\pi x/L)\\sin(n\\pi x/L)dx = \\frac{L}{2}\\delta_{mn}. The sine functions form an orthogonal basis — each mode is independent." },
+          { name: "Spectral Analysis", desc: "The set of Fourier coefficients {b_n} is the frequency spectrum. Visualizing the spectrum reveals which harmonics dominate the sound of the string." },
+        ],
+        keyEquations: [
+          "f(x) = \\sum_{n=1}^{\\infty} b_n \\sin\\!\\left(\\frac{n\\pi x}{L}\\right)",
+          "b_n = \\frac{2}{L}\\int_0^L f(x)\\sin\\!\\left(\\frac{n\\pi x}{L}\\right)dx",
+          "\\sum_{n=1}^{\\infty} |b_n|^2 = \\frac{2}{L}\\int_0^L |f(x)|^2\\,dx",
+        ],
+        conceptSummary:
+          "Choose an initial shape and watch the Fourier reconstruction improve as you add more harmonics. The bar chart shows each coefficient's magnitude — notice how smoother shapes need fewer harmonics.",
+      },
+      {
+        id: "energy-density",
+        title: "Energy Distribution",
+        description:
+          "A vibrating string carries both kinetic and potential energy distributed along its length. The kinetic energy density depends on transverse velocity, while potential energy density depends on local curvature. In a standing wave, energy oscillates between these two forms.",
+        statisticalTools: [
+          { name: "Kinetic Energy Density", desc: "\\mathcal{T} = \\frac{1}{2}\\mu\\left(\\frac{\\partial y}{\\partial t}\\right)^2. Energy per unit length due to transverse motion. Maximum at antinodes when the string passes through equilibrium." },
+          { name: "Potential Energy Density", desc: "\\mathcal{V} = \\frac{1}{2}T\\left(\\frac{\\partial y}{\\partial x}\\right)^2. Energy per unit length due to stretching. Maximum at nodes where the slope is steepest." },
+          { name: "Total Energy Density", desc: "\\mathcal{E} = \\mathcal{T} + \\mathcal{V}. The total energy density varies along the string and oscillates in time, but the integral over the full string is constant." },
+          { name: "Energy Conservation", desc: "E_{total} = \\int_0^L (\\mathcal{T} + \\mathcal{V})\\,dx = \\text{const}. Total energy is conserved in the absence of damping. KE and PE interchange but their sum is fixed." },
+          { name: "KE-PE Oscillation", desc: "In a standing wave, KE is maximum when y=0 everywhere (string flat, moving fast) and PE is maximum at maximum displacement (string stretched, momentarily at rest)." },
+          { name: "Energy per Mode", desc: "E_n = \\frac{1}{4}\\mu\\omega_n^2 A_n^2 L. Each mode carries energy proportional to the square of its amplitude and frequency. Higher modes carry more energy per unit amplitude." },
+          { name: "Equipartition of KE and PE", desc: "Time-averaged \\langle T \\rangle = \\langle V \\rangle = E/2. On average, kinetic and potential energies are equal — the virial theorem for harmonic systems." },
+          { name: "Energy Flow (Power)", desc: "P(x,t) = -T\\frac{\\partial y}{\\partial x}\\frac{\\partial y}{\\partial t}. Power transmitted along the string. For standing waves, time-averaged power flow is zero — energy doesn't propagate." },
+          { name: "Damped Energy Decay", desc: "With damping \\gamma, energy decays as E(t) = E_0 e^{-\\gamma t}. Higher modes decay faster if damping is frequency-dependent. This is why high harmonics die out first." },
+          { name: "Energy Spectrum", desc: "The energy in each Fourier mode: E_n \\propto n^2|b_n|^2. Higher modes contribute more energy per unit amplitude due to the \\omega_n^2 factor." },
+        ],
+        keyEquations: [
+          "\\mathcal{T} = \\tfrac{1}{2}\\mu\\left(\\frac{\\partial y}{\\partial t}\\right)^{\\!2}, \\quad \\mathcal{V} = \\tfrac{1}{2}T\\left(\\frac{\\partial y}{\\partial x}\\right)^{\\!2}",
+          "E = \\int_0^L (\\mathcal{T} + \\mathcal{V})\\,dx = \\text{const}",
+          "\\langle \\mathcal{T} \\rangle = \\langle \\mathcal{V} \\rangle = \\tfrac{1}{2}E",
+        ],
+        conceptSummary:
+          "Watch kinetic (blue) and potential (amber) energy densities oscillate along the string. When the string is flat and moving fast, KE dominates. At maximum displacement, PE dominates. Total energy stays constant.",
+      },
+    ],
+  },
+  {
+    id: "w2",
+    num: "W2",
+    title: "Wave Interference & Diffraction",
+    description:
+      "When waves pass through apertures or encounter obstacles, they spread out (diffract) and overlap (interfere). The resulting intensity patterns — from single slits to complex gratings — reveal the wave nature of light and are foundational to optics and quantum mechanics.",
+    color: "#f59e0b",
+    icon: "\u{1F30A}",
+    shortDesc: "Slits, fringes & gratings",
+    sections: [
+      {
+        id: "single-slit",
+        title: "Single-Slit Diffraction",
+        description:
+          "A plane wave passing through a single narrow slit produces a characteristic diffraction pattern with a broad central maximum flanked by progressively weaker secondary maxima. The pattern width is inversely proportional to the slit width.",
+        statisticalTools: [
+          { name: "Huygens' Principle", desc: "Every point on a wavefront acts as a source of secondary spherical wavelets. The new wavefront is the envelope of these wavelets — the basis for understanding diffraction." },
+          { name: "Fraunhofer Diffraction", desc: "Far-field approximation: screen distance D \\gg a^2/\\lambda. Rays from different parts of the slit are effectively parallel. The pattern depends only on the angle \\theta." },
+          { name: "Single-Slit Intensity", desc: "I(\\theta) = I_0 \\left(\\frac{\\sin\\beta}{\\beta}\\right)^2 where \\beta = \\frac{\\pi a}{\\lambda}\\sin\\theta. The sinc-squared function gives the characteristic diffraction envelope." },
+          { name: "Central Maximum Width", desc: "Angular half-width: \\sin\\theta_1 = \\lambda/a. The central peak is twice as wide as the secondary maxima. Narrower slit → wider pattern." },
+          { name: "Minima Positions", desc: "a\\sin\\theta = m\\lambda, \\; m = \\pm 1, \\pm 2, \\ldots. Destructive interference occurs when the path difference across the slit equals a whole number of wavelengths." },
+          { name: "Secondary Maxima", desc: "Located approximately at \\beta = (m+\\frac{1}{2})\\pi. Each secondary maximum is weaker: the first is only 4.7% of the central peak intensity." },
+          { name: "Fresnel Number", desc: "N_F = a^2/(\\lambda D). When N_F \\ll 1, we're in the Fraunhofer regime. When N_F \\sim 1, near-field (Fresnel) effects appear." },
+          { name: "Angular Resolution", desc: "Rayleigh criterion: \\theta_{min} = 1.22\\lambda/D (circular aperture). The diffraction limit sets the finest detail an optical system can resolve." },
+          { name: "Slit Width Effect", desc: "As a → \\infty, the pattern collapses to a delta function (geometric shadow). As a → 0, the pattern broadens to uniform illumination." },
+          { name: "Intensity Normalization", desc: "I_0 \\propto a^2. The central peak intensity increases with slit width squared, while the peak gets narrower — total power is conserved." },
+        ],
+        keyEquations: [
+          "I(\\theta) = I_0 \\left(\\frac{\\sin\\beta}{\\beta}\\right)^{\\!2},\\quad \\beta = \\frac{\\pi a \\sin\\theta}{\\lambda}",
+          "\\text{Minima: } a\\sin\\theta = m\\lambda,\\; m = \\pm 1, \\pm 2, \\ldots",
+          "\\Delta\\theta_{\\text{central}} = \\frac{2\\lambda}{a}",
+        ],
+        conceptSummary:
+          "Adjust the slit width and watch the diffraction pattern change. A narrower slit produces a wider central maximum. Notice the minima where destructive interference creates dark bands.",
+      },
+      {
+        id: "double-slit",
+        title: "Double-Slit Interference",
+        description:
+          "Young's double-slit experiment demonstrates wave interference: two coherent sources produce an intensity pattern with bright and dark fringes. The fringe spacing depends on slit separation, while the overall envelope is set by single-slit diffraction.",
+        statisticalTools: [
+          { name: "Young's Experiment", desc: "Two narrow slits separated by distance d produce an interference pattern. Bright fringes at d\\sin\\theta = m\\lambda, dark fringes at d\\sin\\theta = (m+\\frac{1}{2})\\lambda." },
+          { name: "Path Difference", desc: "\\Delta = d\\sin\\theta. The difference in distance from the two slits to a point on the screen. Constructive interference when \\Delta = m\\lambda." },
+          { name: "Double-Slit Intensity", desc: "I = I_{single} \\cdot \\cos^2\\!\\left(\\frac{\\pi d \\sin\\theta}{\\lambda}\\right). The interference fringes are modulated by the single-slit diffraction envelope." },
+          { name: "Fringe Spacing", desc: "\\Delta y = \\lambda D/d on the screen (small angle). Closer slits → wider fringes. Shorter wavelength → narrower fringes." },
+          { name: "Constructive Interference", desc: "d\\sin\\theta = m\\lambda, \\; m = 0, \\pm 1, \\pm 2, \\ldots. Waves arrive in phase and amplitudes add. Intensity is 4× that of a single slit." },
+          { name: "Destructive Interference", desc: "d\\sin\\theta = (m + \\tfrac{1}{2})\\lambda. Waves arrive exactly out of phase and cancel. Complete darkness at these angles." },
+          { name: "Coherence Requirement", desc: "The two slits must be illuminated by the same wavefront (spatially coherent). Incoherent sources wash out the fringe pattern." },
+          { name: "Missing Orders", desc: "When d/a is an integer, some interference maxima coincide with diffraction minima and vanish. For d = 3a, every 3rd fringe is missing." },
+          { name: "Fringe Visibility", desc: "V = (I_{max} - I_{min})/(I_{max} + I_{min}). Perfect visibility V=1 for equal-amplitude slits. Partial coherence reduces V." },
+          { name: "Quantum Interpretation", desc: "Even single photons/electrons show the pattern — they interfere with themselves. The pattern builds up statistically. Which-path information destroys interference." },
+        ],
+        keyEquations: [
+          "I(\\theta) = I_0 \\cos^2\\!\\left(\\frac{\\pi d \\sin\\theta}{\\lambda}\\right)\\left(\\frac{\\sin\\beta}{\\beta}\\right)^{\\!2}",
+          "\\text{Bright fringes: } d\\sin\\theta = m\\lambda",
+          "\\Delta y = \\frac{\\lambda D}{d}",
+        ],
+        conceptSummary:
+          "Watch circular wavefronts from two slits overlap to create interference fringes. Adjust slit separation to change fringe spacing. Toggle the single-slit envelope to see how diffraction modulates the pattern.",
+      },
+      {
+        id: "diffraction-grating",
+        title: "Diffraction Grating",
+        description:
+          "A diffraction grating with N equally spaced slits produces extremely sharp principal maxima at the same angles as the double slit, but with N² times the peak intensity. The sharpness increases with N, making gratings essential for spectroscopy.",
+        statisticalTools: [
+          { name: "Grating Intensity", desc: "I = I_{single} \\cdot \\left(\\frac{\\sin(N\\delta/2)}{\\sin(\\delta/2)}\\right)^2 where \\delta = \\frac{2\\pi d \\sin\\theta}{\\lambda}. The multi-slit interference function." },
+          { name: "Principal Maxima", desc: "At d\\sin\\theta = m\\lambda, all N slits interfere constructively. Peak intensity = N^2 I_{single}. These are the spectral orders m = 0, \\pm 1, \\ldots" },
+          { name: "Peak Sharpening", desc: "The angular width of each principal maximum is \\Delta\\theta \\approx \\lambda/(Nd\\cos\\theta). More slits → sharper peaks → better spectral resolution." },
+          { name: "Secondary Maxima", desc: "Between principal maxima there are N-2 secondary maxima and N-1 minima. Secondary peaks are much weaker — the tallest is only about 4.7% of the principal peak." },
+          { name: "Resolving Power", desc: "R = mN = \\lambda/\\Delta\\lambda. A grating with N slits in order m can resolve wavelengths differing by \\Delta\\lambda = \\lambda/(mN). More slits = better resolution." },
+          { name: "Free Spectral Range", desc: "\\Delta\\lambda_{FSR} = \\lambda/m. The range of wavelengths before orders overlap. Higher orders give better resolution but smaller free spectral range." },
+          { name: "Blazed Gratings", desc: "Groove angle optimized to concentrate light into a particular order. The single-slit envelope is shifted so most energy goes into the desired diffraction order." },
+          { name: "Grating Equation", desc: "d(\\sin\\theta_i + \\sin\\theta_m) = m\\lambda. For oblique incidence at angle \\theta_i, the diffraction angles shift. This is the general form of the grating equation." },
+          { name: "Spectral Dispersion", desc: "\\frac{d\\theta}{d\\lambda} = \\frac{m}{d\\cos\\theta}. Angular dispersion increases with order m and decreases with slit spacing d." },
+          { name: "Intensity Envelope", desc: "The single-slit diffraction pattern I_{single}(\\theta) acts as an envelope modulating all the sharp grating peaks. Slit width a determines envelope width." },
+        ],
+        keyEquations: [
+          "I = I_0 \\left(\\frac{\\sin\\beta}{\\beta}\\right)^{\\!2}\\left(\\frac{\\sin(N\\delta/2)}{\\sin(\\delta/2)}\\right)^{\\!2}",
+          "\\text{Principal maxima: } d\\sin\\theta = m\\lambda",
+          "R = mN = \\frac{\\lambda}{\\Delta\\lambda}",
+        ],
+        conceptSummary:
+          "Increase the number of slits and watch the principal maxima sharpen dramatically. With just 2 slits you get broad fringes; with 20+ slits the peaks become razor-sharp — this is why gratings are used in spectroscopy.",
+      },
+    ],
+  },
+  {
+    id: "w3",
+    num: "W3",
+    title: "Doppler Effect",
+    description:
+      "When a wave source moves relative to an observer, the observed frequency shifts — higher when approaching, lower when receding. At supersonic speeds, a shock wave (Mach cone) forms. The Doppler effect is used in radar, medical ultrasound, and astrophysical redshift measurements.",
+    color: "#f59e0b",
+    icon: "\u{1F6A8}",
+    shortDesc: "Frequency shifts & shock waves",
+    sections: [
+      {
+        id: "moving-source",
+        title: "Moving Source & Wavefronts",
+        description:
+          "A source emitting waves at frequency f while moving at speed v_s compresses wavefronts ahead and stretches them behind. An observer in front hears a higher frequency, while one behind hears a lower frequency.",
+        statisticalTools: [
+          { name: "Classical Doppler Formula", desc: "f' = f \\cdot \\frac{v_w}{v_w \\mp v_s}. Plus for source approaching, minus for receding. v_w = wave speed in the medium, v_s = source speed." },
+          { name: "Wavefront Compression", desc: "Ahead of the source: \\lambda' = \\lambda(1 - v_s/v_w). The wavelength is shortened by the ratio (1 - M), where M = v_s/v_w is the Mach number." },
+          { name: "Wavefront Stretching", desc: "Behind the source: \\lambda' = \\lambda(1 + v_s/v_w). The wavelength is lengthened. For a source at half wave speed, the rear wavelength is 1.5× the rest wavelength." },
+          { name: "Frequency Shift Ratio", desc: "f'/f = 1/(1 - v_s\\cos\\theta/v_w). The general formula for arbitrary angle \\theta between source velocity and the source-observer direction." },
+          { name: "Moving Observer", desc: "f' = f(1 + v_o/v_w). A moving observer encounters wavefronts at a different rate. Unlike the moving source case, this is linear in v_o." },
+          { name: "Asymmetry", desc: "Moving source and moving observer give different shifts even at the same speed. This asymmetry arises from the medium's preferred frame — relativity resolves it." },
+          { name: "Wavelength in Medium", desc: "\\lambda = v_w/f. The spatial period of the wave in the medium. The Doppler effect changes the effective wavelength seen by the observer." },
+          { name: "Radial Velocity", desc: "Only the component of source velocity along the line of sight produces a Doppler shift. Transverse motion has no classical Doppler effect (but does relativistically)." },
+          { name: "Applications: Radar", desc: "Police radar sends a microwave pulse and measures the Doppler shift of the reflected signal: v = c\\Delta f/(2f_0). Factor of 2 because the wave travels to and from the target." },
+          { name: "Applications: Ultrasound", desc: "Medical Doppler ultrasound measures blood flow velocity from the frequency shift of reflected sound waves. Used to detect arterial stenosis and fetal heartbeat." },
+        ],
+        keyEquations: [
+          "f' = f \\cdot \\frac{v_w}{v_w - v_s\\cos\\theta}",
+          "\\lambda'_{\\text{front}} = \\lambda\\left(1 - \\frac{v_s}{v_w}\\right)",
+          "\\lambda'_{\\text{rear}} = \\lambda\\left(1 + \\frac{v_s}{v_w}\\right)",
+        ],
+        conceptSummary:
+          "Watch wavefronts pile up in front of the moving source and spread out behind it. Adjust the source speed to see how the compression ratio changes. The observed frequency is displayed for both front and rear observers.",
+      },
+      {
+        id: "mach-cone",
+        title: "Shock Waves & Mach Cone",
+        description:
+          "When a source exceeds the wave speed (Mach number > 1), it outruns its own wavefronts. The overlapping wavefronts form a conical shock wave — the Mach cone. The cone angle depends only on the ratio of wave speed to source speed.",
+        statisticalTools: [
+          { name: "Mach Number", desc: "M = v_s/v_w. The ratio of source speed to wave speed. M < 1: subsonic. M = 1: sonic (transonic). M > 1: supersonic. M > 5: hypersonic." },
+          { name: "Mach Cone Angle", desc: "\\sin\\alpha = 1/M = v_w/v_s. The half-angle of the shock cone. At M = 1: \\alpha = 90°. As M → ∞: \\alpha → 0° (cone narrows)." },
+          { name: "Shock Wave Formation", desc: "When M \\geq 1, successive wavefronts overlap on a cone surface. The constructive interference creates a pressure discontinuity — the shock wave." },
+          { name: "Sonic Boom", desc: "An observer on the ground hears a sudden loud bang when the Mach cone passes over them. The boom sweeps along the ground as the aircraft moves — it's not a one-time event." },
+          { name: "Bow Wave", desc: "The 2D analog: a boat moving faster than water waves creates a V-shaped wake. The half-angle satisfies \\sin\\alpha = v_{wave}/v_{boat}, same as the Mach cone." },
+          { name: "Cherenkov Radiation", desc: "The optical analog: a charged particle moving faster than light in a medium (v > c/n) emits blue-white radiation in a cone. Used in particle detectors." },
+          { name: "Transonic Region", desc: "Near M = 1, wavefronts pile up but don't form a clean cone. This is the drag divergence regime where aerodynamic forces spike." },
+          { name: "Pressure Jump", desc: "Across the shock: pressure, density, and temperature all jump discontinuously. The Rankine-Hugoniot conditions relate the jump magnitudes to M." },
+          { name: "Zone of Silence", desc: "An observer outside the Mach cone hasn't yet received any wavefronts from the source — they hear nothing until the cone sweeps past." },
+          { name: "Multiple Mach Cones", desc: "Complex supersonic bodies (e.g., aircraft with nose, wings, tail) can create multiple shock waves that coalesce at a distance." },
+        ],
+        keyEquations: [
+          "M = \\frac{v_s}{v_w}, \\quad \\sin\\alpha = \\frac{1}{M}",
+          "\\alpha = \\arcsin\\!\\left(\\frac{v_w}{v_s}\\right)",
+          "\\text{Boom arrives at } t = \\frac{d}{v_s \\tan\\alpha}",
+        ],
+        conceptSummary:
+          "Slide the Mach number from subsonic to supersonic and watch the shock cone form. Below M=1 the wavefronts spread normally. Above M=1, they pile up into a cone whose angle narrows with increasing speed.",
+      },
+      {
+        id: "observer-frequency",
+        title: "Angular Frequency Dependence",
+        description:
+          "The observed Doppler-shifted frequency depends on the angle between the source velocity and the observer direction. Directly ahead gives maximum blueshift, directly behind gives maximum redshift, and at 90° there is no classical shift (but a relativistic transverse Doppler effect exists).",
+        statisticalTools: [
+          { name: "General Doppler Formula", desc: "f'(\\theta) = \\frac{f}{1 - (v_s/v_w)\\cos\\theta}. The observed frequency as a function of the angle \\theta between source velocity and the source-to-observer direction." },
+          { name: "Maximum Blueshift", desc: "At \\theta = 0° (source approaching head-on): f' = f/(1-M). For M = 0.5, the frequency doubles. Diverges as M → 1." },
+          { name: "Maximum Redshift", desc: "At \\theta = 180° (source receding): f' = f/(1+M). For M = 0.5, frequency drops to 2/3. Always finite even at high speeds." },
+          { name: "Transverse Doppler (Classical)", desc: "At \\theta = 90°: f' = f (no shift). Classically, a source moving perpendicular to the line of sight produces no frequency change." },
+          { name: "Relativistic Doppler", desc: "f' = \\frac{f}{\\gamma(1 - \\beta\\cos\\theta)} where \\gamma = 1/\\sqrt{1-\\beta^2}. Includes the transverse Doppler effect: time dilation causes a redshift even at 90°." },
+          { name: "Transverse Doppler (Relativistic)", desc: "At \\theta = 90°: f' = f/\\gamma = f\\sqrt{1-\\beta^2}. A purely relativistic effect due to time dilation. Confirmed experimentally by Ives-Stilwell." },
+          { name: "Blueshift-Redshift Transition", desc: "The crossover angle where f' = f is \\cos\\theta_0 = 0 classically (90°), but \\cos\\theta_0 = (1-1/\\gamma)/\\beta relativistically." },
+          { name: "Astrophysical Redshift", desc: "z = (\\lambda_{obs} - \\lambda_{emit})/\\lambda_{emit} = (f_{emit}/f_{obs}) - 1. Positive z = redshift (receding). The Hubble law: z \\propto distance for v \\ll c." },
+          { name: "Doppler Broadening", desc: "Thermal motion of gas atoms causes a distribution of radial velocities, broadening spectral lines. The line width gives the gas temperature: \\Delta f/f = \\sqrt{2k_BT/(mc^2)}." },
+          { name: "Beaming Effect", desc: "At relativistic speeds, radiation is concentrated in the forward direction (relativistic beaming). The emission cone has half-angle \\sim 1/\\gamma." },
+        ],
+        keyEquations: [
+          "f'(\\theta) = \\frac{f}{1 - \\frac{v_s}{v_w}\\cos\\theta}",
+          "f'_{\\text{rel}} = \\frac{f}{\\gamma(1 - \\beta\\cos\\theta)}",
+          "z = \\frac{f_{\\text{emit}}}{f_{\\text{obs}}} - 1",
+        ],
+        conceptSummary:
+          "Vary the observer angle from 0° (ahead) to 180° (behind) and watch the frequency shift. The polar plot shows the full angular dependence. Notice the asymmetry — blueshift ahead is larger than redshift behind.",
+      },
+    ],
+  },
+];
+
 // ─── EXPORTS ────────────────────────────────────────────────────────
 
 export const chapterGroups: ChapterGroup[] = [
@@ -2263,6 +2529,12 @@ export const chapterGroups: ChapterGroup[] = [
     subtitle: "Fields, forces & electromagnetic waves",
     chapters: electrodynamics,
   },
+  {
+    id: "waves",
+    title: "Waves & Oscillations",
+    subtitle: "Vibrations, interference & the Doppler effect",
+    chapters: wavesOscillations,
+  },
 ];
 
 export const allChapters: Chapter[] = [
@@ -2270,6 +2542,7 @@ export const allChapters: Chapter[] = [
   ...statisticalPhysics,
   ...classicalMechanics,
   ...electrodynamics,
+  ...wavesOscillations,
 ];
 
 export function getChapter(id: string): Chapter | undefined {

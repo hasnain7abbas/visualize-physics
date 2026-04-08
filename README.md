@@ -1,24 +1,31 @@
 <div align="center">
 
-<img src="https://img.icons8.com/3d-fluency/94/cat.png" alt="Visualize Physics Logo" width="80" />
+<img src="https://img.icons8.com/3d-fluency/94/cat.png" alt="Visualize Physics Logo" width="90" />
 
 # Visualize Physics
 
-### An Interactive Companion for Graduate Physics
+### The Ultimate Interactive Companion for Graduate-Level Physics
 
 **See the invisible. Feel the abstract. Understand the universe.**
 
-[![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/hasnain7abbas/visualize-physics/releases)
-[![Tauri](https://img.shields.io/badge/Tauri-FFC131?style=for-the-badge&logo=tauri&logoColor=white)](https://tauri.app)
+<br />
+
+[![Try Online](https://img.shields.io/badge/TRY_ONLINE-hasnain7abbas.github.io-8b5cf6?style=for-the-badge&logo=googlechrome&logoColor=white)](https://hasnain7abbas.github.io/visualize-physics/)
+[![Download](https://img.shields.io/badge/DOWNLOAD-Windows_Installer-0078D6?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/hasnain7abbas/visualize-physics/releases/latest)
+
+<br />
+
+[![Tauri](https://img.shields.io/badge/Tauri_2-FFC131?style=for-the-badge&logo=tauri&logoColor=white)](https://tauri.app)
 [![Rust](https://img.shields.io/badge/Rust-000000?style=for-the-badge&logo=rust&logoColor=white)](https://www.rust-lang.org)
 [![SolidJS](https://img.shields.io/badge/SolidJS-2C4F7C?style=for-the-badge&logo=solid&logoColor=white)](https://www.solidjs.com)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
 
-[![GitHub release](https://img.shields.io/github/v/release/hasnain7abbas/visualize-physics?style=flat-square&color=06b6d4)](https://github.com/hasnain7abbas/visualize-physics/releases)
+[![GitHub release](https://img.shields.io/github/v/release/hasnain7abbas/visualize-physics?style=flat-square&color=06b6d4&label=version)](https://github.com/hasnain7abbas/visualize-physics/releases)
 [![License](https://img.shields.io/badge/license-MIT-10b981?style=flat-square)](LICENSE)
 [![Stars](https://img.shields.io/github/stars/hasnain7abbas/visualize-physics?style=flat-square&color=f59e0b)](https://github.com/hasnain7abbas/visualize-physics/stargazers)
-[![Website](https://img.shields.io/badge/Try%20Online-hasnain7abbas.github.io-8b5cf6?style=flat-square)](https://hasnain7abbas.github.io/visualize-physics/)
+[![Deploy](https://img.shields.io/github/actions/workflow/status/hasnain7abbas/visualize-physics/deploy.yml?style=flat-square&label=deploy&color=10b981)](https://github.com/hasnain7abbas/visualize-physics/actions)
 
-[Try Online](https://hasnain7abbas.github.io/visualize-physics/) · [Download](#-download) · [Features](#-features) · [Chapters](#-chapters) · [Contributing](#-contributing)
+[Try Online](https://hasnain7abbas.github.io/visualize-physics/) · [Download](#-download) · [Features](#-at-a-glance) · [All Chapters](#-all-29-chapters) · [Contributing](#-contributing)
 
 ---
 
@@ -29,129 +36,139 @@
 <div align="center">
 
 ### Welcome Screen
-<img src="screenshots/home-welcome.png" alt="Welcome Screen" width="800" />
+<img src="screenshots/home-welcome.png" alt="Welcome Screen — module grid with floating equations" width="800" />
+
+<br />
 
 ### Interactive Simulations
 <p>
-<img src="screenshots/quantum-probability.png" alt="Quantum Probability" width="400" />
-<img src="screenshots/carnot-cycle.png" alt="Carnot Cycle" width="400" />
+<img src="screenshots/quantum-probability.png" alt="Quantum Probability — Born rule convergence" width="400" />
+<img src="screenshots/carnot-cycle.png" alt="Carnot Cycle — PV diagram animation" width="400" />
 </p>
 <p>
-<img src="screenshots/boltzmann-world.png" alt="Boltzmann Distribution" width="400" />
-<img src="screenshots/ideal-gas.png" alt="Ideal Gas & Equipartition" width="400" />
+<img src="screenshots/boltzmann-world.png" alt="Boltzmann Distribution — Maxwell speed distribution" width="400" />
+<img src="screenshots/ideal-gas.png" alt="Ideal Gas — real-time PV=NkT" width="400" />
 </p>
 <p>
-<img src="screenshots/ising-model.png" alt="Ising Model & Phase Transitions" width="400" />
-<img src="screenshots/dark-mode-chapter.png" alt="Free Energy (Dark Mode)" width="400" />
+<img src="screenshots/ising-model.png" alt="Ising Model — phase transition at T_c" width="400" />
+<img src="screenshots/dark-mode-chapter.png" alt="Free Energy — dark mode chapter view" width="400" />
 </p>
 
 ### Dark Mode
-<img src="screenshots/dark-mode.png" alt="Dark Mode" width="800" />
+<img src="screenshots/dark-mode.png" alt="Full dark mode interface" width="800" />
 
 </div>
 
 ---
 
-## Features
+## At a Glance
 
-- **54+ Interactive Simulations** — Every section has a working, hands-on visualization
-- **640+ Conceptual Tools** — Exhaustive coverage from Born rule to Noether's theorem, each with expandable explanations and mini-simulations
+<div align="center">
+
+| | |
+|:---:|:---:|
+| **29 Chapters** | **87 Interactive Sections** |
+| **47 Full Simulations** | **730+ Conceptual Tools** |
+| **5 Physics Modules** | **200+ LaTeX Equations** |
+
+</div>
+
+- **47+ Interactive Simulations** — Every section has a hands-on, real-time physics visualization
+- **730+ Conceptual Tools** — Exhaustive coverage from Born rule to Mach cones, each with expandable explanations
 - **Beautiful Math** — KaTeX-rendered equations that look like a textbook
 - **Dark & Light Mode** — Easy on the eyes, any time of day
-- **Rust-Powered Backend** — High-performance computation via Tauri
-- **Native Desktop App** — Runs offline with .exe and .msi installers
-- **Web Version** — Try it instantly at [hasnain7abbas.github.io/visualize-physics](https://hasnain7abbas.github.io/visualize-physics/)
-- **Fully Responsive** — Works on desktop, tablet, and mobile
-- **Polished UI** — Color-coded chapters, smooth animations, floating equations, intuitive navigation
+- **Native Desktop App** — Runs offline on Windows (.exe / .msi), macOS (.dmg), and Linux (.AppImage)
+- **Web Version** — Try instantly at [hasnain7abbas.github.io/visualize-physics](https://hasnain7abbas.github.io/visualize-physics/)
+- **Fully Responsive** — Desktop, tablet, and mobile
+- **Optimized Build** — Code-split into module chunks, terser-minified, ~300 KB gzip total
 
 ---
 
-## Chapters
+## All 29 Chapters
 
-The app covers **three major areas** of physics with **23 chapters**, **69 interactive sections**, and **640+ conceptual tools**:
+### Quantum Physics (5 chapters)
 
-### Quantum Physics
+| # | Chapter | Key Simulations |
+|:-:|---------|-----------------|
+| Q1 | **Quantum Probability** | Superposition, Measurement & Collapse, Probability Amplitudes |
+| Q2 | **Spin & Stern-Gerlach** | Single SG, Sequential SG, Spin Expectation Values |
+| Q3 | **Wavefunctions** | Particle in a Box, Wavepackets, Heisenberg Uncertainty |
+| Q4 | **Quantum Tunneling** | Barrier Penetration, Alpha Decay, Resonant Tunneling |
+| Q5 | **Harmonic Oscillator** | Energy Levels, Coherent States, Zero-Point Energy |
 
-| Chapter | Topics | Highlights |
-|---------|--------|------------|
-| **Q1 — Quantum Probability** | Superposition · Measurement & Collapse · Probability Amplitudes | Born Rule, Bernoulli Trials, Interference, Markov Chains |
-| **Q2 — Spin & Stern-Gerlach** | Single SG · Sequential SG · Expectation Values | Binomial Distribution, Hypothesis Testing, MLE |
-| **Q3 — Wavefunctions** | Particle in a Box · Wavepackets · Heisenberg Uncertainty | Fourier Transforms, Fisher Information, Cramér-Rao |
-| **Q4 — Quantum Tunneling** | Barrier Penetration · Alpha Decay · Resonant Tunneling | WKB, Gamow Factor, Breit-Wigner, Survival Analysis |
-| **Q5 — Harmonic Oscillator** | Energy Levels · Coherent States · Zero-Point Energy | Hermite Polynomials, Poisson Distribution, Planck Distribution |
+### Statistical Physics (10 chapters)
 
-### Statistical Physics
+| # | Chapter | Key Simulations |
+|:-:|---------|-----------------|
+| S1 | **The Boltzmann World** | Maxwell-Boltzmann Distribution, Energy Distribution, Partition Functions |
+| S2 | **Quantum Statistics** | Fermions vs Bosons, Fermi-Dirac, Bose-Einstein |
+| S3 | **Entropy & Information** | Microstates, Entropy of Mixing, Shannon Entropy |
+| S4 | **Random Walks** | 1D Walk, 2D Brownian Motion, Diffusion Equation |
+| S5 | **Ising Model** | 2D Ising Lattice, Phase Transition, Critical Phenomena |
+| S6 | **Monte Carlo Methods** | Pi Estimation, MC Integration, MCMC Sampling |
+| S7 | **Ideal Gas & Equipartition** | Ideal Gas Law, Equipartition Theorem, Heat Capacity |
+| S8 | **Heat Engines & Carnot** | Carnot Cycle, Engine Efficiency, Second Law |
+| S9 | **Free Energy & Phases** | Helmholtz Free Energy, Van der Waals, Phase Diagrams |
+| S10 | **Fluctuations & Response** | Energy Fluctuations, Fluctuation-Dissipation, Brownian Motion |
 
-| Chapter | Topics | Highlights |
-|---------|--------|------------|
-| **S1 — The Boltzmann World** | Maxwell-Boltzmann · Boltzmann Energy · Partition Functions | Chi/Gamma Distributions, Metropolis-Hastings, Equipartition |
-| **S2 — Quantum Statistics** | Fermions vs Bosons · Fermi-Dirac · Bose-Einstein | Combinatorics, Polylogarithms, Grand Canonical Ensemble |
-| **S3 — Entropy & Information** | Microstates · Entropy of Mixing · Shannon/Gibbs Entropy | KL Divergence, Mutual Information, Landauer's Principle |
-| **S4 — Random Walks** | 1D Walk · 2D Brownian Motion · Diffusion Equation | CLT, Wiener Process, Levy Flights, Einstein Relation |
-| **S5 — Ising Model** | 2D Ising · Phase Transition · Critical Phenomena | Metropolis Algorithm, Critical Exponents, Renormalization Group |
-| **S6 — Monte Carlo Methods** | Estimating pi · MC Integration · MCMC | Importance Sampling, Gibbs Sampling, Convergence Diagnostics |
-| **S7 — Ideal Gas & Equipartition** | Ideal Gas Law · Equipartition Theorem · Heat Capacity | Kinetic Theory, Degrees of Freedom, Einstein/Debye Models |
-| **S8 — Heat Engines & Carnot** | Carnot Cycle · Engine Efficiency · Second Law | PV Diagrams, Carnot Efficiency, Clausius Inequality |
-| **S9 — Free Energy & Phases** | Helmholtz Free Energy · Van der Waals · Phase Diagrams | Maxwell Construction, Critical Point, Clausius-Clapeyron |
-| **S10 — Fluctuations & Response** | Energy Fluctuations · Fluctuation-Dissipation · Brownian Motion | Langevin Equation, Johnson-Nyquist Noise, Green-Kubo Relations |
+### Classical Mechanics (8 chapters)
 
-### Classical Mechanics
+| # | Chapter | Key Simulations |
+|:-:|---------|-----------------|
+| C1 | **Projectile Motion** | Ideal Trajectory, Air Drag Effects, Coriolis & Wind |
+| C2 | **Double Pendulum** | Pendulum Dynamics, Phase Space, Chaos & Lyapunov |
+| C3 | **Central Force Orbits** | Kepler Orbits, Effective Potential, Force Law Variation |
+| C4 | **Rigid Body Rotation** | Euler's Equations, Polhode Curves, Tennis Racket Theorem |
+| C5 | **Coupled Oscillators** | Normal Modes, Mode Superposition, Dispersion Relation |
+| C6 | **Lagrangian Mechanics** | Atwood Machine, Bead on Hoop, Sliding Wedge |
+| C7 | **Hamiltonian Phase Space** | Phase Portraits, Liouville's Theorem, Fixed Points |
+| C8 | **Noether's Theorem** | Time-Energy, Space-Momentum, Rotation-Angular Momentum |
 
-| Chapter | Topics | Highlights |
-|---------|--------|------------|
-| **C1 — Projectile Motion** | Ideal Trajectory · Air Drag · Coriolis & Wind | RK4 Integration, Terminal Velocity, Magnus Effect |
-| **C2 — Double Pendulum** | Pendulum Dynamics · Phase Space · Chaos & Lyapunov | Lagrangian EOM, Poincaré Sections, Sensitive Dependence |
-| **C3 — Central Force Orbits** | Kepler Orbits · Effective Potential · Force Law Variation | Velocity-Verlet, Bertrand's Theorem, Rosette Orbits |
-| **C4 — Rigid Body Rotation** | Euler's Equations · Polhode · Tennis Racket Theorem | 3D Wireframe, Jacobi Elliptic Functions, Dzhanibekov Effect |
-| **C5 — Coupled Oscillators** | Normal Modes · Superposition · Dispersion Relation | Eigenvalue Problem, Brillouin Zone, Phonons |
-| **C6 — Lagrangian Mechanics** | Atwood Machine · Bead on Hoop · Sliding Wedge | Generalized Coordinates, Pitchfork Bifurcation, Constraints |
-| **C7 — Hamiltonian Phase Space** | Phase Portraits · Liouville's Theorem · Fixed Points | Hamilton's Equations, Symplectic Flow, Separatrices |
-| **C8 — Noether's Theorem** | Time → Energy · Space → Momentum · Rotation → Angular Momentum | Symmetry Breaking Demos, Conservation Law Visualization |
+### Electrodynamics (3 chapters)
 
----
+| # | Chapter | Key Simulations |
+|:-:|---------|-----------------|
+| E1 | **Electric Fields & Coulomb's Law** | Point Charges, Field Lines, Equipotential Surfaces |
+| E2 | **Magnetic Fields & Ampere's Law** | Wire Field, Helmholtz Coils, Ampere's Law |
+| E3 | **Electromagnetic Waves** | Plane Wave Propagation, Polarization States, Poynting Vector |
 
-## Simulations
+### Waves & Oscillations (3 chapters) — *NEW in v0.6.0*
 
-Every section has a **fully interactive simulation**, and every conceptual tool has its own **mini-simulation** when clicked:
-
-| Simulation | Description |
-|------------|-------------|
-| **Quantum Superposition** | Adjust amplitudes, measure qubits, watch histogram converge to Born rule |
-| **Stern-Gerlach Chain** | Build Z-X-Z sequences, see information destruction in action |
-| **Quantum Tunneling** | Watch wavefunctions decay inside barriers, adjust height/width |
-| **Double Pendulum** | Animated chaos with trailing paths, phase space, Lyapunov divergence |
-| **Kepler Orbits** | Launch orbits, vary force laws, see rosette precession patterns |
-| **Rigid Body Rotation** | 3D wireframe spinning with Euler's equations, tennis racket instability |
-| **Coupled Oscillators** | Normal modes of N masses on springs, dispersion relation |
-| **Lagrangian Mechanics** | Atwood machine, bead on rotating hoop with bifurcation |
-| **Hamiltonian Phase Space** | Click to launch trajectories, Liouville area preservation |
-| **Noether's Theorem** | Toggle symmetry breaking to see conservation laws fail |
-| **Ideal Gas** | Animated particles bouncing in a container, PV = NkT in real time |
-| **Carnot Cycle** | Animated PV diagram with isotherms and adiabats, live efficiency |
-| **2D Ising Model** | Run Metropolis on a spin lattice, watch order emerge below T_c |
-| **Brownian Motion** | 2D Langevin trajectory with MSD tracking (Einstein relation) |
-| **Monte Carlo pi** | Throw random darts and estimate pi with 1/sqrt(N) convergence |
+| # | Chapter | Key Simulations |
+|:-:|---------|-----------------|
+| W1 | **Wave Equation in 1D** | Standing Waves & Modes, Fourier Decomposition, Energy Density |
+| W2 | **Interference & Diffraction** | Single Slit, Young's Double Slit, Diffraction Grating |
+| W3 | **Doppler Effect** | Moving Source Wavefronts, Mach Cone & Shock Waves, Angular Frequency |
 
 ---
 
 ## Download
 
-> **Windows only** (macOS and Linux coming soon)
+### Desktop App (offline, native performance)
 
-| File | Description |
-|------|-------------|
-| [**.msi** Installer](https://github.com/hasnain7abbas/visualize-physics/releases/latest) | Standard Windows installer (recommended) |
-| [**.exe** Setup](https://github.com/hasnain7abbas/visualize-physics/releases/latest) | NSIS installer (smaller download) |
+| Platform | File | Notes |
+|:--------:|------|-------|
+| **Windows** | [**.msi** Installer](https://github.com/hasnain7abbas/visualize-physics/releases/latest) | Standard Windows installer (recommended) |
+| **Windows** | [**.exe** Setup](https://github.com/hasnain7abbas/visualize-physics/releases/latest) | NSIS installer (smaller download) |
+| **macOS** | [**.dmg**](https://github.com/hasnain7abbas/visualize-physics/releases/latest) | Universal binary (Intel + Apple Silicon) |
+| **Linux** | [**.AppImage** / **.deb**](https://github.com/hasnain7abbas/visualize-physics/releases/latest) | AppImage works on any distro |
 
-Or try the **web version** instantly: [hasnain7abbas.github.io/visualize-physics](https://hasnain7abbas.github.io/visualize-physics/)
+### Web App (no install required)
 
-Or build from source:
+**[hasnain7abbas.github.io/visualize-physics](https://hasnain7abbas.github.io/visualize-physics/)**
+
+### Build from Source
 
 ```bash
-# Prerequisites: Node.js 18+, Rust 1.70+, Tauri CLI
+# Prerequisites: Node.js 20+, Rust 1.70+
 git clone https://github.com/hasnain7abbas/visualize-physics.git
 cd visualize-physics
 npm install
+
+# Web only
+npm run build && npm run preview
+
+# Desktop app
 npm run tauri build
 ```
 
@@ -161,43 +178,76 @@ npm run tauri build
 
 <div align="center">
 
-| Layer | Technology | Role |
-|-------|-----------|------|
-| **Framework** | [Tauri 2](https://tauri.app) | Native desktop shell, security, packaging |
-| **Backend** | [Rust](https://rust-lang.org) | Physics computations, RNG, statistics |
-| **Frontend** | [SolidJS](https://solidjs.com) | Fine-grained reactive UI |
-| **Styling** | [Tailwind CSS](https://tailwindcss.com) | Utility-first styling |
-| **Math** | [KaTeX](https://katex.org) | LaTeX equation rendering |
-| **Build** | [Vite 6](https://vitejs.dev) | Sub-second HMR, fast builds |
+| Layer | Technology | Purpose |
+|:-----:|-----------|---------|
+| **Shell** | [Tauri 2](https://tauri.app) | Native desktop packaging, security, auto-update |
+| **Backend** | [Rust](https://rust-lang.org) | High-performance physics engine |
+| **Frontend** | [SolidJS](https://solidjs.com) | Fine-grained reactive UI (no virtual DOM) |
+| **Styling** | [Tailwind CSS](https://tailwindcss.com) | Utility-first responsive design |
+| **Math** | [KaTeX](https://katex.org) | Publication-quality LaTeX rendering |
+| **Bundler** | [Vite 6](https://vitejs.dev) | Sub-second HMR, optimized code-splitting |
+| **CI/CD** | [GitHub Actions](https://github.com/features/actions) | Automated deploy to GitHub Pages |
 
 </div>
 
-### Key Rust Dependencies
+---
 
-```toml
-statrs = "0.17"       # Statistical distributions
-rand = "0.8"          # Random number generation
-num-complex = "0.4"   # Complex numbers for wavefunctions
-nalgebra = "0.33"     # Linear algebra
+## Architecture
+
 ```
+visualize-physics/
+├── src/
+│   ├── chapters/          Home page with module grid
+│   ├── components/        Layout, Sidebar, ChapterPage, MathBlock
+│   ├── simulations/       47 interactive simulation components
+│   │   ├── Q*.tsx         Quantum Physics (11 sims)
+│   │   ├── S*.tsx         Statistical Physics (16 sims)
+│   │   ├── C*.tsx         Classical Mechanics (8 sims)
+│   │   ├── E*.tsx         Electrodynamics (3 sims)
+│   │   └── W*.tsx         Waves & Oscillations (9 sims)
+│   ├── lib/               Chapter data, theme, exports
+│   └── styles/            Global CSS + Tailwind
+├── src-tauri/             Rust backend + Tauri config
+├── .github/workflows/     CI/CD deploy pipeline
+└── vite.config.ts         Optimized build with code-splitting
+```
+
+**Build output** (code-split chunks, gzip sizes):
+| Chunk | Size |
+|-------|------|
+| vendor-solid | 12 KB |
+| vendor-katex | 76 KB |
+| sim-quantum | 13 KB |
+| sim-statistical | 32 KB |
+| sim-classical | 33 KB |
+| sim-electrodynamics | 17 KB |
+| sim-waves | 15 KB |
+| app + styles | 98 KB |
 
 ---
 
 ## Roadmap
 
-- [x] 23 chapters with 69 interactive sections
-- [x] 640+ conceptual tools with descriptions and mini-simulations
-- [x] Classical Mechanics module (8 chapters: projectiles, pendulums, orbits, rigid body, oscillators, Lagrangian, Hamiltonian, Noether)
-- [x] KaTeX math rendering
-- [x] Dark/Light theme
+- [x] Quantum Physics module (5 chapters, 11 simulations)
+- [x] Statistical Physics module (10 chapters, 16 simulations)
+- [x] Classical Mechanics module (8 chapters, 8 simulations)
+- [x] Electrodynamics module (3 chapters, 3 simulations)
+- [x] Waves & Oscillations module (3 chapters, 9 simulations)
+- [x] 730+ conceptual tools with expandable descriptions
+- [x] KaTeX math rendering throughout
+- [x] Dark / Light theme
 - [x] Welcome hero with floating equations
 - [x] Windows .exe and .msi installers
-- [x] GitHub Pages web deployment
+- [x] GitHub Pages web deployment with CI/CD
 - [x] Mobile responsive design
-- [ ] Electrodynamics module (electric/magnetic fields, EM waves, Lorentz force)
-- [ ] Waves & Oscillations module (wave equation, interference, Fourier, Doppler)
-- [ ] D3.js advanced visualizations (scatter plots, heatmaps)
-- [ ] Rust-powered Monte Carlo backends for all simulations
+- [x] Optimized build with code-splitting
+- [ ] Waves & Oscillations expansion (Fourier Transform, Resonance, 2D Membrane)
+- [ ] Thermodynamics expansion (PV diagrams, Otto/Diesel cycles)
+- [ ] Optics module (lenses, mirrors, ray tracing)
+- [ ] Special Relativity module (Lorentz transforms, spacetime diagrams)
+- [ ] Quantum Mechanics II (angular momentum, hydrogen atom)
+- [ ] Solid State Physics (band theory, Brillouin zones)
+- [ ] D3.js advanced visualizations
 - [ ] macOS and Linux builds
 - [ ] Bloch sphere 3D visualization
 - [ ] Export simulation data as CSV
@@ -209,32 +259,29 @@ nalgebra = "0.33"     # Linear algebra
 
 Contributions are welcome! Whether it's:
 
-- Bug reports
-- Feature suggestions
+- Bug reports and feature requests
+- New physics simulations
 - UI/UX improvements
-- Documentation
-- New simulations
+- Documentation and translations
 
 Please open an [issue](https://github.com/hasnain7abbas/visualize-physics/issues) or submit a PR.
 
 ---
 
-## About
-
 <div align="center">
 
-**Made with passion by [Hasnain Abbas](mailto:hsnanrzee1160@gmail.com)**
+### Made with passion by [Hasnain Abbas](mailto:hsnanrzee1160@gmail.com)
 
-Transforming abstract physics — from classical mechanics to quantum theory to statistical thermodynamics — into playful, hands-on simulations. Because if you can see it, you can understand it.
+Transforming abstract physics — from quantum mechanics to classical dynamics to electromagnetic waves — into playful, hands-on simulations.
+
+**Because if you can see it, you can understand it.**
+
+<br />
 
 *Inspired by [Seeing Theory](https://seeing-theory.brown.edu/) by Daniel Kunin, Brown University.*
 *Non-commercial educational project.*
 
-</div>
-
----
-
-<div align="center">
+<br />
 
 If you find this useful, please consider giving it a star!
 

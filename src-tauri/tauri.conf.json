@@ -1,7 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/nicktomlin/tauri/tauri-v2.0.0/crates/tauri-utils/schema.json",
   "productName": "Visualize Physics",
-  "version": "0.3.0",
+  "version": "0.6.0",
   "identifier": "io.visualizephysics.desktop",
   "build": {
     "frontendDist": "../dist",
@@ -12,7 +12,7 @@
   "app": {
     "windows": [
       {
-        "title": "Visualize Physics — Quantum & Statistical Physics",
+        "title": "Visualize Physics — Interactive Physics Lab",
         "width": 1280,
         "height": 800,
         "minWidth": 800,
