@@ -94,32 +94,33 @@ export const C1IdealProjectile: Component = () => {
     pts.map((p, i) => `${i === 0 ? "M" : "L"}${toSvgX(p.x).toFixed(1)},${toSvgY(p.y).toFixed(1)}`).join(" ");
 
   let frameId: number | undefined;
+  let pendingSnapshot: TrajectoryRecord | null = null;
 
   const launch = () => {
+    // Capture trajectory data NOW before animation/sliders change it
+    pendingSnapshot = {
+      pts: [...trajectoryPts()],
+      angle: angle(),
+      velocity: velocity(),
+      range: range(),
+      maxHeight: maxHeight(),
+    };
+
     setAnimT(0);
     setRunning(true);
     const startTime = performance.now();
     const T = flightTime();
-    // Capture trajectory data NOW before sliders can change it
-    const snapshotPts = [...trajectoryPts()];
-    const snapshotAngle = angle();
-    const snapshotVelocity = velocity();
-    const snapshotRange = range();
-    const snapshotMaxHeight = maxHeight();
 
     const step = (now: number) => {
       const elapsed = (now - startTime) / 1000;
       if (elapsed >= T) {
         setAnimT(T);
         setRunning(false);
-        // Auto-save to history when flight completes
-        setHistory((prev) => [...prev.slice(-4), {
-          pts: snapshotPts,
-          angle: snapshotAngle,
-          velocity: snapshotVelocity,
-          range: snapshotRange,
-          maxHeight: snapshotMaxHeight,
-        }]);
+        // Save to history when flight lands
+        if (pendingSnapshot) {
+          setHistory((prev) => [...prev.slice(-4), pendingSnapshot!]);
+          pendingSnapshot = null;
+        }
         return;
       }
       setAnimT(elapsed);
@@ -130,6 +131,11 @@ export const C1IdealProjectile: Component = () => {
 
   const reset = () => {
     if (frameId) cancelAnimationFrame(frameId);
+    // If a flight was in-progress or completed, save it before resetting
+    if (pendingSnapshot && (running() || animT() > 0)) {
+      setHistory((prev) => [...prev.slice(-4), pendingSnapshot!]);
+      pendingSnapshot = null;
+    }
     setAnimT(0);
     setRunning(false);
   };
