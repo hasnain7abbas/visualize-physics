@@ -1,4 +1,4 @@
-import { Component, For, createSignal, onMount } from "solid-js";
+import { Component, For, Show, createSignal, onMount } from "solid-js";
 import { A } from "@solidjs/router";
 import { CatLogo } from "../components/CatLogo";
 import { chapterGroups, allChapters, type Chapter } from "../lib/chapters-data";
@@ -94,6 +94,129 @@ const ChapterCard: Component<{ chapter: Chapter; index: number }> = (
         </span>
       </div>
     </A>
+  );
+};
+
+/* ─── Welcome Popup ──────────────────────────────────────── */
+const WelcomePopup: Component = () => {
+  const [visible, setVisible] = createSignal(false);
+  const [animateIn, setAnimateIn] = createSignal(false);
+
+  onMount(() => {
+    const dismissed = localStorage.getItem("vp-welcome-dismissed");
+    if (!dismissed) {
+      setVisible(true);
+      setTimeout(() => setAnimateIn(true), 50);
+    }
+  });
+
+  const dismiss = () => {
+    setAnimateIn(false);
+    setTimeout(() => {
+      setVisible(false);
+      localStorage.setItem("vp-welcome-dismissed", "1");
+    }, 300);
+  };
+
+  return (
+    <Show when={visible()}>
+      <div
+        class="fixed inset-0 z-[100] flex items-center justify-center p-4"
+        style={{ "background-color": "rgba(0,0,0,0.5)", "backdrop-filter": "blur(4px)" }}
+        onClick={(e) => { if (e.target === e.currentTarget) dismiss(); }}
+      >
+        <div
+          class="relative w-full max-w-md rounded-2xl p-6 sm:p-8 text-center transition-all duration-300"
+          style={{
+            background: "var(--bg-card)",
+            border: "1px solid var(--border)",
+            "box-shadow": "0 25px 60px rgba(0,0,0,0.3), 0 0 60px rgba(139,92,246,0.1)",
+            transform: animateIn() ? "scale(1) translateY(0)" : "scale(0.9) translateY(20px)",
+            opacity: animateIn() ? "1" : "0",
+          }}
+        >
+          {/* Close button */}
+          <button
+            onClick={dismiss}
+            class="absolute top-3 right-3 w-8 h-8 rounded-full flex items-center justify-center transition-colors hover:scale-110"
+            style={{ background: "var(--bg-secondary)", color: "var(--text-muted)" }}
+          >
+            {"\u2715"}
+          </button>
+
+          {/* Cat logo */}
+          <div class="flex justify-center mb-4">
+            <div class="relative">
+              <div class="absolute inset-0 rounded-full blur-xl opacity-30" style={{ background: "var(--accent)", transform: "scale(1.5)" }} />
+              <CatLogo size={56} />
+            </div>
+          </div>
+
+          {/* Greeting */}
+          <div
+            class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest mb-3"
+            style={{ background: "var(--accent-light)", color: "var(--accent)" }}
+          >
+            Welcome to Visualize Physics
+          </div>
+
+          <h2 class="text-xl sm:text-2xl font-bold mb-2">
+            <span class="gradient-text">Hello, Explorer!</span>
+          </h2>
+
+          <p class="text-xs sm:text-sm leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
+            Dive into interactive physics simulations spanning quantum mechanics,
+            classical mechanics, statistical thermodynamics, electrodynamics, and waves.
+            Every concept is alive, visual, and hands-on.
+          </p>
+
+          {/* Creator info */}
+          <div
+            class="rounded-xl p-4 mb-5"
+            style={{ background: "var(--bg-secondary)", border: "1px solid var(--border-light)" }}
+          >
+            <p class="text-xs font-semibold mb-1" style={{ color: "var(--text-primary)" }}>
+              Created by Hasnain Abbas
+            </p>
+            <p class="text-[11px]" style={{ color: "var(--text-muted)" }}>
+              MPhil Physics Student
+            </p>
+            <p class="text-[11px] mb-2" style={{ color: "var(--text-muted)" }}>
+              Quaid-e-Azam University, Islamabad
+            </p>
+            <a
+              href="mailto:hsnanrzee1160@gmail.com"
+              class="text-[10px] transition-colors hover:opacity-80"
+              style={{ color: "var(--accent)" }}
+            >
+              hsnanrzee1160@gmail.com
+            </a>
+          </div>
+
+          {/* GitHub CTA */}
+          <a
+            href="https://github.com/hasnain7abbas/visualize-physics"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all hover:scale-105 hover:shadow-lg mb-3"
+            style={{ background: "var(--accent)", color: "white" }}
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+            </svg>
+            Visit on GitHub
+          </a>
+
+          <button
+            onClick={dismiss}
+            class="block w-full text-xs font-medium mt-1 py-2 rounded-lg transition-colors hover:opacity-80"
+            style={{ color: "var(--text-muted)" }}
+          >
+            Start Exploring {"\u2192"}
+          </button>
+        </div>
+      </div>
+    </Show>
   );
 };
 
@@ -342,6 +465,9 @@ const WelcomeHero: Component = () => {
 export const Home: Component = () => {
   return (
     <div class="min-h-screen" style={{ background: "var(--bg-primary)" }}>
+      {/* Welcome popup for first-time visitors */}
+      <WelcomePopup />
+
       {/* Welcome hero */}
       <WelcomeHero />
 
@@ -414,26 +540,39 @@ export const Home: Component = () => {
               Hasnain Abbas
             </h2>
 
-            <a
-              href="mailto:hsnanrzee1160@gmail.com"
-              class="inline-flex items-center gap-1.5 text-sm font-medium mb-4 transition-colors hover:opacity-80"
-              style={{ color: "var(--accent)" }}
-            >
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+            <p class="text-xs font-medium mb-1" style={{ color: "var(--text-secondary)" }}>
+              MPhil Physics Student
+            </p>
+            <p class="text-xs mb-3" style={{ color: "var(--text-muted)" }}>
+              Quaid-e-Azam University, Islamabad
+            </p>
+
+            <div class="flex items-center justify-center gap-3 mb-4">
+              <a
+                href="mailto:hsnanrzee1160@gmail.com"
+                class="inline-flex items-center gap-1.5 text-xs font-medium transition-colors hover:opacity-80"
+                style={{ color: "var(--accent)" }}
               >
-                <rect width="20" height="16" x="2" y="4" rx="2" />
-                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-              </svg>
-              hsnanrzee1160@gmail.com
-            </a>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="20" height="16" x="2" y="4" rx="2" />
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                </svg>
+                Email
+              </a>
+              <span style={{ color: "var(--border)" }}>|</span>
+              <a
+                href="https://github.com/hasnain7abbas/visualize-physics"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1.5 text-xs font-medium transition-colors hover:opacity-80"
+                style={{ color: "var(--accent)" }}
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                </svg>
+                GitHub
+              </a>
+            </div>
 
             <p
               class="text-sm leading-relaxed max-w-lg mx-auto"

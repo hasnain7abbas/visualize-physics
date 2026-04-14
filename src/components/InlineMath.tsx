@@ -3,7 +3,8 @@ import katex from "katex";
 
 /**
  * Renders text with auto-detected math expressions via KaTeX.
- * Detects common patterns: subscripts, superscripts, Greek, operators.
+ * Detects common patterns: subscripts, superscripts, Greek, operators,
+ * and common physics/math expressions like P(A|B), |amplitude|², etc.
  */
 export const InlineMathText: Component<{ text: string; class?: string }> = (props) => {
   const html = createMemo(() => renderMathInText(props.text));
@@ -19,8 +20,22 @@ function renderMathInText(input: string): string {
   // Auto-detect and wrap math expressions
   let text = input;
 
-  // Build replacements list
+  // Build replacements list — ordered from most specific to least
   const swaps: [RegExp, (m: string, ...args: string[]) => string][] = [
+    // Common physics expressions: P(outcome) = |amplitude|²
+    [/\|([A-Za-zα-ω]+)\|\²/g, (_, inner) => renderKatex(`|${inner}|^{2}`)],
+    [/\|([A-Za-zα-ω]+)\|/g, (_, inner) => renderKatex(`|${inner}|`)],
+    // P(A|B) style conditional probability
+    [/P\(([^)]+)\|([^)]+)\)/g, (_, a, b) => renderKatex(`P(${a}|${b})`)],
+    // P(outcome), P(E), etc.
+    [/P\(([^)]+)\)/g, (_, inner) => renderKatex(`P(${inner})`)],
+    // C(n,k) combinations
+    [/C\(([^,]+),([^)]+)\)/g, (_, n, k) => renderKatex(`\\binom{${n.trim()}}{${k.trim()}}`)],
+    // I(X;Y) mutual info
+    [/I\(([^;]+);([^)]+)\)/g, (_, x, y) => renderKatex(`I(${x.trim()};${y.trim()})`)],
+    // Cov( and Var(
+    [/Cov\(([^)]+)\)/g, (_, inner) => renderKatex(`\\text{Cov}(${inner})`)],
+    [/Var\(([^)]+)\)/g, (_, inner) => renderKatex(`\\text{Var}(${inner})`)],
     // Greek unicode -> KaTeX
     [/[αβγδεζηθικλμνξπρστυφχψωΓΔΘΛΞΠΣΦΨΩℏ]/g, (m) => renderKatex(greekToLatex(m))],
     // Subscript unicode ₀₁₂₃...
@@ -42,6 +57,9 @@ function renderMathInText(input: string): string {
     [/∫/g, () => renderKatex("\\int")],
     [/∂/g, () => renderKatex("\\partial")],
     [/∈/g, () => renderKatex("\\in")],
+    [/≠/g, () => renderKatex("\\neq")],
+    [/⟨/g, () => renderKatex("\\langle")],
+    [/⟩/g, () => renderKatex("\\rangle")],
   ];
 
   for (const [pat, fn] of swaps) {

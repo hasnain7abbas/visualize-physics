@@ -16,7 +16,7 @@ export const S3Microstates: Component = () => {
     return dist;
   });
 
-  const maxOmega = createMemo(() => Math.max(...theory().map((d) => d.prob)));
+  const maxProb = createMemo(() => Math.max(...theory().map((d) => d.prob)));
 
   const simulate = (n: number) => {
     const N = nCoins();
@@ -26,7 +26,7 @@ export const S3Microstates: Component = () => {
       for (let i = 0; i < N; i++) if (Math.random() < 0.5) heads++;
       hist[heads]++;
     }
-    setHistogram(hist);
+    setHistogram([...hist]);
     setTrials((prev) => prev + n);
   };
 
@@ -37,47 +37,49 @@ export const S3Microstates: Component = () => {
     return -dist.reduce((s, d) => s + (d.prob > 0 ? d.prob * Math.log(d.prob) : 0), 0);
   });
 
+  // Reactive accessors for observed data per bar
+  const obsDensity = (k: number) => {
+    const h = histogram();
+    const t = trials();
+    if (t === 0 || h.length <= k) return 0;
+    return h[k] / t;
+  };
+
   return (
     <div class="space-y-5">
-      <div class="flex items-center gap-4">
+      <div class="flex items-center gap-4 flex-wrap">
         <label class="text-xs font-medium" style={{ color: "var(--text-secondary)", "min-width": "60px" }}>N = {nCoins()} coins</label>
         <input type="range" min="2" max="20" step="1" value={nCoins()} onInput={(e) => { setNCoins(parseInt(e.currentTarget.value)); reset(); }}
-          class="flex-1 h-2 rounded-full appearance-none cursor-pointer"
+          class="flex-1 h-2 rounded-full appearance-none cursor-pointer sim-slider"
           style={{ background: `linear-gradient(to right, #10b981 ${((nCoins() - 2) / 18) * 100}%, var(--border) ${((nCoins() - 2) / 18) * 100}%)` }}
         />
       </div>
 
-      <svg width="100%" height="220" viewBox="0 0 420 220" class="mx-auto">
+      <svg width="100%" height="220" viewBox="0 0 420 220" preserveAspectRatio="xMidYMid meet" class="mx-auto">
         <line x1="30" y1="190" x2="400" y2="190" stroke="var(--border)" stroke-width="1" />
         <text x="215" y="215" text-anchor="middle" font-size="10" fill="var(--text-muted)">Number of heads (macrostate k)</text>
 
         <For each={theory()}>
           {(d) => {
-            const N = nCoins();
-            const barW = Math.max(340 / (N + 1) - 2, 4);
-            const px = 35 + (d.k / N) * 360;
-
-            // Theory bar
-            const hTheory = (d.prob / maxOmega()) * 160;
-
-            // Observed bar
-            const observed = histogram().length > d.k ? histogram()[d.k] : 0;
-            const obsDensity = trials() > 0 ? observed / trials() : 0;
-            const hObs = (obsDensity / maxOmega()) * 160;
+            const N = () => nCoins();
+            const barW = () => Math.max(340 / (N() + 1) - 2, 4);
+            const px = () => 35 + (d.k / N()) * 360;
+            const hTheory = () => (d.prob / maxProb()) * 160;
+            const hObs = () => (obsDensity(d.k) / maxProb()) * 160;
 
             return (
               <>
                 {/* Theory bar */}
-                <rect x={px - barW / 2} y={190 - hTheory} width={barW} height={hTheory} rx="2" fill="#10b981" opacity="0.25" />
+                <rect x={px() - barW() / 2} y={190 - hTheory()} width={barW()} height={Math.max(hTheory(), 0)} rx="2" fill="#10b981" opacity="0.25" />
 
                 {/* Observed bar */}
                 {trials() > 0 && (
-                  <rect x={px - barW / 4} y={190 - hObs} width={barW / 2} height={hObs} rx="1" fill="#10b981" opacity="0.7" />
+                  <rect x={px() - barW() / 4} y={190 - hObs()} width={barW() / 2} height={Math.max(hObs(), 0)} rx="1" fill="#10b981" opacity="0.7" />
                 )}
 
                 {/* Label */}
-                {N <= 12 && (
-                  <text x={px} y="203" text-anchor="middle" font-size="8" fill="var(--text-muted)">{d.k}</text>
+                {N() <= 12 && (
+                  <text x={px()} y="203" text-anchor="middle" font-size="8" fill="var(--text-muted)">{d.k}</text>
                 )}
               </>
             );
@@ -89,25 +91,25 @@ export const S3Microstates: Component = () => {
         </text>
       </svg>
 
-      <div class="flex justify-center gap-2">
-        <button onClick={() => simulate(100)} class="px-4 py-2 rounded-lg text-xs font-medium hover:scale-105 transition-all" style={{ background: "#10b981", color: "white" }}>Flip ×100</button>
-        <button onClick={() => simulate(1000)} class="px-4 py-2 rounded-lg text-xs font-medium hover:scale-105 transition-all" style={{ background: "#059669", color: "white" }}>Flip ×1000</button>
-        <button onClick={() => simulate(10000)} class="px-4 py-2 rounded-lg text-xs font-medium hover:scale-105 transition-all" style={{ background: "#065f46", color: "white" }}>Flip ×10000</button>
-        <button onClick={reset} class="px-4 py-2 rounded-lg text-xs font-medium hover:scale-105 transition-all" style={{ background: "var(--bg-secondary)", color: "var(--text-secondary)" }}>Reset</button>
+      <div class="flex justify-center gap-2 flex-wrap">
+        <button onClick={() => simulate(100)} class="px-3 sm:px-4 py-2 rounded-lg text-xs font-medium hover:scale-105 transition-all" style={{ background: "#10b981", color: "white" }}>Flip ×100</button>
+        <button onClick={() => simulate(1000)} class="px-3 sm:px-4 py-2 rounded-lg text-xs font-medium hover:scale-105 transition-all" style={{ background: "#059669", color: "white" }}>Flip ×1000</button>
+        <button onClick={() => simulate(10000)} class="px-3 sm:px-4 py-2 rounded-lg text-xs font-medium hover:scale-105 transition-all" style={{ background: "#065f46", color: "white" }}>Flip ×10000</button>
+        <button onClick={reset} class="px-3 sm:px-4 py-2 rounded-lg text-xs font-medium hover:scale-105 transition-all" style={{ background: "var(--bg-secondary)", color: "var(--text-secondary)" }}>Reset</button>
       </div>
 
-      <div class="grid grid-cols-3 gap-3 text-center">
-        <div class="card p-3">
-          <div class="text-[10px] uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>Total Ω</div>
-          <div class="text-lg font-bold" style={{ color: "#10b981" }}>2^{nCoins()} = {Math.pow(2, nCoins())}</div>
+      <div class="grid grid-cols-3 gap-2 sm:gap-3 text-center">
+        <div class="card p-2 sm:p-3">
+          <div class="text-[9px] sm:text-[10px] uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>Total Microstates</div>
+          <div class="text-sm sm:text-lg font-bold" style={{ color: "#10b981" }}>2<sup>{nCoins()}</sup> = {Math.pow(2, nCoins()).toLocaleString()}</div>
         </div>
-        <div class="card p-3">
-          <div class="text-[10px] uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>S / k_B</div>
-          <div class="text-lg font-bold" style={{ color: "#06b6d4" }}>{entropy().toFixed(3)}</div>
+        <div class="card p-2 sm:p-3">
+          <div class="text-[9px] sm:text-[10px] uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>S / k_B</div>
+          <div class="text-sm sm:text-lg font-bold" style={{ color: "#06b6d4" }}>{entropy().toFixed(3)}</div>
         </div>
-        <div class="card p-3">
-          <div class="text-[10px] uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>Trials</div>
-          <div class="text-lg font-bold" style={{ color: "var(--text-primary)" }}>{trials()}</div>
+        <div class="card p-2 sm:p-3">
+          <div class="text-[9px] sm:text-[10px] uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>Trials</div>
+          <div class="text-sm sm:text-lg font-bold" style={{ color: "var(--text-primary)" }}>{trials().toLocaleString()}</div>
         </div>
       </div>
     </div>

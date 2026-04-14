@@ -206,7 +206,7 @@ body {
 
 /* ─── Mobile responsiveness fixes ─────────────────────────── */
 
-/* Simulation stat cards: stack on very small screens */
+/* Simulation stat cards */
 @media (max-width: 480px) {
   .card .grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -218,6 +218,10 @@ body {
   }
   .card .grid-cols-3 .text-\[10px\] {
     font-size: 9px;
+  }
+  .card .grid-cols-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.375rem;
   }
 }
 
@@ -232,7 +236,13 @@ body {
   .card .grid-cols-3:not(.text-center) {
     grid-template-columns: 1fr;
   }
+  .card .grid-cols-2 {
+    grid-template-columns: 1fr;
+  }
   .card .flex.gap-4 {
+    flex-wrap: wrap;
+  }
+  .card .flex.gap-3 {
     flex-wrap: wrap;
   }
   .card input[type="range"] {
@@ -240,9 +250,77 @@ body {
   }
 }
 
+/* Custom slider styling for cross-browser consistency */
+input[type="range"].sim-slider,
+.card input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 4px;
+  outline: none;
+}
+
+input[type="range"].sim-slider::-webkit-slider-thumb,
+.card input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+
+input[type="range"].sim-slider::-moz-range-thumb,
+.card input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+
+/* Tool math description styling */
+.tool-math-desc .katex {
+  font-size: 0.95em;
+}
+
+.tool-math-desc {
+  line-height: 1.6;
+  word-break: break-word;
+}
+
 /* Floating equations: hide on mobile to prevent overlap */
 @media (max-width: 640px) {
   .floating-eq {
     display: none !important;
+  }
+}
+
+/* Better mobile button spacing */
+@media (max-width: 480px) {
+  .card button {
+    font-size: 11px;
+    padding: 6px 10px;
+  }
+}
+
+/* Mobile simulation containers — limit height to prevent massive scroll */
+@media (max-width: 640px) {
+  .card svg[viewBox] {
+    max-height: 200px;
+  }
+}
+
+/* Prevent horizontal scroll on mobile */
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+  #root {
+    overflow-x: hidden;
   }
 }

@@ -38,7 +38,10 @@ const ToolItem: Component<{ tool: StatTool; color: string }> = (props) => {
           </div>
           {expanded() && (
             <>
-              <div class="text-[11px] mt-1 leading-relaxed animate-fade-in" style={{ color: "var(--text-muted)" }}>
+              <div
+                class="text-[11px] mt-1.5 leading-relaxed animate-fade-in tool-math-desc"
+                style={{ color: "var(--text-muted)" }}
+              >
                 <InlineMathText text={props.tool.desc} />
               </div>
               <ToolMiniSim toolName={props.tool.name} />
@@ -52,7 +55,7 @@ const ToolItem: Component<{ tool: StatTool; color: string }> = (props) => {
             transform: expanded() ? "rotate(90deg)" : "rotate(0deg)",
           }}
         >
-          ▶
+          {"\u25B6"}
         </span>
       </div>
     </button>
@@ -117,6 +120,35 @@ const SectionContent: Component<{
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
         {/* Left: simulation + equations */}
         <div class="lg:col-span-2 space-y-4 sm:space-y-5">
+          {/* Definition / What is this? card */}
+          <div
+            class="card p-3 sm:p-5 overflow-hidden"
+            style={{
+              background: `linear-gradient(135deg, ${props.chapter.color}08, ${props.chapter.color}03)`,
+              "border-left": `3px solid ${props.chapter.color}`,
+            }}
+          >
+            <div class="flex items-start gap-2 sm:gap-3">
+              <div
+                class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center flex-shrink-0 text-sm sm:text-base mt-0.5"
+                style={{ background: `${props.chapter.color}15` }}
+              >
+                {props.chapter.icon}
+              </div>
+              <div class="min-w-0">
+                <div
+                  class="text-[10px] font-semibold uppercase tracking-widest mb-1"
+                  style={{ color: props.chapter.color }}
+                >
+                  What you're exploring
+                </div>
+                <p class="text-xs sm:text-sm leading-relaxed" style={{ color: "var(--text-secondary)" }}>
+                  {props.section.description}
+                </p>
+              </div>
+            </div>
+          </div>
+
           {/* Simulation */}
           <div
             class="card p-3 sm:p-5 overflow-hidden"

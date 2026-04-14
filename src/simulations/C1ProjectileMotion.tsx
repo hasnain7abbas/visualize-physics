@@ -2,11 +2,24 @@ import { Component, createSignal, createMemo, onCleanup } from "solid-js";
 
 // ─── C1IdealProjectile ─────────────────────────────────────────────────────
 // Ideal parabolic trajectory with no air resistance
+// Keeps previous launches as dotted trails for easy angle/velocity comparison
+
+type TrajectoryRecord = {
+  pts: { x: number; y: number }[];
+  angle: number;
+  velocity: number;
+  range: number;
+  maxHeight: number;
+};
+
+const HISTORY_COLORS = ["#94a3b8", "#a78bfa", "#67e8f9", "#fbbf24", "#f472b6"];
+
 export const C1IdealProjectile: Component = () => {
   const [angle, setAngle] = createSignal(45);
   const [velocity, setVelocity] = createSignal(25);
   const [animT, setAnimT] = createSignal(0);
   const [running, setRunning] = createSignal(false);
+  const [history, setHistory] = createSignal<TrajectoryRecord[]>([]);
   const g = 9.81;
 
   const thetaRad = createMemo(() => (angle() * Math.PI) / 180);
@@ -31,17 +44,21 @@ export const C1IdealProjectile: Component = () => {
     return pts;
   });
 
-  // SVG coordinate mapping
+  // SVG coordinate mapping — scale accounts for history too
   const svgW = 420, svgH = 250;
   const margin = { left: 35, right: 15, top: 20, bottom: 40 };
   const plotW = svgW - margin.left - margin.right;
   const plotH = svgH - margin.top - margin.bottom;
 
   const scale = createMemo(() => {
-    const R = Math.max(range(), 1);
-    const H = Math.max(maxHeight(), 1);
-    const sx = plotW / R;
-    const sy = plotH / H;
+    let maxR = Math.max(range(), 1);
+    let maxH = Math.max(maxHeight(), 1);
+    for (const rec of history()) {
+      maxR = Math.max(maxR, rec.range);
+      maxH = Math.max(maxH, rec.maxHeight);
+    }
+    const sx = plotW / maxR;
+    const sy = plotH / maxH;
     return Math.min(sx, sy * 0.85);
   });
 
@@ -72,9 +89,17 @@ export const C1IdealProjectile: Component = () => {
       .join(" ");
   });
 
+  // Convert history record points to SVG path
+  const historyPath = (pts: { x: number; y: number }[]) =>
+    pts.map((p, i) => `${i === 0 ? "M" : "L"}${toSvgX(p.x).toFixed(1)},${toSvgY(p.y).toFixed(1)}`).join(" ");
+
   let frameId: number | undefined;
 
   const launch = () => {
+    // Save current trajectory to history before launching (if there's a completed one)
+    if (animT() > 0 && !running()) {
+      saveToHistory();
+    }
     setAnimT(0);
     setRunning(true);
     const startTime = performance.now();
@@ -92,10 +117,26 @@ export const C1IdealProjectile: Component = () => {
     frameId = requestAnimationFrame(step);
   };
 
+  const saveToHistory = () => {
+    const current: TrajectoryRecord = {
+      pts: [...trajectoryPts()],
+      angle: angle(),
+      velocity: velocity(),
+      range: range(),
+      maxHeight: maxHeight(),
+    };
+    setHistory((prev) => [...prev.slice(-4), current]); // keep last 5
+  };
+
   const reset = () => {
     if (frameId) cancelAnimationFrame(frameId);
     setAnimT(0);
     setRunning(false);
+  };
+
+  const clearHistory = () => {
+    setHistory([]);
+    reset();
   };
 
   onCleanup(() => { if (frameId) cancelAnimationFrame(frameId); });
@@ -105,26 +146,40 @@ export const C1IdealProjectile: Component = () => {
 
   return (
     <div class="space-y-5">
-      <div class="grid grid-cols-2 gap-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
         <div class="flex items-center gap-3">
           <label class="text-xs font-medium" style={{ color: "var(--text-secondary)", "min-width": "65px" }}>{"\u03B8"} = {angle()}{"\u00B0"}</label>
           <input type="range" min="0" max="90" step="1" value={angle()} onInput={(e) => { setAngle(parseInt(e.currentTarget.value)); reset(); }}
-            class="flex-1 h-2 rounded-full appearance-none cursor-pointer"
+            class="flex-1 h-2 rounded-full appearance-none cursor-pointer sim-slider"
             style={{ background: `linear-gradient(to right, #E07A5F ${anglePct()}%, var(--border) ${anglePct()}%)` }} />
         </div>
         <div class="flex items-center gap-3">
           <label class="text-xs font-medium" style={{ color: "var(--text-secondary)", "min-width": "75px" }}>v{"\u2080"} = {velocity()} m/s</label>
           <input type="range" min="1" max="50" step="1" value={velocity()} onInput={(e) => { setVelocity(parseInt(e.currentTarget.value)); reset(); }}
-            class="flex-1 h-2 rounded-full appearance-none cursor-pointer"
+            class="flex-1 h-2 rounded-full appearance-none cursor-pointer sim-slider"
             style={{ background: `linear-gradient(to right, #E07A5F ${velPct()}%, var(--border) ${velPct()}%)` }} />
         </div>
       </div>
 
-      <svg width="100%" height="250" viewBox={`0 0 ${svgW} ${svgH}`} class="mx-auto">
+      <svg width="100%" height="250" viewBox={`0 0 ${svgW} ${svgH}`} preserveAspectRatio="xMidYMid meet" class="mx-auto">
         <text x={svgW / 2} y="14" text-anchor="middle" font-size="10" font-weight="600" fill="var(--text-muted)">Ideal Projectile Motion (No Drag)</text>
 
         {/* Ground line */}
         <line x1={margin.left} y1={svgH - margin.bottom} x2={svgW - margin.right} y2={svgH - margin.bottom} stroke="var(--border)" stroke-width="1.5" />
+
+        {/* Previous trajectory history — dotted lines */}
+        {history().map((rec, i) => (
+          <>
+            <path d={historyPath(rec.pts)} fill="none" stroke={HISTORY_COLORS[i % HISTORY_COLORS.length]} stroke-width="1.5" stroke-dasharray="5 4" opacity="0.45" />
+            <text
+              x={toSvgX(rec.range) + 2}
+              y={svgH - margin.bottom - 4}
+              font-size="7"
+              fill={HISTORY_COLORS[i % HISTORY_COLORS.length]}
+              opacity="0.7"
+            >{rec.angle}{"\u00B0"}</text>
+          </>
+        ))}
 
         {/* Launch point marker */}
         <circle cx={toSvgX(0)} cy={toSvgY(0)} r="4" fill="#E07A5F" opacity="0.5" />
@@ -172,31 +227,54 @@ export const C1IdealProjectile: Component = () => {
               font-size="8" fill="#E07A5F">v{"\u2080"}</text>
           </>
         )}
+
+        {/* History legend */}
+        {history().length > 0 && (
+          <text x={svgW - margin.right - 2} y={margin.top + 6} text-anchor="end" font-size="7" fill="var(--text-muted)">
+            Dotted = previous launches
+          </text>
+        )}
       </svg>
 
-      <div class="flex justify-center gap-2">
+      <div class="flex justify-center gap-2 flex-wrap">
         <button onClick={launch} disabled={running()}
-          class="px-4 py-2 rounded-lg text-xs font-medium hover:scale-105 transition-all"
+          class="px-3 sm:px-4 py-2 rounded-lg text-xs font-medium hover:scale-105 transition-all"
           style={{ background: running() ? "var(--bg-secondary)" : "#E07A5F", color: running() ? "var(--text-muted)" : "white" }}>
           {running() ? "Flying..." : "Launch"}
         </button>
         <button onClick={reset}
-          class="px-4 py-2 rounded-lg text-xs font-medium hover:scale-105 transition-all"
+          class="px-3 sm:px-4 py-2 rounded-lg text-xs font-medium hover:scale-105 transition-all"
           style={{ background: "var(--bg-secondary)", color: "var(--text-secondary)" }}>Reset</button>
+        {history().length > 0 && (
+          <button onClick={clearHistory}
+            class="px-3 sm:px-4 py-2 rounded-lg text-xs font-medium hover:scale-105 transition-all"
+            style={{ background: "var(--bg-secondary)", color: "var(--text-muted)" }}>Clear History ({history().length})</button>
+        )}
       </div>
 
-      <div class="grid grid-cols-3 gap-3 text-center">
-        <div class="card p-3">
-          <div class="text-[10px] uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>Range</div>
-          <div class="text-lg font-bold" style={{ color: "#E07A5F" }}>{range().toFixed(1)} m</div>
+      {/* History comparison table */}
+      {history().length > 0 && (
+        <div class="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
+          {history().map((rec, i) => (
+            <div class="flex-shrink-0 px-2 py-1 rounded-md text-[9px] sm:text-[10px] font-medium" style={{ background: `${HISTORY_COLORS[i % HISTORY_COLORS.length]}18`, color: HISTORY_COLORS[i % HISTORY_COLORS.length], border: `1px solid ${HISTORY_COLORS[i % HISTORY_COLORS.length]}30` }}>
+              {rec.angle}{"\u00B0"} @ {rec.velocity}m/s {"\u2192"} {rec.range.toFixed(1)}m
+            </div>
+          ))}
         </div>
-        <div class="card p-3">
-          <div class="text-[10px] uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>Max Height</div>
-          <div class="text-lg font-bold" style={{ color: "#E07A5F" }}>{maxHeight().toFixed(1)} m</div>
+      )}
+
+      <div class="grid grid-cols-3 gap-2 sm:gap-3 text-center">
+        <div class="card p-2 sm:p-3">
+          <div class="text-[9px] sm:text-[10px] uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>Range</div>
+          <div class="text-sm sm:text-lg font-bold" style={{ color: "#E07A5F" }}>{range().toFixed(1)} m</div>
         </div>
-        <div class="card p-3">
-          <div class="text-[10px] uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>Flight Time</div>
-          <div class="text-lg font-bold" style={{ color: "#E07A5F" }}>{flightTime().toFixed(2)} s</div>
+        <div class="card p-2 sm:p-3">
+          <div class="text-[9px] sm:text-[10px] uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>Max Height</div>
+          <div class="text-sm sm:text-lg font-bold" style={{ color: "#E07A5F" }}>{maxHeight().toFixed(1)} m</div>
+        </div>
+        <div class="card p-2 sm:p-3">
+          <div class="text-[9px] sm:text-[10px] uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>Flight Time</div>
+          <div class="text-sm sm:text-lg font-bold" style={{ color: "#E07A5F" }}>{flightTime().toFixed(2)} s</div>
         </div>
       </div>
     </div>
@@ -340,23 +418,23 @@ export const C1DragEffects: Component = () => {
 
   return (
     <div class="space-y-5">
-      <div class="grid grid-cols-3 gap-4">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
         <div class="flex items-center gap-2">
           <label class="text-xs font-medium" style={{ color: "var(--text-secondary)", "min-width": "55px" }}>{"\u03B8"} = {angle()}{"\u00B0"}</label>
           <input type="range" min="5" max="85" step="1" value={angle()} onInput={(e) => { setAngle(parseInt(e.currentTarget.value)); reset(); }}
-            class="flex-1 h-2 rounded-full appearance-none cursor-pointer"
+            class="flex-1 h-2 rounded-full appearance-none cursor-pointer sim-slider"
             style={{ background: `linear-gradient(to right, #E07A5F ${anglePct()}%, var(--border) ${anglePct()}%)` }} />
         </div>
         <div class="flex items-center gap-2">
           <label class="text-xs font-medium" style={{ color: "var(--text-secondary)", "min-width": "65px" }}>v{"\u2080"} = {velocity()}</label>
           <input type="range" min="1" max="50" step="1" value={velocity()} onInput={(e) => { setVelocity(parseInt(e.currentTarget.value)); reset(); }}
-            class="flex-1 h-2 rounded-full appearance-none cursor-pointer"
+            class="flex-1 h-2 rounded-full appearance-none cursor-pointer sim-slider"
             style={{ background: `linear-gradient(to right, #E07A5F ${velPct()}%, var(--border) ${velPct()}%)` }} />
         </div>
         <div class="flex items-center gap-2">
           <label class="text-xs font-medium" style={{ color: "var(--text-secondary)", "min-width": "65px" }}>C{"\u1D48"} = {dragCoeff().toFixed(2)}</label>
           <input type="range" min="0" max="1" step="0.01" value={dragCoeff()} onInput={(e) => { setDragCoeff(parseFloat(e.currentTarget.value)); reset(); }}
-            class="flex-1 h-2 rounded-full appearance-none cursor-pointer"
+            class="flex-1 h-2 rounded-full appearance-none cursor-pointer sim-slider"
             style={{ background: `linear-gradient(to right, #E07A5F ${cdPct()}%, var(--border) ${cdPct()}%)` }} />
         </div>
       </div>
@@ -388,34 +466,34 @@ export const C1DragEffects: Component = () => {
         <text x="309" y="45" font-size="8" fill="#E07A5F">With Drag</text>
       </svg>
 
-      <div class="flex justify-center gap-2">
+      <div class="flex justify-center gap-2 flex-wrap">
         <button onClick={launch} disabled={running()}
-          class="px-4 py-2 rounded-lg text-xs font-medium hover:scale-105 transition-all"
+          class="px-3 sm:px-4 py-2 rounded-lg text-xs font-medium hover:scale-105 transition-all"
           style={{ background: running() ? "var(--bg-secondary)" : "#E07A5F", color: running() ? "var(--text-muted)" : "white" }}>
           {running() ? "Flying..." : "Launch"}
         </button>
         <button onClick={() => setDragOn(!dragOn())}
-          class="px-4 py-2 rounded-lg text-xs font-medium hover:scale-105 transition-all"
+          class="px-3 sm:px-4 py-2 rounded-lg text-xs font-medium hover:scale-105 transition-all"
           style={{ background: dragOn() ? "#E07A5F" : "var(--bg-secondary)", color: dragOn() ? "white" : "var(--text-secondary)" }}>
           Drag {dragOn() ? "ON" : "OFF"}
         </button>
         <button onClick={reset}
-          class="px-4 py-2 rounded-lg text-xs font-medium hover:scale-105 transition-all"
+          class="px-3 sm:px-4 py-2 rounded-lg text-xs font-medium hover:scale-105 transition-all"
           style={{ background: "var(--bg-secondary)", color: "var(--text-secondary)" }}>Reset</button>
       </div>
 
-      <div class="grid grid-cols-3 gap-3 text-center">
-        <div class="card p-3">
-          <div class="text-[10px] uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>Ideal Range</div>
-          <div class="text-lg font-bold" style={{ color: "var(--text-secondary)" }}>{idealRange().toFixed(1)} m</div>
+      <div class="grid grid-cols-3 gap-2 sm:gap-3 text-center">
+        <div class="card p-2 sm:p-3">
+          <div class="text-[9px] sm:text-[10px] uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>Ideal Range</div>
+          <div class="text-sm sm:text-lg font-bold" style={{ color: "var(--text-secondary)" }}>{idealRange().toFixed(1)} m</div>
         </div>
-        <div class="card p-3">
-          <div class="text-[10px] uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>Drag Range</div>
-          <div class="text-lg font-bold" style={{ color: "#E07A5F" }}>{dragRange().toFixed(1)} m</div>
+        <div class="card p-2 sm:p-3">
+          <div class="text-[9px] sm:text-[10px] uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>Drag Range</div>
+          <div class="text-sm sm:text-lg font-bold" style={{ color: "#E07A5F" }}>{dragRange().toFixed(1)} m</div>
         </div>
-        <div class="card p-3">
-          <div class="text-[10px] uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>Range Loss</div>
-          <div class="text-lg font-bold" style={{ color: "#E07A5F" }}>{rangeReduction().toFixed(1)}%</div>
+        <div class="card p-2 sm:p-3">
+          <div class="text-[9px] sm:text-[10px] uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>Range Loss</div>
+          <div class="text-sm sm:text-lg font-bold" style={{ color: "#E07A5F" }}>{rangeReduction().toFixed(1)}%</div>
         </div>
       </div>
     </div>
@@ -624,29 +702,29 @@ export const C1CoriolisWind: Component = () => {
 
   return (
     <div class="space-y-5">
-      <div class="grid grid-cols-2 gap-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
         <div class="flex items-center gap-2">
           <label class="text-xs font-medium" style={{ color: "var(--text-secondary)", "min-width": "55px" }}>{"\u03B8"} = {angle()}{"\u00B0"}</label>
           <input type="range" min="5" max="85" step="1" value={angle()} onInput={(e) => { setAngle(parseInt(e.currentTarget.value)); reset(); }}
-            class="flex-1 h-2 rounded-full appearance-none cursor-pointer"
+            class="flex-1 h-2 rounded-full appearance-none cursor-pointer sim-slider"
             style={{ background: `linear-gradient(to right, #E07A5F ${anglePct()}%, var(--border) ${anglePct()}%)` }} />
         </div>
         <div class="flex items-center gap-2">
           <label class="text-xs font-medium" style={{ color: "var(--text-secondary)", "min-width": "65px" }}>v{"\u2080"} = {velocity()}</label>
           <input type="range" min="1" max="50" step="1" value={velocity()} onInput={(e) => { setVelocity(parseInt(e.currentTarget.value)); reset(); }}
-            class="flex-1 h-2 rounded-full appearance-none cursor-pointer"
+            class="flex-1 h-2 rounded-full appearance-none cursor-pointer sim-slider"
             style={{ background: `linear-gradient(to right, #E07A5F ${velPct()}%, var(--border) ${velPct()}%)` }} />
         </div>
         <div class="flex items-center gap-2">
           <label class="text-xs font-medium" style={{ color: "var(--text-secondary)", "min-width": "55px" }}>{"\u03C6"} = {latitude()}{"\u00B0"}</label>
           <input type="range" min="0" max="90" step="1" value={latitude()} onInput={(e) => { setLatitude(parseInt(e.currentTarget.value)); reset(); }}
-            class="flex-1 h-2 rounded-full appearance-none cursor-pointer"
+            class="flex-1 h-2 rounded-full appearance-none cursor-pointer sim-slider"
             style={{ background: `linear-gradient(to right, #E07A5F ${latPct()}%, var(--border) ${latPct()}%)` }} />
         </div>
         <div class="flex items-center gap-2">
           <label class="text-xs font-medium" style={{ color: "var(--text-secondary)", "min-width": "75px" }}>Wind = {windSpeed().toFixed(0)} m/s</label>
           <input type="range" min="-10" max="10" step="0.5" value={windSpeed()} onInput={(e) => { setWindSpeed(parseFloat(e.currentTarget.value)); reset(); }}
-            class="flex-1 h-2 rounded-full appearance-none cursor-pointer"
+            class="flex-1 h-2 rounded-full appearance-none cursor-pointer sim-slider"
             style={{ background: `linear-gradient(to right, #E07A5F ${windPct()}%, var(--border) ${windPct()}%)` }} />
         </div>
       </div>
@@ -692,33 +770,33 @@ export const C1CoriolisWind: Component = () => {
         <text x="79" y="45" font-size="8" fill="#E07A5F">With Coriolis</text>
       </svg>
 
-      <div class="flex justify-center gap-2">
+      <div class="flex justify-center gap-2 flex-wrap">
         <button onClick={launch} disabled={running()}
-          class="px-4 py-2 rounded-lg text-xs font-medium hover:scale-105 transition-all"
+          class="px-3 sm:px-4 py-2 rounded-lg text-xs font-medium hover:scale-105 transition-all"
           style={{ background: running() ? "var(--bg-secondary)" : "#E07A5F", color: running() ? "var(--text-muted)" : "white" }}>
           {running() ? "Flying..." : "Launch"}
         </button>
         <button onClick={reset}
-          class="px-4 py-2 rounded-lg text-xs font-medium hover:scale-105 transition-all"
+          class="px-3 sm:px-4 py-2 rounded-lg text-xs font-medium hover:scale-105 transition-all"
           style={{ background: "var(--bg-secondary)", color: "var(--text-secondary)" }}>Reset</button>
       </div>
 
-      <div class="grid grid-cols-4 gap-3 text-center">
-        <div class="card p-3">
-          <div class="text-[10px] uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>Range</div>
-          <div class="text-lg font-bold" style={{ color: "#E07A5F" }}>{coriolisRange().toFixed(1)} m</div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 text-center">
+        <div class="card p-2 sm:p-3">
+          <div class="text-[9px] sm:text-[10px] uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>Range</div>
+          <div class="text-sm sm:text-lg font-bold" style={{ color: "#E07A5F" }}>{coriolisRange().toFixed(1)} m</div>
         </div>
-        <div class="card p-3">
-          <div class="text-[10px] uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>Lateral (Total)</div>
-          <div class="text-lg font-bold" style={{ color: "#E07A5F" }}>{lateralDeflection().toFixed(3)} m</div>
+        <div class="card p-2 sm:p-3">
+          <div class="text-[9px] sm:text-[10px] uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>Lateral</div>
+          <div class="text-sm sm:text-lg font-bold" style={{ color: "#E07A5F" }}>{lateralDeflection().toFixed(3)} m</div>
         </div>
-        <div class="card p-3">
-          <div class="text-[10px] uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>Coriolis Only</div>
-          <div class="text-lg font-bold" style={{ color: "#E07A5F" }}>{(pureCoriolisDeflection() * 100).toFixed(2)} cm</div>
+        <div class="card p-2 sm:p-3">
+          <div class="text-[9px] sm:text-[10px] uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>Coriolis</div>
+          <div class="text-sm sm:text-lg font-bold" style={{ color: "#E07A5F" }}>{(pureCoriolisDeflection() * 100).toFixed(2)} cm</div>
         </div>
-        <div class="card p-3">
-          <div class="text-[10px] uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>{"\u03A9"} sin{"\u03C6"}</div>
-          <div class="text-lg font-bold" style={{ color: "#E07A5F" }}>{(omega * Math.sin(latRad()) * 1e5).toFixed(2)}{"\u00D7"}10{"\u207B"}{"\u2075"}</div>
+        <div class="card p-2 sm:p-3">
+          <div class="text-[9px] sm:text-[10px] uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>{"\u03A9"} sin{"\u03C6"}</div>
+          <div class="text-sm sm:text-lg font-bold" style={{ color: "#E07A5F" }}>{(omega * Math.sin(latRad()) * 1e5).toFixed(2)}{"\u00D7"}10{"\u207B"}{"\u2075"}</div>
         </div>
       </div>
 
