@@ -96,36 +96,36 @@ export const C1IdealProjectile: Component = () => {
   let frameId: number | undefined;
 
   const launch = () => {
-    // Save current trajectory to history before launching (if there's a completed one)
-    if (animT() > 0 && !running()) {
-      saveToHistory();
-    }
     setAnimT(0);
     setRunning(true);
     const startTime = performance.now();
     const T = flightTime();
+    // Capture trajectory data NOW before sliders can change it
+    const snapshotPts = [...trajectoryPts()];
+    const snapshotAngle = angle();
+    const snapshotVelocity = velocity();
+    const snapshotRange = range();
+    const snapshotMaxHeight = maxHeight();
+
     const step = (now: number) => {
       const elapsed = (now - startTime) / 1000;
       if (elapsed >= T) {
         setAnimT(T);
         setRunning(false);
+        // Auto-save to history when flight completes
+        setHistory((prev) => [...prev.slice(-4), {
+          pts: snapshotPts,
+          angle: snapshotAngle,
+          velocity: snapshotVelocity,
+          range: snapshotRange,
+          maxHeight: snapshotMaxHeight,
+        }]);
         return;
       }
       setAnimT(elapsed);
       frameId = requestAnimationFrame(step);
     };
     frameId = requestAnimationFrame(step);
-  };
-
-  const saveToHistory = () => {
-    const current: TrajectoryRecord = {
-      pts: [...trajectoryPts()],
-      angle: angle(),
-      velocity: velocity(),
-      range: range(),
-      maxHeight: maxHeight(),
-    };
-    setHistory((prev) => [...prev.slice(-4), current]); // keep last 5
   };
 
   const reset = () => {
