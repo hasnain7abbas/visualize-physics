@@ -103,18 +103,14 @@ const WelcomePopup: Component = () => {
   const [animateIn, setAnimateIn] = createSignal(false);
 
   onMount(() => {
-    const dismissed = localStorage.getItem("vp-welcome-dismissed");
-    if (!dismissed) {
-      setVisible(true);
-      setTimeout(() => setAnimateIn(true), 50);
-    }
+    setVisible(true);
+    setTimeout(() => setAnimateIn(true), 50);
   });
 
   const dismiss = () => {
     setAnimateIn(false);
     setTimeout(() => {
       setVisible(false);
-      localStorage.setItem("vp-welcome-dismissed", "1");
     }, 300);
   };
 
