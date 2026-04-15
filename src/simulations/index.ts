@@ -189,6 +189,24 @@ simulations["w3-moving-source"] = W3MovingSource;
 simulations["w3-mach-cone"] = W3MachCone;
 simulations["w3-observer-frequency"] = W3ObserverFrequency;
 
+// S11 - PV Diagrams & Thermodynamic Cycles
+import { S11IsothermalAdiabatic, S11ThermodynamicCycles, S11CycleEfficiency } from "./S11PVDiagrams";
+simulations["s11-isothermal-adiabatic"] = S11IsothermalAdiabatic;
+simulations["s11-thermodynamic-cycles"] = S11ThermodynamicCycles;
+simulations["s11-cycle-work-efficiency"] = S11CycleEfficiency;
+
+// S12 - Molecular Dynamics
+import { S12LennardJones, S12VelocityDistribution, S12RadialDistribution } from "./S12MolecularDynamics";
+simulations["s12-lennard-jones"] = S12LennardJones;
+simulations["s12-velocity-distribution"] = S12VelocityDistribution;
+simulations["s12-radial-distribution"] = S12RadialDistribution;
+
+// S13 - Blackbody Radiation
+import { S13PlanckSpectrum, S13WienLaw, S13UVCatastrophe } from "./S13BlackbodyRadiation";
+simulations["s13-planck-spectrum"] = S13PlanckSpectrum;
+simulations["s13-wien-law"] = S13WienLaw;
+simulations["s13-uv-catastrophe"] = S13UVCatastrophe;
+
 export function getSimulation(chapterId: string, sectionId: string): Component | undefined {
   return simulations[`${chapterId}-${sectionId}`];
 }

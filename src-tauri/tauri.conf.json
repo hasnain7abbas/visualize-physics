@@ -1,7 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/nicktomlin/tauri/tauri-v2.0.0/crates/tauri-utils/schema.json",
   "productName": "Visualize Physics",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "identifier": "io.visualizephysics.desktop",
   "build": {
     "frontendDist": "../dist",

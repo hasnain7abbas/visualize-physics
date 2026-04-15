@@ -67,24 +67,24 @@
 
 | | |
 |:---:|:---:|
-| **29 Chapters** | **87 Interactive Sections** |
-| **47 Full Simulations** | **730+ Conceptual Tools** |
-| **5 Physics Modules** | **200+ LaTeX Equations** |
+| **32 Chapters** | **96 Interactive Sections** |
+| **56 Full Simulations** | **820+ Conceptual Tools** |
+| **5 Physics Modules** | **230+ LaTeX Equations** |
 
 </div>
 
-- **47+ Interactive Simulations** — Every section has a hands-on, real-time physics visualization
-- **730+ Conceptual Tools** — Exhaustive coverage from Born rule to Mach cones, each with expandable explanations
+- **56+ Interactive Simulations** — Every section has a hands-on, real-time physics visualization
+- **820+ Conceptual Tools** — Exhaustive coverage from Born rule to blackbody radiation, each with expandable explanations
 - **Beautiful Math** — KaTeX-rendered equations that look like a textbook
 - **Dark & Light Mode** — Easy on the eyes, any time of day
 - **Native Desktop App** — Runs offline on Windows (.exe / .msi), macOS (.dmg), and Linux (.AppImage)
 - **Web Version** — Try instantly at [hasnain7abbas.github.io/visualize-physics](https://hasnain7abbas.github.io/visualize-physics/)
 - **Fully Responsive** — Desktop, tablet, and mobile
-- **Optimized Build** — Code-split into module chunks, terser-minified, ~300 KB gzip total
+- **Optimized Build** — Code-split into module chunks, terser-minified, ~320 KB gzip total
 
 ---
 
-## All 29 Chapters
+## All 32 Chapters
 
 ### Quantum Physics (5 chapters)
 
@@ -96,7 +96,7 @@
 | Q4 | **Quantum Tunneling** | Barrier Penetration, Alpha Decay, Resonant Tunneling |
 | Q5 | **Harmonic Oscillator** | Energy Levels, Coherent States, Zero-Point Energy |
 
-### Statistical Physics (10 chapters)
+### Statistical Physics & Thermodynamics (13 chapters)
 
 | # | Chapter | Key Simulations |
 |:-:|---------|-----------------|
@@ -110,6 +110,9 @@
 | S8 | **Heat Engines & Carnot** | Carnot Cycle, Engine Efficiency, Second Law |
 | S9 | **Free Energy & Phases** | Helmholtz Free Energy, Van der Waals, Phase Diagrams |
 | S10 | **Fluctuations & Response** | Energy Fluctuations, Fluctuation-Dissipation, Brownian Motion |
+| S11 | **PV Diagrams & Cycles** | Isothermal & Adiabatic, Thermodynamic Cycles, Cycle Efficiency |
+| S12 | **Molecular Dynamics** | Lennard-Jones Particles, Velocity Distribution, Radial Distribution |
+| S13 | **Blackbody Radiation** | Planck's Law, Wien's Displacement, UV Catastrophe |
 
 ### Classical Mechanics (8 chapters)
 
@@ -199,9 +202,9 @@ visualize-physics/
 ├── src/
 │   ├── chapters/          Home page with module grid
 │   ├── components/        Layout, Sidebar, ChapterPage, MathBlock
-│   ├── simulations/       47 interactive simulation components
+│   ├── simulations/       56 interactive simulation components
 │   │   ├── Q*.tsx         Quantum Physics (11 sims)
-│   │   ├── S*.tsx         Statistical Physics (16 sims)
+│   │   ├── S*.tsx         Statistical Physics & Thermo (25 sims)
 │   │   ├── C*.tsx         Classical Mechanics (8 sims)
 │   │   ├── E*.tsx         Electrodynamics (3 sims)
 │   │   └── W*.tsx         Waves & Oscillations (9 sims)
@@ -218,7 +221,7 @@ visualize-physics/
 | vendor-solid | 12 KB |
 | vendor-katex | 76 KB |
 | sim-quantum | 13 KB |
-| sim-statistical | 32 KB |
+| sim-statistical | 45 KB |
 | sim-classical | 33 KB |
 | sim-electrodynamics | 17 KB |
 | sim-waves | 15 KB |
@@ -229,20 +232,21 @@ visualize-physics/
 ## Roadmap
 
 - [x] Quantum Physics module (5 chapters, 11 simulations)
-- [x] Statistical Physics module (10 chapters, 16 simulations)
+- [x] Statistical Physics module (13 chapters, 25 simulations)
 - [x] Classical Mechanics module (8 chapters, 8 simulations)
 - [x] Electrodynamics module (3 chapters, 3 simulations)
 - [x] Waves & Oscillations module (3 chapters, 9 simulations)
-- [x] 730+ conceptual tools with expandable descriptions
+- [x] Thermodynamics expansion: PV diagrams, molecular dynamics, blackbody radiation
+- [x] 820+ conceptual tools with expandable descriptions
 - [x] KaTeX math rendering throughout
-- [x] Dark / Light theme
+- [x] Dark / Light theme with smooth animations
 - [x] Welcome hero with floating equations
 - [x] Windows .exe and .msi installers
 - [x] GitHub Pages web deployment with CI/CD
 - [x] Mobile responsive design
 - [x] Optimized build with code-splitting
+- [x] Enhanced UI: card shine effects, smooth transitions, spring animations
 - [ ] Waves & Oscillations expansion (Fourier Transform, Resonance, 2D Membrane)
-- [ ] Thermodynamics expansion (PV diagrams, Otto/Diesel cycles)
 - [ ] Optics module (lenses, mirrors, ray tracing)
 - [ ] Special Relativity module (Lorentz transforms, spacetime diagrams)
 - [ ] Quantum Mechanics II (angular momentum, hydrogen atom)

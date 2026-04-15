@@ -53,6 +53,9 @@ export default defineConfig({
             "./src/simulations/S8HeatEngines.tsx",
             "./src/simulations/S9FreeEnergy.tsx",
             "./src/simulations/S10Fluctuations.tsx",
+            "./src/simulations/S11PVDiagrams.tsx",
+            "./src/simulations/S12MolecularDynamics.tsx",
+            "./src/simulations/S13BlackbodyRadiation.tsx",
           ],
           "sim-classical": [
             "./src/simulations/C1ProjectileMotion.tsx",

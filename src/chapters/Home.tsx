@@ -13,7 +13,7 @@ const ChapterCard: Component<{ chapter: Chapter; index: number }> = (
   return (
     <A
       href={`/chapter/${ch.id}`}
-      class="card glow-card group p-5 cursor-pointer animate-slide-up"
+      class="card glow-card card-shine group p-5 cursor-pointer animate-slide-up"
       classList={{ [`stagger-${(props.index % 6) + 1}`]: true }}
     >
       {/* Color accent bar */}

@@ -1267,6 +1267,267 @@ const statisticalPhysics: Chapter[] = [
       },
     ],
   },
+  {
+    id: "s11",
+    num: "S11",
+    title: "PV Diagrams & Thermodynamic Cycles",
+    description:
+      "Pressure-volume diagrams are the roadmap of thermodynamics. Every process — isothermal, adiabatic, isobaric, isochoric — traces a distinct path on the PV plane. The area enclosed by a cyclic path equals the net work extracted, connecting abstract state functions to mechanical energy.",
+    color: "#ef4444",
+    icon: "\u{1F525}",
+    shortDesc: "Cycles, work & efficiency",
+    sections: [
+      {
+        id: "isothermal-adiabatic",
+        title: "Isothermal & Adiabatic Processes",
+        description:
+          "An isothermal process keeps temperature constant (PV = nRT = const), while an adiabatic process exchanges no heat (PV\u1D5E = const). Adiabatic curves are steeper because temperature changes as the gas does work.",
+        statisticalTools: [
+          { name: "Ideal Gas Law", desc: "PV = nRT. The equation of state relating pressure, volume, temperature, and amount of gas. Defines the isothermal curves on a PV diagram." },
+          { name: "Isothermal Process", desc: "T = \\text{const}, so PV = \\text{const}. The gas exchanges heat with a reservoir to maintain temperature. Work done: W = nRT\\ln(V_2/V_1)." },
+          { name: "Adiabatic Process", desc: "Q = 0, so PV^\\gamma = \\text{const}. No heat exchange — the gas heats up when compressed and cools when expanded. Faster pressure change than isothermal." },
+          { name: "Heat Capacity Ratio", desc: "\\gamma = C_p/C_v. Monatomic ideal gas: \\gamma = 5/3. Diatomic: \\gamma = 7/5. Determines the steepness of adiabatic curves." },
+          { name: "Work as Area", desc: "W = \\int P\\,dV. The work done by the gas equals the area under the PV curve. Positive for expansion, negative for compression." },
+          { name: "First Law of Thermodynamics", desc: "\\Delta U = Q - W. Internal energy change equals heat added minus work done. For isothermal ideal gas: \\Delta U = 0, so Q = W." },
+          { name: "Adiabatic Temperature Change", desc: "TV^{\\gamma-1} = \\text{const}. Compressing a gas adiabatically raises its temperature. This is why diesel engines ignite fuel without a spark." },
+          { name: "Polytropic Process", desc: "PV^n = \\text{const} with exponent n. Isothermal: n=1. Adiabatic: n=\\gamma. Isobaric: n=0. Isochoric: n=\\infty." },
+          { name: "Reversibility", desc: "A quasi-static process that can be reversed without entropy increase. Real processes are irreversible — friction, turbulence, and finite temperature differences create entropy." },
+          { name: "Compressibility", desc: "\\kappa_T = -\\frac{1}{V}\\frac{\\partial V}{\\partial P}\\Big|_T. Isothermal compressibility. For an ideal gas: \\kappa_T = 1/P." },
+        ],
+        keyEquations: [
+          "PV = nRT \\quad \\text{(isothermal)}",
+          "PV^\\gamma = \\text{const} \\quad \\text{(adiabatic)}",
+          "W_{\\text{iso}} = nRT\\ln\\frac{V_2}{V_1}",
+        ],
+        conceptSummary:
+          "Compare isothermal and adiabatic curves on the same PV diagram. Adjust temperature and \u03B3 to see how the curves change shape. Notice the adiabatic curve is always steeper.",
+      },
+      {
+        id: "thermodynamic-cycles",
+        title: "Thermodynamic Cycles",
+        description:
+          "A thermodynamic cycle returns the working substance to its initial state after a series of processes. The net work equals the enclosed area on the PV diagram. Famous cycles include Carnot (maximum theoretical efficiency), Otto (gasoline engine), Diesel, and Stirling.",
+        statisticalTools: [
+          { name: "Carnot Cycle", desc: "Two isothermals + two adiabats. The most efficient cycle possible between two temperatures: \\eta = 1 - T_c/T_h. No real engine can exceed this." },
+          { name: "Otto Cycle", desc: "Two adiabats + two isochors. Models gasoline engines. Efficiency: \\eta = 1 - r^{1-\\gamma} where r is the compression ratio." },
+          { name: "Diesel Cycle", desc: "Two adiabats + one isobar + one isochor. Models diesel engines. Higher compression ratio than Otto, so higher efficiency." },
+          { name: "Stirling Cycle", desc: "Two isothermals + two isochors. Uses a regenerator to recycle heat. Theoretical efficiency equals Carnot if regeneration is perfect." },
+          { name: "Net Work", desc: "W_{net} = \\oint P\\,dV = \\text{enclosed area}. Clockwise cycles are heat engines (produce work). Counterclockwise are refrigerators (consume work)." },
+          { name: "Heat Engine", desc: "Absorbs Q_h from hot reservoir, rejects Q_c to cold reservoir, produces work W = Q_h - Q_c. Efficiency \\eta = W/Q_h." },
+          { name: "Coefficient of Performance", desc: "COP = Q_c/W for a refrigerator. COP = Q_h/W for a heat pump. Always COP > 1 for a heat pump (you get more heat than work input)." },
+          { name: "Entropy Change in a Cycle", desc: "\\oint dS = 0 for a reversible cycle. For irreversible cycles: \\oint dS > 0. The Clausius inequality." },
+          { name: "Compression Ratio", desc: "r = V_{max}/V_{min}. Higher compression ratio generally means higher efficiency. Limited by pre-ignition (knock) in gasoline engines." },
+          { name: "Thermal Efficiency", desc: "\\eta = 1 - |Q_c|/|Q_h| = W/Q_h. The fraction of heat input converted to useful work. Always less than 1 (Kelvin-Planck statement)." },
+        ],
+        keyEquations: [
+          "\\eta_{\\text{Carnot}} = 1 - \\frac{T_c}{T_h}",
+          "\\eta_{\\text{Otto}} = 1 - r^{1-\\gamma}",
+          "W_{\\text{net}} = \\oint P\\,dV",
+        ],
+        conceptSummary:
+          "Choose a thermodynamic cycle and watch it animate on the PV diagram. Adjust hot and cold reservoir temperatures to see how efficiency changes. The enclosed area equals the net work output.",
+      },
+      {
+        id: "cycle-work-efficiency",
+        title: "Cycle Work & Efficiency Comparison",
+        description:
+          "Different thermodynamic cycles have different efficiencies even between the same temperature reservoirs. The Carnot cycle sets the upper bound. Real engines fall short due to irreversibilities, but some designs approach Carnot more closely than others.",
+        statisticalTools: [
+          { name: "Carnot Theorem", desc: "No engine operating between two reservoirs can exceed the efficiency of a reversible (Carnot) engine. All reversible engines between the same reservoirs have the same efficiency." },
+          { name: "Second Law Efficiency", desc: "\\eta_{II} = \\eta/\\eta_{Carnot}. Measures how close an engine comes to the theoretical maximum. A useful figure of merit for real engines." },
+          { name: "Endoreversible Efficiency", desc: "\\eta_{CA} = 1 - \\sqrt{T_c/T_h}. The Curzon-Ahlborn efficiency for maximum power output (not maximum efficiency). Often closer to real engine efficiencies." },
+          { name: "Irreversibility Sources", desc: "Friction, finite-rate heat transfer, turbulence, mixing, and unrestrained expansion all create entropy and reduce efficiency below the Carnot limit." },
+          { name: "Mean Effective Pressure", desc: "MEP = W_{net}/(V_{max} - V_{min}). The constant pressure that would produce the same work over the same volume change. Used to compare engine designs." },
+          { name: "Power Output", desc: "\\dot{W} = \\eta \\cdot \\dot{Q}_h. Efficiency times heat input rate. Maximum efficiency and maximum power often occur at different operating points." },
+          { name: "Regeneration", desc: "Recovering waste heat to preheat the working fluid. The Stirling cycle uses a regenerator. Increases efficiency by reducing the heat that must come from the hot source." },
+          { name: "Combined Cycle", desc: "Using exhaust heat from one cycle as input to another. Gas turbine + steam turbine combined cycles achieve > 60% efficiency in modern power plants." },
+          { name: "Entropy Production Rate", desc: "\\dot{S}_{gen} = \\dot{Q}/T_c - \\dot{Q}/T_h > 0. The rate of entropy creation measures how far from reversibility the engine operates." },
+          { name: "Exergy Analysis", desc: "Exergy = maximum useful work extractable from a system reaching equilibrium with the environment. Destroyed exergy = T_0 \\cdot S_{gen}." },
+        ],
+        keyEquations: [
+          "\\eta_{\\text{max}} = 1 - T_c/T_h \\quad \\text{(Carnot bound)}",
+          "\\eta_{II} = \\eta / \\eta_{\\text{Carnot}}",
+          "\\eta_{CA} = 1 - \\sqrt{T_c/T_h}",
+        ],
+        conceptSummary:
+          "Compare Carnot, Otto, Diesel, and Stirling efficiencies side by side. Adjust the hot reservoir temperature and compression ratio to see which cycle performs best under different conditions.",
+      },
+    ],
+  },
+  {
+    id: "s12",
+    num: "S12",
+    title: "Molecular Dynamics",
+    description:
+      "Molecular dynamics simulates the motion of particles interacting via realistic potentials. By solving Newton's equations for many-body systems, we can observe emergent phenomena — from gas-liquid phase transitions to the spontaneous emergence of Maxwell-Boltzmann velocity distributions — directly from first principles.",
+    color: "#22d3ee",
+    icon: "\u{269B}",
+    shortDesc: "Lennard-Jones particles & phases",
+    sections: [
+      {
+        id: "lennard-jones",
+        title: "Lennard-Jones Particles",
+        description:
+          "The Lennard-Jones potential V(r) = 4\u03B5[(\u03C3/r)\u00B9\u00B2 - (\u03C3/r)\u2076] models interatomic forces: short-range repulsion (Pauli exclusion) and long-range attraction (van der Waals). It captures the essential physics of noble gases and is the workhorse of computational chemistry.",
+        statisticalTools: [
+          { name: "Lennard-Jones Potential", desc: "V(r) = 4\\varepsilon\\left[\\left(\\frac{\\sigma}{r}\\right)^{12} - \\left(\\frac{\\sigma}{r}\\right)^6\\right]. The 12-6 potential: r^{-12} for repulsion, r^{-6} for attraction. Minimum at r = 2^{1/6}\\sigma." },
+          { name: "Reduced Units", desc: "Length in \\sigma, energy in \\varepsilon, time in \\sigma\\sqrt{m/\\varepsilon}. Makes the simulation independent of specific atomic species. T^* = k_BT/\\varepsilon." },
+          { name: "Velocity-Verlet Integrator", desc: "x(t+dt) = x(t) + v(t)dt + \\frac{1}{2}a(t)dt^2. Symplectic integrator that conserves energy over long times. Second-order accurate, time-reversible." },
+          { name: "Periodic Boundary Conditions", desc: "Particles exiting one side re-enter from the opposite side. Eliminates surface effects and simulates bulk behavior with a small number of particles." },
+          { name: "Minimum Image Convention", desc: "Each particle interacts with the nearest image of every other particle. Requires box size L > 2r_{cutoff}." },
+          { name: "Force Cutoff", desc: "V(r) = 0 for r > r_c \\approx 2.5\\sigma. Truncating the potential at r_c saves computation. Long-range corrections can be added analytically." },
+          { name: "Kinetic Energy", desc: "KE = \\sum_{i=1}^N \\frac{1}{2}m v_i^2. Related to temperature via equipartition: \\langle KE \\rangle = \\frac{d}{2}Nk_BT in d dimensions." },
+          { name: "Virial Pressure", desc: "P = \\rho k_BT + \\frac{1}{dV}\\sum_{i<j} \\mathbf{r}_{ij} \\cdot \\mathbf{F}_{ij}. The kinetic (ideal) plus interaction (virial) contributions to pressure." },
+          { name: "Thermostat (Velocity Rescaling)", desc: "Scale all velocities by \\sqrt{T_{target}/T_{current}} to maintain constant temperature. Simple but effective for equilibration." },
+          { name: "Energy Conservation", desc: "In the microcanonical (NVE) ensemble, total energy E = KE + PE is conserved. Drift in E indicates the timestep is too large." },
+        ],
+        keyEquations: [
+          "V(r) = 4\\varepsilon\\left[\\left(\\frac{\\sigma}{r}\\right)^{\\!12} - \\left(\\frac{\\sigma}{r}\\right)^{\\!6}\\right]",
+          "F(r) = -\\frac{dV}{dr} = \\frac{24\\varepsilon}{r}\\left[2\\left(\\frac{\\sigma}{r}\\right)^{\\!12} - \\left(\\frac{\\sigma}{r}\\right)^{\\!6}\\right]",
+          "T = \\frac{1}{dNk_B}\\sum_i m v_i^2",
+        ],
+        conceptSummary:
+          "Watch 64 particles interact via the Lennard-Jones potential. Adjust temperature to see the system transition between gas-like and liquid-like behavior. Particles are colored by speed — blue is slow, red is fast.",
+      },
+      {
+        id: "velocity-distribution",
+        title: "Velocity Distribution",
+        description:
+          "Even though particle interactions are complex, the velocity distribution spontaneously converges to the Maxwell-Boltzmann form. This emergent behavior is a deep consequence of statistical mechanics — the most probable macrostate dominates overwhelmingly.",
+        statisticalTools: [
+          { name: "Maxwell-Boltzmann Speed Distribution (2D)", desc: "f(v) = \\frac{v}{k_BT}\\exp\\left(-\\frac{v^2}{2k_BT}\\right). In 2D, the speed distribution is a Rayleigh distribution, peaking at v_{mp} = \\sqrt{k_BT}." },
+          { name: "Most Probable Speed", desc: "v_{mp} = \\sqrt{2k_BT/m}. The speed at which the distribution peaks. In 2D: v_{mp} = \\sqrt{k_BT/m}." },
+          { name: "Mean Speed", desc: "\\langle v \\rangle = \\sqrt{\\pi k_BT/(2m)}. The average speed. Always greater than v_{mp} because the distribution is skewed right." },
+          { name: "RMS Speed", desc: "v_{rms} = \\sqrt{\\langle v^2 \\rangle} = \\sqrt{2k_BT/m} in 2D. Related to kinetic energy: KE = \\frac{1}{2}m v_{rms}^2." },
+          { name: "Equipartition Theorem", desc: "\\langle \\frac{1}{2}mv_x^2 \\rangle = \\frac{1}{2}k_BT per degree of freedom. Each velocity component carries k_BT/2 of kinetic energy." },
+          { name: "Central Limit Theorem Connection", desc: "Each velocity component is the sum of many small random impulses from collisions, so by CLT it becomes Gaussian: P(v_x) \\propto e^{-mv_x^2/(2k_BT)}." },
+          { name: "Speed vs Velocity", desc: "Velocity components are Gaussian (can be negative). Speed v = |\\mathbf{v}| follows the Maxwell-Boltzmann distribution (always positive)." },
+          { name: "Ergodic Hypothesis", desc: "Time averages equal ensemble averages for ergodic systems. The velocity histogram converges to MB because the system explores all accessible microstates." },
+          { name: "H-theorem", desc: "Boltzmann's H = \\int f \\ln f decreases monotonically until equilibrium (MB distribution). Entropy increases as the system relaxes." },
+          { name: "Temperature Measurement", desc: "T = \\frac{m\\langle v^2 \\rangle}{dk_B}. Temperature is defined through the average kinetic energy per degree of freedom d." },
+        ],
+        keyEquations: [
+          "f(v) = \\frac{v}{k_BT}\\exp\\!\\left(-\\frac{v^2}{2k_BT}\\right) \\quad \\text{(2D)}",
+          "v_{mp} = \\sqrt{2k_BT/m},\\quad v_{rms} = \\sqrt{2k_BT/m}",
+          "\\langle KE \\rangle = \\frac{d}{2}Nk_BT",
+        ],
+        conceptSummary:
+          "Run a molecular dynamics simulation and watch the speed histogram build up. It converges to the Maxwell-Boltzmann prediction — the red theory curve — regardless of initial conditions.",
+      },
+      {
+        id: "radial-distribution",
+        title: "Radial Distribution Function",
+        description:
+          "The radial distribution function g(r) measures the probability of finding a particle at distance r from another, relative to an ideal gas. Its structure reveals the organization of matter: gases have g(r) \u2248 1 everywhere, liquids show oscillating peaks from shells of neighbors, and solids have sharp delta-like peaks at lattice spacings.",
+        statisticalTools: [
+          { name: "Radial Distribution Function", desc: "g(r) = \\frac{V}{N^2}\\left\\langle \\sum_{i \\neq j} \\delta(r - |\\mathbf{r}_i - \\mathbf{r}_j|)\\right\\rangle. Normalized so g(r) \\to 1 at large r (no correlations)." },
+          { name: "Pair Correlation", desc: "g(r) is the pair correlation function. g(r) > 1 means particles are more likely found at distance r than in an ideal gas. g(r) < 1 means depletion." },
+          { name: "First Coordination Shell", desc: "The first peak of g(r) gives the most probable nearest-neighbor distance. For LJ: r_{nn} \\approx 2^{1/6}\\sigma \\approx 1.12\\sigma." },
+          { name: "Liquid Structure", desc: "Liquids show oscillating g(r) with peaks at r \\approx \\sigma, 2\\sigma, 3\\sigma... Peaks decay exponentially — short-range order, no long-range order." },
+          { name: "Gas Structure", desc: "At high T, g(r) \\to 1 quickly after a depletion zone near r < \\sigma. Particles are nearly uncorrelated — ideal gas behavior." },
+          { name: "Solid Structure", desc: "In a crystal, g(r) has sharp peaks at lattice distances. The peaks don't decay — long-range order persists. Amorphous solids have broader peaks." },
+          { name: "Coordination Number", desc: "n_1 = 2\\pi\\rho \\int_0^{r_{min}} g(r) r\\, dr. The average number of nearest neighbors, found by integrating g(r) to the first minimum." },
+          { name: "Static Structure Factor", desc: "S(k) = 1 + \\rho \\int [g(r) - 1] e^{ikr} dr. The Fourier transform of g(r). Measured directly in X-ray and neutron scattering experiments." },
+          { name: "Equation of State from g(r)", desc: "P = \\rho k_BT - \\frac{\\rho^2}{2d}\\int g(r) r V'(r) dr. The pressure can be calculated from g(r) and the pair potential." },
+          { name: "Ornstein-Zernike Equation", desc: "h(r) = c(r) + \\rho \\int c(|\\mathbf{r} - \\mathbf{r}'|) h(r') d\\mathbf{r}'. Relates total correlation h = g - 1 to the direct correlation function c(r)." },
+        ],
+        keyEquations: [
+          "g(r) = \\frac{1}{\\rho N}\\left\\langle \\sum_{i \\neq j} \\delta(r - r_{ij})\\right\\rangle \\frac{1}{2\\pi r}",
+          "n_1 = 2\\pi\\rho\\int_0^{r_{\\min}} g(r)\\,r\\,dr",
+          "S(k) = 1 + \\rho\\int [g(r)-1]e^{ikr}dr",
+        ],
+        conceptSummary:
+          "Watch g(r) build up from molecular dynamics. At low temperature, sharp peaks reveal liquid-like structure with coordination shells. At high temperature, g(r) flattens toward 1 as the system becomes gas-like.",
+      },
+    ],
+  },
+  {
+    id: "s13",
+    num: "S13",
+    title: "Blackbody Radiation",
+    description:
+      "A blackbody absorbs all incident radiation and emits a characteristic spectrum that depends only on temperature. Planck's law, which correctly describes this spectrum, required the revolutionary hypothesis that energy is quantized — marking the birth of quantum mechanics in 1900.",
+    color: "#fbbf24",
+    icon: "\u{2600}",
+    shortDesc: "Planck's law & the quantum revolution",
+    sections: [
+      {
+        id: "planck-spectrum",
+        title: "Planck's Law",
+        description:
+          "Planck's spectral radiance formula gives the power emitted per unit area per unit wavelength per unit solid angle by a blackbody at temperature T. It peaks at shorter wavelengths for hotter objects and perfectly explains the observed spectrum.",
+        statisticalTools: [
+          { name: "Planck's Law (wavelength)", desc: "B(\\lambda, T) = \\frac{2hc^2}{\\lambda^5}\\frac{1}{e^{hc/(\\lambda k_BT)} - 1}. The spectral radiance of a blackbody. The 1/(e^x - 1) factor comes from Bose-Einstein statistics for photons." },
+          { name: "Planck's Law (frequency)", desc: "B(\\nu, T) = \\frac{2h\\nu^3}{c^2}\\frac{1}{e^{h\\nu/(k_BT)} - 1}. The frequency form. Note: \\lambda_{max} and \\nu_{max} correspond to different wavelengths!" },
+          { name: "Energy Quantization", desc: "E_n = nh\\nu. Planck's radical hypothesis: oscillators in the cavity walls can only emit/absorb energy in discrete quanta. This suppresses the UV catastrophe." },
+          { name: "Photon Statistics", desc: "\\langle n \\rangle = \\frac{1}{e^{h\\nu/(k_BT)} - 1}. Mean photon number follows Bose-Einstein distribution. At low frequency: \\langle n \\rangle \\approx k_BT/(h\\nu) \\gg 1." },
+          { name: "Wien's Displacement Law", desc: "\\lambda_{max} T = b = 2.898 \\times 10^{-3}\\;\\text{m\\cdot K}. The peak wavelength scales inversely with temperature." },
+          { name: "Stefan-Boltzmann Law", desc: "P = \\sigma T^4 where \\sigma = 5.670 \\times 10^{-8}\\;\\text{W/(m^2 K^4)}. Total radiated power per unit area. Derived by integrating Planck's law over all wavelengths." },
+          { name: "Spectral Emissivity", desc: "Real objects emit less than a blackbody: B_{real} = \\varepsilon(\\lambda) B_{BB}. Emissivity \\varepsilon \\leq 1. Kirchhoff's law: \\varepsilon(\\lambda) = \\alpha(\\lambda) (absorptivity)." },
+          { name: "Color Temperature", desc: "The temperature of a blackbody that best matches an object's color. The Sun (T = 5778 K) peaks near 500 nm (green), but appears white due to the broad spectrum." },
+          { name: "Cosmic Microwave Background", desc: "The CMB is a nearly perfect blackbody at T = 2.725 K, peaking at \\lambda \\approx 1.1 mm (microwave). It's the afterglow of the Big Bang." },
+          { name: "Photon Gas Thermodynamics", desc: "For a photon gas: U/V = aT^4, P = U/(3V), S = (4/3)aT^3 V. The photon gas has zero chemical potential (\\mu = 0) because photon number is not conserved." },
+        ],
+        keyEquations: [
+          "B(\\lambda,T) = \\frac{2hc^2}{\\lambda^5}\\frac{1}{e^{hc/(\\lambda k_BT)}-1}",
+          "\\lambda_{\\max} T = 2.898 \\times 10^{-3}\\;\\text{m\\cdot K}",
+          "P = \\sigma T^4",
+        ],
+        conceptSummary:
+          "Sweep the temperature slider and watch the Planck spectrum shift and grow. The color swatch shows the perceived color of the blackbody. The Wien peak marker tracks the wavelength of maximum emission.",
+      },
+      {
+        id: "wien-law",
+        title: "Wien's Displacement Law",
+        description:
+          "Wien's displacement law states that the peak wavelength of blackbody emission is inversely proportional to temperature. Hotter objects glow blue-white, cooler objects glow red. By overlaying spectra at different temperatures, the systematic shift of the peak becomes visually striking.",
+        statisticalTools: [
+          { name: "Wien's Law Derivation", desc: "Set dB/d\\lambda = 0 in Planck's formula. This gives the transcendental equation (5 - x)e^x = 5 where x = hc/(\\lambda k_BT). Solution: x \\approx 4.965." },
+          { name: "Wien's Constant", desc: "b = hc/(4.965 k_B) = 2.898 \\times 10^{-3}\\;\\text{m\\cdot K}. The proportionality constant in \\lambda_{max} = b/T." },
+          { name: "Color-Temperature Relation", desc: "T < 3000 K: reddish (incandescent bulb). T \\approx 5500 K: white (sunlight). T > 10000 K: bluish (hot stars). The sequence R-O-Y-W-B with increasing T." },
+          { name: "Stellar Classification", desc: "O stars: T > 30000 K (blue). B: 10000-30000 K. A: 7500-10000 K. F: 6000-7500 K. G (Sun): 5200-6000 K. K: 3700-5200 K. M: < 3700 K (red)." },
+          { name: "Wien's Frequency Law", desc: "\\nu_{max} = 2.821 k_BT/h \\approx 5.879 \\times 10^{10} T\\;\\text{Hz/K}. The peak frequency increases linearly with T — not the inverse of \\lambda_{max}!" },
+          { name: "Spectral Power Scaling", desc: "B_{max} \\propto T^5. The peak intensity scales as the fifth power of temperature. Doubling T increases peak brightness by 32x." },
+          { name: "Total Power Scaling", desc: "Integrating Planck's law: P \\propto T^4 (Stefan-Boltzmann). Doubling T increases total radiation by 16x." },
+          { name: "Wien's Approximation", desc: "B \\approx \\frac{2hc^2}{\\lambda^5}e^{-hc/(\\lambda k_BT)}. Valid for short wavelengths (hc/\\lambda \\gg k_BT). Accurate on the Wien (UV) side of the peak." },
+          { name: "Astronomical Photometry", desc: "Measuring a star's brightness at two wavelengths gives its color index, which determines temperature via Wien's law. The B-V color index is standard." },
+          { name: "Thermal Imaging", desc: "Infrared cameras detect blackbody radiation from room-temperature objects (\\lambda_{max} \\approx 10 \\mu m). Medical, military, and industrial applications." },
+        ],
+        keyEquations: [
+          "\\lambda_{\\max} = \\frac{b}{T} = \\frac{2.898 \\times 10^{-3}}{T}\\;\\text{m}",
+          "B_{\\max} \\propto T^5",
+          "\\text{Sun: } T = 5778\\;\\text{K} \\Rightarrow \\lambda_{\\max} \\approx 502\\;\\text{nm}",
+        ],
+        conceptSummary:
+          "See five Planck spectra overlaid at different temperatures. As temperature increases, the peak shifts to shorter wavelengths (blue) and the intensity grows dramatically. The dashed Wien line connects the peaks.",
+      },
+      {
+        id: "uv-catastrophe",
+        title: "The Ultraviolet Catastrophe",
+        description:
+          "Classical physics predicted that a blackbody should radiate infinite energy at short wavelengths — the 'ultraviolet catastrophe.' The Rayleigh-Jeans law, derived from classical equipartition, diverges as \u03BB\u207B\u2074. Planck's quantum hypothesis resolved this by showing that high-frequency modes are frozen out because the energy quantum h\u03BD exceeds thermal energy k\u0299T.",
+        statisticalTools: [
+          { name: "Rayleigh-Jeans Law", desc: "B_{RJ}(\\lambda, T) = \\frac{2ck_BT}{\\lambda^4}. The classical prediction: equipartition assigns k_BT energy to each mode. Valid only for long wavelengths (h\\nu \\ll k_BT)." },
+          { name: "Ultraviolet Catastrophe", desc: "\\int_0^\\infty B_{RJ} d\\lambda = \\infty. The total energy diverges because the number of modes grows as \\lambda^{-4}. This was 'the most important unresolved problem in physics' (Lord Kelvin)." },
+          { name: "Mode Counting", desc: "Number of modes per unit volume in d\\nu: g(\\nu) = 8\\pi\\nu^2/c^3. The density of electromagnetic modes grows quadratically with frequency." },
+          { name: "Classical Equipartition", desc: "Each mode gets \\langle E \\rangle = k_BT. Classical statistical mechanics assigns the same energy regardless of frequency. This is the root of the catastrophe." },
+          { name: "Planck's Fix", desc: "\\langle E \\rangle = \\frac{h\\nu}{e^{h\\nu/(k_BT)} - 1}. For h\\nu \\ll k_BT: \\langle E \\rangle \\approx k_BT (classical). For h\\nu \\gg k_BT: \\langle E \\rangle \\approx h\\nu e^{-h\\nu/(k_BT)} \\to 0." },
+          { name: "Quantum Suppression", desc: "High-frequency modes require a minimum energy quantum h\\nu to be excited. When h\\nu \\gg k_BT, the Boltzmann factor e^{-h\\nu/(k_BT)} exponentially suppresses these modes." },
+          { name: "Wien's Law Region", desc: "For short wavelengths where Planck and Wien agree but Rayleigh-Jeans diverges catastrophically. The quantum cutoff prevents the divergence." },
+          { name: "Rayleigh-Jeans Region", desc: "For long wavelengths (h\\nu \\ll k_BT), Planck reduces to Rayleigh-Jeans. Classical physics works fine in this regime — many photons per mode." },
+          { name: "Historical Significance", desc: "The UV catastrophe (1900) was one of the 'two clouds' over classical physics (Lord Kelvin). Its resolution by Planck launched the quantum revolution." },
+          { name: "Energy Density", desc: "u(\\nu) = \\frac{8\\pi\\nu^2}{c^3}\\frac{h\\nu}{e^{h\\nu/(k_BT)}-1}. Planck's spectral energy density. Integrates to u = aT^4 where a = 4\\sigma/c." },
+        ],
+        keyEquations: [
+          "B_{RJ} = \\frac{2ck_BT}{\\lambda^4} \\xrightarrow{\\lambda \\to 0} \\infty \\quad \\text{(catastrophe!)}",
+          "B_{\\text{Planck}} = \\frac{2hc^2}{\\lambda^5}\\frac{1}{e^{hc/(\\lambda k_BT)}-1} \\xrightarrow{\\lambda \\to 0} 0",
+          "\\langle E \\rangle = \\frac{h\\nu}{e^{h\\nu/(k_BT)}-1}",
+        ],
+        conceptSummary:
+          "See the classical Rayleigh-Jeans curve diverge to infinity at short wavelengths while Planck's quantum curve gracefully peaks and falls. The shaded red zone highlights the UV catastrophe region where classical physics fails spectacularly.",
+      },
+    ],
+  },
 ];
 
 // ─── CLASSICAL MECHANICS ────────────────────────────────────────────
