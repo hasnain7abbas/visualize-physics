@@ -3,6 +3,20 @@ import { Component, lazy } from "solid-js";
 // Map of chapterId-sectionId to simulation component
 const simulations: Record<string, Component> = {};
 
+// F1 - Foundations: Vectors & Motion
+import { F1Vectors, F1Velocity, F1Acceleration, F1Forces } from "./F1Foundations";
+simulations["f1-vectors"] = F1Vectors;
+simulations["f1-velocity"] = F1Velocity;
+simulations["f1-acceleration"] = F1Acceleration;
+simulations["f1-forces"] = F1Forces;
+
+// F2 - Foundations: Matter, Pressure & Energy
+import { F2Density, F2Pressure, F2Temperature, F2WorkEnergy } from "./F2MatterEnergy";
+simulations["f2-density"] = F2Density;
+simulations["f2-pressure"] = F2Pressure;
+simulations["f2-temperature"] = F2Temperature;
+simulations["f2-work-energy"] = F2WorkEnergy;
+
 // Q1 - Quantum Probability
 import { Q1Superposition } from "./Q1Superposition";
 import { Q1Measurement } from "./Q1Measurement";

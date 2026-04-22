@@ -23,6 +23,10 @@ export default defineConfig({
         manualChunks: {
           "vendor-solid": ["solid-js", "solid-js/web", "@solidjs/router"],
           "vendor-katex": ["katex"],
+          "sim-foundations": [
+            "./src/simulations/F1Foundations.tsx",
+            "./src/simulations/F2MatterEnergy.tsx",
+          ],
           "sim-quantum": [
             "./src/simulations/Q1Superposition.tsx",
             "./src/simulations/Q1Measurement.tsx",

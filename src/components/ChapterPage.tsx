@@ -120,7 +120,47 @@ const SectionContent: Component<{
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
         {/* Left: simulation + equations */}
         <div class="lg:col-span-2 space-y-4 sm:space-y-5">
-          {/* Definition / What is this? card */}
+          {/* Classroom definition — only when authored */}
+          <Show when={props.section.definition}>
+            <div
+              class="card p-3 sm:p-5 overflow-hidden relative"
+              style={{
+                background: `linear-gradient(135deg, ${props.chapter.color}12, ${props.chapter.color}04)`,
+                "border-left": `4px solid ${props.chapter.color}`,
+              }}
+            >
+              <div class="flex items-start gap-2 sm:gap-3">
+                <div
+                  class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg flex items-center justify-center flex-shrink-0 text-sm sm:text-base mt-0.5 font-bold"
+                  style={{ background: `${props.chapter.color}20`, color: props.chapter.color }}
+                >
+                  {"\u270F\uFE0F"}
+                </div>
+                <div class="min-w-0 flex-1">
+                  <div
+                    class="text-[10px] font-bold uppercase tracking-widest mb-1.5 flex items-center gap-2"
+                    style={{ color: props.chapter.color }}
+                  >
+                    <span>Definition</span>
+                    <span
+                      class="px-1.5 py-0.5 rounded text-[8px] font-semibold"
+                      style={{ background: `${props.chapter.color}15`, color: props.chapter.color }}
+                    >
+                      Classroom
+                    </span>
+                  </div>
+                  <p
+                    class="text-[13px] sm:text-sm leading-relaxed"
+                    style={{ color: "var(--text-primary)" }}
+                  >
+                    <InlineMathText text={props.section.definition!} />
+                  </p>
+                </div>
+              </div>
+            </div>
+          </Show>
+
+          {/* Context / "What you're exploring" card */}
           <div
             class="card p-3 sm:p-5 overflow-hidden"
             style={{
