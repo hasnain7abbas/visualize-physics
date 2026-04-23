@@ -76,17 +76,11 @@ const SectionContent: Component<{
       {/* Section header */}
       <div class="mb-4 sm:mb-6">
         <h2
-          class="text-lg sm:text-xl font-bold mb-2"
+          class="text-lg sm:text-xl font-bold"
           style={{ color: "var(--text-primary)" }}
         >
           {props.section.title}
         </h2>
-        <p
-          class="text-xs sm:text-sm leading-relaxed max-w-2xl"
-          style={{ color: "var(--text-secondary)" }}
-        >
-          {props.section.description}
-        </p>
       </div>
 
       {/* Mobile: tools toggle button */}
@@ -138,16 +132,10 @@ const SectionContent: Component<{
                 </div>
                 <div class="min-w-0 flex-1">
                   <div
-                    class="text-[10px] font-bold uppercase tracking-widest mb-1.5 flex items-center gap-2"
+                    class="text-[10px] font-bold uppercase tracking-widest mb-1.5"
                     style={{ color: props.chapter.color }}
                   >
-                    <span>Definition</span>
-                    <span
-                      class="px-1.5 py-0.5 rounded text-[8px] font-semibold"
-                      style={{ background: `${props.chapter.color}15`, color: props.chapter.color }}
-                    >
-                      Classroom
-                    </span>
+                    Definition
                   </div>
                   <p
                     class="text-[13px] sm:text-sm leading-relaxed"
@@ -159,35 +147,6 @@ const SectionContent: Component<{
               </div>
             </div>
           </Show>
-
-          {/* Context / "What you're exploring" card */}
-          <div
-            class="card p-3 sm:p-5 overflow-hidden"
-            style={{
-              background: `linear-gradient(135deg, ${props.chapter.color}08, ${props.chapter.color}03)`,
-              "border-left": `3px solid ${props.chapter.color}`,
-            }}
-          >
-            <div class="flex items-start gap-2 sm:gap-3">
-              <div
-                class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center flex-shrink-0 text-sm sm:text-base mt-0.5"
-                style={{ background: `${props.chapter.color}15` }}
-              >
-                {props.chapter.icon}
-              </div>
-              <div class="min-w-0">
-                <div
-                  class="text-[10px] font-semibold uppercase tracking-widest mb-1"
-                  style={{ color: props.chapter.color }}
-                >
-                  What you're exploring
-                </div>
-                <p class="text-xs sm:text-sm leading-relaxed" style={{ color: "var(--text-secondary)" }}>
-                  {props.section.description}
-                </p>
-              </div>
-            </div>
-          </div>
 
           {/* Simulation */}
           <div

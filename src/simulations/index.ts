@@ -17,6 +17,24 @@ simulations["f2-pressure"] = F2Pressure;
 simulations["f2-temperature"] = F2Temperature;
 simulations["f2-work-energy"] = F2WorkEnergy;
 
+// F3 - Foundations: Laws of Motion & Machines
+import {
+  F3Inertia,
+  F3Gravity,
+  F3ActionReaction,
+  F3BalancedForces,
+  F3KineticTheory,
+  F3Lever,
+  F3NewtonsCradle,
+} from "./F3LawsOfMotion";
+simulations["f3-inertia"] = F3Inertia;
+simulations["f3-gravity"] = F3Gravity;
+simulations["f3-action-reaction"] = F3ActionReaction;
+simulations["f3-balanced-forces"] = F3BalancedForces;
+simulations["f3-kinetic-theory"] = F3KineticTheory;
+simulations["f3-lever"] = F3Lever;
+simulations["f3-newtons-cradle"] = F3NewtonsCradle;
+
 // Q1 - Quantum Probability
 import { Q1Superposition } from "./Q1Superposition";
 import { Q1Measurement } from "./Q1Measurement";

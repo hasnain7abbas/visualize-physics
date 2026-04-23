@@ -66,6 +66,10 @@ function renderMathInText(input: string): string {
     text = text.replace(pat, fn as any);
   }
 
+  // Markdown bold: **term** → <strong>term</strong>. Safe to run last:
+  // KaTeX output never contains literal "**".
+  text = text.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+
   return text;
 }
 
@@ -76,15 +80,20 @@ function renderDollarMath(input: string): string {
   let match;
   while ((match = regex.exec(input)) !== null) {
     if (match.index > lastIdx) {
-      parts.push(escapeHtml(input.slice(lastIdx, match.index)));
+      parts.push(renderBoldAndEscape(input.slice(lastIdx, match.index)));
     }
     parts.push(renderKatex(match[1]));
     lastIdx = match.index + match[0].length;
   }
   if (lastIdx < input.length) {
-    parts.push(escapeHtml(input.slice(lastIdx)));
+    parts.push(renderBoldAndEscape(input.slice(lastIdx)));
   }
   return parts.join("");
+}
+
+/** Escapes HTML and converts **word** markdown to <strong>word</strong>. Applied only to non-math prose. */
+function renderBoldAndEscape(text: string): string {
+  return escapeHtml(text).replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
 }
 
 function renderKatex(tex: string): string {

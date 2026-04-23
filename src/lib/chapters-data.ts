@@ -594,7 +594,7 @@ const statisticalPhysics: Chapter[] = [
         description:
           "Fermions can't share a quantum state; bosons can pile into the same state. This single rule creates chemistry and lasers.",
         definition:
-          "Identical particles in quantum mechanics come in two kinds: fermions (half-integer spin) have totally antisymmetric many-body wavefunctions, and bosons (integer spin) have totally symmetric ones. The antisymmetry of fermions implies the Pauli exclusion principle — no two fermions can occupy the same quantum state — while bosons have no such restriction and in fact tend to bunch together. This spin-statistics rule is what makes electrons fill atomic shells (giving us the periodic table) and what allows photons to form lasers and atoms to form Bose-Einstein condensates.",
+          "Identical particles in quantum mechanics come in two kinds: **fermions** (half-integer spin) have totally antisymmetric many-body wavefunctions, and **bosons** (integer spin) have totally symmetric ones. The antisymmetry of fermions implies the **Pauli exclusion principle** — no two fermions can occupy the same quantum state — while bosons have no such restriction and in fact tend to bunch together. This **spin-statistics rule** is what makes electrons fill atomic shells (giving us the periodic table) and what allows photons to form lasers and atoms to form **Bose-Einstein condensates**.",
         statisticalTools: [
           { name: "Combinatorics: Permutations", desc: "n! ways to arrange n distinguishable objects. For identical particles, we divide by n! \u2014 this is the Gibbs correction." },
           { name: "Combinations C(n,k)", desc: "n!/(k!(n-k)!) ways to choose k items from n. For fermions: C(g, n) ways to place n fermions in g states." },
@@ -1779,7 +1779,7 @@ const classicalMechanics: Chapter[] = [
         description:
           "Phase space (θ vs θ̇) reveals the structure hidden in chaotic motion. Regular orbits trace closed curves; chaotic orbits fill regions ergodically. Poincaré sections slice through this structure.",
         definition:
-          "Phase space is the abstract space whose coordinates are all the position and momentum (or velocity) variables of a dynamical system; a single point in it specifies the complete state, and the system's evolution traces a unique trajectory. Hamiltonian flow conserves phase-space volume (Liouville's theorem), so trajectories never cross. A Poincaré section samples the trajectory each time it crosses a chosen lower-dimensional surface, turning continuous motion into a discrete map — closed curves indicate regular (quasi-periodic) motion, scattered dots indicate chaos.",
+          "**Phase space** is the abstract space whose coordinates are all the position and momentum (or velocity) variables of a dynamical system; a single point in it specifies the complete state, and the system's evolution traces a unique trajectory. **Hamiltonian flow** conserves phase-space volume (**Liouville's theorem**), so trajectories never cross. A **Poincaré section** samples the trajectory each time it crosses a chosen lower-dimensional surface, turning continuous motion into a discrete map — closed curves indicate regular (quasi-periodic) motion, scattered dots indicate chaos.",
         statisticalTools: [
           { name: "Phase Space", desc: "The space of all possible states (θ₁, θ₂, ω₁, ω₂). The double pendulum lives in a 4D phase space." },
           { name: "Phase Portrait", desc: "A plot of θ vs ω (or θ̇). Trajectories never cross in phase space — the flow is deterministic." },
@@ -2979,7 +2979,7 @@ const foundations: Chapter[] = [
         description:
           "Some quantities are fully described by a single number (mass, time, temperature) — these are scalars. Others (displacement, velocity, force) need both a magnitude AND a direction — these are vectors. Vectors can be added head-to-tail, scaled, and broken into components along chosen axes.",
         definition:
-          "A scalar is a quantity with magnitude only (like 5 kg or 30 °C). A vector is a quantity with both magnitude and direction (like 5 m east or 30 N upward). Vectors are written with an arrow (\u20D7) and can be added geometrically by placing arrows head-to-tail, or algebraically by adding their (x, y) components.",
+          "A **scalar** is a quantity with magnitude only (like 5 kg or 30 °C). A **vector** is a quantity with both magnitude and direction (like 5 m east or 30 N upward). Vectors are written with an arrow ($\\vec{v}$) and can be added geometrically by placing arrows head-to-tail, or algebraically by adding their $(x, y)$ **components**.",
         statisticalTools: [
           { name: "Magnitude |v|", desc: "The length of a vector. For a 2D vector v = (vₓ, v_y), the magnitude is |v| = \\sqrt{v_x^2 + v_y^2}. It is always a non-negative scalar." },
           { name: "Direction (angle θ)", desc: "The angle a vector makes with a reference axis. \\theta = \\arctan(v_y / v_x). Together with magnitude it specifies the vector completely." },
@@ -3006,7 +3006,7 @@ const foundations: Chapter[] = [
         description:
           "Position tells us where something is. Displacement is how far it has moved (a vector from start to end). Velocity is how fast position is changing — and in what direction. Speed is just the magnitude of velocity, with no direction attached.",
         definition:
-          "Velocity is the rate of change of position with respect to time. It is a vector: \\vec{v} = \\Delta\\vec{x}/\\Delta t. The magnitude of velocity is called speed (a scalar). Average velocity uses total displacement over total time; instantaneous velocity is the limit as the time interval shrinks to zero — geometrically, it is the slope of the position-vs-time graph.",
+          "**Velocity** is the rate of change of position with respect to time. It is a vector: $\\vec{v} = \\Delta\\vec{x}/\\Delta t$. The magnitude of velocity is called **speed** (a scalar). **Average velocity** uses total displacement over total time; **instantaneous velocity** is the limit as the time interval shrinks to zero — geometrically, it is the slope of the position-vs-time graph.",
         statisticalTools: [
           { name: "Position x(t)", desc: "Where the object is at time t, measured from a chosen origin. Plotted vertically against time, it gives a position-time graph." },
           { name: "Displacement \\Delta x", desc: "The vector from initial to final position: \\Delta\\vec{x} = \\vec{x}_f - \\vec{x}_i. Independent of the path taken — only endpoints matter." },
@@ -3033,7 +3033,7 @@ const foundations: Chapter[] = [
         description:
           "When velocity changes — whether speeding up, slowing down, or turning — there is acceleration. Acceleration is a vector that points in the direction of velocity change. Even an object moving at constant speed in a circle is accelerating, because its direction is changing.",
         definition:
-          "Acceleration is the rate of change of velocity with respect to time: \\vec{a} = \\Delta\\vec{v}/\\Delta t. Its SI unit is m/s\u00B2. Acceleration is positive when velocity grows in the chosen positive direction and negative (deceleration) when velocity shrinks. Importantly, a change in direction (without speed change) is also an acceleration — this is why circular motion involves centripetal acceleration.",
+          "**Acceleration** is the rate of change of velocity with respect to time: $\\vec{a} = \\Delta\\vec{v}/\\Delta t$. Its SI unit is $\\text{m}/\\text{s}^2$. Acceleration is positive when velocity grows in the chosen positive direction and negative (**deceleration**) when velocity shrinks. Importantly, a change in direction (without speed change) is also an acceleration — this is why circular motion involves **centripetal acceleration**.",
         statisticalTools: [
           { name: "Average Acceleration", desc: "\\bar{a} = \\Delta v / \\Delta t. The change in velocity divided by the time taken to make that change." },
           { name: "Instantaneous Acceleration", desc: "a(t) = dv/dt = d^2x/dt^2. The slope of the velocity-time graph; the curvature of the position-time graph." },
@@ -3060,7 +3060,7 @@ const foundations: Chapter[] = [
         description:
           "A force is a push or pull. Newton's three laws connect forces to motion: an object stays at rest or moves at constant velocity unless a net force acts on it (1st law); the net force equals mass times acceleration (2nd law); every action has an equal and opposite reaction (3rd law).",
         definition:
-          "A force is a vector interaction that can change an object's motion. Newton's second law states \\vec{F}_{\\text{net}} = m\\vec{a} — the net force on a body equals its mass times its acceleration. Mass measures inertia (resistance to acceleration). Force has units of newtons (1 N = 1 kg\u00B7m/s\u00B2). When forces are balanced (\\sum\\vec{F} = 0), the object is in equilibrium and moves at constant velocity (which can be zero).",
+          "A **force** is a vector interaction that can change an object's motion. **Newton's second law** states $\\vec{F}_{\\text{net}} = m\\vec{a}$ — the net force on a body equals its mass times its acceleration. **Mass** measures **inertia** (resistance to acceleration). Force has units of **newtons** ($1\\,\\text{N} = 1\\,\\text{kg}\\cdot\\text{m}/\\text{s}^2$). When forces are balanced ($\\sum\\vec{F} = 0$), the object is in **equilibrium** and moves at constant velocity (which can be zero).",
         statisticalTools: [
           { name: "Newton's First Law (Inertia)", desc: "An object at rest stays at rest, and an object in motion stays in motion at constant velocity, unless acted on by a net external force." },
           { name: "Newton's Second Law", desc: "\\vec{F}_{\\text{net}} = m\\vec{a}. The acceleration of an object is proportional to the net force and inversely proportional to its mass." },
@@ -3099,7 +3099,7 @@ const foundations: Chapter[] = [
         description:
           "Mass measures how much 'stuff' is in an object. Volume measures the space it occupies. Density is the ratio: how much mass is packed into each unit of volume. Density determines whether an object floats or sinks in a given fluid.",
         definition:
-          "Density (\\rho) is mass per unit volume: \\rho = m/V. Its SI unit is kg/m\u00B3, though g/cm\u00B3 is also common (1 g/cm\u00B3 = 1000 kg/m\u00B3). Pure water at 4 \u00B0C has \\rho \\approx 1000 kg/m\u00B3 — a useful reference. A material with constant composition has constant density, regardless of how much of it you have.",
+          "**Mass** measures how much matter an object contains. **Volume** is the space it occupies. **Density** ($\\rho$) is mass per unit volume: $\\rho = m/V$. Its SI unit is $\\text{kg}/\\text{m}^3$, though $\\text{g}/\\text{cm}^3$ is also common ($1\\,\\text{g}/\\text{cm}^3 = 1000\\,\\text{kg}/\\text{m}^3$). Pure water at $4\\,°\\text{C}$ has $\\rho \\approx 1000\\,\\text{kg}/\\text{m}^3$ — a useful reference. A material with constant composition has constant density, regardless of how much of it you have.",
         statisticalTools: [
           { name: "Mass m", desc: "The amount of matter in an object, measured in kilograms. Independent of location (same on Earth, the Moon, or in space)." },
           { name: "Volume V", desc: "The 3D space an object occupies, measured in m\u00B3 or liters (1 L = 10\u207B\u00B3 m\u00B3). For regular shapes V comes from geometry; for irregular shapes use water displacement." },
@@ -3126,7 +3126,7 @@ const foundations: Chapter[] = [
         description:
           "Pressure is force spread over an area. The same push by your hand feels gentle when spread across a flat palm but sharp when concentrated on a fingertip. In fluids, pressure increases with depth and pushes equally in all directions.",
         definition:
-          "Pressure (P) is force per unit area applied perpendicular to a surface: P = F/A. Its SI unit is the pascal (1 Pa = 1 N/m\u00B2). At a depth h in a fluid of density \\rho, the pressure increases by \\rho g h above whatever pressure exists at the surface — this is why your ears hurt deep in a swimming pool. Atmospheric pressure at sea level is about 101.3 kPa.",
+          "**Pressure** ($P$) is force per unit area applied perpendicular to a surface: $P = F/A$. Its SI unit is the **pascal** ($1\\,\\text{Pa} = 1\\,\\text{N}/\\text{m}^2$). At a depth $h$ in a fluid of density $\\rho$, the pressure increases by $\\rho g h$ above whatever pressure exists at the surface — this is why your ears hurt deep in a swimming pool. **Atmospheric pressure** at sea level is about $101.3\\,\\text{kPa}$.",
         statisticalTools: [
           { name: "Pressure P = F/A", desc: "Force divided by the area over which it acts. A small area concentrates force — a thumbtack pierces wood because the contact area is tiny." },
           { name: "Pascal (SI Unit)", desc: "1 Pa = 1 N/m\u00B2. A pascal is a small amount of pressure; everyday quantities use kPa, MPa, or atm. 1 atm \\approx 101.3 kPa." },
@@ -3153,7 +3153,7 @@ const foundations: Chapter[] = [
         description:
           "Temperature measures the average kinetic energy of the random motion of particles. Hot things have particles jiggling fast; cold things have particles barely moving. The Kelvin scale starts at absolute zero, where (classically) all motion would stop.",
         definition:
-          "Temperature is a measure of the average translational kinetic energy of the particles in a system. For an ideal gas, the relation is exact: \\langle \\tfrac{1}{2}mv^2\\rangle = \\tfrac{3}{2}k_B T, where k_B is Boltzmann's constant. Temperature is measured in kelvin (K), where 0 K is absolute zero. Conversion: T(K) = T(\u00B0C) + 273.15. Heat flows naturally from higher to lower temperature.",
+          "**Temperature** is a measure of the average translational kinetic energy of the particles in a system. For an ideal gas, the relation is exact: $\\langle \\tfrac{1}{2}mv^2\\rangle = \\tfrac{3}{2}k_B T$, where $k_B$ is **Boltzmann's constant**. Temperature is measured in **kelvin** (K), where $0\\,\\text{K}$ is **absolute zero**. Conversion: $T(\\text{K}) = T(°\\text{C}) + 273.15$. Heat flows naturally from higher to lower temperature.",
         statisticalTools: [
           { name: "Kelvin Scale", desc: "Absolute temperature scale starting at 0 K = -273.15 \u00B0C (absolute zero). All thermodynamic equations use kelvin." },
           { name: "Celsius & Fahrenheit", desc: "T(\u00B0C) = T(K) - 273.15; T(\u00B0F) = (9/5)T(\u00B0C) + 32. Celsius and Kelvin have the same step size." },
@@ -3180,7 +3180,7 @@ const foundations: Chapter[] = [
         description:
           "Work is done when a force moves something through a distance. Energy is the capacity to do work. Kinetic energy is the energy of motion; potential energy is stored energy of position or configuration. In a closed system, energy transforms between forms but the total stays constant.",
         definition:
-          "Work (W) done by a constant force \\vec{F} on an object that undergoes displacement \\vec{d} is W = \\vec{F}\\cdot\\vec{d} = Fd\\cos\\theta. Its SI unit is the joule (1 J = 1 N\u00B7m). Kinetic energy is KE = \\tfrac{1}{2}mv\u00B2; gravitational potential energy near Earth is PE = mgh. The work-energy theorem states that the net work on an object equals its change in kinetic energy. In an isolated system with only conservative forces, total mechanical energy KE + PE is conserved.",
+          "**Work** ($W$) done by a constant force $\\vec{F}$ on an object that undergoes displacement $\\vec{d}$ is $W = \\vec{F}\\cdot\\vec{d} = Fd\\cos\\theta$. Its SI unit is the **joule** ($1\\,\\text{J} = 1\\,\\text{N}\\cdot\\text{m}$). **Kinetic energy** is $KE = \\tfrac{1}{2}mv^2$; **gravitational potential energy** near Earth is $PE = mgh$. The **work-energy theorem** states that the net work on an object equals its change in kinetic energy. In an isolated system with only conservative forces, total **mechanical energy** $KE + PE$ is conserved.",
         statisticalTools: [
           { name: "Work W = F\\cdot d", desc: "Force times displacement in the direction of force. Zero work if force is perpendicular to motion (like centripetal force in circular motion)." },
           { name: "Joule (SI Unit)", desc: "1 J = 1 N\u00B7m. The energy to lift a small apple (~100 g) about 1 m. Food calories are kcal = 4184 J." },
@@ -3200,6 +3200,207 @@ const foundations: Chapter[] = [
         ],
         conceptSummary:
           "Watch a ball roll along a track with hills and valleys. The KE and PE bars trade height as the ball rises and falls — but their sum stays constant (until you add friction). Toggle friction on to see mechanical energy bleed away.",
+      },
+    ],
+  },
+  {
+    id: "f3",
+    num: "F3",
+    title: "Laws of Motion & Machines",
+    description:
+      "Newton's three laws in action, plus the simple machines and classic demos that bring them to life. Yank a rug out, drop a feather and a bowling ball, push off on frictionless ice, and watch Newton's cradle trade energy from one ball to another.",
+    color: "#ef4444",
+    icon: "\u{2699}️",
+    shortDesc: "Inertia, gravity, action-reaction, machines",
+    sections: [
+      {
+        id: "inertia",
+        title: "Inertia (Newton's 1st Law)",
+        description:
+          "An object at rest stays at rest; an object in motion stays in motion — unless a net force acts on it. Yanking a rug out from under a stack of blocks isolates the rug's motion from the blocks' motion, and you can watch inertia directly.",
+        definition:
+          "**Inertia** is a body's resistance to changes in its state of motion. **Newton's first law** states that an object at rest remains at rest, and an object in uniform motion continues in uniform motion in a straight line, unless acted on by a net external force. Mass is the quantitative measure of inertia — a heavier block is harder to start moving and harder to stop. When the rug slides out from under the blocks faster than friction can drag them, the blocks keep the (tiny) velocity they had and simply fall straight down under gravity once the rug is gone.",
+        statisticalTools: [
+          { name: "Inertia", desc: "The tendency of an object to maintain its current velocity (including zero velocity). Quantified by mass — more mass means more inertia." },
+          { name: "Newton's First Law", desc: "An object's velocity is unchanged unless a net external force acts on it. A compact statement of inertia." },
+          { name: "Reference Frame", desc: "An inertial frame is one in which Newton's first law holds. Frames accelerating relative to inertial ones produce fictitious forces (like the push you feel in a braking car)." },
+          { name: "Static vs Kinetic Friction", desc: "Static friction $f_s \\leq \\mu_s N$ prevents relative motion up to a threshold. Once sliding begins, kinetic friction $f_k = \\mu_k N$ takes over, typically smaller than $\\mu_s N$." },
+          { name: "Impulse J = F·Δt", desc: "Force acting over a short time. A quick yank applies large force briefly — enough to move the rug but too short a contact time to accelerate the heavy blocks much." },
+          { name: "Momentum p = mv", desc: "Mass times velocity. Newton's first law in momentum form: $\\Delta p = 0$ when no net force acts." },
+          { name: "Friction Coefficient μ", desc: "Dimensionless ratio of friction force to normal force. Low μ (polished surface) means little coupling; high μ (rough surface) means the blocks ride the rug." },
+          { name: "Threshold Acceleration", desc: "The blocks can only accelerate up to $\\mu_s g$ via friction alone. If the rug accelerates faster than this, the rug slips out from under them." },
+          { name: "Free-Body Analysis", desc: "Before yanking: blocks feel gravity down, normal force up, no horizontal force — so they sit still. During yank: friction tries to drag them, capped by $\\mu_s m g$." },
+          { name: "Tablecloth Trick", desc: "The classic parlor demonstration. Works because impulse (F·Δt) on the plates is small when Δt is small, even if F is large." },
+        ],
+        keyEquations: [
+          "\\vec{F}_{\\text{net}} = 0 \\;\\Rightarrow\\; \\vec{v} = \\text{const}",
+          "f_{\\text{s,max}} = \\mu_s N",
+          "a_{\\text{block,max}} = \\mu_s g",
+        ],
+        conceptSummary:
+          "Yank the rug at fixed speed and watch what happens as you slide the friction μ from 0 (perfect ice) to 1 (sticky). With low μ the rug slips out and the blocks fall straight down; with high μ the blocks get dragged along for the ride.",
+      },
+      {
+        id: "gravity",
+        title: "Gravity & Free Fall",
+        description:
+          "In a vacuum, every object falls at the same rate — a feather and a bowling ball hit the ground together. Turn on air resistance and the feather is betrayed by its huge surface-to-mass ratio, while the ball barely notices the drag.",
+        definition:
+          "**Free fall** is motion under gravity alone. Near Earth's surface, every object in free fall accelerates at $g \\approx 9.81\\,\\text{m}/\\text{s}^2$ downward, regardless of its mass — this is Galileo's insight. **Air resistance** (a form of **drag force**) is an additional force, $F_d \\propto v$ at low speeds or $F_d \\propto v^2$ at high speeds, that depends on shape and cross-section. When drag balances gravity, an object reaches **terminal velocity** and stops accelerating. A feather reaches terminal velocity almost immediately; a bowling ball would only reach it from a skyscraper.",
+        statisticalTools: [
+          { name: "Constant g", desc: "Near Earth's surface $g \\approx 9.81\\,\\text{m}/\\text{s}^2$. Mass-independent — the same number whether you drop a pebble or a piano." },
+          { name: "Equivalence Principle", desc: "Inertial mass (the $m$ in $F=ma$) equals gravitational mass (the $m$ in $F=mg$). This is why $a = g$ independent of mass." },
+          { name: "Kinematic Equations", desc: "For constant $g$: $v = gt$, $y = \\tfrac{1}{2}gt^2$. Both feather and ball follow these without air." },
+          { name: "Linear Drag", desc: "At very low Reynolds numbers, $F_d = bv$ (Stokes drag). Fine dust, mist, and feathers fall in this regime." },
+          { name: "Quadratic Drag", desc: "At high Reynolds numbers, $F_d = \\tfrac{1}{2}\\rho C_d A v^2$. Skydivers, raindrops, and baseballs are in this regime." },
+          { name: "Terminal Velocity", desc: "When drag equals weight, acceleration is zero: $v_t = mg/b$ (linear) or $\\sqrt{2mg/\\rho C_d A}$ (quadratic). Depends on mass — heavier objects have higher $v_t$." },
+          { name: "Cross-Section A", desc: "The frontal area an object presents to the oncoming air. A flat feather has huge A per unit mass; a compact ball has small A per unit mass." },
+          { name: "Mass-to-Area Ratio", desc: "The real distinguisher. Ball: high m/A → gravity wins. Feather: low m/A → drag catches up fast." },
+          { name: "Drag Coefficient C_d", desc: "A dimensionless shape factor. Sphere ≈ 0.47, flat plate ≈ 1.1, streamlined shape ≈ 0.04. Multiplied by air density, area, and v² to get drag." },
+          { name: "Galileo's Experiment", desc: "Tradition says Galileo dropped objects from the Leaning Tower of Pisa. The cleanest modern version is the Apollo 15 moon-surface demo by astronaut David Scott." },
+        ],
+        keyEquations: [
+          "a = g \\approx 9.81\\,\\text{m}/\\text{s}^2",
+          "F_{\\text{net}} = mg - bv",
+          "v_t = \\frac{mg}{b}",
+        ],
+        conceptSummary:
+          "Drop the feather and the bowling ball. Without air, they land together. Toggle air resistance on and the feather quickly reaches terminal velocity while the ball continues accelerating — the gap widens the whole way down.",
+      },
+      {
+        id: "action-reaction",
+        title: "Action & Reaction (Newton's 3rd Law)",
+        description:
+          "Two skaters pushing off each other on frictionless ice exert equal and opposite forces on each other. If one is lighter, that one flies back faster — because the same force produces different accelerations when divided by different masses.",
+        definition:
+          "**Newton's third law** states that when body A exerts a force on body B, body B simultaneously exerts an equal-magnitude, oppositely-directed force on A: $\\vec{F}_{A \\to B} = -\\vec{F}_{B \\to A}$. The two forces always act on **different bodies** (crucial — they never cancel on one object). Because $a = F/m$, a lighter body accelerates more than a heavier one from the same push. **Momentum is conserved**: if the pair started at rest, their total momentum stays zero, so $m_A \\vec{v}_A = -m_B \\vec{v}_B$ after the push.",
+        statisticalTools: [
+          { name: "Newton's Third Law", desc: "Action–reaction pairs are equal in magnitude, opposite in direction, and act on different bodies simultaneously." },
+          { name: "Action–Reaction Pair", desc: "Two forces that share the same interaction. Rocket exhaust pushes down on gas, gas pushes up on rocket. Always same type (contact, gravitational, etc.)." },
+          { name: "Impulse J = FΔt", desc: "Integral of force over the contact time. Both skaters receive the same |J| — but get different $\\Delta v$ because they have different masses." },
+          { name: "Conservation of Momentum", desc: "For an isolated pair, $\\vec{p}_{\\text{total}}$ is conserved. Initially at rest → final momenta sum to zero: $m_A v_A + m_B v_B = 0$." },
+          { name: "Mass-Weighted Velocity", desc: "After the push: $|v_A|/|v_B| = m_B/m_A$. Double the mass of B, and B moves half as fast as A." },
+          { name: "Reference Frame Invariance", desc: "Newton's third law holds in all inertial frames. Momentum conservation is a direct consequence via Noether's theorem (translational symmetry)." },
+          { name: "Rocket Propulsion", desc: "A rocket pushes exhaust gases out; the gases push the rocket forward. No ground contact needed — action-reaction is enough." },
+          { name: "Recoil", desc: "A rifle kicks back because the bullet pushes back on it with the same force it exerted on the bullet. Lighter bullet × fast = heavier rifle × slow." },
+          { name: "Center of Mass", desc: "For an isolated system, the center of mass has zero acceleration — a direct corollary of the third law." },
+          { name: "Common Misconception", desc: "'If forces are equal and opposite, how does anything move?' Because the forces act on different bodies. Each body experiences only its own force and accelerates accordingly." },
+        ],
+        keyEquations: [
+          "\\vec{F}_{A \\to B} = -\\vec{F}_{B \\to A}",
+          "m_A \\vec{v}_A + m_B \\vec{v}_B = 0",
+          "\\frac{|v_A|}{|v_B|} = \\frac{m_B}{m_A}",
+        ],
+        conceptSummary:
+          "Set different masses for A and B, choose a push impulse, and hit 'Push off'. Watch the lighter skater fly back faster — and check that the total momentum (shown in the bottom-right) stays zero throughout.",
+      },
+      {
+        id: "balanced-forces",
+        title: "Balanced vs Unbalanced Forces",
+        description:
+          "A net force — the vector sum of all forces on an object — is what changes velocity. Equal and opposite forces cancel to zero net force, leaving the object to continue whatever it was doing. Any imbalance produces acceleration in the direction of the larger force.",
+        definition:
+          "The **net force** on a body is the vector sum of all forces acting on it: $\\vec{F}_{\\text{net}} = \\sum \\vec{F}_i$. By **Newton's second law**, $\\vec{F}_{\\text{net}} = m\\vec{a}$, so zero net force means zero acceleration — the object's velocity stays constant (which includes 'stays at rest'). This state is called **equilibrium**. When forces don't balance, the object accelerates in the direction of the net force, at $a = F_{\\text{net}}/m$.",
+        statisticalTools: [
+          { name: "Net Force", desc: "$\\vec{F}_{\\text{net}} = \\sum \\vec{F}_i$. All individual forces add as vectors — only the sum determines acceleration." },
+          { name: "Newton's Second Law", desc: "$\\vec{F}_{\\text{net}} = m\\vec{a}$. The only equation that turns forces into motion." },
+          { name: "Equilibrium", desc: "When $\\vec{F}_{\\text{net}} = 0$. Static equilibrium: object at rest. Dynamic equilibrium: object moving at constant velocity." },
+          { name: "Vector Addition", desc: "Forces add head-to-tail like displacements. Two 10 N forces at right angles give a 14.1 N net force at 45°, not 20 N." },
+          { name: "Components", desc: "Along a chosen axis: $F_{\\text{net},x} = \\sum F_{i,x}$. Solving by components turns vector equations into simple algebra." },
+          { name: "Free-Body Diagram", desc: "Draw the object as a dot, with every external force as an arrow. Then apply $\\vec{F}_{\\text{net}} = m\\vec{a}$ component by component." },
+          { name: "Tug-of-War", desc: "Classic balanced-forces demo. Rope doesn't move when both sides pull equally; slides toward the stronger side otherwise." },
+          { name: "Constant Velocity ≠ No Forces", desc: "A car cruising at 60 km/h has engine thrust forward and drag backward — balanced, so velocity is constant. Remove the engine and it slows down." },
+          { name: "Magnitude of Acceleration", desc: "$|a| = |F_{\\text{net}}|/m$. Double the net force → double the acceleration. Double the mass → half the acceleration." },
+          { name: "Direction of Acceleration", desc: "Acceleration is in the direction of the net force, not necessarily the velocity. A car slowing down has $\\vec{a}$ opposite to $\\vec{v}$." },
+        ],
+        keyEquations: [
+          "\\vec{F}_{\\text{net}} = \\sum \\vec{F}_i",
+          "\\vec{F}_{\\text{net}} = m\\vec{a}",
+          "\\vec{F}_{\\text{net}} = 0 \\;\\Leftrightarrow\\; \\vec{v} = \\text{const}",
+        ],
+        conceptSummary:
+          "Dial up the left and right forces independently. When they match, the net-force badge turns green and the box doesn't accelerate. Tip the balance either way and watch the box accelerate in the direction of the bigger force.",
+      },
+      {
+        id: "kinetic-theory",
+        title: "Kinetic Molecular Theory",
+        description:
+          "Matter is made of particles in constant motion, and temperature is the average kinetic energy of that motion. Crank the temperature slider and watch particles transition from a rigid solid (small vibrations around fixed lattice sites) through a liquid (clumped under gravity, freely rearranging) to a gas (high-speed particles filling the container).",
+        definition:
+          "**Kinetic molecular theory** describes matter as a large number of particles in constant random motion, with **temperature** a measure of their average kinetic energy: $\\langle \\tfrac{1}{2}mv^2 \\rangle = \\tfrac{3}{2}k_B T$ for an ideal gas. At low $T$, attractive intermolecular forces dominate and hold particles near fixed lattice positions (**solid**). At medium $T$, particles escape their lattice sites but still stick together loosely (**liquid**). At high $T$, kinetic energy overwhelms attraction and particles fly freely through the container (**gas**). Collisions with walls are what we feel as **pressure**.",
+        statisticalTools: [
+          { name: "Average Kinetic Energy", desc: "$\\langle KE \\rangle = \\tfrac{3}{2}k_B T$ for a monatomic ideal gas. Each translational degree of freedom contributes $\\tfrac{1}{2}k_B T$ — the **equipartition theorem**." },
+          { name: "Boltzmann Constant", desc: "$k_B \\approx 1.38 \\times 10^{-23}\\,\\text{J}/\\text{K}$. The conversion factor between the microscopic (single-particle energy) and macroscopic (temperature) worlds." },
+          { name: "Maxwell–Boltzmann Distribution", desc: "At temperature $T$, particle speeds follow $f(v) \\propto v^2 e^{-mv^2 / 2k_B T}$. Higher $T$ broadens the distribution and shifts the peak to higher speeds." },
+          { name: "Pressure from Collisions", desc: "Gas pressure arises from particle-wall collisions. $P = nk_B T / V$ for an ideal gas — the ideal gas law." },
+          { name: "Elastic Collisions", desc: "In an ideal gas, particle-particle collisions conserve both momentum and kinetic energy. No energy is lost to heat within the system." },
+          { name: "Phase Transitions", desc: "Solid → liquid (melting) and liquid → gas (vaporization) happen at specific temperatures where latent heat breaks intermolecular bonds." },
+          { name: "Intermolecular Forces", desc: "Attractive van der Waals (or hydrogen bonding for water) glue particles together in the solid and liquid phases. Overcome by thermal energy $k_B T$." },
+          { name: "Diffusion", desc: "The random motion of particles causes gases to mix. Diffusion rate $\\propto \\sqrt{T/m}$ — light molecules at high T mix fastest." },
+          { name: "Equation of State", desc: "Relation between $P$, $V$, $T$, $N$. Ideal gas: $PV = Nk_BT$. Real substances deviate due to particle size and attractions (van der Waals equation)." },
+          { name: "Thermal Equilibrium", desc: "When two systems are in thermal contact they exchange energy until $T_1 = T_2$. At equilibrium, average particle kinetic energies match." },
+        ],
+        keyEquations: [
+          "\\langle \\tfrac{1}{2}mv^2 \\rangle = \\tfrac{3}{2} k_B T",
+          "PV = N k_B T",
+          "v_{\\text{rms}} = \\sqrt{\\tfrac{3 k_B T}{m}}",
+        ],
+        conceptSummary:
+          "Drag the temperature slider up and down. At low T you see a crystalline lattice jitter; at medium T the lattice melts and particles clump at the bottom; at high T they fly around and fill the box like a gas. Watch the average speed scale with √T.",
+      },
+      {
+        id: "lever",
+        title: "The Lever",
+        description:
+          "A lever trades distance for force. A small weight far from the fulcrum can balance — or lift — a heavier weight close to it, because what matters is not the force alone but the force times its distance from the pivot. This product is called torque.",
+        definition:
+          "A **lever** is a rigid bar that pivots around a fixed point, the **fulcrum**. The effect of a force on the bar is measured by its **torque** (or moment): $\\tau = r \\times F$, where $r$ is the distance from the fulcrum. A lever is in **rotational equilibrium** when the clockwise torques balance the counterclockwise ones: $m_L \\cdot d_L = m_R \\cdot d_R$. This is why a child on a long lever arm can lift a heavy adult sitting close to the fulcrum — distance multiplies force. The mechanical advantage $MA = d_L/d_R$ is the force-multiplier the lever provides.",
+        statisticalTools: [
+          { name: "Torque τ = r × F", desc: "The rotational analog of force. A force $F$ at perpendicular distance $r$ from the pivot produces torque $\\tau = rF$ (or $rF\\sin\\theta$ for non-perpendicular). Units: N·m." },
+          { name: "Fulcrum", desc: "The pivot point of the lever. Can be fixed (seesaw) or movable (wheelbarrow, where the wheel is the fulcrum)." },
+          { name: "Mechanical Advantage", desc: "Ratio of output force to input force: $MA = F_{\\text{out}}/F_{\\text{in}} = d_{\\text{in}}/d_{\\text{out}}$. A lever with MA = 5 lets you lift 5× your pushing force — at the cost of moving 5× farther." },
+          { name: "Rotational Equilibrium", desc: "Net torque = 0. Separate from translational equilibrium; a body can be in one without the other (a spinning top at rest horizontally, for instance)." },
+          { name: "Lever Classes", desc: "1st class: fulcrum between load and effort (seesaw). 2nd class: load between fulcrum and effort (wheelbarrow). 3rd class: effort between fulcrum and load (tweezers)." },
+          { name: "Conservation of Energy", desc: "No free lunch: the force gain of a lever is paid for by a distance loss. Work in = work out: $F_{\\text{in}} d_{\\text{in}} = F_{\\text{out}} d_{\\text{out}}$." },
+          { name: "Angular Acceleration", desc: "When net torque ≠ 0, the bar angularly accelerates: $\\tau_{\\text{net}} = I\\alpha$, where $I$ is the moment of inertia and $\\alpha$ the angular acceleration." },
+          { name: "Moment of Inertia", desc: "Rotational analog of mass: $I = \\sum m_i r_i^2$. Mass concentrated near the pivot has small $I$; mass far from it has large $I$." },
+          { name: "Archimedes", desc: "'Give me a lever long enough and a fulcrum to place it, and I shall move the world.' A poetic but mathematically correct statement of mechanical advantage." },
+          { name: "Everyday Levers", desc: "Scissors, bottle openers, crowbars, nutcrackers, pliers, see-saws, even your forearm (elbow = fulcrum, biceps = effort, hand = load). Ubiquitous." },
+        ],
+        keyEquations: [
+          "\\tau = r \\cdot F",
+          "m_L \\cdot d_L = m_R \\cdot d_R",
+          "MA = \\frac{d_{\\text{in}}}{d_{\\text{out}}} = \\frac{F_{\\text{out}}}{F_{\\text{in}}}",
+        ],
+        conceptSummary:
+          "Set the two masses unequal, then slide the fulcrum. When the product mass × distance matches on both sides, the bar is level (green 'balanced' status). Move the fulcrum toward the heavier weight to balance — that's the lever arm at work.",
+      },
+      {
+        id: "newtons-cradle",
+        title: "Newton's Cradle & Energy Transfer",
+        description:
+          "Five steel balls touching in a row. Pull the end one up and let it swing down: instead of all five jiggling, only the ball on the opposite end flies out — and with the same speed the first ball had. Momentum and kinetic energy are transmitted down the line, leaving the middle balls barely moving.",
+        definition:
+          "**Newton's cradle** is a classic demonstration of the conservation of **momentum** and **kinetic energy** in elastic collisions. When the lifted ball swings down and strikes the row, each ball transmits its momentum to the next essentially instantaneously through an elastic compression wave. The only way to simultaneously conserve both $\\sum m v = p$ and $\\sum \\tfrac{1}{2} m v^2 = E$ with equal-mass balls is for exactly as many balls to leave the far side as struck the near side — with the same speed. Gravitational potential energy at the top of the swing converts to kinetic energy at the bottom, then to elastic potential energy in the brief compression, then back to kinetic energy in the last ball, then back to gravitational PE as it rises.",
+        statisticalTools: [
+          { name: "Elastic Collision", desc: "A collision in which kinetic energy is conserved (in addition to momentum, which is always conserved). Approximated by hardened steel balls." },
+          { name: "Conservation of Momentum", desc: "$\\sum m_i v_i$ before = $\\sum m_i v_i$ after. Follows from Newton's third law; holds for any isolated system regardless of internal details." },
+          { name: "Conservation of KE", desc: "$\\sum \\tfrac{1}{2} m_i v_i^2$ before = $\\sum \\tfrac{1}{2} m_i v_i^2$ after, only for elastic collisions. Inelastic collisions lose KE to heat, sound, deformation." },
+          { name: "Energy Conversion Chain", desc: "GPE ($mgh$) → KE ($\\tfrac{1}{2}mv^2$) → elastic PE (brief compression) → KE → GPE. Energy changes form at every stage." },
+          { name: "Gravitational PE", desc: "$U = mgh$. Stored when the ball is raised, released when it falls. Relative to a chosen reference height." },
+          { name: "Simple Pendulum", desc: "Each ball swings as a pendulum before collision. Period $T = 2\\pi\\sqrt{L/g}$ for small angles — independent of mass and amplitude." },
+          { name: "Impulse Transmission", desc: "The compression wave through the row of balls carries the impulse. In reality, finite elastic-wave speed means the transfer isn't quite instantaneous." },
+          { name: "Equal Masses Requirement", desc: "The clean '$n$ balls in, $n$ balls out' behavior only works when all balls have equal mass. Unequal masses give more complex outcomes." },
+          { name: "Damping Losses", desc: "Each collision actually dissipates a tiny bit of energy as heat and sound — which is why the cradle eventually stops swinging." },
+          { name: "Coefficient of Restitution", desc: "Ratio of relative velocity after to before collision. Perfect elastic = 1. Real steel balls ≈ 0.9, which is why the cradle runs for minutes, not forever." },
+        ],
+        keyEquations: [
+          "\\sum m_i v_i = \\text{const}",
+          "\\sum \\tfrac{1}{2} m_i v_i^2 = \\text{const}",
+          "mgh = \\tfrac{1}{2}mv^2",
+        ],
+        conceptSummary:
+          "Lift one end ball and release. Watch the middle balls stay still while the other end ball swings out with the same energy. Total KE stays roughly constant — any drift is the small damping built into the model.",
       },
     ],
   },
