@@ -3221,6 +3221,77 @@ const nuclearPhysics: Chapter[] = [
   },
 ];
 
+// ─── GENERAL RELATIVITY ─────────────────────────────────────────────
+
+const generalRelativity: Chapter[] = [
+  {
+    id: "g1",
+    num: "G1",
+    title: "General Relativity",
+    description:
+      "Schwarzschild geometry: the effective potential of a particle around a black hole, and the deflection of light that produces gravitational lensing and Einstein rings.",
+    color: "#0ea5e9",
+    icon: "\u{1F573}\u{FE0F}",
+    shortDesc: "Black holes & lensing",
+    sections: [
+      {
+        id: "schwarzschild-orbit",
+        title: "Schwarzschild Geodesics",
+        description:
+          "Orbits around a Schwarzschild black hole, built from the effective potential and numerical integration. Shows perihelion precession, the ISCO, and capture when energy exceeds the potential barrier.",
+        definition:
+          "The **Schwarzschild metric** is the unique spherically-symmetric vacuum solution of Einstein's equations: $ds^2 = -(1-r_s/r)c^2 dt^2 + (1-r_s/r)^{-1}dr^2 + r^2 d\\Omega^2$, with **Schwarzschild radius** $r_s = 2GM/c^2$. Time-like geodesics (the worldlines of freely-falling massive test particles) obey a 1D equation of motion with effective potential $V^2(r) = (1 - r_s/r)(1 + L^2/r^2)$. The extra factor $(1-r_s/r)$ — absent from Newton — makes $V$ drop to $-\\infty$ as $r \\to r_s$, opens up an **innermost stable circular orbit** at $r=6M$, and causes bound orbits to **precess** — famously accounting for 43″/century of Mercury's perihelion.",
+        statisticalTools: [
+          { name: "Schwarzschild Metric", desc: "$ds^2 = -(1-r_s/r)c^2dt^2 + (1-r_s/r)^{-1}dr^2 + r^2 d\\Omega^2$. Static, spherically-symmetric, asymptotically flat." },
+          { name: "Event Horizon", desc: "$r = r_s = 2GM/c^2$. A one-way membrane: nothing (including light) can escape from inside. The Sun's would be $\\sim 3$ km; the Earth's $\\sim 9$ mm." },
+          { name: "Effective Potential", desc: "$V^2(r) = (1-r_s/r)(1+L^2/r^2)$. Unlike Newton, has both a maximum (unstable circular orbit) and a minimum (stable) for $L>2\\sqrt{3}\\,M$." },
+          { name: "ISCO", desc: "Innermost stable circular orbit at $r = 6M$ (for a non-rotating BH). Inner edge of accretion disks; sets the efficiency of gravitational energy extraction." },
+          { name: "Photon Sphere", desc: "Unstable circular orbit of light at $r = 3M$. Responsible for the bright ring surrounding the shadow in the Event Horizon Telescope images of M87* and Sgr A*." },
+          { name: "Perihelion Precession", desc: "$\\Delta\\phi_{\\text{per orbit}} = 6\\pi GM/(c^2 a(1-e^2))$. Predicts Mercury's 43″/century — the first triumph of GR." },
+          { name: "Capture vs Scatter", desc: "For $E$ greater than the centrifugal barrier, the particle falls into the horizon; otherwise it's deflected and returns — the relativistic analog of scattering off a central potential." },
+          { name: "Kepler Limit", desc: "As $r_s/r \\to 0$, $V^2 \\to 1 + L^2/r^2 - 2GM/(rc^2)$ and the orbit equation reduces to the Newtonian $1/r$ potential — every bound orbit a closed conic section." },
+          { name: "Null Geodesics", desc: "Light rays satisfy $V^2(r) = L^2(1-r_s/r)/r^2$. No stable circular orbits exist — only the unstable one at $r=3M$." },
+          { name: "Kretschmann Invariant", desc: "$R_{abcd}R^{abcd} = 48 M^2/r^6$. Measures true tidal curvature and is finite at the horizon (not a physical singularity) but diverges at $r=0$ (physical singularity)." },
+        ],
+        keyEquations: [
+          "r_s = \\frac{2GM}{c^2}",
+          "V^2(r) = \\left(1-\\frac{r_s}{r}\\right)\\!\\left(1+\\frac{L^2}{r^2}\\right)",
+          "\\Delta\\phi = \\frac{6\\pi GM}{c^2 a (1-e^2)}",
+        ],
+        conceptSummary:
+          "Use $L \\approx 4M$ and $E \\approx 0.96$ for a rosette-like bound orbit that fills in a ring near $r=6\\text{–}10M$ — the precessing ellipse of GR. Crank $L$ down toward $2\\sqrt{3}\\,M$ and the orbit spirals into the horizon; crank $E$ above 1 and the particle escapes.",
+      },
+      {
+        id: "gravitational-lensing",
+        title: "Gravitational Lensing",
+        description:
+          "Mass bends light. A point-mass lens produces two images of a background source — or a perfect Einstein ring if the source is directly behind it.",
+        definition:
+          "**Gravitational lensing** is the deflection of light by gravity: a ray passing a mass $M$ at impact parameter $b$ bends through angle $\\alpha = 4GM/(c^2 b)$ — twice the Newtonian prediction, a result Einstein derived in 1915 and Eddington confirmed during the 1919 solar eclipse. For a point lens, the **thin-lens equation** $\\beta = \\theta - \\theta_E^2/\\theta$ yields two image angles for any single source — or a complete **Einstein ring** of radius $\\theta_E$ when $\\beta = 0$. Galaxy clusters extend the setup to produce giant arcs, and transient magnification (microlensing) is used to detect exoplanets and stellar-mass black holes.",
+        statisticalTools: [
+          { name: "Deflection Angle", desc: "$\\alpha = 4GM/(c^2 b)$. Twice the naive Newtonian prediction. Derived from null geodesics in Schwarzschild; confirmed by Eddington 1919." },
+          { name: "Thin-Lens Equation", desc: "$\\beta = \\theta - \\theta_E^2/\\theta$, a quadratic with two real solutions: $\\theta_\\pm = (\\beta \\pm \\sqrt{\\beta^2 + 4\\theta_E^2})/2$." },
+          { name: "Einstein Radius", desc: "$\\theta_E = \\sqrt{4GM/c^2 \\cdot D_{LS}/(D_L D_S)}$. The angular scale of lensing — depends on mass and angular-diameter distances to lens and source." },
+          { name: "Einstein Ring", desc: "Perfect alignment ($\\beta=0$): the image merges into a complete ring at $\\theta = \\theta_E$. First observed in 1987 (MG1131+0456)." },
+          { name: "Magnification", desc: "$A = |\\theta/\\beta \\cdot d\\theta/d\\beta| = (u^2+2)/(u\\sqrt{u^2+4})$ where $u = \\beta/\\theta_E$. Diverges as $u\\to 0$ (caustic crossings)." },
+          { name: "Microlensing", desc: "Brightening curves when a compact object passes in front of a background star. Used to detect exoplanets, brown dwarfs, and possibly primordial black holes." },
+          { name: "Strong vs Weak Lensing", desc: "Strong: multiple images, giant arcs, Einstein rings. Weak: statistical distortion (shear) of many background galaxies used to map dark matter distributions." },
+          { name: "Time Delay", desc: "$\\Delta t \\propto D M(1+z_L)$. Light from the two images of a variable source (e.g. quasar) arrives at different times. Used to measure $H_0$ independent of the distance ladder." },
+          { name: "Caustics", desc: "Lines in the source plane where magnification diverges. Crossing one produces a new pair of images or merges two existing ones." },
+          { name: "Dark Matter Detection", desc: "Weak-lensing maps of galaxy clusters show mass distributions far larger than the visible matter — a key line of evidence for dark matter." },
+        ],
+        keyEquations: [
+          "\\alpha = \\frac{4GM}{c^2 b}",
+          "\\beta = \\theta - \\frac{\\theta_E^2}{\\theta} \\implies \\theta_\\pm = \\frac{\\beta \\pm \\sqrt{\\beta^2 + 4\\theta_E^2}}{2}",
+          "\\theta_E = \\sqrt{\\frac{4GM}{c^2}\\,\\frac{D_{LS}}{D_L D_S}}",
+        ],
+        conceptSummary:
+          "Slide the source offset $\\beta$ through zero. The two images — one outside and one inside the Einstein ring — merge into a ring at alignment and split apart as the source drifts away. Total magnification peaks at $\\beta=0$.",
+      },
+    ],
+  },
+];
+
 // ─── FOUNDATIONS ────────────────────────────────────────────────────
 // Classroom-style introduction to the basic ingredients of physics.
 // Designed to be approachable for high-school students and a refresher
@@ -3727,6 +3798,12 @@ export const chapterGroups: ChapterGroup[] = [
     subtitle: "Binding energy, decay, and the iron peak",
     chapters: nuclearPhysics,
   },
+  {
+    id: "general-relativity",
+    title: "General Relativity",
+    subtitle: "Curved spacetime & gravitational lensing",
+    chapters: generalRelativity,
+  },
 ];
 
 export const allChapters: Chapter[] = [
@@ -3739,6 +3816,7 @@ export const allChapters: Chapter[] = [
   ...optics,
   ...relativity,
   ...nuclearPhysics,
+  ...generalRelativity,
 ];
 
 export function getChapter(id: string): Chapter | undefined {

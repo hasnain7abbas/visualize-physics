@@ -256,6 +256,11 @@ import { N1BindingEnergy, N1RadioactiveDecay } from "./N1Nuclear";
 simulations["n1-binding-energy"] = N1BindingEnergy;
 simulations["n1-radioactive-decay"] = N1RadioactiveDecay;
 
+// G1 - General Relativity
+import { G1SchwarzschildOrbit, G1GravitationalLensing } from "./G1Gravity";
+simulations["g1-schwarzschild-orbit"] = G1SchwarzschildOrbit;
+simulations["g1-gravitational-lensing"] = G1GravitationalLensing;
+
 export function getSimulation(chapterId: string, sectionId: string): Component | undefined {
   return simulations[`${chapterId}-${sectionId}`];
 }

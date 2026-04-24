@@ -90,6 +90,9 @@ export default defineConfig({
           "sim-nuclear": [
             "./src/simulations/N1Nuclear.tsx",
           ],
+          "sim-gr": [
+            "./src/simulations/G1Gravity.tsx",
+          ],
         },
       },
     },
