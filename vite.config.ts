@@ -82,6 +82,7 @@ export default defineConfig({
             "./src/simulations/W1WaveEquation.tsx",
             "./src/simulations/W2Interference.tsx",
             "./src/simulations/W3DopplerEffect.tsx",
+            "./src/simulations/W4Resonance.tsx",
           ],
           "sim-optics": [
             "./src/simulations/O1Optics.tsx",

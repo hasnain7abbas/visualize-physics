@@ -3087,6 +3087,72 @@ const wavesOscillations: Chapter[] = [
       },
     ],
   },
+  {
+    id: "w4",
+    num: "W4",
+    title: "Resonance & 2D Waves",
+    description:
+      "Driven-damped oscillators and 2D membrane modes. The Lorentzian amplitude-response curve near resonance, and the (m, n) mode patterns of a rectangular drum.",
+    color: "#ec4899",
+    icon: "\u{1F941}",
+    shortDesc: "Resonance & membranes",
+    sections: [
+      {
+        id: "driven-oscillator",
+        title: "Damped Driven Oscillator",
+        description:
+          "$m\\ddot x + 2m\\gamma\\dot x + m\\omega_0^2 x = F_0\\cos\\omega_d t$. Amplitude response is Lorentzian with peak height set by $1/(2\\gamma\\omega_0)$.",
+        definition:
+          "A **damped driven oscillator** obeys $\\ddot x + 2\\gamma\\dot x + \\omega_0^2 x = (F_0/m)\\cos\\omega_d t$. At long times the transient solution dies and only the steady-state oscillation at the driving frequency remains, with amplitude $A(\\omega_d) = (F_0/m)/\\sqrt{(\\omega_0^2 - \\omega_d^2)^2 + (2\\gamma\\omega_d)^2}$ and a phase lag that transitions from 0 (below resonance) to $\\pi$ (above). The response peaks near $\\omega_d = \\omega_0$ at amplitude $\\approx F_0/(2m\\gamma\\omega_0)$ — a **Lorentzian** curve. The **Q factor** $Q = \\omega_0/(2\\gamma)$ measures its sharpness: bridges, radio receivers, and wine glasses all break at resonance for high-$Q$, weakly-damped systems.",
+        statisticalTools: [
+          { name: "Equation of Motion", desc: "$\\ddot x + 2\\gamma\\dot x + \\omega_0^2 x = F(t)/m$. Linear second-order ODE; sum of transient (homogeneous) and steady-state (particular) solutions." },
+          { name: "Amplitude Response", desc: "$A(\\omega) = (F_0/m)/\\sqrt{(\\omega_0^2-\\omega^2)^2 + (2\\gamma\\omega)^2}$. Lorentzian peak; full width at half max $= 2\\gamma$ for $\\gamma \\ll \\omega_0$." },
+          { name: "Phase Lag", desc: "$\\tan\\phi = 2\\gamma\\omega/(\\omega_0^2 - \\omega^2)$. 0 below resonance, $\\pi/2$ at resonance, $\\pi$ far above. Visible as lag between drive and response waveforms." },
+          { name: "Quality Factor Q", desc: "$Q = \\omega_0/(2\\gamma) = 2\\pi E_{\\text{stored}}/E_{\\text{lost per cycle}}$. Sharp peaks need high Q. Atomic clocks: $Q > 10^{10}$; tuning forks: $Q \\sim 10^4$; a wet finger on wine glass: $Q \\sim 500$." },
+          { name: "Resonant Frequency Shift", desc: "Peak of $A(\\omega)$ is at $\\omega_r = \\sqrt{\\omega_0^2 - 2\\gamma^2}$, slightly below $\\omega_0$. Vanishes for overdamped ($\\gamma > \\omega_0/\\sqrt{2}$) systems." },
+          { name: "Transient Decay", desc: "Homogeneous solution: $e^{-\\gamma t}[A\\cos\\omega_1 t + B\\sin\\omega_1 t]$ with $\\omega_1 = \\sqrt{\\omega_0^2 - \\gamma^2}$. Dies on timescale $1/\\gamma$." },
+          { name: "Power Absorbed", desc: "$\\langle P\\rangle = \\tfrac{1}{2}F_0^2 \\gamma\\omega^2/[(omega_0^2-\\omega^2)^2 + (2\\gamma\\omega)^2]$. Peaks exactly at $\\omega_d = \\omega_0$." },
+          { name: "Impedance", desc: "$Z(\\omega) = m(2\\gamma + i(\\omega - \\omega_0^2/\\omega))$. Electrical RLC circuits obey the same equation with $\\omega_0 = 1/\\sqrt{LC}$, $\\gamma = R/2L$." },
+          { name: "Steady State vs Transient", desc: "Total response: $x(t) = x_{\\text{trans}}(t) + x_{\\text{ss}}(t)$. Transient dies; steady-state lasts as long as the drive." },
+          { name: "Critical Damping", desc: "$\\gamma = \\omega_0$. Fastest return to equilibrium without oscillation — the design target for door closers and car shock absorbers." },
+        ],
+        keyEquations: [
+          "\\ddot x + 2\\gamma\\dot x + \\omega_0^2 x = \\frac{F_0}{m}\\cos\\omega_d t",
+          "A(\\omega_d) = \\frac{F_0/m}{\\sqrt{(\\omega_0^2 - \\omega_d^2)^2 + (2\\gamma\\omega_d)^2}}",
+          "Q = \\frac{\\omega_0}{2\\gamma}",
+        ],
+        conceptSummary:
+          "Start off-resonance — the mass hardly moves. Slide $\\omega_d$ through $\\omega_0$ and the amplitude shoots up the Lorentzian peak. Higher $\\gamma$ flattens the curve (lower $Q$), showing why engineers add damping to avoid resonant failure.",
+      },
+      {
+        id: "membrane-modes",
+        title: "Rectangular Drum Modes",
+        description:
+          "Vibrating membrane clamped at its edges: modes $u_{mn} = \\sin(m\\pi x/L_x)\\sin(n\\pi y/L_y)\\cos(\\omega_{mn} t)$.",
+        definition:
+          "A **vibrating membrane** (a 2D analog of a string) satisfies the 2D wave equation $\\partial_t^2 u = c^2(\\partial_x^2 + \\partial_y^2) u$. On a rectangle of sides $L_x, L_y$ with fixed-edge boundary conditions, the normal modes are $u_{mn}(x,y,t) = \\sin(m\\pi x/L_x)\\sin(n\\pi y/L_y)\\cos(\\omega_{mn} t)$ with angular frequencies $\\omega_{mn} = c\\pi\\sqrt{(m/L_x)^2 + (n/L_y)^2}$. Unlike a 1D string — whose overtones are integer multiples of the fundamental and therefore sound harmonic — the 2D spectrum is **inharmonic**: most overtones are irrational multiples of $\\omega_{11}$. That inharmonicity is precisely why drums produce pitched *noise* rather than a clear musical note.",
+        statisticalTools: [
+          { name: "2D Wave Equation", desc: "$\\partial_t^2 u = c^2 \\nabla^2 u$. Linear; solutions obtainable by separation of variables on rectangles, disks, and any region where the Helmholtz equation is separable." },
+          { name: "Separation of Variables", desc: "Factor $u(x,y,t) = X(x)Y(y)T(t)$. Plug into the PDE; each factor satisfies a 1D harmonic-oscillator equation. Ansatz that works for any separable geometry." },
+          { name: "Mode (m, n)", desc: "Integer pair labeling the mode. $m$ half-wavelengths along $x$, $n$ along $y$. Total $m+n-1$ nodal lines inside the drum." },
+          { name: "Spectrum Formula", desc: "$\\omega_{mn}^2 = c^2\\pi^2[(m/L_x)^2 + (n/L_y)^2]$. Square of frequencies is linear in $m^2, n^2$ — the discrete Laplacian eigenvalues." },
+          { name: "Degeneracy", desc: "For $L_x = L_y$: modes $(m,n)$ and $(n,m)$ are degenerate (same $\\omega$, orthogonal shapes). Any linear combination is also a mode." },
+          { name: "Chladni Patterns", desc: "Nodal lines visualized by sand on a driven plate: grains collect where displacement is zero. Beautiful demonstration of 2D eigenmodes." },
+          { name: "Inharmonicity", desc: "Ratios $\\omega_{mn}/\\omega_{11} = \\sqrt{(m^2+n^2)/2}$ are generally irrational — the reason drums don't play clear pitches." },
+          { name: "Circular Drum (Bessel)", desc: "On a disk: modes involve $J_n(kr)$ with $k$ the $m$-th zero of $J_n$. Overtones even more inharmonic — famous ratios like $\\omega_{01}/\\omega_{11} \\approx 2.30$." },
+          { name: "Standing Wave Superposition", desc: "General initial condition expands in normal modes: $u(x,y,t) = \\sum_{mn} c_{mn} \\sin(m\\pi x/L_x)\\sin(n\\pi y/L_y)\\cos(\\omega_{mn}t)$." },
+          { name: "Group Theory of Modes", desc: "Symmetries of the boundary (squares, circles, triangles) organize modes into representations. Used in acoustics, optics, and molecular vibrations." },
+        ],
+        keyEquations: [
+          "\\partial_t^2 u = c^2(\\partial_x^2 + \\partial_y^2) u",
+          "u_{mn}(x,y,t) = \\sin\\!\\left(\\frac{m\\pi x}{L_x}\\right)\\sin\\!\\left(\\frac{n\\pi y}{L_y}\\right)\\cos\\omega_{mn} t",
+          "\\omega_{mn} = c\\pi\\sqrt{\\frac{m^2}{L_x^2} + \\frac{n^2}{L_y^2}}",
+        ],
+        conceptSummary:
+          "Pick $(m, n)$ and watch the mode oscillate between red (positive displacement) and blue (negative). Black internal lines are the nodes. Try $(1, 1)$ for the fundamental and $(3, 4)$ for a complex high-order mode.",
+      },
+    ],
+  },
 ];
 
 // ─── OPTICS ─────────────────────────────────────────────────────────

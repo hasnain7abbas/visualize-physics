@@ -208,6 +208,11 @@ import { E4Faraday, E4LorentzForce } from "./E4Induction";
 simulations["e4-faraday"] = E4Faraday;
 simulations["e4-lorentz-force"] = E4LorentzForce;
 
+// W4 - Resonance & 2D Waves
+import { W4DrivenOscillator, W4MembraneModes } from "./W4Resonance";
+simulations["w4-driven-oscillator"] = W4DrivenOscillator;
+simulations["w4-membrane-modes"] = W4MembraneModes;
+
 // W1 - Wave Equation in 1D
 import { W1StandingWaves, W1FourierModes, W1EnergyDensity } from "./W1WaveEquation";
 simulations["w1-standing-waves"] = W1StandingWaves;
