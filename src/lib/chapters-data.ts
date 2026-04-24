@@ -3150,6 +3150,77 @@ const relativity: Chapter[] = [
   },
 ];
 
+// ─── NUCLEAR PHYSICS ────────────────────────────────────────────────
+
+const nuclearPhysics: Chapter[] = [
+  {
+    id: "n1",
+    num: "N1",
+    title: "Nuclear Physics",
+    description:
+      "Binding energy via the semi-empirical mass formula and radioactive decay as a Poisson process. Explains why iron is the most tightly bound nucleus and why fission and fusion both release energy.",
+    color: "#dc2626",
+    icon: "\u{269B}\u{FE0F}",
+    shortDesc: "Binding energy & decay",
+    sections: [
+      {
+        id: "binding-energy",
+        title: "Binding Energy & the SEMF",
+        description:
+          "The semi-empirical mass formula predicts the binding energy per nucleon across the periodic table, with its characteristic peak at iron-56.",
+        definition:
+          "The **semi-empirical (Bethe-Weizsäcker) mass formula** models a nucleus as a charged liquid drop. It approximates the binding energy $B(A, Z)$ as the sum of a bulk volume term $a_v A$ that grows linearly with the nucleon count, a surface correction $-a_s A^{2/3}$, a Coulomb repulsion term $-a_c Z(Z-1)/A^{1/3}$, an asymmetry term $-a_a(A-2Z)^2/A$ that punishes unequal proton/neutron counts, and a pairing term. Dividing by $A$ gives the **binding energy per nucleon** $B/A$, which peaks near $A \\approx 56$ (iron) — the reason fusion of light nuclei *and* fission of heavy nuclei both release energy.",
+        statisticalTools: [
+          { name: "Bethe-Weizsäcker Formula", desc: "$B(A,Z) = a_v A - a_s A^{2/3} - a_c Z(Z-1)/A^{1/3} - a_a(A-2Z)^2/A \\pm \\delta$. Five terms from a liquid-drop + shell correction." },
+          { name: "Volume Term", desc: "$a_v A$. Short-range nucleon-nucleon attraction saturates — each interior nucleon sees roughly the same environment. Coefficient $a_v \\approx 15.8$ MeV." },
+          { name: "Surface Term", desc: "$-a_s A^{2/3}$. Surface nucleons have fewer neighbors, so they contribute less binding — the same effect that gives liquids surface tension." },
+          { name: "Coulomb Term", desc: "$-a_c Z(Z-1)/A^{1/3}$. Proton-proton electrostatic repulsion. Grows faster with $Z$ than the attractive terms, which sets the upper end of the periodic table." },
+          { name: "Asymmetry Term", desc: "$-a_a(A-2Z)^2/A$. Quantum-mechanical cost of filling higher-energy neutron or proton shells when the numbers differ. Drives the valley of $\\beta$-stability toward $N=Z$ for light nuclei." },
+          { name: "Pairing Term", desc: "$\\pm a_p/\\sqrt{A}$: extra binding for even-even nuclei, penalty for odd-odd. Origin of the so-called \"staircase\" in isotope binding-energy plots." },
+          { name: "Valley of Stability", desc: "Locus of $Z$ minimizing $B(A,Z)$ for each $A$. For light nuclei $Z \\approx A/2$; Coulomb repulsion pulls heavier nuclei toward $Z < A/2$." },
+          { name: "Magic Numbers", desc: "Z or N = 2, 8, 20, 28, 50, 82, 126. Nuclei with magic $N$ or $Z$ are extra-bound — shell-model evidence of nucleon orbital structure. Doubly-magic = very stable (e.g. ⁴He, ¹⁶O, ⁴⁰Ca, ²⁰⁸Pb)." },
+          { name: "Fission Energy", desc: "Splitting a heavy nucleus into two mid-mass nuclei moves closer to the iron peak, releasing ~1 MeV/nucleon — the basis of reactors and nuclear weapons." },
+          { name: "Fusion Energy", desc: "Combining light nuclei up to iron also releases energy. $d + t \\to ^4\\mathrm{He} + n$ releases 17.6 MeV — the target reaction of tokamak fusion." },
+        ],
+        keyEquations: [
+          "B(A,Z) = a_v A - a_s A^{2/3} - a_c \\frac{Z(Z-1)}{A^{1/3}} - a_a \\frac{(A-2Z)^2}{A} \\pm \\delta",
+          "\\left(\\frac{B}{A}\\right)_{\\max} \\approx 8.79\\,\\text{MeV at}\\ A\\approx 56",
+          "E_{\\text{fuse/fiss}} = \\big[(B/A)_\\text{final} - (B/A)_\\text{initial}\\big] A",
+        ],
+        conceptSummary:
+          "Sweep $A$ across the periodic table. The $B/A$ curve rises steeply from hydrogen, peaks near iron, and then slowly declines — every arrow toward iron releases energy, and that's why stars fuse elements up to iron but no further without catastrophic collapse.",
+      },
+      {
+        id: "radioactive-decay",
+        title: "Radioactive Decay & Chains",
+        description:
+          "Unstable nuclei decay at a rate proportional to how many are left, giving exponential decay. In a chain, daughter nuclei build up and then decay into their own daughters.",
+        definition:
+          "**Radioactive decay** is a memoryless Poisson process: each unstable nucleus has a fixed probability $\\lambda\\,dt$ of decaying in the next instant, independent of its history. A population of $N_0$ nuclei therefore evolves as $N(t) = N_0 e^{-\\lambda t}$, with half-life $t_{1/2} = \\ln 2 / \\lambda$. For a chain parent → daughter → stable, the **Bateman equations** give $N_D(t) = N_0\\,\\lambda_P/(\\lambda_D - \\lambda_P) \\cdot (e^{-\\lambda_P t} - e^{-\\lambda_D t})$ — the daughter population grows, reaches a maximum, and then decays once the parent is depleted. Carbon dating, uranium-lead geochronology, and radionuclide imaging all rest on this law.",
+        statisticalTools: [
+          { name: "Exponential Law", desc: "$N(t) = N_0 e^{-\\lambda t}$. Equivalent to saying the decay is a Poisson process with constant rate $\\lambda$." },
+          { name: "Half-Life", desc: "$t_{1/2} = \\ln 2 / \\lambda \\approx 0.693/\\lambda$. Time for half the nuclei to decay. Independent of starting amount — characteristic of exponential processes." },
+          { name: "Mean Lifetime", desc: "$\\tau = 1/\\lambda = t_{1/2}/\\ln 2$. The expected decay time of an individual nucleus." },
+          { name: "Activity", desc: "$A(t) = \\lambda N(t)$. Decays per second. Unit: becquerel (Bq) $= 1$/s; curie (Ci) $= 3.7 \\times 10^{10}$ Bq." },
+          { name: "Bateman Equations", desc: "Coupled ODEs $\\dot N_i = \\lambda_{i-1}N_{i-1} - \\lambda_i N_i$ for each member of a decay chain. Admit closed-form analytical solutions." },
+          { name: "Secular Equilibrium", desc: "When $\\lambda_P \\ll \\lambda_D$, after many daughter half-lives $\\lambda_P N_P \\approx \\lambda_D N_D$ — the daughter activity equals the parent's." },
+          { name: "Transient Equilibrium", desc: "When $\\lambda_P < \\lambda_D$ (but not by a huge factor), the daughter still tracks the parent but with a fixed ratio $N_D/N_P = \\lambda_P/(\\lambda_D - \\lambda_P)$." },
+          { name: "Carbon-14 Dating", desc: "Atmospheric ¹⁴C is constantly replenished; once an organism dies, its ¹⁴C decays with $t_{1/2} = 5730$ years. Measured ¹⁴C/¹²C ratio gives the age." },
+          { name: "Uranium Series", desc: "²³⁸U → ²³⁴Th → … → ²⁰⁶Pb. 14 steps, various half-lives. Once in secular equilibrium, the whole chain has the same activity as the long-lived parent." },
+          { name: "Branching Ratios", desc: "Some nuclei decay via multiple channels. Total $\\lambda = \\sum_i \\lambda_i$, and branching ratio $b_i = \\lambda_i/\\lambda$ gives the fraction via each route." },
+        ],
+        keyEquations: [
+          "N(t) = N_0 e^{-\\lambda t}",
+          "t_{1/2} = \\frac{\\ln 2}{\\lambda}",
+          "N_D(t) = N_0\\,\\frac{\\lambda_P}{\\lambda_D - \\lambda_P}\\,(e^{-\\lambda_P t} - e^{-\\lambda_D t})",
+        ],
+        conceptSummary:
+          "Press Play and watch the parent population decay exponentially while the daughter builds up and then decays. Try a short daughter half-life (≪ parent) to see secular equilibrium — the daughter curve tracks the parent from below.",
+      },
+    ],
+  },
+];
+
 // ─── FOUNDATIONS ────────────────────────────────────────────────────
 // Classroom-style introduction to the basic ingredients of physics.
 // Designed to be approachable for high-school students and a refresher
@@ -3650,6 +3721,12 @@ export const chapterGroups: ChapterGroup[] = [
     subtitle: "Spacetime, γ, and E² = (pc)² + (mc²)²",
     chapters: relativity,
   },
+  {
+    id: "nuclear",
+    title: "Nuclear Physics",
+    subtitle: "Binding energy, decay, and the iron peak",
+    chapters: nuclearPhysics,
+  },
 ];
 
 export const allChapters: Chapter[] = [
@@ -3661,6 +3738,7 @@ export const allChapters: Chapter[] = [
   ...wavesOscillations,
   ...optics,
   ...relativity,
+  ...nuclearPhysics,
 ];
 
 export function getChapter(id: string): Chapter | undefined {

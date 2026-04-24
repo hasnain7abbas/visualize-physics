@@ -251,6 +251,11 @@ simulations["r1-spacetime-diagram"] = R1SpacetimeDiagram;
 simulations["r1-time-dilation"] = R1TimeDilation;
 simulations["r1-energy-momentum"] = R1EnergyMomentum;
 
+// N1 - Nuclear Physics
+import { N1BindingEnergy, N1RadioactiveDecay } from "./N1Nuclear";
+simulations["n1-binding-energy"] = N1BindingEnergy;
+simulations["n1-radioactive-decay"] = N1RadioactiveDecay;
+
 export function getSimulation(chapterId: string, sectionId: string): Component | undefined {
   return simulations[`${chapterId}-${sectionId}`];
 }

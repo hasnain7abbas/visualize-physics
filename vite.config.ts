@@ -87,6 +87,9 @@ export default defineConfig({
           "sim-relativity": [
             "./src/simulations/R1Relativity.tsx",
           ],
+          "sim-nuclear": [
+            "./src/simulations/N1Nuclear.tsx",
+          ],
         },
       },
     },
