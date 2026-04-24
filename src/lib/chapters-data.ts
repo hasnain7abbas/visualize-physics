@@ -2957,6 +2957,102 @@ const wavesOscillations: Chapter[] = [
   },
 ];
 
+// ─── OPTICS ─────────────────────────────────────────────────────────
+
+const optics: Chapter[] = [
+  {
+    id: "o1",
+    num: "O1",
+    title: "Ray & Wave Optics",
+    description:
+      "Light as both rays (geometrical optics) and waves. Thin-lens imaging, polarization via Malus's law, and thin-film interference showing where soap-bubble colors come from.",
+    color: "#f97316",
+    icon: "\u{1F50D}",
+    shortDesc: "Lenses, polarization, thin films",
+    sections: [
+      {
+        id: "lens-system",
+        title: "Thin-Lens Imaging",
+        description:
+          "A converging lens forms images of objects placed in front of it. The thin-lens equation and the three principal rays predict the image location and magnification.",
+        definition:
+          "A **thin lens** is an idealized optical element whose thickness is negligible compared with its focal length $f$. For an object at distance $d_o$ from the lens the image forms at distance $d_i$ on the far side satisfying the thin-lens equation $1/d_o + 1/d_i = 1/f$, and the lateral magnification is $m = -d_i/d_o$ (negative = inverted). Three **principal rays** — parallel, central, and focal — always locate the image geometrically, and when $d_o < f$ the image becomes virtual (upright, same side as the object) — the working principle of a simple magnifier.",
+        statisticalTools: [
+          { name: "Thin-Lens Equation", desc: "$1/d_o + 1/d_i = 1/f$. Sign convention: $d_o, d_i > 0$ for real object/image on the respective sides of a converging lens." },
+          { name: "Lateral Magnification", desc: "$m = -d_i/d_o = h_i/h_o$. Sign tells orientation: $m<0$ means inverted, $|m|<1$ means demagnified." },
+          { name: "Principal Rays", desc: "Parallel ray refracts through far focus $F'$; central ray passes straight through the optical center; focal ray through $F$ exits parallel. Any two locate the image." },
+          { name: "Real vs Virtual Images", desc: "Real image: rays actually converge there (can project on a screen). Virtual image: rays only appear to diverge from there (cannot be projected). Determined by sign of $d_i$." },
+          { name: "Lensmaker's Equation", desc: "$1/f = (n-1)(1/R_1 - 1/R_2)$. Relates focal length to glass index $n$ and surface radii. Predicts how $f$ depends on wavelength (chromatic aberration)." },
+          { name: "Newton's Form", desc: "$x_o x_i = f^2$ where $x_o, x_i$ are distances measured from the focal points. Compact form useful in microscope/telescope calculations." },
+          { name: "Angular Magnification", desc: "For a simple magnifier: $M = 25\\text{ cm}/f$. Separates image size from angular size (what the eye perceives)." },
+          { name: "Depth of Field", desc: "Range of object distances for which the image is acceptably sharp. Widens as aperture narrows (trade-off with light gathering)." },
+          { name: "Aberrations", desc: "Deviations from ideal imaging: spherical, coma, astigmatism, field curvature, distortion, and chromatic. Corrected by combining multiple elements." },
+          { name: "ABCD Matrix Method", desc: "Each optical element is a $2\\times 2$ matrix acting on $(y, \\theta)$. Multi-element systems are built by multiplying matrices — efficient for complex setups." },
+        ],
+        keyEquations: [
+          "\\frac{1}{d_o} + \\frac{1}{d_i} = \\frac{1}{f}",
+          "m = -\\frac{d_i}{d_o} = \\frac{h_i}{h_o}",
+          "\\frac{1}{f} = (n-1)\\!\\left(\\frac{1}{R_1} - \\frac{1}{R_2}\\right)",
+        ],
+        conceptSummary:
+          "Slide the object toward the lens and watch the image flip between real (inverted) and virtual (upright). Changing $f$ rescales the image; at $d_o = f$ the rays emerge parallel and the image flies off to infinity.",
+      },
+      {
+        id: "polarization",
+        title: "Polarization & Malus's Law",
+        description:
+          "Polarizers transmit only the component of the electric field along their transmission axis. Two polarizers crossed at 90° block all light — but a third at 45° between them restores transmission.",
+        definition:
+          "**Polarization** is the orientation of a light wave's oscillating electric field. A linear polarizer transmits only the field component along its transmission axis, so when polarized light of intensity $I_0$ passes through a polarizer rotated by angle $\\theta$ from its polarization, the transmitted intensity obeys **Malus's law** $I = I_0 \\cos^2\\theta$. A striking consequence is the *three-polarizer paradox*: two crossed polarizers transmit nothing, but slipping a third polarizer at $45°$ between them restores $I_0/8$ — light is not merely filtered but re-projected along each axis.",
+        statisticalTools: [
+          { name: "Malus's Law", desc: "$I = I_0 \\cos^2\\theta$. Intensity after a polarizer depends on the squared cosine of the angle between its axis and the incident polarization." },
+          { name: "Jones Calculus", desc: "Represent polarization as a 2-vector (Jones vector) and optical elements as $2\\times 2$ matrices. Multiplication gives the state after a chain of elements." },
+          { name: "Stokes Parameters", desc: "$(S_0, S_1, S_2, S_3)$ fully describe any polarization including partial and unpolarized light. Measurable by intensity through combinations of polarizers/wave plates." },
+          { name: "Poincar\u00E9 Sphere", desc: "Visualize polarization as a point on a unit sphere: equator = linear polarizations, poles = circular, off-axis = elliptical. Rotations under wave plates are sphere rotations." },
+          { name: "Quarter-Wave Plate", desc: "Retards one linear component by $90°$. Converts $45°$ linear polarization into circular and vice versa. The basis of optical isolators." },
+          { name: "Half-Wave Plate", desc: "$180°$ retardation. Reflects the polarization across its fast axis. Rotates linear polarization by $2\\alpha$ where $\\alpha$ is the plate angle." },
+          { name: "Brewster's Angle", desc: "$\\tan\\theta_B = n_2/n_1$. At this incidence, reflected light is perfectly $s$-polarized — the basis of polarizing sunglasses." },
+          { name: "Degree of Polarization", desc: "$\\text{DOP} = \\sqrt{S_1^2 + S_2^2 + S_3^2}/S_0 \\in [0,1]$. Measures how polarized a beam is; 0 for unpolarized, 1 for fully polarized." },
+          { name: "Three-Polarizer Paradox", desc: "$I_0/2 \\to I_0/2 \\cdot \\cos^2 45° \\to I_0/2 \\cdot \\cos^4 45° = I_0/8$. Adding a polarizer *increases* transmission — a quintessential quantum projection effect (even classically)." },
+          { name: "Wire-Grid Polarizer", desc: "A grid of parallel conductive wires absorbs the component of $\\vec{E}$ parallel to the wires and transmits the perpendicular component. Same idea as Polaroid film." },
+        ],
+        keyEquations: [
+          "I = I_0 \\cos^2\\theta \\quad \\text{(Malus)}",
+          "I_{0} \\xrightarrow{P_1} \\tfrac{I_0}{2} \\xrightarrow{P_m(45°)} \\tfrac{I_0}{4} \\xrightarrow{P_2(90°)} \\tfrac{I_0}{8}",
+          "\\tan\\theta_B = n_2/n_1",
+        ],
+        conceptSummary:
+          "Rotate two polarizers. When they're aligned (Δθ=0) you get half the initial intensity; crossed (Δθ=90°) gives zero. Toggle on the middle polarizer and sweep its angle — watch the output come back to life at 45°.",
+      },
+      {
+        id: "thin-film",
+        title: "Thin-Film Interference",
+        description:
+          "Light reflecting off the front and back surfaces of a thin transparent film interferes. The resulting color depends on thickness — the origin of soap-bubble and oil-slick iridescence.",
+        definition:
+          "**Thin-film interference** occurs when light reflects off both surfaces of a thin transparent film (thickness comparable to $\\lambda$): the two reflected beams combine coherently. For normal incidence on a film of index $n$ and thickness $d$ the phase difference is $\\Delta\\phi = 4\\pi nd/\\lambda$ (plus a $\\pi$ shift if the reflection is at a denser medium), giving reflectance $R \\propto \\sin^2(2\\pi nd/\\lambda)$. Because the condition depends on $\\lambda$, different colors reflect with different strengths — the source of soap-bubble iridescence and the working principle of anti-reflection coatings.",
+        statisticalTools: [
+          { name: "Path Length Condition", desc: "$2nd = (m + \\tfrac{1}{2})\\lambda$ for constructive reflection (with one $\\pi$ phase shift); $2nd = m\\lambda$ for destructive." },
+          { name: "\u03C0 Phase Shift on Reflection", desc: "Reflection from a higher-index medium adds $\\pi$; from a lower-index medium adds $0$. This shifts the constructive/destructive conditions accordingly." },
+          { name: "Fresnel Reflectance", desc: "At normal incidence: $r = (n_1-n_2)/(n_1+n_2)$. Gives the amplitude reflection coefficient at a single interface." },
+          { name: "Anti-Reflection Coating", desc: "Choose $d = \\lambda/(4n_1)$ and $n_1 = \\sqrt{n_0 n_2}$ so reflected beams cancel — the quarter-wave MgF$_2$ on camera lenses." },
+          { name: "Newton's Rings", desc: "Circular fringes seen when a curved lens rests on a flat plate: the air gap varies with radius, producing rings whose spacing reveals the curvature." },
+          { name: "Wedge Interference", desc: "A tapered air/film gap produces equally-spaced parallel fringes, each contour of constant thickness. Used in optical flatness testing." },
+          { name: "Coherence Length", desc: "Interference requires the path difference be shorter than the source's coherence length. White light has $\\ell_c \\sim 1$\u20132 $\\mu$m — why only very thin films show colors." },
+          { name: "Spectral Color Mixing", desc: "Observed color = weighted sum of spectral reflectance times sensitivity of the eye. Maps thickness to perceived hue via CIE color matching functions." },
+        ],
+        keyEquations: [
+          "\\Delta\\phi = \\frac{4\\pi n d}{\\lambda}",
+          "R(\\lambda) \\propto \\sin^2\\!\\left(\\frac{2\\pi n d}{\\lambda}\\right)",
+          "d_{\\text{AR}} = \\frac{\\lambda}{4 n_1}",
+        ],
+        conceptSummary:
+          "Slide the thickness slider and watch the perceived reflected color sweep through the rainbow as successive wavelengths go in and out of constructive interference. At very thin $d$ the reflection vanishes — the destructive condition at $2nd=0$ — which is why a soap film goes black just before it pops.",
+      },
+    ],
+  },
+];
+
 // ─── FOUNDATIONS ────────────────────────────────────────────────────
 // Classroom-style introduction to the basic ingredients of physics.
 // Designed to be approachable for high-school students and a refresher
@@ -3445,6 +3541,12 @@ export const chapterGroups: ChapterGroup[] = [
     subtitle: "Vibrations, interference & the Doppler effect",
     chapters: wavesOscillations,
   },
+  {
+    id: "optics",
+    title: "Optics",
+    subtitle: "Rays, polarization & interference",
+    chapters: optics,
+  },
 ];
 
 export const allChapters: Chapter[] = [
@@ -3454,6 +3556,7 @@ export const allChapters: Chapter[] = [
   ...classicalMechanics,
   ...electrodynamics,
   ...wavesOscillations,
+  ...optics,
 ];
 
 export function getChapter(id: string): Chapter | undefined {

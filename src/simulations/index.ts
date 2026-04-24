@@ -239,6 +239,12 @@ simulations["s13-planck-spectrum"] = S13PlanckSpectrum;
 simulations["s13-wien-law"] = S13WienLaw;
 simulations["s13-uv-catastrophe"] = S13UVCatastrophe;
 
+// O1 - Optics: Lenses, Polarization, Thin Films
+import { O1LensSystem, O1Polarization, O1ThinFilm } from "./O1Optics";
+simulations["o1-lens-system"] = O1LensSystem;
+simulations["o1-polarization"] = O1Polarization;
+simulations["o1-thin-film"] = O1ThinFilm;
+
 export function getSimulation(chapterId: string, sectionId: string): Component | undefined {
   return simulations[`${chapterId}-${sectionId}`];
 }
