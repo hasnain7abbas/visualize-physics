@@ -208,7 +208,7 @@ export const S12LennardJones: Component = () => {
 
       {/* Particle box */}
       <div class="flex justify-center">
-        <svg width="340" height="340" viewBox={`0 0 ${W} ${H}`} style={{ background: "var(--bg-secondary)", "border-radius": "12px", border: "1px solid var(--border)" }}>
+        <svg width="100%" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet" style={{ "max-width": "340px", "aspect-ratio": "1 / 1", background: "var(--bg-secondary)", "border-radius": "12px", border: "1px solid var(--border)" }}>
           {/* Box border */}
           <rect x="1" y="1" width={W - 2} height={H - 2} fill="none" stroke="var(--border)" stroke-width="2" rx="10" />
 

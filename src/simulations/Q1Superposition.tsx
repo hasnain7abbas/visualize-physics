@@ -59,7 +59,7 @@ export const Q1Superposition: Component = () => {
 
       {/* Quantum box visualization */}
       <div class="flex justify-center">
-        <svg width="320" height="180" viewBox="0 0 320 180">
+        <svg width="100%" height="180" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid meet" style={{ "max-width": "320px" }}>
           {/* Box */}
           <rect
             x="110" y="30" width="100" height="100" rx="12"
