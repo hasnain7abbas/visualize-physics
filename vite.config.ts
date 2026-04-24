@@ -93,6 +93,9 @@ export default defineConfig({
           "sim-gr": [
             "./src/simulations/G1Gravity.tsx",
           ],
+          "sim-math": [
+            "./src/simulations/M1MathMethods.tsx",
+          ],
         },
       },
     },

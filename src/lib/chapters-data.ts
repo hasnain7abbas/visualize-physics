@@ -3292,6 +3292,77 @@ const generalRelativity: Chapter[] = [
   },
 ];
 
+// ─── MATHEMATICAL METHODS ───────────────────────────────────────────
+
+const mathMethods: Chapter[] = [
+  {
+    id: "m1",
+    num: "M1",
+    title: "Mathematical Methods",
+    description:
+      "Tools every physics student needs: a phase-portrait generator for nonlinear 2D systems, and the three classical families of special functions (Bessel, Legendre, Hermite) that keep reappearing in boundary-value problems.",
+    color: "#14b8a6",
+    icon: "\u{1F4D0}",
+    shortDesc: "Phase portraits & special functions",
+    sections: [
+      {
+        id: "phase-portrait",
+        title: "Phase Portraits of 2D Systems",
+        description:
+          "Direction fields and numerical trajectories for canonical nonlinear systems: Van der Pol, Lotka-Volterra, damped pendulum, Duffing oscillator.",
+        definition:
+          "A **phase portrait** is the plot of a dynamical system's solutions in state space — for a 2D system $\\dot x = f(x,y)$, $\\dot y = g(x,y)$ it is the $(x,y)$ plane decorated with flow arrows and trajectories. Qualitative features are fixed by a few structural landmarks: **fixed points** where $f=g=0$ (classified as nodes, spirals, saddles, centers by the Jacobian eigenvalues), **nullclines** where $f$ or $g$ vanishes, and **limit cycles** (isolated periodic orbits). This approach — due to Poincaré — lets you understand nonlinear systems without solving them.",
+        statisticalTools: [
+          { name: "Fixed Points", desc: "Solutions of $f(x,y)=g(x,y)=0$. Linearizing there gives the Jacobian; its eigenvalues classify the point as stable/unstable node, saddle, spiral (focus), or center." },
+          { name: "Jacobian & Eigenvalues", desc: "Near a fixed point: $\\dot{\\delta} = J\\delta$ with $J = \\partial(f,g)/\\partial(x,y)$. Two real positive → unstable node; mixed → saddle; complex with $\\mathrm{Re}<0$ → stable spiral." },
+          { name: "Nullclines", desc: "Curves where $\\dot x = 0$ or $\\dot y = 0$. Their intersections are fixed points. Useful for sketching the flow direction in each region of the plane." },
+          { name: "Limit Cycles", desc: "Isolated periodic orbits. A stable limit cycle attracts nearby trajectories (Van der Pol). Poincaré-Bendixson theorem: in 2D, bounded orbits either approach fixed points or limit cycles." },
+          { name: "Separatrix", desc: "A trajectory that divides the phase plane into regions with qualitatively different long-time behavior. Stable/unstable manifolds of saddle points typically form separatrices." },
+          { name: "Van der Pol Oscillator", desc: "$\\ddot x - \\mu(1-x^2)\\dot x + x = 0$. Self-excited: amplifies small oscillations, saturates large ones — a unique stable limit cycle. Originated in early radio engineering." },
+          { name: "Lotka-Volterra", desc: "$\\dot x = ax - bxy,\\ \\dot y = cxy - dy$. Predator-prey: closed orbits around a coexistence equilibrium. Conservation law $H = cx - d\\ln x + by - a\\ln y$ preserved along trajectories." },
+          { name: "Runge-Kutta 4", desc: "Numerical integrator of accuracy $O(h^4)$. Standard choice for non-stiff ODEs. Computes four slope evaluations per step and averages them." },
+          { name: "Lyapunov Functions", desc: "A scalar field $V(x,y)$ with $\\dot V \\leq 0$. If one can be found, the fixed point at the minimum is Lyapunov-stable — a systematic way to prove stability without linearizing." },
+          { name: "Hopf Bifurcation", desc: "A stable fixed point becomes unstable as a parameter crosses a critical value, simultaneously giving birth to a small-amplitude limit cycle. Common route to oscillations in biology and chemistry." },
+        ],
+        keyEquations: [
+          "\\dot x = f(x,y),\\quad \\dot y = g(x,y)",
+          "J = \\begin{pmatrix} \\partial_x f & \\partial_y f \\\\ \\partial_x g & \\partial_y g \\end{pmatrix}",
+          "\\text{eigenvalues}(J) \\Rightarrow \\text{fixed-point type}",
+        ],
+        conceptSummary:
+          "Pick a preset and click anywhere in the phase plane — a trajectory is integrated with RK4 from that initial condition. Try Van der Pol to see every starting point spiral onto the same limit cycle; try the damped pendulum to see saddle points at odd multiples of π.",
+      },
+      {
+        id: "special-functions",
+        title: "Special Functions",
+        description:
+          "Bessel, Legendre, and Hermite polynomials — the recurring cast of boundary-value problems in cylindrical, spherical, and Gaussian-bound settings.",
+        definition:
+          "**Special functions** are named solutions to the linear second-order ODEs that arise when you separate variables in common geometries. **Bessel functions** $J_n(x)$ solve $x^2 y'' + x y' + (x^2 - n^2) y = 0$ and describe cylindrical-symmetry problems (circular drums, fiber optics, scattering). **Legendre polynomials** $P_\\ell(x)$ satisfy $(1-x^2) y'' - 2x y' + \\ell(\\ell+1) y = 0$ and form the angular part of spherical harmonics. **Hermite polynomials** $H_n(x)$ solve $y'' - 2x y' + 2n y = 0$ and, times a Gaussian, give the quantum harmonic oscillator eigenstates. All three families are mutually orthogonal on their natural intervals under their natural weights — enabling Fourier-like expansions.",
+        statisticalTools: [
+          { name: "Bessel's Equation", desc: "$x^2 y'' + x y' + (x^2 - n^2) y = 0$. Appears in Laplace's/Helmholtz's equation in cylindrical coordinates. $J_n$ is the regular solution; $Y_n$ (Neumann) is singular at $x=0$." },
+          { name: "Miller's Backward Recurrence", desc: "Stable algorithm for $J_n(x)$: set a large index, iterate downward using $J_{n-1} = (2n/x) J_n - J_{n+1}$, normalize with $J_0 + 2\\sum J_{2k} = 1$." },
+          { name: "Legendre Recurrence", desc: "$(\\ell+1) P_{\\ell+1}(x) = (2\\ell+1) x P_\\ell(x) - \\ell P_{\\ell-1}(x)$. Stable forward recurrence from $P_0 = 1, P_1 = x$." },
+          { name: "Legendre Orthogonality", desc: "$\\int_{-1}^1 P_m(x) P_\\ell(x)\\,dx = \\frac{2}{2\\ell+1}\\delta_{m\\ell}$. Basis for expanding functions on a sphere." },
+          { name: "Hermite Recurrence", desc: "$H_{n+1}(x) = 2x H_n(x) - 2n H_{n-1}(x)$, with $H_0 = 1$, $H_1 = 2x$. Values grow rapidly — use scaled variants for large $n$." },
+          { name: "Hermite Orthogonality", desc: "$\\int H_m H_n e^{-x^2}\\,dx = \\sqrt{\\pi}\\,2^n n!\\,\\delta_{mn}$. Gives rise to Gauss-Hermite quadrature." },
+          { name: "Spherical Harmonics", desc: "$Y_\\ell^m(\\theta,\\phi) = N\\,P_\\ell^m(\\cos\\theta)\\,e^{im\\phi}$. Angular wavefunctions in atoms, gravitational multipoles, CMB maps." },
+          { name: "Gauss-Legendre Quadrature", desc: "Numerical integration nodes = zeros of $P_n$, weights $= 2/((1-x_k^2)[P'_n(x_k)]^2)$. Exact for polynomials up to degree $2n-1$." },
+          { name: "Rodrigues' Formulas", desc: "$P_\\ell(x) = \\frac{1}{2^\\ell \\ell!}\\frac{d^\\ell}{dx^\\ell}(x^2-1)^\\ell$ — and analogs for Hermite and Laguerre. Compact but numerically unstable for large $\\ell$." },
+          { name: "Asymptotic Forms", desc: "$J_n(x) \\sim \\sqrt{2/\\pi x}\\cos(x - n\\pi/2 - \\pi/4)$ for large $x$. All special functions have WKB-like asymptotics that govern their zeros and envelopes." },
+        ],
+        keyEquations: [
+          "x^2 y'' + x y' + (x^2 - n^2) y = 0 \\quad (\\text{Bessel})",
+          "(1-x^2) y'' - 2x y' + \\ell(\\ell+1) y = 0 \\quad (\\text{Legendre})",
+          "y'' - 2x y' + 2n y = 0 \\quad (\\text{Hermite})",
+        ],
+        conceptSummary:
+          "Flip between the three families and notice the different structural features: Bessel functions oscillate with a $1/\\sqrt{x}$ envelope, Legendre polynomials all pass through $(\\pm 1, \\pm 1)$, and Hermite polynomials grow explosively outside $[-\\sqrt{2n}, \\sqrt{2n}]$.",
+      },
+    ],
+  },
+];
+
 // ─── FOUNDATIONS ────────────────────────────────────────────────────
 // Classroom-style introduction to the basic ingredients of physics.
 // Designed to be approachable for high-school students and a refresher
@@ -3804,6 +3875,12 @@ export const chapterGroups: ChapterGroup[] = [
     subtitle: "Curved spacetime & gravitational lensing",
     chapters: generalRelativity,
   },
+  {
+    id: "math-methods",
+    title: "Mathematical Methods",
+    subtitle: "Phase portraits & special functions",
+    chapters: mathMethods,
+  },
 ];
 
 export const allChapters: Chapter[] = [
@@ -3817,6 +3894,7 @@ export const allChapters: Chapter[] = [
   ...relativity,
   ...nuclearPhysics,
   ...generalRelativity,
+  ...mathMethods,
 ];
 
 export function getChapter(id: string): Chapter | undefined {

@@ -261,6 +261,11 @@ import { G1SchwarzschildOrbit, G1GravitationalLensing } from "./G1Gravity";
 simulations["g1-schwarzschild-orbit"] = G1SchwarzschildOrbit;
 simulations["g1-gravitational-lensing"] = G1GravitationalLensing;
 
+// M1 - Mathematical Methods
+import { M1PhasePortrait, M1SpecialFunctions } from "./M1MathMethods";
+simulations["m1-phase-portrait"] = M1PhasePortrait;
+simulations["m1-special-functions"] = M1SpecialFunctions;
+
 export function getSimulation(chapterId: string, sectionId: string): Component | undefined {
   return simulations[`${chapterId}-${sectionId}`];
 }
