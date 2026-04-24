@@ -2737,6 +2737,72 @@ const electrodynamics: Chapter[] = [
       },
     ],
   },
+  {
+    id: "e4",
+    num: "E4",
+    title: "Induction & the Lorentz Force",
+    description:
+      "Faraday's law turns motion into voltage; the Lorentz force turns voltage into motion. Two sides of the same electromagnetic coin — together they describe generators, motors, and every charged-particle beam line.",
+    color: "#14b8a6",
+    icon: "\u{26A1}",
+    shortDesc: "EMF & v×B",
+    sections: [
+      {
+        id: "faraday",
+        title: "Faraday's Law of Induction",
+        description:
+          "A changing magnetic flux through a loop induces an EMF. Rotating a rigid loop in a uniform field is the fundamental principle of every AC generator.",
+        definition:
+          "**Faraday's law of induction** states that the electromotive force around a closed loop equals the negative rate of change of magnetic flux through it: $\\varepsilon = -d\\Phi_B/dt$, where $\\Phi_B = \\int \\vec B \\cdot d\\vec A$. The minus sign (**Lenz's law**) reflects that the induced current flows in whichever direction *opposes* the change in flux — a direct consequence of energy conservation. For a rigid loop of area $A$ rotating at $\\omega$ in a uniform field $B$ the flux is $\\Phi = BA\\cos\\omega t$, giving a sinusoidal EMF $\\varepsilon = BA\\omega \\sin\\omega t$ — the working principle of every rotating-coil AC generator.",
+        statisticalTools: [
+          { name: "Faraday's Law", desc: "$\\varepsilon = -d\\Phi_B/dt$. Integral form of Maxwell's $\\nabla \\times \\vec E = -\\partial \\vec B/\\partial t$. The unified source of motional and transformer EMFs." },
+          { name: "Lenz's Law", desc: "Induced current direction opposes the change in flux. Immediate consequence of the minus sign in Faraday's law; equivalent to energy conservation." },
+          { name: "Motional EMF", desc: "$\\varepsilon = \\int (\\vec v \\times \\vec B) \\cdot d\\vec l$ from the Lorentz force on moving charges in a conductor. Gives a DC EMF for a conductor sliding on rails." },
+          { name: "Transformer EMF", desc: "Arises from time-varying $B$, not motion. The operating principle of transformers, inductors, and induction cooktops." },
+          { name: "Rotating Loop Generator", desc: "$\\varepsilon(t) = BA\\omega \\sin\\omega t$. Peak EMF linear in $B$, $A$, and $\\omega$. Converts mechanical rotation into sinusoidal electrical power." },
+          { name: "Self-Inductance L", desc: "$\\varepsilon = -L\\,dI/dt$. A current-carrying loop induces an EMF in itself, resisting changes in its own current." },
+          { name: "Mutual Inductance M", desc: "$\\varepsilon_2 = -M\\,dI_1/dt$. Coupling between two loops — how transformers step voltage up or down by the turns ratio $N_2/N_1$." },
+          { name: "Eddy Currents", desc: "Circulating currents induced in bulk conductors by changing fields. Cause drag (magnetic braking) and Ohmic heating (induction furnaces)." },
+          { name: "Magnetic Energy Density", desc: "$u_B = B^2/(2\\mu_0)$. The energy an inductor stores per unit volume. Complements the electric $u_E = \\tfrac{1}{2}\\varepsilon_0 E^2$." },
+          { name: "Maxwell-Faraday Equation", desc: "$\\nabla \\times \\vec E = -\\partial \\vec B/\\partial t$. The differential form; tells us a time-varying $\\vec B$ sources a curling $\\vec E$ even in vacuum — the mechanism behind EM waves." },
+        ],
+        keyEquations: [
+          "\\varepsilon = -\\frac{d\\Phi_B}{dt},\\qquad \\Phi_B = \\int \\vec B \\cdot d\\vec A",
+          "\\varepsilon_{\\text{generator}} = BA\\omega\\sin\\omega t",
+          "\\nabla \\times \\vec E = -\\frac{\\partial \\vec B}{\\partial t}",
+        ],
+        conceptSummary:
+          "Let the loop spin and watch the sinusoidal EMF emerge, phase-shifted by $90°$ from the flux. Increase $\\omega$ or $B$ and the peak EMF scales linearly — the scaling law that sets a generator's power output.",
+      },
+      {
+        id: "lorentz-force",
+        title: "Charged Particle in E & B Fields",
+        description:
+          "$\\vec F = q(\\vec E + \\vec v \\times \\vec B)$. Uniform $\\vec B$ gives circular cyclotron motion; adding $\\vec E \\perp \\vec B$ produces an E×B drift independent of charge.",
+        definition:
+          "The **Lorentz force law** $\\vec F = q(\\vec E + \\vec v \\times \\vec B)$ governs every charged particle in electromagnetic fields. With only a uniform $\\vec B$, the particle traces circles (or helices) at the **cyclotron frequency** $\\omega_c = qB/m$ and **Larmor radius** $r_L = mv_\\perp/qB$. Adding a perpendicular $\\vec E$ produces a uniform **E×B drift** $\\vec v_d = (\\vec E \\times \\vec B)/B^2$ that is the same for all charge signs — the operating principle of velocity selectors, mass spectrometers, and magnetrons. The full equation admits a symplectic \"Boris pusher\" that preserves the energy of pure cyclotron motion exactly, making it the standard integrator in plasma simulations.",
+        statisticalTools: [
+          { name: "Lorentz Force", desc: "$\\vec F = q(\\vec E + \\vec v \\times \\vec B)$. The single rule that determines every charged-particle trajectory in classical electromagnetism." },
+          { name: "Cyclotron Motion", desc: "In a uniform $\\vec B$: circular orbit of radius $r_L = mv/qB$ at angular frequency $\\omega_c = qB/m$. Does no work — only redirects velocity." },
+          { name: "Helical Trajectory", desc: "Component of $\\vec v$ along $\\vec B$ is unaffected; perpendicular component circulates. Net motion traces a helix wrapping around field lines." },
+          { name: "E × B Drift", desc: "$\\vec v_d = (\\vec E \\times \\vec B)/B^2$. Independent of charge and mass. Together with cyclotron motion gives cycloidal trajectories." },
+          { name: "Grad-B Drift", desc: "In non-uniform $B$: particle drifts perpendicular to both $\\vec B$ and $\\nabla B$. Mechanism behind magnetic mirror confinement." },
+          { name: "Curvature Drift", desc: "Particles moving along curved field lines experience a centrifugal drift. Combines with grad-B drift in toroidal fusion devices." },
+          { name: "Magnetic Mirror", desc: "Regions of strong $B$ reflect slow-moving charged particles. Confines plasma in some fusion schemes; traps cosmic rays in the Van Allen belts." },
+          { name: "Boris Integrator", desc: "Symplectic half-E-push, full rotation, half-E-push scheme. Conserves energy exactly for pure magnetic motion; standard in plasma PIC codes." },
+          { name: "Velocity Selector", desc: "Crossed $\\vec E$, $\\vec B$ with $E/B = v_0$: only particles with speed $v_0$ travel straight; others deflect. Front end of mass spectrometers." },
+          { name: "Mass Spectrometer", desc: "After velocity selection, remaining $B$ bends particles in circles $r = mv/qB$; radius reveals $m/q$ to parts per billion." },
+        ],
+        keyEquations: [
+          "\\vec F = q(\\vec E + \\vec v \\times \\vec B)",
+          "\\omega_c = \\frac{qB}{m},\\quad r_L = \\frac{m v_\\perp}{qB}",
+          "\\vec v_d = \\frac{\\vec E \\times \\vec B}{B^2}",
+        ],
+        conceptSummary:
+          "Set $\\vec E = 0$ to see pure cyclotron circles; then turn on $\\vec E$ and watch the orbit drift sideways into a cycloid. Reversing the charge reverses the rotation direction but not the drift — the signature of the E×B drift.",
+      },
+    ],
+  },
 ];
 
 // ─── WAVES & OSCILLATIONS ──────────────────────────────────────────

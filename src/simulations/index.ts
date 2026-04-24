@@ -203,6 +203,11 @@ simulations["e3-plane-wave"] = E3PlaneWave;
 simulations["e3-polarization"] = E3Polarization;
 simulations["e3-poynting-vector"] = E3PoyntingVector;
 
+// E4 - Induction & Lorentz Force
+import { E4Faraday, E4LorentzForce } from "./E4Induction";
+simulations["e4-faraday"] = E4Faraday;
+simulations["e4-lorentz-force"] = E4LorentzForce;
+
 // W1 - Wave Equation in 1D
 import { W1StandingWaves, W1FourierModes, W1EnergyDensity } from "./W1WaveEquation";
 simulations["w1-standing-waves"] = W1StandingWaves;
