@@ -3757,6 +3757,72 @@ const mathMethods: Chapter[] = [
       },
     ],
   },
+  {
+    id: "m2",
+    num: "M2",
+    title: "PDEs & Spherical Harmonics",
+    description:
+      "A live numerical solver for the 1D heat equation (a model parabolic PDE), and the angular eigenfunctions of the Laplacian on a sphere — the $Y_\\ell^m$ lobes that underlie hydrogen orbitals, gravity multipoles, and CMB sky maps.",
+    color: "#0891b2",
+    icon: "\u{1F4A0}",
+    shortDesc: "Diffusion & Y_l^m",
+    sections: [
+      {
+        id: "heat-equation",
+        title: "Heat Equation Playground",
+        description:
+          "$\\partial_t u = \\alpha\\,\\partial_x^2 u$ on $[0, 1]$ with Dirichlet BCs. Step / Gaussian / triangle / sinusoidal initial profiles all smooth out at the diffusive rate $\\sqrt{\\alpha t}$.",
+        definition:
+          "The **heat equation** $\\partial_t u = \\alpha\\,\\nabla^2 u$ is the prototype parabolic PDE. It describes diffusion of heat, matter concentration, probability density (as in the Fokker-Planck equation), and any other quantity that spreads from high- to low-density regions. Its defining property is **irreversible smoothing**: every initial profile loses short-wavelength features first, because a Fourier mode $\\sin(k\\pi x/L)$ decays exponentially at rate $\\alpha k^2 \\pi^2/L^2$. The characteristic smoothing length after time $t$ is $\\sqrt{\\alpha t}$ — the signature scaling of all diffusion processes. Here we solve it by the **forward-time centered-space (FTCS)** finite-difference scheme: simple, second-order accurate in space, first-order in time, and stable as long as $\\alpha\\,\\Delta t/\\Delta x^2 \\leq 1/2$.",
+        statisticalTools: [
+          { name: "Heat / Diffusion Equation", desc: "$\\partial_t u = \\alpha\\,\\nabla^2 u$. The canonical parabolic PDE. Relatively speaking 'easy' — well-posed for Dirichlet, Neumann, or mixed BCs." },
+          { name: "FTCS Finite Difference", desc: "Forward-time centered-space: $u_i^{n+1} = u_i^n + r(u_{i+1}^n - 2u_i^n + u_{i-1}^n)$ with $r = \\alpha\\Delta t/\\Delta x^2$. Stable for $r \\leq 1/2$." },
+          { name: "Fourier Decomposition", desc: "On $[0,L]$ with zero BCs: $u(x,t) = \\sum_k b_k \\sin(k\\pi x/L)\\,e^{-\\alpha k^2\\pi^2 t/L^2}$. High-$k$ modes die fastest — diffusion is a low-pass filter." },
+          { name: "Green's Function", desc: "$G(x,x',t) = (4\\pi\\alpha t)^{-1/2}\\,\\exp(-(x-x')^2/4\\alpha t)$. Propagator for free space; superpose to build any initial condition." },
+          { name: "Similarity Solution", desc: "Every heat-equation profile scales as $u(x,t) = f(x/\\sqrt{\\alpha t})/\\sqrt{\\alpha t}$. Dimensional analysis alone gives the $\\sqrt{\\alpha t}$ smoothing length." },
+          { name: "Maximum Principle", desc: "The solution cannot exceed its initial maximum (or boundary max) — heat doesn't spontaneously concentrate. Irreversibility in action." },
+          { name: "CFL Condition", desc: "$\\Delta t \\leq \\Delta x^2/(2\\alpha)$ for FTCS stability. Tight — one reason the Crank-Nicolson scheme (implicit, unconditionally stable) is often preferred." },
+          { name: "Crank-Nicolson Scheme", desc: "Average of explicit and implicit: second-order in time, unconditionally stable. Workhorse for real-world simulations." },
+          { name: "Dirichlet vs Neumann", desc: "Dirichlet ($u=0$): heat drains through the boundary. Neumann ($\\partial_n u=0$): boundary is insulating, total heat conserved." },
+          { name: "Heat Kernel & SDE", desc: "The heat equation is the Kolmogorov forward equation of Brownian motion: $dX = \\sqrt{2\\alpha}\\,dW$. Direct link between PDE and stochastic processes." },
+        ],
+        keyEquations: [
+          "\\partial_t u = \\alpha\\,\\partial_x^2 u",
+          "u(x, t) = \\sum_k b_k \\sin\\!\\left(\\frac{k\\pi x}{L}\\right) e^{-\\alpha k^2 \\pi^2 t/L^2}",
+          "G(x,x',t) = \\frac{1}{\\sqrt{4\\pi\\alpha t}}\\exp\\!\\left(-\\frac{(x-x')^2}{4\\alpha t}\\right)",
+        ],
+        conceptSummary:
+          "Pick a step or a sharp Gaussian and press Play: the sharp corners smooth out first, reflecting the rapid decay of high-$k$ Fourier components. Try $\\alpha \\to 0$ and the profile freezes; try the sinusoidal $\\sin(\\pi x) + 0.5\\sin(3\\pi x)$ and watch the $k=3$ mode die three times faster than the $k=1$ (factor $9$ in the exponent).",
+      },
+      {
+        id: "spherical-harmonics",
+        title: "Spherical Harmonics",
+        description:
+          "The angular eigenfunctions of $\\nabla^2$ on a sphere: $Y_\\ell^m(\\theta, \\phi)$. Shown here is a polar $|Y_\\ell^m|^2$ cross-section at $\\phi=0$, revealing the characteristic lobe pattern.",
+        definition:
+          "**Spherical harmonics** $Y_\\ell^m(\\theta, \\phi)$ are the joint eigenfunctions of $\\hat L^2$ and $\\hat L_z$ on the unit sphere: $\\hat L^2 Y_\\ell^m = \\ell(\\ell+1)\\hbar^2 Y_\\ell^m$ and $\\hat L_z Y_\\ell^m = m\\hbar Y_\\ell^m$. They factor as $Y_\\ell^m(\\theta, \\phi) = N_{\\ell m}\\,P_\\ell^{|m|}(\\cos\\theta)\\,e^{im\\phi}$ — an **associated Legendre polynomial** in the polar angle times a complex exponential in the azimuthal angle. Every separable-in-radius PDE on 3D space reduces to spherical harmonics in the angular direction: hydrogen orbitals, gravity and EM multipole expansions, tidal modes, the CMB angular power spectrum, and the angular momentum eigenstates of any central-force problem. Their **parity** is $(-1)^\\ell$, they form a complete orthonormal basis for $L^2(S^2)$, and they have $\\ell - |m|$ polar nodes and $|m|$ azimuthal nodes.",
+        statisticalTools: [
+          { name: "Y_ℓ^m Definition", desc: "$Y_\\ell^m(\\theta,\\phi) = \\sqrt{\\frac{(2\\ell+1)(\\ell-|m|)!}{4\\pi(\\ell+|m|)!}}\\,P_\\ell^{|m|}(\\cos\\theta)\\,e^{im\\phi}$. Orthonormal on the unit sphere." },
+          { name: "Associated Legendre P_ℓ^m", desc: "Generalization of Legendre polynomials. $P_\\ell^m(x) = (1-x^2)^{m/2}\\,d^m P_\\ell/dx^m$. Computable via recurrence relations." },
+          { name: "Angular Momentum", desc: "$\\hat L^2 Y_\\ell^m = \\ell(\\ell+1)\\hbar^2 Y_\\ell^m$, $\\hat L_z Y_\\ell^m = m\\hbar Y_\\ell^m$. Quantized angular momentum eigenstates." },
+          { name: "Parity", desc: "$Y_\\ell^m(\\pi-\\theta, \\phi+\\pi) = (-1)^\\ell Y_\\ell^m(\\theta,\\phi)$. Even parity for $\\ell$ even, odd for $\\ell$ odd." },
+          { name: "Completeness", desc: "$\\{Y_\\ell^m\\}_{\\ell\\ge 0,\\,|m|\\le\\ell}$ is a basis for $L^2(S^2)$: every square-integrable function on the sphere expands uniquely in them." },
+          { name: "Orthogonality", desc: "$\\int_{S^2} Y_\\ell^{m*} Y_{\\ell'}^{m'}\\,d\\Omega = \\delta_{\\ell\\ell'}\\delta_{mm'}$. Ensures Fourier-style expansion coefficients are unique." },
+          { name: "Addition Theorem", desc: "$P_\\ell(\\cos\\gamma) = \\frac{4\\pi}{2\\ell+1}\\sum_m Y_\\ell^{m*}(\\hat n_1)Y_\\ell^m(\\hat n_2)$. Core identity behind multipole expansions." },
+          { name: "Laplacian Eigenstates", desc: "$\\nabla^2(R(r)Y_\\ell^m) = [\\ldots R''(r) \\ldots - \\ell(\\ell+1)R(r)/r^2]Y_\\ell^m$. Separates every rotationally-invariant PDE." },
+          { name: "Nodal Structure", desc: "$\\ell - |m|$ nodes in $\\theta$ (latitude lines) + $|m|$ in $\\phi$ (longitude lines). Total angular nodes = $\\ell$." },
+          { name: "CMB Expansion", desc: "$\\Delta T(\\hat n) = \\sum_{\\ell m} a_{\\ell m} Y_\\ell^m(\\hat n)$. The CMB map is literally a sphere of spherical-harmonic coefficients." },
+        ],
+        keyEquations: [
+          "Y_\\ell^m(\\theta,\\phi) = N_{\\ell m}\\,P_\\ell^{|m|}(\\cos\\theta)\\,e^{im\\phi}",
+          "\\hat L^2 Y_\\ell^m = \\ell(\\ell+1)\\hbar^2\\,Y_\\ell^m,\\quad \\hat L_z Y_\\ell^m = m\\hbar Y_\\ell^m",
+          "\\int_{S^2} Y_\\ell^{m*}Y_{\\ell'}^{m'}\\,d\\Omega = \\delta_{\\ell\\ell'}\\delta_{mm'}",
+        ],
+        conceptSummary:
+          "Try $(\\ell, m) = (0, 0)$ for a perfect sphere (isotropic). Try $(1, 0)$ for the dumbbell dipole. $(2, 0)$ gives a figure-eight with a band — the $d_{z^2}$ orbital. Notice how the number of polar lobes changes as $|m|$ increases toward $\\ell$.",
+      },
+    ],
+  },
 ];
 
 // ─── SOLID STATE PHYSICS ────────────────────────────────────────────

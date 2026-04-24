@@ -233,6 +233,11 @@ import { G2FriedmannCosmology, G2CMBPeaks } from "./G2Cosmology";
 simulations["g2-friedmann"] = G2FriedmannCosmology;
 simulations["g2-cmb-peaks"] = G2CMBPeaks;
 
+// M2 - Math tools (Heat eqn + Spherical harmonics)
+import { M2HeatEquation, M2SphericalHarmonics } from "./M2MathTools";
+simulations["m2-heat-equation"] = M2HeatEquation;
+simulations["m2-spherical-harmonics"] = M2SphericalHarmonics;
+
 // W1 - Wave Equation in 1D
 import { W1StandingWaves, W1FourierModes, W1EnergyDensity } from "./W1WaveEquation";
 simulations["w1-standing-waves"] = W1StandingWaves;

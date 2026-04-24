@@ -101,6 +101,7 @@ export default defineConfig({
           ],
           "sim-math": [
             "./src/simulations/M1MathMethods.tsx",
+            "./src/simulations/M2MathTools.tsx",
           ],
           "sim-solidstate": [
             "./src/simulations/SS1SolidState.tsx",
