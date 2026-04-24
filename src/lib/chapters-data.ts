@@ -540,6 +540,72 @@ const quantumPhysics: Chapter[] = [
       },
     ],
   },
+  {
+    id: "q7",
+    num: "Q7",
+    title: "TDSE & Perturbation Theory",
+    description:
+      "The time-dependent Schrödinger equation evolving a Gaussian wavepacket past a barrier, and the cornerstone approximation technique of quantum mechanics: perturbation theory compared to the exact diagonalized answer.",
+    color: "#6366f1",
+    icon: "\u{1F9EE}",
+    shortDesc: "Wavepackets & perturbations",
+    sections: [
+      {
+        id: "wavepacket-scattering",
+        title: "Wavepacket Scattering & Tunneling",
+        description:
+          "Numerically evolve a Gaussian $\\psi(x, 0) \\propto e^{-(x-x_0)^2/4\\sigma^2 + ik_0 x}$ under the Schrödinger equation with a rectangular barrier potential.",
+        definition:
+          "The **time-dependent Schrödinger equation** (TDSE) $i\\hbar \\partial_t \\psi = \\hat H \\psi$ controls how quantum states evolve. For a free particle, a Gaussian wavepacket travels at group velocity $v_g = \\hbar k_0/m$ while spreading in position space at a rate set by its initial momentum uncertainty. When the packet encounters a potential barrier, part is **transmitted** and part **reflected**: even when the kinetic energy $E = \\hbar^2 k_0^2/2m$ is less than the barrier height $V_0$, a finite probability emerges on the far side — the famous phenomenon of **quantum tunneling**. Beyond the barrier the packet reassembles into a Gaussian-like lump moving right, while the reflected piece interferes with the incoming wave to produce the striped probability pattern characteristic of wave scattering.",
+        statisticalTools: [
+          { name: "Time-Dependent Schrödinger", desc: "$i\\hbar \\partial_t \\psi = -\\frac{\\hbar^2}{2m}\\nabla^2\\psi + V\\psi$. First-order in time, second-order in space; linear and unitary." },
+          { name: "Leapfrog / Visscher", desc: "Split real and imaginary parts on staggered time grids. Symplectic — conserves norm and energy to $O(\\Delta t^2)$." },
+          { name: "Split-Operator FFT", desc: "Alternate kinetic and potential half-steps in momentum and position space via FFT. Standard workhorse for production TDSE codes." },
+          { name: "Group Velocity", desc: "$v_g = d\\omega/dk = \\hbar k_0/m$. The speed at which the peak of the wavepacket moves — distinct from phase velocity $\\omega/k$." },
+          { name: "Wavepacket Spreading", desc: "$\\sigma_x(t) = \\sigma_0\\sqrt{1 + (\\hbar t/2m\\sigma_0^2)^2}$. The packet spreads because its momentum components travel at different $v_g$." },
+          { name: "Transmission Coefficient", desc: "$T = \\int_{\\text{right}} |\\psi|^2\\,dx$ after scattering. For a rectangular barrier at $E < V_0$: $T \\approx 16 E(V_0-E)/V_0^2 \\cdot e^{-2\\kappa L}$." },
+          { name: "Reflection Coefficient", desc: "$R = 1 - T$ by probability conservation. Both $T$ and $R$ oscillate with $k_0$ for barriers wider than a few wavelengths — resonances." },
+          { name: "Ramsauer-Townsend", desc: "For a potential well (not barrier), $T$ hits unity at specific energies — the well's bound-state resonances shining through." },
+          { name: "Ehrenfest's Theorem", desc: "$d\\langle x\\rangle/dt = \\langle p\\rangle/m$ etc. Expectation values follow classical equations — the quantum packet's centroid traces a classical trajectory for slowly-varying potentials." },
+          { name: "Norm Conservation", desc: "Unitary evolution means $\\int|\\psi|^2\\,dx = 1$ at all times. Good numerical integrators preserve this; a drift indicates $\\Delta t$ too large." },
+        ],
+        keyEquations: [
+          "i\\hbar\\,\\partial_t \\psi = -\\frac{\\hbar^2}{2m}\\partial_x^2\\psi + V(x)\\,\\psi",
+          "\\psi(x, 0) \\propto e^{-(x-x_0)^2/4\\sigma^2 + ik_0 x}",
+          "T \\approx 16\\,\\frac{E(V_0-E)}{V_0^2}\\,e^{-2\\kappa L}, \\quad \\kappa = \\sqrt{2m(V_0-E)}/\\hbar",
+        ],
+        conceptSummary:
+          "Raise $V_0$ above $E = k_0^2/2$ and press Play — classically the packet should reflect entirely, but watch the probability leak through. Tune $V_0$ just below $E$ and you see the ripples of an over-the-barrier reflection: partly classical, partly wave.",
+      },
+      {
+        id: "perturbation",
+        title: "Perturbation Theory",
+        description:
+          "Infinite square well perturbed by $V'(x) = \\lambda(x - L/2)$. Compare unperturbed, first-order, second-order, and exact (diagonalized) energies.",
+        definition:
+          "**Stationary perturbation theory** approximates eigenvalues of $\\hat H = \\hat H_0 + \\lambda \\hat V'$ as a power series in $\\lambda$: $E_n = E_n^{(0)} + \\lambda\\langle n|\\hat V'|n\\rangle + \\lambda^2 \\sum_{m\\neq n} |\\langle m|\\hat V'|n\\rangle|^2/(E_n^{(0)} - E_m^{(0)}) + \\cdots$. For the infinite square well perturbed by a linear tilt $V'(x) = x - L/2$, the **first-order** correction vanishes by parity — $V'$ is odd about the well center — so the leading shift is **second order**. This is the universal recipe behind computing the hydrogen fine structure, the Zeeman and Stark effects, and every \"small-coupling\" calculation in many-body physics; its breakdown at large $\\lambda$ is the signal that one needs non-perturbative methods.",
+        statisticalTools: [
+          { name: "Rayleigh-Schrödinger Series", desc: "$E_n = \\sum_k \\lambda^k E_n^{(k)}$, $|\\psi_n\\rangle = \\sum_k \\lambda^k |\\psi_n^{(k)}\\rangle$. Formal power series in the coupling." },
+          { name: "First-Order Energy", desc: "$E_n^{(1)} = \\langle n^{(0)}|\\hat V'|n^{(0)}\\rangle$. Expectation of the perturbation in the unperturbed state." },
+          { name: "Second-Order Energy", desc: "$E_n^{(2)} = \\sum_{m \\neq n} |\\langle m^{(0)}|\\hat V'|n^{(0)}\\rangle|^2 / (E_n^{(0)} - E_m^{(0)})$. Sign: positive for a level below all admixing neighbors." },
+          { name: "Level Repulsion", desc: "Nearby levels push each other apart at second order. No-crossing rule: levels with the same quantum numbers never cross as a parameter varies." },
+          { name: "Selection Rules", desc: "Matrix elements $\\langle m|\\hat V'|n\\rangle$ often vanish by symmetry. Parity, angular-momentum selection rules simplify the sums enormously." },
+          { name: "Degenerate Perturbation Theory", desc: "When the unperturbed level is degenerate, diagonalize $\\hat V'$ in the degenerate subspace first. Required for the Stark effect in hydrogen." },
+          { name: "Convergence Radius", desc: "The series typically diverges beyond some finite $\\lambda$. Method of summation (Padé, Borel) or non-perturbative techniques may be needed." },
+          { name: "Stark Effect", desc: "Hydrogen in an electric field. Linear Stark (degenerate, first order) or quadratic (non-degenerate). Shifts and splits atomic lines observably." },
+          { name: "Zeeman Effect", desc: "Atom in a magnetic field: perturbation $-\\vec\\mu\\cdot\\vec B$. Normal Zeeman at first order, anomalous (with spin) requires Pauli matrices." },
+          { name: "Time-Dependent Perturbation Theory", desc: "$P(i\\to f, t) = |\\langle f|\\int_0^t \\hat V_I(t')dt'|i\\rangle|^2/\\hbar^2$ (first order). Fermi's golden rule comes from the long-time limit." },
+        ],
+        keyEquations: [
+          "E_n^{(1)} = \\langle n|\\hat V'|n\\rangle",
+          "E_n^{(2)} = \\sum_{m \\neq n} \\frac{|\\langle m|\\hat V'|n\\rangle|^2}{E_n^{(0)} - E_m^{(0)}}",
+          "E_n = E_n^{(0)} + E_n^{(1)} + E_n^{(2)} + \\mathcal O(\\lambda^3)",
+        ],
+        conceptSummary:
+          "Small $\\lambda$: the second-order (green) markers sit right on top of the exact (red) ones. Crank $\\lambda$ past about $10$ and the approximations peel off, especially for high $n$ where neighboring levels are closer together and the $\\lambda^3, \\lambda^4$ terms start to matter.",
+      },
+    ],
+  },
 ];
 
 // ─── STATISTICAL PHYSICS ────────────────────────────────────────────

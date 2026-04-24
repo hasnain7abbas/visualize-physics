@@ -40,6 +40,7 @@ export default defineConfig({
             "./src/simulations/Q4Tunneling.tsx",
             "./src/simulations/Q5HarmonicOsc.tsx",
             "./src/simulations/Q6AdvancedQM.tsx",
+            "./src/simulations/Q7TDSE.tsx",
           ],
           "sim-statistical": [
             "./src/simulations/S1MaxwellBoltzmann.tsx",

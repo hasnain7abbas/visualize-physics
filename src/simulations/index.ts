@@ -213,6 +213,11 @@ import { W4DrivenOscillator, W4MembraneModes } from "./W4Resonance";
 simulations["w4-driven-oscillator"] = W4DrivenOscillator;
 simulations["w4-membrane-modes"] = W4MembraneModes;
 
+// Q7 - TDSE scattering + perturbation theory
+import { Q7WavepacketScattering, Q7PerturbationTheory } from "./Q7TDSE";
+simulations["q7-wavepacket-scattering"] = Q7WavepacketScattering;
+simulations["q7-perturbation"] = Q7PerturbationTheory;
+
 // W1 - Wave Equation in 1D
 import { W1StandingWaves, W1FourierModes, W1EnergyDensity } from "./W1WaveEquation";
 simulations["w1-standing-waves"] = W1StandingWaves;
