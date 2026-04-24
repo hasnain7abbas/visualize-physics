@@ -258,7 +258,7 @@ export const G1SchwarzschildOrbit: Component = () => {
       </div>
 
       <div class="text-[11px] rounded-lg p-3" style={{ background: "var(--bg-secondary)", color: "var(--text-muted)", "border-left": `3px solid ${ACCENT}` }}>
-        The Schwarzschild effective potential $V^2(r) = (1-2M/r)(1+L^2/r^2)$ develops both a maximum (unstable circular orbit) and a minimum (stable circular orbit) for $L > 2\sqrt{3}\,M$. The **innermost stable circular orbit** sits at $r=6M$. Bound orbits with $E<1$ trace a flower-like pattern — the **precession** famously accounts for 43″/century of Mercury's perihelion.
+        {"The Schwarzschild effective potential $V^2(r) = (1-2M/r)(1+L^2/r^2)$ develops both a maximum (unstable circular orbit) and a minimum (stable circular orbit) for $L > 2\\sqrt{3}\\,M$. The **innermost stable circular orbit** sits at $r=6M$. Bound orbits with $E<1$ trace a flower-like pattern — the **precession** famously accounts for 43″/century of Mercury's perihelion."}
       </div>
     </div>
   );
