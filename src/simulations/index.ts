@@ -266,6 +266,11 @@ import { M1PhasePortrait, M1SpecialFunctions } from "./M1MathMethods";
 simulations["m1-phase-portrait"] = M1PhasePortrait;
 simulations["m1-special-functions"] = M1SpecialFunctions;
 
+// SS1 - Solid State Physics
+import { SS1CrystalLattice, SS1BandStructure } from "./SS1SolidState";
+simulations["ss1-crystal-lattice"] = SS1CrystalLattice;
+simulations["ss1-band-structure"] = SS1BandStructure;
+
 export function getSimulation(chapterId: string, sectionId: string): Component | undefined {
   return simulations[`${chapterId}-${sectionId}`];
 }
