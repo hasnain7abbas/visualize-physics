@@ -228,6 +228,11 @@ import { N2RutherfordScattering, N2StandardModel } from "./N2Particle";
 simulations["n2-rutherford"] = N2RutherfordScattering;
 simulations["n2-standard-model"] = N2StandardModel;
 
+// G2 - Cosmology (Friedmann + CMB)
+import { G2FriedmannCosmology, G2CMBPeaks } from "./G2Cosmology";
+simulations["g2-friedmann"] = G2FriedmannCosmology;
+simulations["g2-cmb-peaks"] = G2CMBPeaks;
+
 // W1 - Wave Equation in 1D
 import { W1StandingWaves, W1FourierModes, W1EnergyDensity } from "./W1WaveEquation";
 simulations["w1-standing-waves"] = W1StandingWaves;

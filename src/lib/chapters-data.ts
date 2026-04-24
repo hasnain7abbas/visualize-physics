@@ -3620,6 +3620,72 @@ const generalRelativity: Chapter[] = [
       },
     ],
   },
+  {
+    id: "g2",
+    num: "G2",
+    title: "Cosmology",
+    description:
+      "Friedmann's equation traces the scale factor $a(t)$ under four energy components — and the CMB power spectrum's acoustic peaks let us read off their densities from the sky.",
+    color: "#7c3aed",
+    icon: "\u{1F30C}",
+    shortDesc: "Friedmann & CMB",
+    sections: [
+      {
+        id: "friedmann",
+        title: "Friedmann Cosmology",
+        description:
+          "Scale factor evolution under $(\\dot a/a)^2 = H_0^2 (\\Omega_r/a^4 + \\Omega_m/a^3 + \\Omega_k/a^2 + \\Omega_\\Lambda)$. Different mixes of matter, radiation, curvature, and $\\Lambda$ give different cosmic histories.",
+        definition:
+          "The **Friedmann equation** governs the expansion history of a homogeneous, isotropic universe: $H^2(a) = H_0^2[\\Omega_r/a^4 + \\Omega_m/a^3 + \\Omega_k/a^2 + \\Omega_\\Lambda]$, where $a(t)$ is the cosmic scale factor, $H = \\dot a/a$ is the Hubble rate, and the $\\Omega_i$ are today's density parameters summing to 1. Each component redshifts differently: radiation $\\propto a^{-4}$ (wavelength $\\times$ number density), matter $\\propto a^{-3}$, curvature $\\propto a^{-2}$, and dark energy $\\Lambda$ stays constant. Observations of **ΛCDM** give $\\Omega_m \\approx 0.315$ and $\\Omega_\\Lambda \\approx 0.685$, with $\\Omega_k$ consistent with zero — a spatially flat universe with 68% dark energy, 27% dark matter, and 5% ordinary baryonic matter, currently accelerating and $\\approx 13.8$ Gyr old.",
+        statisticalTools: [
+          { name: "Friedmann Equation", desc: "$H^2 = H_0^2[\\Omega_r/a^4 + \\Omega_m/a^3 + \\Omega_k/a^2 + \\Omega_\\Lambda]$. Derived from Einstein's equations assuming FLRW metric." },
+          { name: "Scale Factor a(t)", desc: "Dimensionless factor rescaling comoving distances. $a=1$ today; $a<1$ in the past. Redshift: $1+z = 1/a$." },
+          { name: "Hubble Rate H(z)", desc: "$H(z) = H_0\\sqrt{\\Omega_r(1+z)^4 + \\Omega_m(1+z)^3 + \\Omega_k(1+z)^2 + \\Omega_\\Lambda}$. Measured by Type Ia supernovae, BAO, etc." },
+          { name: "Matter-Radiation Equality", desc: "When $\\Omega_r/a^4 = \\Omega_m/a^3$: $a_{\\text{eq}} \\approx \\Omega_r/\\Omega_m \\approx 3 \\times 10^{-4}$. Transition from radiation to matter domination." },
+          { name: "Matter-Λ Equality", desc: "When $\\Omega_m/a^3 = \\Omega_\\Lambda$: $a_\\Lambda = (\\Omega_m/\\Omega_\\Lambda)^{1/3} \\approx 0.77$ today. Universe started accelerating around $z \\approx 0.7$." },
+          { name: "Einstein-de Sitter", desc: "Flat, matter-only: $a(t) \\propto t^{2/3}$, age $= (2/3)/H_0 \\approx 9.3$ Gyr. Ruled out by age of old stars." },
+          { name: "de Sitter", desc: "Λ-only: $a(t) \\propto e^{H_0 t}$. Eternal exponential expansion. Approached asymptotically in ΛCDM." },
+          { name: "Closed Universe", desc: "$\\Omega_{\\text{tot}} > 1$: $\\Omega_k < 0$. Geometry spherical; universe recollapses in a \"big crunch\". Inconsistent with current data." },
+          { name: "Deceleration Parameter", desc: "$q_0 = \\tfrac{1}{2}\\Omega_m - \\Omega_\\Lambda$. Negative for accelerating expansion. Current value $q_0 \\approx -0.53$." },
+          { name: "Comoving Distance", desc: "$D_C(z) = c\\int_0^z dz'/H(z')$. Distance between galaxies in coordinates that expand with the universe. Input to every cosmological observable." },
+        ],
+        keyEquations: [
+          "\\left(\\frac{\\dot a}{a}\\right)^2 = H_0^2\\!\\left[\\frac{\\Omega_r}{a^4} + \\frac{\\Omega_m}{a^3} + \\frac{\\Omega_k}{a^2} + \\Omega_\\Lambda\\right]",
+          "1 + z = \\frac{1}{a},\\qquad H(z) = H_0 \\sqrt{\\ldots}",
+          "\\Omega_r + \\Omega_m + \\Omega_k + \\Omega_\\Lambda = 1",
+        ],
+        conceptSummary:
+          "Start with **ΛCDM** and see $a(t)$ accelerate outward. Switch to **Einstein-de Sitter** and the curve decelerates forever. Try **Λ-only** to see pure exponential growth. Make $\\Omega_m + \\Omega_\\Lambda$ exceed 1 (closed) and the universe recollapses.",
+      },
+      {
+        id: "cmb-peaks",
+        title: "CMB Acoustic Peaks",
+        description:
+          "Angular power spectrum $C_\\ell$ of temperature fluctuations in the cosmic microwave background. Peak positions encode geometry; relative heights encode densities.",
+        definition:
+          "The **cosmic microwave background** (CMB) is the thermal afterglow of the Big Bang, seen as 2.725 K black-body radiation uniform to one part in $10^5$. The angular power spectrum $C_\\ell$ of its tiny temperature fluctuations shows a series of **acoustic peaks** — standing sound waves in the primordial photon-baryon plasma frozen in at last scattering. The **position** of the first peak (near $\\ell \\approx 220$) fixes the **geometry** of the universe (flat if first peak $\\ell_1 \\approx 220$, open if shifted right, closed if shifted left). The **odd/even peak height ratio** fixes the baryon density $\\Omega_b$, and the overall amplitude pins down the total matter content $\\Omega_m$. Missions like COBE, WMAP, and Planck measured these peaks, giving us today's \"concordance cosmology\" to percent precision.",
+        statisticalTools: [
+          { name: "Acoustic Oscillations", desc: "Sound waves in the photon-baryon plasma before recombination. Frozen in at last scattering at $z \\approx 1090$, stretched out to angular scales we see today." },
+          { name: "First Peak (ℓ ≈ 220)", desc: "Longest-wavelength mode that completed exactly one compression. Angular size ∝ sound horizon / comoving distance → fixes geometry." },
+          { name: "Second Peak", desc: "Mode that completed half an oscillation: maximally rarefied. Its height relative to first peak = baryon loading (heavier baryons asymmetrize compression vs rarefaction)." },
+          { name: "Higher Peaks", desc: "Successive sound-horizon subharmonics. Amplitudes damp due to photon diffusion (Silk damping) above $\\ell \\approx 1500$." },
+          { name: "Silk Damping", desc: "Photons random-walk out of small overdensities before recombination, washing out high-$\\ell$ anisotropies. Cutoff at $\\ell \\sim 1400$." },
+          { name: "Sachs-Wolfe Plateau", desc: "Low-$\\ell$ ($\\ell < 50$) plateau: gravitational redshift from potential wells at last scattering. Sensitive to super-horizon physics / inflation." },
+          { name: "Integrated Sachs-Wolfe", desc: "Late-time boost at low $\\ell$ from dark-energy-induced potential decay. Observed correlation with LSS confirms $\\Omega_\\Lambda$." },
+          { name: "Angular-to-Physical Scale", desc: "$\\theta = D_A^{-1} \\cdot r_s$. First peak directly measures $D_A(z_{\\text{rec}})/r_s$ — the \"standard ruler\" of the universe." },
+          { name: "Baryon Drag", desc: "Baryons add mass to the photon fluid, deepening compression wells. Boosts odd peaks (compressions) relative to even (rarefactions)." },
+          { name: "Planck 2018 Results", desc: "$\\Omega_b h^2 = 0.0224$, $\\Omega_c h^2 = 0.120$, $H_0 = 67.4$ km/s/Mpc. Flat ΛCDM fits to <0.1% — remarkable agreement." },
+        ],
+        keyEquations: [
+          "\\Delta T(\\hat n) = \\sum_{\\ell m} a_{\\ell m} Y_\\ell^m(\\hat n)",
+          "C_\\ell = \\langle |a_{\\ell m}|^2 \\rangle",
+          "\\ell_1 \\approx \\pi/\\theta_\\star,\\quad \\theta_\\star = r_s(z_{\\text{rec}})/D_A(z_{\\text{rec}})",
+        ],
+        conceptSummary:
+          "Nudge $\\Omega_k$ up or down and watch the peaks slide left or right — the position of the first peak *is* the geometry test. Crank $\\Omega_b$ up and the **odd peaks (1st, 3rd, …)** grow relative to the **even peaks (2nd, 4th)**.",
+      },
+    ],
+  },
 ];
 
 // ─── MATHEMATICAL METHODS ───────────────────────────────────────────
