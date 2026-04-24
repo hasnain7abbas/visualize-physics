@@ -3483,6 +3483,72 @@ const nuclearPhysics: Chapter[] = [
       },
     ],
   },
+  {
+    id: "n2",
+    num: "N2",
+    title: "Scattering & the Standard Model",
+    description:
+      "How particles scatter and what matter is made of. Rutherford's hyperbolic trajectories (and the characteristic $\\csc^4(\\theta/2)$ cross-section), and the full zoo of Standard Model fermions and bosons.",
+    color: "#f43f5e",
+    icon: "\u{1F3AF}",
+    shortDesc: "Rutherford & the SM chart",
+    sections: [
+      {
+        id: "rutherford",
+        title: "Rutherford Scattering",
+        description:
+          "Alpha particles deflected by a point-charge nucleus. Scattering angle $\\theta = 2\\arctan(a/b)$ where $a = Z_1 Z_2 e^2/(4\\pi\\varepsilon_0 E)$; differential cross-section $\\propto \\csc^4(\\theta/2)$.",
+        definition:
+          "**Rutherford scattering** is the elastic Coulomb scattering of a charged projectile off a point-like nucleus. A particle of kinetic energy $E$ and impact parameter $b$ follows a hyperbolic orbit, emerging with scattering angle $\\theta = 2\\arctan(a/b)$, where $a = Z_1 Z_2 e^2/(4\\pi\\varepsilon_0 E)$ sets the strength of the Coulomb interaction. The resulting **differential cross-section** $d\\sigma/d\\Omega = (a/4)^2\\csc^4(\\theta/2)$ diverges at small angles (soft Coulomb scattering) but predicts a tiny but finite rate of large-angle backscattering — exactly the \"utterly surprising\" observation in Geiger and Marsden's 1909 gold-foil experiment that forced Rutherford to replace the plum-pudding atom with the **nuclear atom**.",
+        statisticalTools: [
+          { name: "Rutherford Formula", desc: "$d\\sigma/d\\Omega = (Z_1 Z_2 e^2/4E)^2 \\csc^4(\\theta/2)$. One of the exact results of non-relativistic scattering theory." },
+          { name: "Hyperbolic Orbits", desc: "Repulsive $1/r$ potential gives open orbits — hyperbolas. Closed-form in polar coordinates: $r(\\phi) = p/(e\\cos(\\phi-\\phi_0) - 1)$ with $e > 1$." },
+          { name: "Closest Approach", desc: "At $b = 0$ (head-on), $r_{\\min} = 2a = Z_1 Z_2 e^2/(4\\pi\\varepsilon_0 E)$. For 5-MeV alphas on gold: $r_{\\min} \\approx 45$ fm, well outside the nuclear radius." },
+          { name: "Impact Parameter", desc: "Perpendicular distance between the projectile's initial straight-line trajectory and the target. Small $b$ → large scattering angle." },
+          { name: "Small-Angle Divergence", desc: "$\\csc^4(\\theta/2) \\to \\infty$ as $\\theta \\to 0$: infinite total cross-section, characteristic of long-range forces. Cut off in practice by screening." },
+          { name: "Backscattering Rate", desc: "Geiger-Marsden: about 1 in 20,000 alphas backscattered from gold foil — a huge rate given plum-pudding predictions of essentially zero." },
+          { name: "Born Approximation", desc: "Quantum-mechanical derivation: $f(\\theta) = -(m/2\\pi\\hbar^2)\\int e^{-i\\vec q\\cdot\\vec r} V(\\vec r)\\,d^3r$. For $V = 1/r$ reproduces the classical Rutherford formula exactly." },
+          { name: "Partial Wave Expansion", desc: "Expand amplitude in $\\ell$ eigenstates: $f(\\theta) = (1/k)\\sum_\\ell (2\\ell+1)e^{i\\delta_\\ell}\\sin\\delta_\\ell P_\\ell(\\cos\\theta)$. Generic method for central potentials." },
+          { name: "Nuclear Form Factor", desc: "Extended charge distribution modifies the cross-section at large $q$: $d\\sigma/d\\Omega = (d\\sigma/d\\Omega)_{\\text{Rutherford}}|F(q)|^2$. How we measure nuclear size." },
+          { name: "Elastic Scattering", desc: "Energy of the projectile is conserved; only direction changes. Valid when excitation energies $\\gg$ collision energy — true for alpha-gold at MeV." },
+        ],
+        keyEquations: [
+          "\\theta = 2\\arctan\\!\\left(\\frac{a}{b}\\right), \\qquad a = \\frac{Z_1 Z_2 e^2}{4\\pi\\varepsilon_0 E}",
+          "\\frac{d\\sigma}{d\\Omega} = \\left(\\frac{a}{4}\\right)^2 \\csc^4\\!\\frac{\\theta}{2}",
+          "r_{\\min}(b=0) = \\frac{Z_1 Z_2 e^2}{4\\pi\\varepsilon_0 E}",
+        ],
+        conceptSummary:
+          "Watch rays at different impact parameters bend around the nucleus, with small $b$ producing large deflections. The cross-section plot uses a log scale to show how rapidly backscattering gets suppressed as $\\theta$ grows — yet it is never zero.",
+      },
+      {
+        id: "standard-model",
+        title: "Standard Model Explorer",
+        description:
+          "Click any particle in the Standard Model chart to see its properties. Three generations of fermions (quarks + leptons), four gauge bosons, and the Higgs.",
+        definition:
+          "The **Standard Model** of particle physics describes every known elementary particle. Matter is built from twelve **fermions** (spin-½): six **quarks** (up, down, charm, strange, top, bottom) that make up protons, neutrons, and all other hadrons; and six **leptons** (electron, muon, tau, and their associated neutrinos) that interact only via the weak and electromagnetic forces. These twelve are organized into three nearly-identical **generations** of increasing mass. Force-carrying **bosons** (spin-1) are the **gluon** (strong), **photon** (electromagnetic), and **$W^\\pm, Z^0$** (weak). The **Higgs boson** (spin-0), discovered at the LHC in 2012, is the excitation of the field that gives fermions and the $W, Z$ their masses via the Higgs mechanism. Gravity is not part of the Standard Model — it remains the one force awaiting a quantum description.",
+        statisticalTools: [
+          { name: "Quarks", desc: "Charges $+2/3$ (u, c, t) or $-1/3$ (d, s, b). Carry color charge (r/g/b). Confined: never seen individually, only in colorless hadrons." },
+          { name: "Leptons", desc: "Electron, muon, tau (charged); their neutrinos (neutral). Do not feel the strong force. Lepton number conserved in all Standard Model interactions." },
+          { name: "Gauge Bosons", desc: "Photon (γ, EM), gluons (g, strong), W⁺, W⁻, Z (weak). Spin-1 vector bosons; emerge from local gauge symmetries U(1) × SU(2) × SU(3)." },
+          { name: "Higgs Boson", desc: "Spin-0 scalar. Discovered 2012; mass 125.25 GeV. The only fundamental scalar in the SM; its vacuum expectation value breaks electroweak symmetry." },
+          { name: "Generations", desc: "Three copies: (u,d,e,ν_e), (c,s,μ,ν_μ), (t,b,τ,ν_τ). Why three? Unknown — one of the great mysteries of particle physics." },
+          { name: "CKM Matrix", desc: "Mixes the three quark generations under weak interactions. Contains one CP-violating phase — the only such source in the SM besides the (unobserved) strong-CP." },
+          { name: "PMNS Matrix", desc: "Lepton analog: mixes neutrino mass eigenstates with flavor eigenstates. Origin of neutrino oscillations — evidence that neutrinos have small but nonzero masses." },
+          { name: "Electroweak Unification", desc: "Glashow-Weinberg-Salam theory: EM and weak forces unify into SU(2) × U(1) above the $Z$ scale. Nobel Prize 1979." },
+          { name: "QCD", desc: "Quantum Chromodynamics: SU(3) gauge theory of the strong force. Asymptotic freedom (high energy) and confinement (low energy). Nobel 2004." },
+          { name: "Open Questions", desc: "Dark matter, dark energy, neutrino masses, hierarchy problem, matter-antimatter asymmetry, why three generations? Beyond-Standard-Model physics." },
+        ],
+        keyEquations: [
+          "\\text{SM gauge group: } SU(3)_c \\times SU(2)_L \\times U(1)_Y",
+          "m_f = y_f \\cdot v / \\sqrt{2} \\quad (\\text{fermion masses from Yukawa couplings})",
+          "m_W^2 = m_Z^2 \\cos^2\\theta_W = \\tfrac{1}{4}g^2 v^2",
+        ],
+        conceptSummary:
+          "Click any particle cell to inspect charge, spin, mass, and one-line note. Notice the regularity: each generation repeats the (up-type quark, down-type quark, charged lepton, neutrino) pattern, with masses jumping by roughly a factor of $10^2$ between generations.",
+      },
+    ],
+  },
 ];
 
 // ─── GENERAL RELATIVITY ─────────────────────────────────────────────

@@ -223,6 +223,11 @@ import { SS2Phonons, SS2Semiconductor } from "./SS2Phonons";
 simulations["ss2-phonons"] = SS2Phonons;
 simulations["ss2-semiconductor"] = SS2Semiconductor;
 
+// N2 - Rutherford scattering + Standard Model
+import { N2RutherfordScattering, N2StandardModel } from "./N2Particle";
+simulations["n2-rutherford"] = N2RutherfordScattering;
+simulations["n2-standard-model"] = N2StandardModel;
+
 // W1 - Wave Equation in 1D
 import { W1StandingWaves, W1FourierModes, W1EnergyDensity } from "./W1WaveEquation";
 simulations["w1-standing-waves"] = W1StandingWaves;
