@@ -271,6 +271,11 @@ import { SS1CrystalLattice, SS1BandStructure } from "./SS1SolidState";
 simulations["ss1-crystal-lattice"] = SS1CrystalLattice;
 simulations["ss1-band-structure"] = SS1BandStructure;
 
+// Q6 - Advanced Quantum (hydrogen orbitals, Bell's inequality)
+import { Q6HydrogenOrbital, Q6BellInequality } from "./Q6AdvancedQM";
+simulations["q6-hydrogen-orbital"] = Q6HydrogenOrbital;
+simulations["q6-bell-inequality"] = Q6BellInequality;
+
 export function getSimulation(chapterId: string, sectionId: string): Component | undefined {
   return simulations[`${chapterId}-${sectionId}`];
 }

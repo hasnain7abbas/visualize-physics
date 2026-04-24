@@ -474,6 +474,72 @@ const quantumPhysics: Chapter[] = [
       },
     ],
   },
+  {
+    id: "q6",
+    num: "Q6",
+    title: "Advanced Quantum",
+    description:
+      "Two iconic results of quantum mechanics: the three-dimensional hydrogen orbitals that underlie the periodic table, and the CHSH test that rules out any classical local-hidden-variable description of reality.",
+    color: "#a855f7",
+    icon: "\u{1F300}",
+    shortDesc: "Orbitals & Bell tests",
+    sections: [
+      {
+        id: "hydrogen-orbital",
+        title: "Hydrogen Orbitals",
+        description:
+          "Eigenstates of the Coulomb problem: $\\psi_{n\\ell m} = R_{n\\ell}(r) Y_\\ell^m(\\theta, \\phi)$. Radial part is an associated Laguerre polynomial times an exponential; angular part is a spherical harmonic.",
+        definition:
+          "The **hydrogen atom** is the exactly-solvable two-body Coulomb problem: one electron bound to a proton by $V(r) = -e^2/4\\pi\\varepsilon_0 r$. The bound-state eigenfunctions factor as $\\psi_{n\\ell m}(r,\\theta,\\phi) = R_{n\\ell}(r)\\,Y_\\ell^m(\\theta,\\phi)$ with principal quantum number $n=1,2,3,\\dots$ controlling energy $E_n = -13.6\\,\\text{eV}/n^2$, orbital quantum number $\\ell = 0, 1, \\dots, n-1$ setting the shape (s, p, d, f, …), and magnetic quantum number $m = -\\ell, \\dots, +\\ell$ picking the spatial orientation. Every electron shell in the periodic table is built from these orbitals — including the $1s$, $2p$, $3d$, etc. you know from chemistry.",
+        statisticalTools: [
+          { name: "Schrödinger for Coulomb", desc: "$-\\frac{\\hbar^2}{2m}\\nabla^2\\psi - \\frac{e^2}{4\\pi\\varepsilon_0 r}\\psi = E\\psi$. Separable in spherical coordinates." },
+          { name: "Radial Equation", desc: "$R_{n\\ell}(r) = N\\,(2r/na_0)^\\ell\\,e^{-r/na_0}\\,L_{n-\\ell-1}^{2\\ell+1}(2r/na_0)$ using associated Laguerre polynomials." },
+          { name: "Spherical Harmonics", desc: "$Y_\\ell^m(\\theta,\\phi) \\propto P_\\ell^{|m|}(\\cos\\theta)\\,e^{im\\phi}$ with associated Legendre polynomials. Real combinations give the familiar $p_x, p_y, p_z, d_{xy}, \\dots$ orbitals." },
+          { name: "Energy Formula", desc: "$E_n = -\\frac{m e^4}{2(4\\pi\\varepsilon_0)^2\\hbar^2}\\frac{1}{n^2} = -\\frac{13.606\\,\\text{eV}}{n^2}$. Depends only on $n$ (accidental degeneracy of the Coulomb potential)." },
+          { name: "Degeneracy", desc: "Level $n$ has $n^2$ states (without spin), or $2n^2$ including spin. Explains the 2, 8, 18, 32 electron shells of the periodic table." },
+          { name: "Radial Nodes & Angular Nodes", desc: "Number of radial nodes = $n - \\ell - 1$, angular nodes = $\\ell$. Total nodes = $n - 1$, one more than the previous level." },
+          { name: "Bohr Radius", desc: "$a_0 = 4\\pi\\varepsilon_0 \\hbar^2/(m_e e^2) \\approx 0.529$ Å. Natural length scale of atomic physics." },
+          { name: "Rydberg Constant", desc: "$R_\\infty = m_e e^4/(8\\varepsilon_0^2 h^3 c) \\approx 1.097 \\times 10^7\\,\\text{m}^{-1}$. Sets all hydrogen spectral line wavenumbers via $\\tilde\\nu = R(1/n_1^2 - 1/n_2^2)$." },
+          { name: "Accidental Degeneracy", desc: "All $\\ell$ for fixed $n$ have the same energy — special to the $1/r$ potential. Broken by relativistic corrections, Lamb shift, etc." },
+          { name: "Chemistry Connection", desc: "Orbital shapes ($s$ spheres, $p$ dumbbells, $d$ clover-leaves) directly explain bonding geometries: tetrahedral, trigonal planar, octahedral." },
+        ],
+        keyEquations: [
+          "\\psi_{n\\ell m}(r,\\theta,\\phi) = R_{n\\ell}(r)\\,Y_\\ell^m(\\theta,\\phi)",
+          "E_n = -\\frac{13.6\\,\\text{eV}}{n^2}",
+          "|\\psi|^2 \\,d^3r = \\text{probability of finding electron in } d^3r",
+        ],
+        conceptSummary:
+          "Cycle through $(n,\\ell,m)$ and watch the orbital shape mutate — from the spherical $1s$ through the dumbbell $2p_z$ to the clover-leaf $3d$ orbitals. The nucleus is marked in yellow at the origin.",
+      },
+      {
+        id: "bell-inequality",
+        title: "Bell's Inequality (CHSH Test)",
+        description:
+          "Measure two spatially-separated halves of a maximally-entangled pair at four different angle pairs. The CHSH combination $S$ is bounded by 2 classically but reaches $2\\sqrt 2$ quantum-mechanically.",
+        definition:
+          "**Bell's inequality** is a constraint that any local hidden-variable theory (LHV) must satisfy. In the CHSH version, two experimenters (Alice, Bob) measure pre-chosen binary observables at angles $a, a', b, b'$ on halves of an entangled pair. Define correlation $E(a,b) = \\langle A \\cdot B\\rangle$. Every LHV theory obeys the **CHSH inequality** $|S| = |E(a,b) - E(a,b') + E(a',b) + E(a',b')| \\leq 2$. Quantum mechanics with the singlet state predicts $E(a,b) = -\\cos(a-b)$, which at the optimal angles $(a, a', b, b') = (0°, 45°, 22.5°, 67.5°)$ gives $S = 2\\sqrt 2 \\approx 2.828$ — exceeding the classical bound. Aspect's 1982 experiment and the 2015 \"loophole-free\" tests confirm the violation, ruling out local realism.",
+        statisticalTools: [
+          { name: "CHSH Inequality", desc: "$|E(a,b) - E(a,b') + E(a',b) + E(a',b')| \\leq 2$ for any local hidden-variable theory. Derived from the assumption that each particle carries a pre-existing answer to every measurement." },
+          { name: "Tsirelson Bound", desc: "Quantum mechanics allows $|S| \\leq 2\\sqrt 2 \\approx 2.828$. No known physical theory saturates a value in between this and a fully \"post-quantum\" limit of 4." },
+          { name: "Bell Pair / Singlet", desc: "$|\\Psi^-\\rangle = (|{\\uparrow}{\\downarrow}\\rangle - |{\\downarrow}{\\uparrow}\\rangle)/\\sqrt 2$. Maximally entangled. Correlation $E(a,b) = -\\cos(a-b)$." },
+          { name: "Local Realism", desc: "Hypothesis: outcomes depend only on properties at the site and a shared random hidden variable. CHSH violation disproves it." },
+          { name: "Aspect Experiment (1982)", desc: "First test with changing polarizer settings during photon flight. Observed $S \\approx 2.70$, violating CHSH by many sigma." },
+          { name: "Loophole-Free Tests", desc: "2015 experiments in Delft, NIST, and Vienna closed the detection, locality, and freedom-of-choice loopholes simultaneously." },
+          { name: "No-Communication Theorem", desc: "Despite correlations, entanglement cannot be used to signal faster than light. Each local outcome is uniformly random in isolation." },
+          { name: "Device-Independent QKD", desc: "Because Bell violation certifies randomness, it is the theoretical basis of cryptographic protocols secure against any local eavesdropper — even one with superior devices." },
+          { name: "GHZ Paradox", desc: "Greenberger-Horne-Zeilinger three-particle state gives an even stronger \"all-or-nothing\" contradiction with local realism — a single measurement outcome suffices." },
+          { name: "Leggett-Garg Inequality", desc: "Time analog: bound on correlations of a single system measured at multiple times under \"macroscopic realism\". Violated by quantum mechanics too." },
+        ],
+        keyEquations: [
+          "S = |E(a,b) - E(a,b') + E(a',b) + E(a',b')|",
+          "S \\leq 2 \\quad \\text{(classical, LHV)}",
+          "S_{\\max}^{\\text{QM}} = 2\\sqrt 2 \\approx 2.828 \\quad \\text{(Tsirelson)}",
+        ],
+        conceptSummary:
+          "Set the four angles to the CHSH optimum $(0°, 45°, 22.5°, 67.5°)$ and click +1000 trials. The measured $S$ climbs above the classical bound of 2 and settles near $2\\sqrt 2$ — a statistical certification that reality is not locally real.",
+      },
+    ],
+  },
 ];
 
 // ─── STATISTICAL PHYSICS ────────────────────────────────────────────
