@@ -218,6 +218,11 @@ import { Q7WavepacketScattering, Q7PerturbationTheory } from "./Q7TDSE";
 simulations["q7-wavepacket-scattering"] = Q7WavepacketScattering;
 simulations["q7-perturbation"] = Q7PerturbationTheory;
 
+// SS2 - Phonons + Semiconductors
+import { SS2Phonons, SS2Semiconductor } from "./SS2Phonons";
+simulations["ss2-phonons"] = SS2Phonons;
+simulations["ss2-semiconductor"] = SS2Semiconductor;
+
 // W1 - Wave Equation in 1D
 import { W1StandingWaves, W1FourierModes, W1EnergyDensity } from "./W1WaveEquation";
 simulations["w1-standing-waves"] = W1StandingWaves;

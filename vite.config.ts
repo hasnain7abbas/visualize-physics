@@ -102,6 +102,7 @@ export default defineConfig({
           ],
           "sim-solidstate": [
             "./src/simulations/SS1SolidState.tsx",
+            "./src/simulations/SS2Phonons.tsx",
           ],
         },
       },

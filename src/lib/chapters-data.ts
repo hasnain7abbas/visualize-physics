@@ -3696,6 +3696,72 @@ const solidState: Chapter[] = [
       },
     ],
   },
+  {
+    id: "ss2",
+    num: "SS2",
+    title: "Phonons & Semiconductors",
+    description:
+      "Lattice vibrations (phonons) and carrier physics in semiconductors. The diatomic-chain dispersion has two branches (acoustic and optical) separated by a gap; doping shifts the Fermi level toward either band edge.",
+    color: "#8b5cf6",
+    icon: "\u{1F50C}",
+    shortDesc: "Lattice vibrations & doping",
+    sections: [
+      {
+        id: "phonons",
+        title: "Phonon Dispersion (Diatomic Chain)",
+        description:
+          "Two masses alternating on a spring chain. Acoustic branch $\\omega \\sim v_s k$ (in-phase motion, sound) and optical branch $\\omega \\sim $ const (out-of-phase, couples to IR light).",
+        definition:
+          "**Phonons** are the quantized normal modes of lattice vibrations. For a 1D chain with alternating masses $m_1, m_2$ and linear spring constant $K$, diagonalizing the dynamical matrix gives two branches: $\\omega_\\pm^2(k) = K(m_1^{-1}+m_2^{-1}) \\pm K\\sqrt{(m_1^{-1}+m_2^{-1})^2 - 4\\sin^2(ka/2)/(m_1 m_2)}$. The lower (**acoustic**) branch goes to zero at $k=0$ and behaves like sound waves at long wavelengths ($\\omega \\approx v_s k$); the upper (**optical**) branch stays at $\\omega \\sim \\sqrt{2K/\\mu}$ even at $k=0$ and corresponds to adjacent atoms vibrating out of phase. A gap opens at the zone boundary $k = \\pi/a$ whenever $m_1 \\neq m_2$ — the mass-induced analog of the electronic band gap.",
+        statisticalTools: [
+          { name: "Dynamical Matrix", desc: "$D_{\\alpha\\beta}(k) = \\sum_R (1/\\sqrt{m_\\alpha m_\\beta})\\phi_{\\alpha\\beta}(R)e^{ikR}$. Its eigenvalues give $\\omega^2$; eigenvectors give the atomic displacement patterns." },
+          { name: "Acoustic Branch", desc: "$\\omega(k\\to 0) = v_s k$ with $v_s = \\sqrt{K/(2(m_1+m_2))}\\cdot a$. The quantum of sound; connects to elasticity." },
+          { name: "Optical Branch", desc: "$\\omega(k=0) = \\sqrt{2K(1/m_1 + 1/m_2)}$. Finite gap; couples to infrared light because adjacent atoms have opposite displacement (dipole-active)." },
+          { name: "Brillouin Zone Boundary", desc: "At $k = \\pi/a$ the gap is $\\sqrt{2K/m_1} - \\sqrt{2K/m_2}$; vanishes for $m_1 = m_2$ (the monatomic limit)." },
+          { name: "Group Velocity", desc: "$v_g = d\\omega/dk$. Zero at the zone boundary — standing wave. Maximum in the middle of the zone." },
+          { name: "Density of States", desc: "$g(\\omega) = (1/\\pi)|dk/d\\omega|$ — diverges at extrema of $\\omega(k)$ (van Hove singularities). Visible in specific-heat and phonon spectra." },
+          { name: "Debye Model", desc: "Approximate: all modes acoustic up to $\\omega_D$, giving $C_v \\propto T^3$ at low $T$. Crude but captures the right $T^3$ law." },
+          { name: "Einstein Model", desc: "All modes at a single frequency. Overestimates the low-$T$ suppression because real acoustic modes are gapless." },
+          { name: "Phonon Momentum", desc: "$\\hbar k$; crystal momentum is conserved modulo $\\hbar G$. Umklapp ($G \\neq 0$) scattering limits thermal conductivity." },
+          { name: "Electron-Phonon Coupling", desc: "Scattering electrons off lattice vibrations. Origin of phonon-mediated superconductivity (Cooper pairing) and metallic resistivity." },
+        ],
+        keyEquations: [
+          "\\omega_\\pm^2(k) = K\\!\\left(\\tfrac{1}{m_1}+\\tfrac{1}{m_2}\\right) \\pm K\\sqrt{\\left(\\tfrac{1}{m_1}+\\tfrac{1}{m_2}\\right)^2 - \\tfrac{4\\sin^2(ka/2)}{m_1 m_2}}",
+          "v_s = a\\sqrt{\\frac{K}{2(m_1+m_2)}}",
+          "\\Delta\\omega_{\\text{gap}} = \\sqrt{\\tfrac{2K}{\\min(m_1,m_2)}} - \\sqrt{\\tfrac{2K}{\\max(m_1,m_2)}}",
+        ],
+        conceptSummary:
+          "Set $m_1 = m_2$ to see the two branches merge into a single folded curve (monatomic chain). Vary the mass ratio and the gap at $k = \\pm\\pi/a$ opens — the lattice analog of the electronic band gap.",
+      },
+      {
+        id: "semiconductor",
+        title: "Semiconductor Carrier Concentrations",
+        description:
+          "Band diagram with Fermi level. Intrinsic concentration $n_i \\propto e^{-E_g/2k_BT}$; doping pushes $E_F$ toward the conduction (n-type) or valence (p-type) band.",
+        definition:
+          "A **semiconductor** has a modest gap $E_g \\sim 0.5$–3 eV between a fully-occupied valence band and an empty conduction band. At finite $T$, thermal excitations promote a small number of electrons to the conduction band, leaving holes behind: $n_i = \\sqrt{N_c N_v}\\,e^{-E_g/2k_BT}$. Adding **donors** (n-type) contributes nearly all their electrons to the conduction band, pushing the Fermi level upward; **acceptors** (p-type) capture electrons from the valence band, pushing it downward. Regardless of doping, the **law of mass action** $n\\cdot p = n_i^2$ holds at equilibrium — the workhorse relation behind every semiconductor device from diodes to MOSFETs.",
+        statisticalTools: [
+          { name: "Intrinsic Concentration", desc: "$n_i = \\sqrt{N_c N_v}\\,e^{-E_g/2k_BT}$. Exponentially sensitive to $T$ — why semiconductors go metallic at high $T$ and insulating at low $T$." },
+          { name: "Effective DOS", desc: "$N_c = 2(m_c^* k_BT/2\\pi\\hbar^2)^{3/2}$. Number of effective states at the band edge. Depends on curvature of the band (effective mass)." },
+          { name: "Law of Mass Action", desc: "$n\\,p = n_i^2$. Holds at equilibrium independent of doping. Heavily doped n-type has tiny hole concentration and vice versa." },
+          { name: "Fermi Level", desc: "$E_F = E_c - k_BT\\ln(N_c/n)$. Sits at midgap for intrinsic; near the donor level for n-type; near the acceptor level for p-type." },
+          { name: "Donor / Acceptor Levels", desc: "Impurity states inside the gap. Donors sit a few meV below $E_c$; acceptors a few meV above $E_v$. Ionized at room temperature." },
+          { name: "Majority / Minority Carriers", desc: "n-type: electrons are majority, holes minority. Reversed in p-type. Transistor action exploits minority-carrier injection." },
+          { name: "Arrhenius Plot", desc: "$\\ln n_i$ vs $1/T$ is a straight line of slope $-E_g/(2k_B)$. Standard way to extract $E_g$ from resistivity measurements." },
+          { name: "Compensated Semiconductor", desc: "Both donors and acceptors present. Net carrier density $|N_D - N_A|$; minority carriers suppressed by $n\\,p = n_i^2$." },
+          { name: "Drift / Diffusion Currents", desc: "$J_n = q\\mu_n n E + qD_n \\nabla n$. The two mechanisms of charge transport; Einstein relation $D = \\mu k_BT/q$ links them." },
+          { name: "p-n Junction", desc: "Joining n and p regions: electrons diffuse across, leaving behind charged dopants that set up a built-in $E$ field and depletion region. Basis of diodes, LEDs, and solar cells." },
+        ],
+        keyEquations: [
+          "n_i = \\sqrt{N_c N_v}\\,\\exp\\!\\left(-\\frac{E_g}{2k_BT}\\right)",
+          "n \\cdot p = n_i^2 \\quad \\text{(mass action)}",
+          "E_F^{\\text{intr}} \\approx \\frac{E_c + E_v}{2} + \\frac{k_BT}{2}\\ln\\frac{N_v}{N_c}",
+        ],
+        conceptSummary:
+          "Start with silicon ($E_g = 1.12$ eV) at 300 K, intrinsic. Switch to n-type and slide the dopant concentration: the Fermi level jumps from midgap up near the conduction band, and the minority-hole concentration collapses.",
+      },
+    ],
+  },
 ];
 
 // ─── FOUNDATIONS ────────────────────────────────────────────────────
