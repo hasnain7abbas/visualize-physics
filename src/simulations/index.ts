@@ -245,6 +245,12 @@ simulations["o1-lens-system"] = O1LensSystem;
 simulations["o1-polarization"] = O1Polarization;
 simulations["o1-thin-film"] = O1ThinFilm;
 
+// R1 - Special Relativity
+import { R1SpacetimeDiagram, R1TimeDilation, R1EnergyMomentum } from "./R1Relativity";
+simulations["r1-spacetime-diagram"] = R1SpacetimeDiagram;
+simulations["r1-time-dilation"] = R1TimeDilation;
+simulations["r1-energy-momentum"] = R1EnergyMomentum;
+
 export function getSimulation(chapterId: string, sectionId: string): Component | undefined {
   return simulations[`${chapterId}-${sectionId}`];
 }

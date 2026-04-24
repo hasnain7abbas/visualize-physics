@@ -84,6 +84,9 @@ export default defineConfig({
           "sim-optics": [
             "./src/simulations/O1Optics.tsx",
           ],
+          "sim-relativity": [
+            "./src/simulations/R1Relativity.tsx",
+          ],
         },
       },
     },

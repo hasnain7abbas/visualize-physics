@@ -3053,6 +3053,103 @@ const optics: Chapter[] = [
   },
 ];
 
+// ─── SPECIAL RELATIVITY ─────────────────────────────────────────────
+
+const relativity: Chapter[] = [
+  {
+    id: "r1",
+    num: "R1",
+    title: "Special Relativity",
+    description:
+      "Spacetime rather than space-and-time. Minkowski diagrams, time dilation and length contraction, and the unified $E^2 = (pc)^2 + (mc^2)^2$ law that replaces classical kinetic energy at high speeds.",
+    color: "#8b5cf6",
+    icon: "\u{1F680}",
+    shortDesc: "Minkowski & γ",
+    sections: [
+      {
+        id: "spacetime-diagram",
+        title: "Spacetime Diagrams",
+        description:
+          "Minkowski's geometric picture of special relativity: events live in a 1+1D plane, observers are distinguished only by the tilt of their axes, and boosts are hyperbolic rotations.",
+        definition:
+          "A **spacetime (Minkowski) diagram** plots time vertically ($ct$) and space horizontally ($x$). An inertial frame is represented by a pair of orthogonal axes; a second frame moving at $\\beta = v/c$ has axes tilted *toward* the light cone by the rapidity angle $\\phi = \\tanh^{-1}\\beta$, with the $x'$ axis given by $ct = \\beta x$ and the $ct'$ axis by $x = \\beta ct$. The invariant interval $s^2 = (ct)^2 - x^2$ is preserved under boosts, and two events simultaneous in one frame generically are not in another — the **relativity of simultaneity** that dissolves so many pre-relativistic paradoxes.",
+        statisticalTools: [
+          { name: "Lorentz Transformation", desc: "$x' = \\gamma(x - \\beta ct),\\ ct' = \\gamma(ct - \\beta x)$ with $\\gamma = 1/\\sqrt{1-\\beta^2}$. The linear change of coordinates between inertial frames." },
+          { name: "Invariant Interval", desc: "$s^2 = (ct)^2 - x^2$. Same in every frame. Classifies pairs of events as timelike ($s^2>0$), spacelike ($s^2<0$), or lightlike ($s^2=0$)." },
+          { name: "Rapidity", desc: "$\\phi = \\tanh^{-1}\\beta$. The additive parameter of boosts: successive boosts add rapidities, not velocities. $\\beta = \\tanh\\phi$." },
+          { name: "Light Cone", desc: "The locus $(ct)^2 = x^2$ through any event. Separates the causal past/future from elsewhere. Everything a given event can influence lies inside its forward cone." },
+          { name: "Relativity of Simultaneity", desc: "Events on the same $ct = $ const line are simultaneous in the lab frame but generally lie on different $ct'$ lines — a slice of spacetime at $t'=$ const is tilted relative to $t=$ const." },
+          { name: "World Line", desc: "The path of an object through spacetime. For a free particle it is a straight line whose slope $= c/v$ gives the speed. Always steeper than the light cone for massive particles." },
+          { name: "Twin Paradox Geometry", desc: "Two world lines with the same endpoints have different proper times — the longer-arc (accelerating) twin ages less because proper time is the longest among piecewise-straight paths in Minkowski geometry (opposite to Euclidean)." },
+          { name: "Barn-Pole Paradox", desc: "A pole longer than a barn can fit when running relativistically. Resolution: the two barn-door events are simultaneous only in the barn frame; in the pole frame the doors close at different times." },
+          { name: "Causal Diamond", desc: "Intersection of the future cone of one event with the past cone of another — the set of events that can be causally influenced by one and influence the other." },
+          { name: "Proper Time", desc: "$d\\tau = dt/\\gamma$. The time measured by a clock carried along a worldline. An invariant, unlike coordinate time." },
+        ],
+        keyEquations: [
+          "x' = \\gamma(x - \\beta ct),\\quad ct' = \\gamma(ct - \\beta x)",
+          "\\gamma = \\frac{1}{\\sqrt{1-\\beta^2}},\\qquad \\phi = \\tanh^{-1}\\beta",
+          "s^2 = (ct)^2 - x^2 = (ct')^2 - (x')^2",
+        ],
+        conceptSummary:
+          "Drag the boost slider and watch the orange primed axes tilt toward the light cone. As $\\beta \\to 1$ the two axes collapse onto the null line — a reminder that a massive particle cannot reach the speed of light, and that at $c$ the notion of a rest frame breaks down.",
+      },
+      {
+        id: "time-dilation",
+        title: "Time Dilation & Length Contraction",
+        description:
+          "Moving clocks tick slow and moving rulers are short. The side-by-side light-clock animation shows where the factor of γ comes from.",
+        definition:
+          "**Time dilation** and **length contraction** are direct consequences of the Lorentz transformation. A clock at rest ticks at its proper rate $\\tau$; observed from a frame in which it moves at $\\beta c$ it is seen to tick at the slower rate $\\Delta t = \\gamma\\tau$. Conversely, a rod of rest length $L_0$ moving along its length is measured to have length $L = L_0/\\gamma$ in the lab. The geometric origin is visible in the light-clock construction: a photon bouncing between two mirrors traces a longer zig-zag in the platform frame, so a complete round-trip takes longer by a factor $\\gamma$ — even though nothing inside the clock is \"slower\".",
+        statisticalTools: [
+          { name: "Time Dilation", desc: "$\\Delta t = \\gamma\\tau$. Proper time $\\tau$ is shortest. An observer seeing a clock move reads off more elapsed coordinate time per tick." },
+          { name: "Length Contraction", desc: "$L = L_0/\\gamma$. Proper length $L_0$ (measured in rest frame of rod) is the longest. Contraction is along the direction of motion only." },
+          { name: "Proper Length", desc: "Length measured in the object's rest frame — simultaneously at both ends in that frame. The moving-frame measurement requires a different simultaneity convention." },
+          { name: "Muon Decay Example", desc: "Atmospheric muons live $\\tau \\approx 2.2\\,\\mu$s at rest but reach the ground — in the lab frame time dilation extends their lifetime; in the muon frame length contraction shortens the atmosphere." },
+          { name: "Light Clock Derivation", desc: "Photon bounces vertically in rest frame (period $2L/c$) but traces a diagonal in the lab ($2L\\gamma/c$ by Pythagoras). Immediate geometric proof of dilation." },
+          { name: "Transverse Dimensions", desc: "Lengths perpendicular to motion are unchanged — a classical consequence of the axes perpendicular to the boost direction being common to both frames." },
+          { name: "Relativistic Beaming", desc: "Emission from a source moving at $\\beta$ appears focused into a forward cone of half-angle $\\sim 1/\\gamma$. Makes quasars and pulsars visible across cosmological distances." },
+          { name: "Pole-in-Barn Paradox", desc: "Barn says: pole is contracted, it fits. Pole says: barn is contracted, how can it fit? Resolution: simultaneity differs — the two door closings are not simultaneous in the pole frame." },
+          { name: "Relativistic Train Puzzle", desc: "Classic setup: a moving train passing through a tunnel. Used to illustrate the necessity of 4-vectors and the relativity of simultaneity." },
+        ],
+        keyEquations: [
+          "\\Delta t = \\gamma\\,\\tau",
+          "L = L_0/\\gamma",
+          "\\gamma = \\frac{1}{\\sqrt{1-v^2/c^2}}",
+        ],
+        conceptSummary:
+          "Hit play and watch both clocks tick. The train-frame photon moves straight up and down; the platform photon traces a longer diagonal so more coordinate time passes per tick. Slide $\\beta$ to 0.9+ and the difference becomes dramatic.",
+      },
+      {
+        id: "energy-momentum",
+        title: "Energy-Momentum Relation",
+        description:
+          "Classical KE=½mv² is a low-β approximation. The full relation $E^2 = (pc)^2 + (mc^2)^2$ holds universally — including for photons.",
+        definition:
+          "**Relativistic energy and momentum** generalize their Newtonian cousins by a factor of $\\gamma$: $E = \\gamma mc^2$ and $p = \\gamma m\\vec v$, satisfying the universal relation $E^2 = (pc)^2 + (mc^2)^2$. Subtracting the rest energy $mc^2$ gives the kinetic energy $T = (\\gamma-1)mc^2$, which reduces to $\\tfrac{1}{2}mv^2$ only at $\\beta \\ll 1$. At $\\beta \\to 1$ the energy diverges, which is why no massive particle can reach the speed of light. Massless particles (photons) satisfy $E = pc$, obtainable by taking $m \\to 0$ while keeping $E$ finite — their energy is pure motion.",
+        statisticalTools: [
+          { name: "Relativistic Energy", desc: "$E = \\gamma mc^2$. Contains rest energy $mc^2$ plus kinetic energy $(\\gamma-1)mc^2$. Approaches infinity as $\\beta \\to 1$." },
+          { name: "Relativistic Momentum", desc: "$\\vec p = \\gamma m \\vec v$. The extra $\\gamma$ factor is crucial — without it, momentum conservation would fail in boosted frames." },
+          { name: "Energy-Momentum 4-Vector", desc: "$P^\\mu = (E/c, \\vec p)$. Transforms as a 4-vector under Lorentz boosts. Its invariant norm is $(mc)^2$." },
+          { name: "Invariant Mass", desc: "$m^2 c^4 = E^2 - (pc)^2$. The same in every frame. For a system of particles, $m_{\\text{system}}$ is not just the sum of constituent rest masses." },
+          { name: "Massless Particles", desc: "For $m=0$: $E = pc$. Photons, gluons, and gravitons obey this. They *must* travel at $c$ — no rest frame exists." },
+          { name: "Threshold Energy", desc: "Minimum lab energy to produce a given final state. Lorentz invariance puts constraints: $s = (\\sum P^\\mu)^2 \\geq (\\sum m_i c^2)^2$." },
+          { name: "Compton Scattering", desc: "Photon-electron scattering. Momentum conservation plus $E = pc$ gives $\\Delta\\lambda = (h/m_ec)(1 - \\cos\\theta)$, a direct test of relativistic kinematics." },
+          { name: "Mass-Energy Equivalence", desc: "$E_0 = mc^2$ at rest. Binding energy of nuclei, annihilation $(e^+ + e^- \\to 2\\gamma)$, and nuclear fission/fusion all demonstrate this conversion." },
+          { name: "Mandelstam Variables", desc: "$s, t, u$ — Lorentz invariants built from 4-momenta of incoming/outgoing particles. The standard language of particle scattering calculations." },
+          { name: "Rapidity Addition", desc: "Unlike velocities, rapidities add linearly under collinear boosts: $\\phi_{13} = \\phi_{12} + \\phi_{23}$. The natural kinematic variable for high-energy physics." },
+        ],
+        keyEquations: [
+          "E^2 = (pc)^2 + (mc^2)^2",
+          "E = \\gamma mc^2,\\quad p = \\gamma m v",
+          "T = (\\gamma - 1)mc^2",
+        ],
+        conceptSummary:
+          "Compare the relativistic kinetic-energy curve (solid) with the classical $\\tfrac{1}{2}mv^2$ (dashed). They agree up to $\\beta \\sim 0.2$, then the relativistic curve shoots up toward infinity as $\\beta \\to 1$ — the physical light-speed barrier.",
+      },
+    ],
+  },
+];
+
 // ─── FOUNDATIONS ────────────────────────────────────────────────────
 // Classroom-style introduction to the basic ingredients of physics.
 // Designed to be approachable for high-school students and a refresher
@@ -3547,6 +3644,12 @@ export const chapterGroups: ChapterGroup[] = [
     subtitle: "Rays, polarization & interference",
     chapters: optics,
   },
+  {
+    id: "relativity",
+    title: "Special Relativity",
+    subtitle: "Spacetime, γ, and E² = (pc)² + (mc²)²",
+    chapters: relativity,
+  },
 ];
 
 export const allChapters: Chapter[] = [
@@ -3557,6 +3660,7 @@ export const allChapters: Chapter[] = [
   ...electrodynamics,
   ...wavesOscillations,
   ...optics,
+  ...relativity,
 ];
 
 export function getChapter(id: string): Chapter | undefined {
