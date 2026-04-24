@@ -1,4 +1,4 @@
-export interface StatTool {
+﻿export interface StatTool {
   name: string;
   desc: string;
 }
@@ -2981,14 +2981,14 @@ const foundations: Chapter[] = [
         definition:
           "A **scalar** is a quantity with magnitude only (like 5 kg or 30 °C). A **vector** is a quantity with both magnitude and direction (like 5 m east or 30 N upward). Vectors are written with an arrow ($\\vec{v}$) and can be added geometrically by placing arrows head-to-tail, or algebraically by adding their $(x, y)$ **components**.",
         statisticalTools: [
-          { name: "Magnitude |v|", desc: "The length of a vector. For a 2D vector v = (vₓ, v_y), the magnitude is |v| = \\sqrt{v_x^2 + v_y^2}. It is always a non-negative scalar." },
-          { name: "Direction (angle θ)", desc: "The angle a vector makes with a reference axis. \\theta = \\arctan(v_y / v_x). Together with magnitude it specifies the vector completely." },
-          { name: "Components (vₓ, v_y)", desc: "The projections of a vector onto chosen axes. v_x = |v|\\cos\\theta, v_y = |v|\\sin\\theta. Components transform like coordinates under rotation." },
-          { name: "Vector Addition (head-to-tail)", desc: "Place the tail of vector B at the head of vector A. The resultant R = A + B runs from A's tail to B's head. Equivalently: R_x = A_x + B_x, R_y = A_y + B_y." },
+          { name: "Magnitude $|\\vec{v}|$", desc: "The length of a vector. For a 2D vector $\\vec{v} = (v_x, v_y)$, the magnitude is $|\\vec{v}| = \\sqrt{v_x^2 + v_y^2}$. It is always a non-negative scalar." },
+          { name: "Direction (angle $\\theta$)", desc: "The angle a vector makes with a reference axis. $\\theta = \\arctan(v_y / v_x)$. Together with magnitude it specifies the vector completely." },
+          { name: "Components $(v_x, v_y)$", desc: "The projections of a vector onto chosen axes. $v_x = |\\vec{v}|\\cos\\theta$, $v_y = |\\vec{v}|\\sin\\theta$. Components transform like coordinates under rotation." },
+          { name: "Vector Addition (head-to-tail)", desc: "Place the tail of vector $\\vec{B}$ at the head of vector $\\vec{A}$. The resultant $\\vec{R} = \\vec{A} + \\vec{B}$ runs from $\\vec{A}$'s tail to $\\vec{B}$'s head. Equivalently: $R_x = A_x + B_x$, $R_y = A_y + B_y$." },
           { name: "Scalar Multiplication", desc: "Multiplying a vector by a positive number scales its length but keeps direction. Multiplying by a negative number flips the direction." },
-          { name: "Unit Vectors î, ĵ, k̂", desc: "Vectors of length 1 pointing along the x, y, z axes. Any vector can be written as v = v_x\\hat{i} + v_y\\hat{j} + v_z\\hat{k}." },
-          { name: "Dot Product A·B", desc: "A scalar: A\\cdot B = |A||B|\\cos\\theta = A_xB_x + A_yB_y. Measures how much one vector points along another. Zero means perpendicular." },
-          { name: "Cross Product A×B", desc: "A vector perpendicular to both A and B with magnitude |A||B|\\sin\\theta. Direction follows the right-hand rule. Used for torque and angular momentum." },
+          { name: "Unit Vectors $\\hat{i}, \\hat{j}, \\hat{k}$", desc: "Vectors of length 1 pointing along the $x, y, z$ axes. Any vector can be written as $\\vec{v} = v_x\\hat{i} + v_y\\hat{j} + v_z\\hat{k}$." },
+          { name: "Dot Product $\\vec{A}\\cdot\\vec{B}$", desc: "A scalar: $\\vec{A}\\cdot\\vec{B} = |\\vec{A}||\\vec{B}|\\cos\\theta = A_xB_x + A_yB_y$. Measures how much one vector points along another. Zero means perpendicular." },
+          { name: "Cross Product $\\vec{A}\\times\\vec{B}$", desc: "A vector perpendicular to both $\\vec{A}$ and $\\vec{B}$ with magnitude $|\\vec{A}||\\vec{B}|\\sin\\theta$. Direction follows the right-hand rule. Used for torque and angular momentum." },
           { name: "Parallelogram Rule", desc: "An equivalent way to add two vectors: place them tail-to-tail and the diagonal of the parallelogram they span is the sum." },
           { name: "Resultant Vector", desc: "The single vector that produces the same effect as several vectors combined. The 'net' force, displacement, or velocity." },
         ],
@@ -3008,16 +3008,16 @@ const foundations: Chapter[] = [
         definition:
           "**Velocity** is the rate of change of position with respect to time. It is a vector: $\\vec{v} = \\Delta\\vec{x}/\\Delta t$. The magnitude of velocity is called **speed** (a scalar). **Average velocity** uses total displacement over total time; **instantaneous velocity** is the limit as the time interval shrinks to zero — geometrically, it is the slope of the position-vs-time graph.",
         statisticalTools: [
-          { name: "Position x(t)", desc: "Where the object is at time t, measured from a chosen origin. Plotted vertically against time, it gives a position-time graph." },
-          { name: "Displacement \\Delta x", desc: "The vector from initial to final position: \\Delta\\vec{x} = \\vec{x}_f - \\vec{x}_i. Independent of the path taken — only endpoints matter." },
-          { name: "Distance Travelled", desc: "The total length of the path. A scalar that is always \\geq |displacement|. A round trip has zero displacement but non-zero distance." },
-          { name: "Average Velocity", desc: "Total displacement divided by total time: \\bar{v} = \\Delta x / \\Delta t. Slope of the secant line on a position-time graph." },
-          { name: "Instantaneous Velocity", desc: "v(t) = dx/dt. Slope of the tangent line at a single instant. The speedometer reading at that moment." },
-          { name: "Speed |v|", desc: "Magnitude of velocity — always non-negative. A car going '60 km/h' tells you speed but not direction." },
+          { name: "Position $x(t)$", desc: "Where the object is at time $t$, measured from a chosen origin. Plotted vertically against time, it gives a position-time graph." },
+          { name: "Displacement $\\Delta\\vec{x}$", desc: "The vector from initial to final position: $\\Delta\\vec{x} = \\vec{x}_f - \\vec{x}_i$. Independent of the path taken — only endpoints matter." },
+          { name: "Distance Travelled", desc: "The total length of the path. A scalar that is always $\\geq |\\Delta\\vec{x}|$. A round trip has zero displacement but non-zero distance." },
+          { name: "Average Velocity", desc: "Total displacement divided by total time: $\\bar{v} = \\Delta x / \\Delta t$. Slope of the secant line on a position-time graph." },
+          { name: "Instantaneous Velocity", desc: "$v(t) = dx/dt$. Slope of the tangent line at a single instant. The speedometer reading at that moment." },
+          { name: "Speed $|\\vec{v}|$", desc: "Magnitude of velocity — always non-negative. A car going '60 km/h' tells you speed but not direction." },
           { name: "Reference Frame", desc: "The coordinate system from which motion is measured. The same motion can look different from different frames (e.g., a passenger on a train vs. a person on the platform)." },
-          { name: "Relative Velocity", desc: "Velocity of A as seen by B: \\vec{v}_{A/B} = \\vec{v}_A - \\vec{v}_B. Why two cars approaching at 50 km/h each have a 100 km/h closing speed." },
+          { name: "Relative Velocity", desc: "Velocity of $A$ as seen by $B$: $\\vec{v}_{A/B} = \\vec{v}_A - \\vec{v}_B$. Why two cars approaching at 50 km/h each have a 100 km/h closing speed." },
           { name: "1D vs 2D Motion", desc: "1D motion happens along a single axis (signed numbers). 2D motion needs two components — projectile motion is the classic example." },
-          { name: "Position-Time Graph", desc: "x plotted against t. Slope = velocity. Straight line = constant velocity. Curved line = changing velocity." },
+          { name: "Position-Time Graph", desc: "$x$ plotted against $t$. Slope = velocity. Straight line = constant velocity. Curved line = changing velocity." },
         ],
         keyEquations: [
           "\\vec{v}_{\\text{avg}} = \\frac{\\Delta \\vec{x}}{\\Delta t}",
@@ -3035,16 +3035,16 @@ const foundations: Chapter[] = [
         definition:
           "**Acceleration** is the rate of change of velocity with respect to time: $\\vec{a} = \\Delta\\vec{v}/\\Delta t$. Its SI unit is $\\text{m}/\\text{s}^2$. Acceleration is positive when velocity grows in the chosen positive direction and negative (**deceleration**) when velocity shrinks. Importantly, a change in direction (without speed change) is also an acceleration — this is why circular motion involves **centripetal acceleration**.",
         statisticalTools: [
-          { name: "Average Acceleration", desc: "\\bar{a} = \\Delta v / \\Delta t. The change in velocity divided by the time taken to make that change." },
-          { name: "Instantaneous Acceleration", desc: "a(t) = dv/dt = d^2x/dt^2. The slope of the velocity-time graph; the curvature of the position-time graph." },
-          { name: "Constant Acceleration", desc: "When a is constant, three kinematic equations close the system: v = v_0 + at, x = x_0 + v_0 t + \\tfrac{1}{2}at^2, v^2 = v_0^2 + 2a\\Delta x." },
-          { name: "Free Fall (g \\approx 9.81 m/s\u00B2)", desc: "Near Earth's surface, all objects accelerate downward at the same rate g, regardless of mass — Galileo's insight, ignoring air resistance." },
-          { name: "Centripetal Acceleration", desc: "An object moving in a circle of radius r at speed v has a_c = v^2/r directed toward the center. It changes direction, not speed." },
+          { name: "Average Acceleration", desc: "$\\bar{a} = \\Delta v / \\Delta t$. The change in velocity divided by the time taken to make that change." },
+          { name: "Instantaneous Acceleration", desc: "$a(t) = dv/dt = d^2x/dt^2$. The slope of the velocity-time graph; the curvature of the position-time graph." },
+          { name: "Constant Acceleration", desc: "When $a$ is constant, three kinematic equations close the system: $v = v_0 + at$, $x = x_0 + v_0 t + \\tfrac{1}{2}at^2$, $v^2 = v_0^2 + 2a\\Delta x$." },
+          { name: "Free Fall ($g \\approx 9.81\\,\\text{m/s}^2$)", desc: "Near Earth's surface, all objects accelerate downward at the same rate $g$, regardless of mass — Galileo's insight, ignoring air resistance." },
+          { name: "Centripetal Acceleration", desc: "An object moving in a circle of radius $r$ at speed $v$ has $a_c = v^2/r$ directed toward the center. It changes direction, not speed." },
           { name: "Tangential vs Radial", desc: "Tangential acceleration changes speed; radial (centripetal) acceleration changes direction. General curved motion has both." },
-          { name: "v-t Graph Slope", desc: "Slope of the velocity-time graph equals acceleration. Area under the v-t curve equals displacement." },
-          { name: "Deceleration (Negative a)", desc: "When acceleration opposes velocity, the object slows down. 'Deceleration' is just informal language for acceleration in the opposite direction." },
-          { name: "Jerk (da/dt)", desc: "The rate of change of acceleration. Why a smooth elevator stop feels different from a sudden one even at the same final speed." },
-          { name: "Equations of Motion (SUVAT)", desc: "The five symbols s (displacement), u (initial v), v (final v), a (accel), t (time). Any three known values let you find the rest under constant a." },
+          { name: "$v$–$t$ Graph Slope", desc: "Slope of the velocity-time graph equals acceleration. Area under the $v$–$t$ curve equals displacement." },
+          { name: "Deceleration (Negative $a$)", desc: "When acceleration opposes velocity, the object slows down. 'Deceleration' is just informal language for acceleration in the opposite direction." },
+          { name: "Jerk ($da/dt$)", desc: "The rate of change of acceleration. Why a smooth elevator stop feels different from a sudden one even at the same final speed." },
+          { name: "Equations of Motion (SUVAT)", desc: "The five symbols $s$ (displacement), $u$ (initial $v$), $v$ (final $v$), $a$ (accel), $t$ (time). Any three known values let you find the rest under constant $a$." },
         ],
         keyEquations: [
           "\\vec{a} = \\frac{d\\vec{v}}{dt} = \\frac{d^2\\vec{x}}{dt^2}",
@@ -3063,15 +3063,15 @@ const foundations: Chapter[] = [
           "A **force** is a vector interaction that can change an object's motion. **Newton's second law** states $\\vec{F}_{\\text{net}} = m\\vec{a}$ — the net force on a body equals its mass times its acceleration. **Mass** measures **inertia** (resistance to acceleration). Force has units of **newtons** ($1\\,\\text{N} = 1\\,\\text{kg}\\cdot\\text{m}/\\text{s}^2$). When forces are balanced ($\\sum\\vec{F} = 0$), the object is in **equilibrium** and moves at constant velocity (which can be zero).",
         statisticalTools: [
           { name: "Newton's First Law (Inertia)", desc: "An object at rest stays at rest, and an object in motion stays in motion at constant velocity, unless acted on by a net external force." },
-          { name: "Newton's Second Law", desc: "\\vec{F}_{\\text{net}} = m\\vec{a}. The acceleration of an object is proportional to the net force and inversely proportional to its mass." },
-          { name: "Newton's Third Law", desc: "For every action there is an equal and opposite reaction. If A pushes B with force F, B pushes A with -F. Action-reaction pairs always act on different bodies." },
-          { name: "Mass vs Weight", desc: "Mass (kg) is intrinsic — it measures inertia. Weight W = mg (newtons) is the gravitational force on the mass and depends on local gravity." },
+          { name: "Newton's Second Law", desc: "$\\vec{F}_{\\text{net}} = m\\vec{a}$. The acceleration of an object is proportional to the net force and inversely proportional to its mass." },
+          { name: "Newton's Third Law", desc: "For every action there is an equal and opposite reaction. If $A$ pushes $B$ with force $\\vec{F}$, $B$ pushes $A$ with $-\\vec{F}$. Action-reaction pairs always act on different bodies." },
+          { name: "Mass vs Weight", desc: "Mass (kg) is intrinsic — it measures inertia. Weight $W = mg$ (newtons) is the gravitational force on the mass and depends on local gravity." },
           { name: "Free-Body Diagram", desc: "A diagram showing only the object of interest with arrows for every external force acting on it. Essential for setting up Newton's 2nd law correctly." },
           { name: "Normal Force", desc: "The contact force perpendicular to a surface that prevents an object from passing through it. Adjusts itself to whatever is needed for equilibrium normal to the surface." },
-          { name: "Friction (Static & Kinetic)", desc: "Static friction f_s \\leq \\mu_s N prevents motion up to a threshold; kinetic friction f_k = \\mu_k N opposes sliding motion. Usually \\mu_k < \\mu_s." },
+          { name: "Friction (Static & Kinetic)", desc: "Static friction $f_s \\leq \\mu_s N$ prevents motion up to a threshold; kinetic friction $f_k = \\mu_k N$ opposes sliding motion. Usually $\\mu_k < \\mu_s$." },
           { name: "Tension", desc: "The pulling force transmitted along a rope, cable, or string. In an ideal massless rope, tension is the same throughout." },
-          { name: "Net Force \\sum\\vec{F}", desc: "The vector sum of all forces acting on the body. Only the net force determines acceleration; individual forces may be huge yet cancel out." },
-          { name: "Equilibrium", desc: "When \\sum\\vec{F} = 0 the object has zero acceleration. It may be at rest (static equilibrium) or moving at constant velocity (dynamic equilibrium)." },
+          { name: "Net Force $\\sum\\vec{F}$", desc: "The vector sum of all forces acting on the body. Only the net force determines acceleration; individual forces may be huge yet cancel out." },
+          { name: "Equilibrium", desc: "When $\\sum\\vec{F} = 0$ the object has zero acceleration. It may be at rest (static equilibrium) or moving at constant velocity (dynamic equilibrium)." },
         ],
         keyEquations: [
           "\\vec{F}_{\\text{net}} = m\\vec{a}",

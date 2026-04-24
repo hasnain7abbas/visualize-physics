@@ -387,14 +387,18 @@ export const F2WorkEnergy: Component = () => {
   const [s, setS] = createSignal(0); // arc length along path
 
   // Hill profile: height as function of horizontal x in display coords.
-  // We'll use a sinusoidal track.
+  // Starts at h0, descends with a small hill and valley, reaches 0 at xMax.
+  // The initial slope must be strongly negative so the ball actually rolls downhill.
   const trackW = 460, trackH = 220;
   const Lx = 6; // physical horizontal extent (m)
   const xMax = Lx;
   const heightAt = (x: number) => {
-    // Two hills decreasing; start at h0 on left, dip in middle, small bump
     const a = h0();
-    return a * 0.5 * (1 + Math.cos((Math.PI * x) / xMax)) + 0.5 * Math.sin((2 * Math.PI * x) / xMax) * 0.6;
+    const u = Math.max(0, Math.min(1, x / xMax));
+    // Monotonic-ish descent with a small hill near u=0.55.
+    const descent = (1 - u) * (1 - 0.15 * Math.sin(Math.PI * u));
+    const bump = 0.2 * Math.exp(-45 * (u - 0.6) * (u - 0.6));
+    return a * (descent + bump);
   };
 
   const totalE0 = () => m() * g * heightAt(0); // start at rest
@@ -448,12 +452,13 @@ export const F2WorkEnergy: Component = () => {
   const totalE = () => KE() + PE();
   const heatLost = () => Math.max(0, totalE0() - totalE());
 
-  // Path SVG
+  // Path SVG — y axis leaves a top margin so the ball doesn't clip the edge.
+  const topMargin = 20;
+  const bottomY = trackH - 30;
+  const yScale = (h: number) => bottomY - (h / Math.max(h0(), 1)) * (bottomY - topMargin);
   const pathD = createMemo(() => {
-    const N = 100;
+    const N = 120;
     let d = "";
-    const yMaxPx = trackH - 30;
-    const yScale = (h: number) => trackH - 30 - (h / Math.max(h0(), 1)) * yMaxPx;
     for (let i = 0; i <= N; i++) {
       const x = (i / N) * xMax;
       const sx = 20 + (x / xMax) * (trackW - 40);
@@ -464,7 +469,7 @@ export const F2WorkEnergy: Component = () => {
   });
 
   const ballSx = () => 20 + (xPos() / xMax) * (trackW - 40);
-  const ballSy = () => trackH - 30 - (heightAt(xPos()) / Math.max(h0(), 1)) * (trackH - 30);
+  const ballSy = () => yScale(heightAt(xPos()));
 
   return (
     <div class="space-y-3">
@@ -481,7 +486,7 @@ export const F2WorkEnergy: Component = () => {
 
       <div class="flex gap-2">
         <button onClick={() => setRunning(!running())} class="px-3 py-1.5 rounded-lg text-xs font-semibold" style={{ background: ACCENT, color: "white" }}>
-          {running() ? "Pause" : "Release"}
+          {running() ? "Pause" : "Start"}
         </button>
         <button onClick={reset} class="px-3 py-1.5 rounded-lg text-xs font-semibold" style={{ background: "var(--bg-secondary)", color: "var(--text-secondary)" }}>
           Reset
@@ -493,17 +498,20 @@ export const F2WorkEnergy: Component = () => {
         <For each={[0, 2, 4, 6, 8, 10]}>
           {(h) => h <= h0() && (
             <>
-              <line x1={15} y1={trackH - 30 - (h / Math.max(h0(), 1)) * (trackH - 30)} x2={trackW - 15} y2={trackH - 30 - (h / Math.max(h0(), 1)) * (trackH - 30)} stroke="var(--border-light)" stroke-width="0.5" />
-              <text x={4} y={trackH - 27 - (h / Math.max(h0(), 1)) * (trackH - 30)} font-size="9" fill="var(--text-muted)">{h}m</text>
+              <line x1={15} y1={yScale(h)} x2={trackW - 15} y2={yScale(h)} stroke="var(--border-light)" stroke-width="0.5" />
+              <text x={4} y={yScale(h) + 3} font-size="9" fill="var(--text-muted)">{h}m</text>
             </>
           )}
         </For>
+        {/* Filled curve under the track for emphasis */}
+        <path d={`${pathD()} L${20 + (trackW - 40)},${bottomY} L20,${bottomY} Z`} fill={ACCENT} opacity="0.10" />
         {/* Path */}
-        <path d={pathD()} stroke="var(--text-primary)" stroke-width="2" fill="none" />
+        <path d={pathD()} stroke={ACCENT} stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" />
         {/* Ground line */}
-        <line x1={0} y1={trackH - 30} x2={trackW} y2={trackH - 30} stroke="var(--text-muted)" stroke-width="0.6" stroke-dasharray="3,3" />
-        {/* Ball */}
-        <circle cx={ballSx()} cy={ballSy() - 8} r={8} fill={ACCENT} stroke="white" stroke-width="2" />
+        <line x1={0} y1={bottomY} x2={trackW} y2={bottomY} stroke="var(--text-muted)" stroke-width="0.8" stroke-dasharray="3,3" />
+        {/* Ball with shadow */}
+        <ellipse cx={ballSx()} cy={bottomY + 4} rx={7} ry={2} fill="black" opacity="0.15" />
+        <circle cx={ballSx()} cy={ballSy() - 9} r={9} fill={ACCENT} stroke="white" stroke-width="2" />
       </svg>
 
       {/* Energy bars */}

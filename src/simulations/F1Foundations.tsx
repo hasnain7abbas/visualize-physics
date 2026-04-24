@@ -54,9 +54,17 @@ export const F1Vectors: Component = () => {
     const sy = ((e.clientY - rect.top) / rect.height) * svgH;
     const u = toUnits(sx, sy);
     const snap = (n: number) => Math.round(n * 2) / 2; // half-unit snap
-    const v = { x: clamp(snap(u.x), -8, 8), y: clamp(snap(u.y), -5, 5) };
-    if (which === "a") setA(v);
-    else setB(v);
+    if (which === "a") {
+      setA({ x: clamp(snap(u.x), -8, 8), y: clamp(snap(u.y), -5, 5) });
+    } else {
+      // In head-to-tail mode the B handle sits at R = A + B, so reading the
+      // cursor as "where B's tip should be" requires subtracting A first.
+      const origin = mode() === "head" ? a() : { x: 0, y: 0 };
+      setB({
+        x: clamp(snap(u.x - origin.x), -8, 8),
+        y: clamp(snap(u.y - origin.y), -5, 5),
+      });
+    }
   };
   const onUp = () => setDrag(null);
 
@@ -150,7 +158,69 @@ export const F1Vectors: Component = () => {
           )}
         </For>
 
-        {/* Resultant */}
+        {/* Axis labels */}
+        <text x={svgW - 14} y={oy - 6} font-size="11" font-weight="bold" fill="var(--text-muted)">x</text>
+        <text x={ox + 6} y={14} font-size="11" font-weight="bold" fill="var(--text-muted)">y</text>
+
+        {/* Component projections — one set per vector, colored to match */}
+        {(() => {
+          const proj = (v: { x: number; y: number }, color: string) => (
+            <>
+              <line x1={toSvg({ x: 0, y: 0 }).x} y1={toSvg({ x: 0, y: 0 }).y} x2={toSvg({ x: v.x, y: 0 }).x} y2={toSvg({ x: v.x, y: 0 }).y} stroke={color} stroke-width="1" stroke-dasharray="3,3" opacity="0.45" />
+              <line x1={toSvg({ x: v.x, y: 0 }).x} y1={toSvg({ x: v.x, y: 0 }).y} x2={toSvg(v).x} y2={toSvg(v).y} stroke={color} stroke-width="1" stroke-dasharray="3,3" opacity="0.45" />
+            </>
+          );
+          return (
+            <>
+              {proj(a(), "#3b82f6")}
+              {proj(b(), "#ec4899")}
+              {proj(r(), ACCENT)}
+            </>
+          );
+        })()}
+
+        {/* Angle arc between A and B (only when both non-zero) */}
+        {(() => {
+          const mA = magA(), mB = magB();
+          if (mA < 0.25 || mB < 0.25) return null;
+          const aAng = Math.atan2(a().y, a().x);
+          const bAng = Math.atan2(b().y, b().x);
+          // Smallest signed sweep from A to B.
+          let d = bAng - aAng;
+          while (d > Math.PI) d -= 2 * Math.PI;
+          while (d < -Math.PI) d += 2 * Math.PI;
+          const rArc = 22;
+          const sweep = d > 0 ? 1 : 0; // SVG sweep flag (remember y is flipped)
+          const startX = ox + Math.cos(aAng) * rArc;
+          const startY = oy - Math.sin(aAng) * rArc;
+          const endX = ox + Math.cos(bAng) * rArc;
+          const endY = oy - Math.sin(bAng) * rArc;
+          const large = Math.abs(d) > Math.PI ? 1 : 0;
+          // SVG y-axis inversion flips the sweep direction visually.
+          const svgSweep = sweep === 1 ? 0 : 1;
+          return (
+            <>
+              <path
+                d={`M${startX},${startY} A${rArc},${rArc} 0 ${large} ${svgSweep} ${endX},${endY}`}
+                fill="none"
+                stroke="#a855f7"
+                stroke-width="1.5"
+              />
+              <text
+                x={ox + Math.cos((aAng + bAng) / 2) * (rArc + 12)}
+                y={oy - Math.sin((aAng + bAng) / 2) * (rArc + 12) + 4}
+                font-size="11"
+                font-weight="bold"
+                fill="#a855f7"
+                text-anchor="middle"
+              >
+                {between().toFixed(0)}°
+              </text>
+            </>
+          );
+        })()}
+
+        {/* Resultant drawn first so arrows sit on top */}
         {arrow({ x: 0, y: 0 }, r(), ACCENT, "R")}
 
         {/* Vectors */}
@@ -176,13 +246,11 @@ export const F1Vectors: Component = () => {
           </>
         )}
 
-        {/* Component dashed lines for A */}
-        <line x1={toSvg({ x: 0, y: 0 }).x} y1={toSvg({ x: 0, y: 0 }).y} x2={toSvg({ x: a().x, y: 0 }).x} y2={toSvg({ x: a().x, y: 0 }).y} stroke="#3b82f6" stroke-width="0.8" stroke-dasharray="2,3" opacity="0.5" />
-        <line x1={toSvg({ x: a().x, y: 0 }).x} y1={toSvg({ x: a().x, y: 0 }).y} x2={toSvg(a()).x} y2={toSvg(a()).y} stroke="#3b82f6" stroke-width="0.8" stroke-dasharray="2,3" opacity="0.5" />
-
-        {/* Drag handles */}
+        {/* Drag handles — ringed so they read as controls */}
+        <circle cx={toSvg(a()).x} cy={toSvg(a()).y} r="11" fill="white" opacity="0.25" />
         <circle cx={toSvg(a()).x} cy={toSvg(a()).y} r="9" fill="#3b82f6" stroke="white" stroke-width="2" style={{ cursor: "grab" }}
           onPointerDown={(e) => { (e.target as SVGElement).setPointerCapture(e.pointerId); setDrag("a"); }} />
+        <circle cx={mode() === "head" ? toSvg(r()).x : toSvg(b()).x} cy={mode() === "head" ? toSvg(r()).y : toSvg(b()).y} r="11" fill="white" opacity="0.25" />
         <circle cx={mode() === "head" ? toSvg(r()).x : toSvg(b()).x} cy={mode() === "head" ? toSvg(r()).y : toSvg(b()).y} r="9" fill="#ec4899" stroke="white" stroke-width="2" style={{ cursor: "grab" }}
           onPointerDown={(e) => { (e.target as SVGElement).setPointerCapture(e.pointerId); setDrag("b"); }} />
       </svg>

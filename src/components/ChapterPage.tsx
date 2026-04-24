@@ -31,10 +31,10 @@ const ToolItem: Component<{ tool: StatTool; color: string }> = (props) => {
         />
         <div class="flex-1 min-w-0">
           <div
-            class="text-xs font-medium"
+            class="text-xs font-medium tool-math-desc"
             style={{ color: expanded() ? props.color : "var(--text-secondary)" }}
           >
-            {props.tool.name}
+            <InlineMathText text={props.tool.name} />
           </div>
           {expanded() && (
             <>
