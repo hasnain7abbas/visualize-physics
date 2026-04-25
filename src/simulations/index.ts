@@ -243,6 +243,11 @@ import { G2FriedmannCosmology, G2CMBPeaks } from "./G2Cosmology";
 simulations["g2-friedmann"] = G2FriedmannCosmology;
 simulations["g2-cmb-peaks"] = G2CMBPeaks;
 
+// G3 - Flamm embedding + cosmic distances
+import { G3FlammEmbedding, G3CosmicDistances } from "./G3Embedding";
+simulations["g3-flamm-embedding"] = G3FlammEmbedding;
+simulations["g3-cosmic-distances"] = G3CosmicDistances;
+
 // M2 - Math tools (Heat eqn + Spherical harmonics)
 import { M2HeatEquation, M2SphericalHarmonics } from "./M2MathTools";
 simulations["m2-heat-equation"] = M2HeatEquation;

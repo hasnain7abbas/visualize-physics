@@ -3752,6 +3752,72 @@ const generalRelativity: Chapter[] = [
       },
     ],
   },
+  {
+    id: "g3",
+    num: "G3",
+    title: "Embedding & Cosmic Distances",
+    description:
+      "Flamm's paraboloid — the geometric \"funnel\" that visualizes Schwarzschild curvature — and the three different cosmological distances (comoving, luminosity, angular diameter) that all coincide in flat space but diverge once spacetime expands.",
+    color: "#1d4ed8",
+    icon: "\u{1F30D}",
+    shortDesc: "Flamm & D(z)",
+    sections: [
+      {
+        id: "flamm-embedding",
+        title: "Flamm's Paraboloid",
+        description:
+          "$z(r) = 2\\sqrt{r_s(r-r_s)}$ visualizes the Schwarzschild equatorial slice as a 2D surface in 3D space. The familiar \"rubber sheet\" analogy made mathematically precise.",
+        definition:
+          "**Flamm's paraboloid** is the embedding of a constant-time, equatorial ($\\theta = \\pi/2$) slice of the Schwarzschild geometry into 3D Euclidean space. The slice has the metric $ds^2 = (1-r_s/r)^{-1}dr^2 + r^2 d\\phi^2$ — extra radial \"stretch\" near the horizon. Embedding this as a surface $z = z(r)$ in cylindrical 3D Euclidean space requires $1 + z'(r)^2 = (1 - r_s/r)^{-1}$, which integrates to **Flamm's function** $z(r) = 2\\sqrt{r_s(r - r_s)}$ — the iconic \"funnel\" picture of curved space. The embedding is a faithful representation of the slice's intrinsic geometry but the third dimension is purely a visualization aid; spacetime does not actually \"sit\" inside a higher-dimensional flat space.",
+        statisticalTools: [
+          { name: "Schwarzschild Metric", desc: "$ds^2 = -(1-r_s/r)c^2 dt^2 + (1-r_s/r)^{-1}dr^2 + r^2 d\\Omega^2$. Static, vacuum, spherically symmetric." },
+          { name: "Equatorial Slice", desc: "Set $\\theta = \\pi/2$ and $t = $ const: leaves a 2D Riemannian metric $ds^2 = (1-r_s/r)^{-1}dr^2 + r^2 d\\phi^2$." },
+          { name: "Embedding Condition", desc: "Find $z(r)$ in flat 3D such that $dr^2(1 + z'^2) + r^2 d\\phi^2$ matches the slice. Gives $z'^2 = r_s/(r - r_s)$." },
+          { name: "Flamm's Function", desc: "$z(r) = 2\\sqrt{r_s(r-r_s)}$. Real only for $r \\geq r_s$. The minimum-radius circle ($r = r_s$) is the horizon." },
+          { name: "Asymptotic Flatness", desc: "$z(r) \\to 2\\sqrt{r_s r}$ for large $r$, so the surface becomes asymptotically a plane (zero curvature) far from the BH." },
+          { name: "Geodesics on Surface", desc: "Spatial geodesics of the Schwarzschild slice are exactly the geodesics on the embedded surface — but full **spacetime** geodesics differ (involve $g_{tt}$)." },
+          { name: "Two-Sheeted Manifold", desc: "Maximally extending Schwarzschild gives the Einstein-Rosen bridge: two asymptotically flat sheets connected by a wormhole throat at $r = r_s$." },
+          { name: "Embedding Limits", desc: "Not every curved 2D surface admits a smooth 3D embedding; many higher-dimensional cosmological slices don't. Flamm is a lucky case." },
+          { name: "Visualization vs Physics", desc: "The vertical \"depth\" of the funnel has no physical meaning. Photons don't roll down it; particles don't fall *into* the embedded shape — only along its intrinsic geometry." },
+          { name: "Comparison to Newton", desc: "Newtonian potential well $-GM/r$ looks superficially similar but is *not* the same as Flamm — it's an energy function, not a curved-space shape." },
+        ],
+        keyEquations: [
+          "z(r) = 2\\sqrt{r_s(r - r_s)}, \\quad r \\geq r_s",
+          "ds^2_{\\text{slice}} = \\left(1 - \\frac{r_s}{r}\\right)^{-1}\\!dr^2 + r^2 d\\phi^2",
+          "1 + \\left(\\frac{dz}{dr}\\right)^2 = \\frac{1}{1 - r_s/r}",
+        ],
+        conceptSummary:
+          "Crank $M$ up and the funnel deepens dramatically — bigger Schwarzschild radius means more local curvature. The horizon (red ring at $r = r_s$) is where the embedding terminates: the slice can't be smoothly extended further inward as a Riemannian surface.",
+      },
+      {
+        id: "cosmic-distances",
+        title: "Cosmic Distance Measures",
+        description:
+          "Comoving, luminosity, and angular-diameter distances vs redshift in ΛCDM. Three different \"distances\" because spacetime expands, all derived from $\\int dz/H(z)$.",
+        definition:
+          "In an expanding universe there is no single notion of \"distance\" — different operational definitions disagree at large $z$. The **comoving distance** $D_C(z) = c\\int_0^z dz'/H(z')$ is invariant under cosmic expansion: a galaxy stays at the same $D_C$ for all time. The **luminosity distance** $D_L = (1+z)D_C$ enters the inverse-square law $F = L/(4\\pi D_L^2)$ — what we measure for Type Ia supernovae standard candles. The **angular diameter distance** $D_A = D_C/(1+z)$ relates a known proper size $\\ell$ to the angle it subtends, $\\ell = D_A \\theta$. The factor of $(1+z)^2$ between $D_L$ and $D_A$ reflects two independent relativistic effects: photon energy redshift and arrival-rate slowdown. Mapping the universe with each distinct distance has become the standard precision-cosmology toolkit.",
+        statisticalTools: [
+          { name: "Comoving Distance", desc: "$D_C(z) = c\\int_0^z dz'/H(z')$. Used in ΛCDM with $H(z)/H_0 = \\sqrt{\\Omega_m(1+z)^3 + \\Omega_\\Lambda + \\Omega_k(1+z)^2}$." },
+          { name: "Luminosity Distance", desc: "$D_L = (1+z)D_C$. Defined so $F = L/(4\\pi D_L^2)$ gives the standard inverse-square law. Relevant for Type Ia supernovae." },
+          { name: "Angular-Diameter Distance", desc: "$D_A = D_C/(1+z)$. Relates physical size to angular size: $\\theta = \\ell/D_A$. Has a maximum near $z \\approx 1.5$." },
+          { name: "Etherington Reciprocity", desc: "$D_L = (1+z)^2 D_A$. A general relativity identity, valid for any metric. Tested by comparing supernovae and CMB measurements." },
+          { name: "Hubble Distance", desc: "$d_H = c/H_0 \\approx 4280$ Mpc. Sets the scale of cosmological distances — at $z \\ll 1$, $D_C \\approx z\\,d_H$." },
+          { name: "Standard Candle", desc: "Object with known intrinsic luminosity $L$. Type Ia supernovae have $M_V \\approx -19.3$. Measured flux $\\to D_L \\to z(D_L) \\to$ cosmology." },
+          { name: "Standard Ruler", desc: "Object with known proper size, e.g. the BAO scale ($r_s \\approx 150$ Mpc) at last scattering. Used to constrain cosmology via $D_A$." },
+          { name: "Lookback Time", desc: "$t_L(z) = \\int_0^z dz'/[(1+z')H(z')]$. Time elapsed since the photon was emitted. For ΛCDM and $z = 1$, $t_L \\approx 8$ Gyr." },
+          { name: "Curvature Effects", desc: "For non-flat $\\Omega_k$: $D_C$ is modified by $\\sin/\\sinh$ factors that account for the curved-space sphere/saddle geometry." },
+          { name: "Distance Modulus", desc: "$\\mu = 5\\log_{10}(D_L/10\\text{ pc})$. Standard astronomers' way of expressing $D_L$ on a magnitude scale." },
+        ],
+        keyEquations: [
+          "D_C(z) = c\\int_0^z \\frac{dz'}{H(z')}",
+          "D_L(z) = (1+z)\\,D_C(z), \\qquad D_A(z) = \\frac{D_C(z)}{1+z}",
+          "D_L = (1+z)^2 D_A \\quad \\text{(Etherington)}",
+        ],
+        conceptSummary:
+          "All three distances start identical at $z = 0$, then split: $D_L$ runs above $D_C$, $D_A$ below. Watch what happens to $D_A$ around $z = 1.5$ — it actually *decreases*, so an object of known size at $z = 5$ subtends a *larger* angle than the same object at $z = 2$. This is the geometric origin of why high-$z$ galaxies look surprisingly large.",
+      },
+    ],
+  },
 ];
 
 // ─── MATHEMATICAL METHODS ───────────────────────────────────────────
