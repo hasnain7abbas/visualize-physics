@@ -78,6 +78,7 @@ export default defineConfig({
             "./src/simulations/E2MagneticField.tsx",
             "./src/simulations/E3EMWaves.tsx",
             "./src/simulations/E4Induction.tsx",
+            "./src/simulations/E5Multipole.tsx",
           ],
           "sim-waves": [
             "./src/simulations/W1WaveEquation.tsx",

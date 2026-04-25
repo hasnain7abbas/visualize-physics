@@ -2869,6 +2869,72 @@ const electrodynamics: Chapter[] = [
       },
     ],
   },
+  {
+    id: "e5",
+    num: "E5",
+    title: "Multipoles & Radiation",
+    description:
+      "Far-field electrostatics: any localized charge cloud's potential expands in monopole + dipole + quadrupole + … with each term falling off one power faster. And the radiation pattern of an accelerating charge — sin²θ at low speed, beamed to within $1/\\gamma$ at relativistic speed.",
+    color: "#ea580c",
+    icon: "\u{1F4E1}",
+    shortDesc: "Multipoles & beamed radiation",
+    sections: [
+      {
+        id: "multipole",
+        title: "Multipole Expansion",
+        description:
+          "Every static charge distribution has a multipole expansion $V(\\vec r) = \\sum_\\ell V_\\ell$, with $V_\\ell \\propto 1/r^{\\ell+1}$. Truncating at order $\\ell$ approximates the far field.",
+        definition:
+          "The **multipole expansion** writes the electrostatic potential of a localized charge distribution as a Taylor-like series in $1/r$: $V(\\vec r) = \\frac{Q}{4\\pi\\varepsilon_0 r} + \\frac{\\vec p \\cdot \\hat r}{4\\pi\\varepsilon_0 r^2} + \\frac{Q_{ij}\\hat r_i \\hat r_j}{8\\pi\\varepsilon_0 r^3} + \\cdots$. The coefficients are the **multipole moments**: $Q = \\sum_i q_i$ (monopole), $\\vec p = \\sum_i q_i \\vec r_i$ (dipole), $Q_{ij} = \\sum_i q_i (3 r_{i,a} r_{i,b} - r_i^2 \\delta_{ab})$ (quadrupole). Whichever lowest-order moment is nonzero dictates the leading far-field behavior — neutral atoms have no $Q$ but a nonzero $\\vec p$, so their potential falls as $1/r^2$ rather than $1/r$. The same expansion governs gravitational fields, antenna patterns, and CMB anisotropies.",
+        statisticalTools: [
+          { name: "Monopole Term", desc: "$V_0 = Q/(4\\pi\\varepsilon_0 r)$. Dominates at large $r$ for any charged distribution. Identical to a point charge $Q$ at the origin." },
+          { name: "Dipole Term", desc: "$V_1 = \\vec p \\cdot \\hat r/(4\\pi\\varepsilon_0 r^2)$. Leading term for a neutral distribution. $\\vec p$ is origin-dependent only when $Q \\neq 0$." },
+          { name: "Quadrupole Term", desc: "$V_2 = Q_{ij}\\hat r_i \\hat r_j / (8\\pi\\varepsilon_0 r^3)$. Tensor moment; zero trace by definition. Atomic nuclei have nonzero $Q_{ij}$ when non-spherical." },
+          { name: "Spherical Multipoles", desc: "$V(\\vec r) = \\sum_{\\ell m} \\frac{4\\pi}{2\\ell+1}\\frac{q_{\\ell m}}{r^{\\ell+1}}Y_\\ell^m(\\theta,\\phi)$. Mathematically clean basis using spherical harmonics." },
+          { name: "Origin-Dependence", desc: "Higher moments shift when origin moves; the lowest nonzero moment is origin-independent. Standard convention: place origin at center of charge." },
+          { name: "Convergence Region", desc: "The expansion converges only for $r > r_{\\max}$ (largest radius of any charge). Inside the source, you need exact integration." },
+          { name: "Magnetic Multipoles", desc: "Same expansion for $\\vec B$ (no monopoles): leading term is the magnetic dipole $\\vec m$, then magnetic quadrupole, etc. Origin of \"hyperfine\" structure in atoms." },
+          { name: "Multipole Radiation", desc: "Each radiating multipole has its own angular pattern: dipole $\\sin^2\\theta$, quadrupole more lobes. Selection rules in atomic transitions follow this." },
+          { name: "Far-Field vs Near-Field", desc: "Multipole expansion is the far-field (radiation zone) expansion. Near a localized source you need the full Green's function." },
+          { name: "Connection to CMB", desc: "Cosmologists expand the temperature anisotropy $\\Delta T(\\hat n) = \\sum a_{\\ell m} Y_\\ell^m$. The dipole ($\\ell=1$) is our motion through the CMB; higher multipoles encode primordial physics." },
+        ],
+        keyEquations: [
+          "V(\\vec r) = \\frac{1}{4\\pi\\varepsilon_0}\\!\\left[\\frac{Q}{r} + \\frac{\\vec p\\cdot\\hat r}{r^2} + \\frac{Q_{ij}\\hat r_i\\hat r_j}{2 r^3} + \\cdots\\right]",
+          "Q = \\sum_i q_i,\\quad \\vec p = \\sum_i q_i \\vec r_i",
+          "Q_{ij} = \\sum_i q_i (3 r_{i,a} r_{i,b} - r_i^2 \\delta_{ab})",
+        ],
+        conceptSummary:
+          "Pick \"dipole\" — the heatmap shows where the truncated expansion fails (dark = small error). At order 0 (monopole only), the error is huge everywhere because $Q = 0$. Bump to order 1 (dipole) and the error collapses to almost nothing in the far field. Try \"quadrupole\" and watch how order 1 isn't enough — you need order 2 for a clean approximation.",
+      },
+      {
+        id: "larmor",
+        title: "Larmor Radiation",
+        description:
+          "Radiation pattern of an accelerating point charge. Non-relativistic: $\\sin^2\\theta$ donut. Relativistic ($\\beta \\to 1$): forward-beamed cone of half-angle $\\sim 1/\\gamma$.",
+        definition:
+          "The **Larmor formula** is the foundational result of classical electromagnetism: an accelerating charge radiates power $P = q^2 a^2 / (6\\pi\\varepsilon_0 c^3)$, with angular distribution $dP/d\\Omega \\propto \\sin^2\\theta$ — a torus around the acceleration axis. **Relativistically** (Liénard) this becomes $P = (q^2/6\\pi\\varepsilon_0 c^3)\\,\\gamma^6 |\\dot{\\vec\\beta}|^2$ for parallel acceleration, with the angular pattern collapsing into a forward-pointing cone of half-angle $\\sim 1/\\gamma$. This **relativistic beaming** is why synchrotron light sources produce intense X-ray beams: a 5-GeV electron has $\\gamma \\sim 10^4$, so its emission is collimated into a $\\sim 0.1$ mrad cone. The Larmor formula also explains why classical atoms can't be stable — orbiting electrons radiate, lose energy, and spiral into the nucleus in $\\sim 10^{-11}$ s, demanding the quantum stability postulate.",
+        statisticalTools: [
+          { name: "Larmor Formula (Non-relativistic)", desc: "$P = \\frac{q^2 a^2}{6\\pi\\varepsilon_0 c^3}$. Power radiated by an accelerating charge. Independent of speed for $v \\ll c$." },
+          { name: "Liénard Generalization", desc: "$P = \\frac{q^2}{6\\pi\\varepsilon_0 c^3}\\gamma^6\\!\\left[|\\dot{\\vec\\beta}|^2 - |\\vec\\beta\\times\\dot{\\vec\\beta}|^2\\right]$. Lorentz-invariant; reduces to Larmor at low speed." },
+          { name: "Angular Distribution", desc: "$\\frac{dP}{d\\Omega} \\propto \\frac{\\sin^2\\theta}{(1-\\beta\\cos\\theta)^5}$ for parallel acceleration. Forward-beamed at high $\\beta$." },
+          { name: "Relativistic Beaming", desc: "At $\\beta \\to 1$, half-angle $\\theta_{1/2} \\sim 1/\\gamma$. Nearly all radiation in a tight forward cone. Why pulsars sweep narrow beams across us." },
+          { name: "Synchrotron Radiation", desc: "Charge in a circular path emits a continuous spectrum peaked at the critical frequency $\\omega_c \\sim \\gamma^3 \\omega_0$. Used in synchrotron light sources, free-electron lasers." },
+          { name: "Bremsstrahlung", desc: "\"Braking radiation\" from charges decelerated by Coulomb scattering off nuclei. Continuous spectrum; main background in X-ray tubes." },
+          { name: "Cyclotron Radiation", desc: "Non-relativistic limit of synchrotron: narrow band at $\\omega_c = qB/m$. Detected from solar flares and Jupiter's magnetosphere." },
+          { name: "Radiation Reaction", desc: "Self-force from a charge's own radiation back on itself. Origin of damping; problematic in classical theory (preacceleration paradox)." },
+          { name: "Atomic Stability Problem", desc: "Classical electron in hydrogen would radiate $\\sim 10^{19}$ W and spiral into the proton in 100 ps. Demanded quantum mechanics." },
+          { name: "Larmor vs Quantum Radiation", desc: "QED: photon emission by accelerated charges. In the classical limit (many photons), the rate matches the Larmor formula." },
+        ],
+        keyEquations: [
+          "P_{\\text{Larmor}} = \\frac{q^2 a^2}{6\\pi\\varepsilon_0 c^3}",
+          "P_{\\text{Liénard}} = \\frac{q^2}{6\\pi\\varepsilon_0 c^3}\\gamma^6 |\\dot{\\vec\\beta}|^2 \\quad (\\dot{\\vec\\beta}\\parallel\\vec\\beta)",
+          "\\frac{dP}{d\\Omega} \\propto \\frac{\\sin^2\\theta}{(1-\\beta\\cos\\theta)^5}",
+        ],
+        conceptSummary:
+          "Slide $\\beta$ from 0 upward. At $\\beta = 0$: a perfect $\\sin^2\\theta$ torus. By $\\beta = 0.7$: still recognizable but tilted forward. By $\\beta \\geq 0.9$: most of the radiation is squeezed into a tiny forward cone — the relativistic beaming behind synchrotron sources.",
+      },
+    ],
+  },
 ];
 
 // ─── WAVES & OSCILLATIONS ──────────────────────────────────────────

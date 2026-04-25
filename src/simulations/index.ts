@@ -208,6 +208,11 @@ import { E4Faraday, E4LorentzForce } from "./E4Induction";
 simulations["e4-faraday"] = E4Faraday;
 simulations["e4-lorentz-force"] = E4LorentzForce;
 
+// E5 - Multipole + Larmor radiation
+import { E5MultipoleExpansion, E5LarmorRadiation } from "./E5Multipole";
+simulations["e5-multipole"] = E5MultipoleExpansion;
+simulations["e5-larmor"] = E5LarmorRadiation;
+
 // W4 - Resonance & 2D Waves
 import { W4DrivenOscillator, W4MembraneModes } from "./W4Resonance";
 simulations["w4-driven-oscillator"] = W4DrivenOscillator;
