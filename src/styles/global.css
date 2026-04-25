@@ -525,10 +525,45 @@ svg circle, svg line, svg path, svg rect, svg polyline {
   }
 }
 
-/* Mobile simulation containers — limit height to prevent massive scroll */
+/* Mobile simulation containers — limit height to prevent massive scroll.
+   320px gives enough room to actually see the diagram without dominating. */
 @media (max-width: 640px) {
   .card svg[viewBox] {
-    max-height: 200px;
+    max-height: 320px;
+  }
+  /* Touch-friendly slider thumbs (Apple HIG / Material guidelines: 44px min) */
+  input[type="range"].sim-slider::-webkit-slider-thumb,
+  .card input[type="range"]::-webkit-slider-thumb {
+    width: 22px;
+    height: 22px;
+  }
+  input[type="range"].sim-slider::-moz-range-thumb,
+  .card input[type="range"]::-moz-range-thumb {
+    width: 22px;
+    height: 22px;
+  }
+  /* Stretch the slider track itself to compensate for tighter padding */
+  input[type="range"].sim-slider,
+  .card input[type="range"] {
+    height: 8px;
+  }
+  /* Buttons inside simulation controls get a min touch target */
+  .card button {
+    min-height: 36px;
+  }
+  /* Stat-card grids should always have at least 2 columns on mobile so they
+     don't stack into a long vertical strip. */
+  .grid.grid-cols-2 > * {
+    min-width: 0;
+  }
+  /* Sidebar nudge: when triggered on mobile, narrow it slightly so the swipe
+     target on the right edge is always grabbable. */
+  aside[class*="fixed"] {
+    width: min(80vw, 280px);
+  }
+  /* Section tab strip in chapter header — larger touch targets */
+  .scrollbar-hide button {
+    min-height: 38px;
   }
 }
 
@@ -540,4 +575,13 @@ svg circle, svg line, svg path, svg rect, svg polyline {
   #root {
     overflow-x: hidden;
   }
+  /* Definition card padding scales down on small screens */
+  .card.p-3 { padding: 0.625rem; }
+  .card.p-5 { padding: 0.875rem; }
+}
+
+/* Tighter heading sizes on phones so the chapter title doesn't push the
+   pin/star button off-screen. */
+@media (max-width: 480px) {
+  h1.text-base { font-size: 0.95rem; line-height: 1.2; }
 }

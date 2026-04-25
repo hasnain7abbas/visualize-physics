@@ -74,7 +74,7 @@ export const S5Ising2D: Component = () => {
       </div>
 
       <div class="flex gap-4 justify-center">
-        <svg width="280" height="280" viewBox={`0 0 ${N * cellSize} ${N * cellSize}`}>
+        <svg width="100%" viewBox={`0 0 ${N * cellSize} ${N * cellSize}`} preserveAspectRatio="xMidYMid meet" style={{ "max-width": "300px", "aspect-ratio": "1 / 1" }}>
           {grid().map((spin, idx) => {
             const i = Math.floor(idx / N), j = idx % N;
             return <rect x={j * cellSize} y={i * cellSize} width={cellSize} height={cellSize}

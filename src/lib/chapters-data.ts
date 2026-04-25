@@ -37,7 +37,7 @@ export interface ChapterGroup {
 const quantumPhysics: Chapter[] = [
   {
     id: "q1",
-    num: "Q1",
+    num: "1",
     title: "Quantum Probability",
     description:
       "Quantum mechanics is fundamentally probabilistic. Unlike classical randomness, quantum probability arises from superposition of states, and measurement actively changes the system.",
@@ -130,7 +130,7 @@ const quantumPhysics: Chapter[] = [
   },
   {
     id: "q2",
-    num: "Q2",
+    num: "2",
     title: "Spin & Stern-Gerlach",
     description:
       "The Stern-Gerlach experiment reveals that angular momentum is quantized. Sequential measurements in different bases demonstrate the heart of quantum measurement theory.",
@@ -224,7 +224,7 @@ const quantumPhysics: Chapter[] = [
   },
   {
     id: "q3",
-    num: "Q3",
+    num: "3",
     title: "Wavefunctions & Uncertainty",
     description:
       "Wavefunctions are probability amplitude fields in space. The Heisenberg uncertainty principle emerges from the Fourier relationship between position and momentum.",
@@ -321,7 +321,7 @@ const quantumPhysics: Chapter[] = [
   },
   {
     id: "q4",
-    num: "Q4",
+    num: "4",
     title: "Quantum Tunneling",
     description: "Particles can penetrate classically forbidden barriers. This purely quantum effect explains alpha decay, scanning tunneling microscopes, and nuclear fusion in stars.",
     color: "#f97316",
@@ -400,7 +400,7 @@ const quantumPhysics: Chapter[] = [
   },
   {
     id: "q5",
-    num: "Q5",
+    num: "5",
     title: "Quantum Harmonic Oscillator",
     description: "The harmonic oscillator is the most important model in physics. Its equally spaced energy levels explain everything from molecular vibrations to quantum field theory.",
     color: "#a855f7",
@@ -476,7 +476,7 @@ const quantumPhysics: Chapter[] = [
   },
   {
     id: "q6",
-    num: "Q6",
+    num: "6",
     title: "Advanced Quantum",
     description:
       "Two iconic results of quantum mechanics: the three-dimensional hydrogen orbitals that underlie the periodic table, and the CHSH test that rules out any classical local-hidden-variable description of reality.",
@@ -542,7 +542,7 @@ const quantumPhysics: Chapter[] = [
   },
   {
     id: "q7",
-    num: "Q7",
+    num: "7",
     title: "TDSE & Perturbation Theory",
     description:
       "The time-dependent Schrödinger equation evolving a Gaussian wavepacket past a barrier, and the cornerstone approximation technique of quantum mechanics: perturbation theory compared to the exact diagonalized answer.",
@@ -613,7 +613,7 @@ const quantumPhysics: Chapter[] = [
 const statisticalPhysics: Chapter[] = [
   {
     id: "s1",
-    num: "S1",
+    num: "1",
     title: "The Boltzmann World",
     description:
       "Energy distributes itself across particles following universal statistical laws. The Boltzmann factor e^{\u2212E/kT} is the most important formula in statistical physics.",
@@ -712,7 +712,7 @@ const statisticalPhysics: Chapter[] = [
   },
   {
     id: "s2",
-    num: "S2",
+    num: "2",
     title: "Quantum Statistics",
     description:
       "Identical particles follow different statistics based on spin. Fermions obey Pauli exclusion; bosons bunch together. This distinction shapes all of matter.",
@@ -809,7 +809,7 @@ const statisticalPhysics: Chapter[] = [
   },
   {
     id: "s3",
-    num: "S3",
+    num: "3",
     title: "Entropy & Information",
     description:
       "Entropy connects the microscopic to the macroscopic. It's also the foundation of information theory. Boltzmann and Shannon discovered the same formula independently.",
@@ -912,7 +912,7 @@ const statisticalPhysics: Chapter[] = [
   },
   {
     id: "s4",
-    num: "S4",
+    num: "4",
     title: "Random Walks & Diffusion",
     description: "Random walks are the simplest stochastic process and the backbone of diffusion, Brownian motion, financial modeling, and polymer physics.",
     color: "#e11d48",
@@ -988,7 +988,7 @@ const statisticalPhysics: Chapter[] = [
   },
   {
     id: "s5",
-    num: "S5",
+    num: "5",
     title: "Ising Model & Phase Transitions",
     description: "The 2D Ising model is the simplest system showing a phase transition. Spins on a lattice interact with neighbors, creating competition between order and thermal disorder.",
     color: "#dc2626",
@@ -1066,7 +1066,7 @@ const statisticalPhysics: Chapter[] = [
   },
   {
     id: "s6",
-    num: "S6",
+    num: "6",
     title: "Monte Carlo Methods",
     description: "Monte Carlo methods use random sampling to solve problems that are deterministic in principle. From estimating \u03C0 to simulating quantum systems, randomness is a computational tool.",
     color: "#7c3aed",
@@ -1143,7 +1143,7 @@ const statisticalPhysics: Chapter[] = [
   },
   {
     id: "s7",
-    num: "S7",
+    num: "7",
     title: "Ideal Gas & Equipartition",
     description:
       "The ideal gas is the cornerstone of statistical physics. PV = NkT connects microscopic particle motion to macroscopic pressure. The equipartition theorem assigns kT/2 of energy to each degree of freedom.",
@@ -1232,7 +1232,7 @@ const statisticalPhysics: Chapter[] = [
   },
   {
     id: "s8",
-    num: "S8",
+    num: "8",
     title: "Heat Engines & Carnot Cycle",
     description:
       "Heat engines convert thermal energy into work. The Carnot cycle sets the ultimate limit on efficiency. The second law of thermodynamics says entropy always increases.",
@@ -1319,7 +1319,7 @@ const statisticalPhysics: Chapter[] = [
   },
   {
     id: "s9",
-    num: "S9",
+    num: "9",
     title: "Free Energy & Phase Equilibria",
     description:
       "Free energy F = E - TS determines equilibrium at fixed temperature. The van der Waals equation captures the liquid-gas transition. Phase diagrams map the states of matter.",
@@ -1406,7 +1406,7 @@ const statisticalPhysics: Chapter[] = [
   },
   {
     id: "s10",
-    num: "S10",
+    num: "10",
     title: "Fluctuations & Response",
     description:
       "Thermodynamic quantities fluctuate. These fluctuations are not noise \u2014 they encode response functions. The fluctuation-dissipation theorem unifies spontaneous fluctuations with system response.",
@@ -1493,7 +1493,7 @@ const statisticalPhysics: Chapter[] = [
   },
   {
     id: "s11",
-    num: "S11",
+    num: "11",
     title: "PV Diagrams & Thermodynamic Cycles",
     description:
       "Pressure-volume diagrams are the roadmap of thermodynamics. Every process — isothermal, adiabatic, isobaric, isochoric — traces a distinct path on the PV plane. The area enclosed by a cyclic path equals the net work extracted, connecting abstract state functions to mechanical energy.",
@@ -1586,7 +1586,7 @@ const statisticalPhysics: Chapter[] = [
   },
   {
     id: "s12",
-    num: "S12",
+    num: "12",
     title: "Molecular Dynamics",
     description:
       "Molecular dynamics simulates the motion of particles interacting via realistic potentials. By solving Newton's equations for many-body systems, we can observe emergent phenomena — from gas-liquid phase transitions to the spontaneous emergence of Maxwell-Boltzmann velocity distributions — directly from first principles.",
@@ -1679,7 +1679,7 @@ const statisticalPhysics: Chapter[] = [
   },
   {
     id: "s13",
-    num: "S13",
+    num: "13",
     title: "Blackbody Radiation",
     description:
       "A blackbody absorbs all incident radiation and emits a characteristic spectrum that depends only on temperature. Planck's law, which correctly describes this spectrum, required the revolutionary hypothesis that energy is quantized — marking the birth of quantum mechanics in 1900.",
@@ -1777,7 +1777,7 @@ const statisticalPhysics: Chapter[] = [
 const classicalMechanics: Chapter[] = [
   {
     id: "c1",
-    num: "C1",
+    num: "1",
     title: "Projectile Motion",
     description:
       "Beyond the ideal parabola — real projectiles experience air drag, wind, and on a rotating Earth, the Coriolis force. Comparing ideal vs realistic trajectories reveals the power and limits of simple models.",
@@ -1870,7 +1870,7 @@ const classicalMechanics: Chapter[] = [
   },
   {
     id: "c2",
-    num: "C2",
+    num: "2",
     title: "Double Pendulum",
     description:
       "Two pendulums linked end-to-end create one of the simplest systems exhibiting deterministic chaos. Tiny changes in initial conditions lead to wildly different trajectories — the hallmark of sensitive dependence.",
@@ -1963,7 +1963,7 @@ const classicalMechanics: Chapter[] = [
   },
   {
     id: "c3",
-    num: "C3",
+    num: "3",
     title: "Central Force Orbits",
     description:
       "The Kepler problem — motion under an inverse-square force — produces ellipses, parabolas, and hyperbolas. Modifying the force law reveals precessing orbits and the deep structure of Bertrand's theorem.",
@@ -2056,7 +2056,7 @@ const classicalMechanics: Chapter[] = [
   },
   {
     id: "c4",
-    num: "C4",
+    num: "4",
     title: "Rigid Body Rotation",
     description:
       "A spinning rigid body obeys Euler's equations — three coupled nonlinear ODEs for angular velocity. The surprising tennis racket theorem shows that rotation about the intermediate axis is unstable.",
@@ -2149,7 +2149,7 @@ const classicalMechanics: Chapter[] = [
   },
   {
     id: "c5",
-    num: "C5",
+    num: "5",
     title: "Coupled Oscillators",
     description:
       "Masses connected by springs oscillate in coordinated patterns called normal modes. Each mode vibrates at a single frequency, and any motion is a superposition of these fundamental patterns.",
@@ -2242,7 +2242,7 @@ const classicalMechanics: Chapter[] = [
   },
   {
     id: "c6",
-    num: "C6",
+    num: "6",
     title: "Lagrangian Mechanics",
     description:
       "The Lagrangian L = T − V reformulates mechanics in terms of energies and generalized coordinates. It handles constraints naturally and reveals deep connections between symmetries and conservation laws.",
@@ -2335,7 +2335,7 @@ const classicalMechanics: Chapter[] = [
   },
   {
     id: "c7",
-    num: "C7",
+    num: "7",
     title: "Hamiltonian Phase Space",
     description:
       "Hamilton's equations reformulate mechanics in phase space (q, p). The phase portrait reveals fixed points, separatrices, and the topology of motion. Liouville's theorem ensures the phase-space flow is incompressible.",
@@ -2428,7 +2428,7 @@ const classicalMechanics: Chapter[] = [
   },
   {
     id: "c8",
-    num: "C8",
+    num: "8",
     title: "Noether's Theorem",
     description:
       "Every continuous symmetry of the Lagrangian corresponds to a conserved quantity. Time translation → energy, space translation → momentum, rotation → angular momentum. The deepest theorem in classical mechanics.",
@@ -2526,7 +2526,7 @@ const classicalMechanics: Chapter[] = [
 const electrodynamics: Chapter[] = [
   {
     id: "e1",
-    num: "E1",
+    num: "1",
     title: "Electric Fields & Coulomb's Law",
     description:
       "Electric charges create fields that permeate space. The electric field E at any point is the superposition of contributions from all charges, each following Coulomb's inverse-square law. Visualizing these fields reveals the elegant geometry of electrostatics.",
@@ -2619,7 +2619,7 @@ const electrodynamics: Chapter[] = [
   },
   {
     id: "e2",
-    num: "E2",
+    num: "2",
     title: "Magnetic Fields & Biot-Savart",
     description:
       "Moving charges and currents create magnetic fields. The Biot-Savart law gives the field from any current distribution, while Ampère's law provides elegant shortcuts for symmetric geometries. Magnetic fields form closed loops — there are no magnetic monopoles.",
@@ -2712,7 +2712,7 @@ const electrodynamics: Chapter[] = [
   },
   {
     id: "e3",
-    num: "E3",
+    num: "3",
     title: "Electromagnetic Waves",
     description:
       "Maxwell's equations predict that oscillating electric and magnetic fields propagate through space as waves at the speed of light. These electromagnetic waves carry energy and momentum, and their polarization describes the geometry of the oscillating fields.",
@@ -2805,7 +2805,7 @@ const electrodynamics: Chapter[] = [
   },
   {
     id: "e4",
-    num: "E4",
+    num: "4",
     title: "Induction & the Lorentz Force",
     description:
       "Faraday's law turns motion into voltage; the Lorentz force turns voltage into motion. Two sides of the same electromagnetic coin — together they describe generators, motors, and every charged-particle beam line.",
@@ -2871,7 +2871,7 @@ const electrodynamics: Chapter[] = [
   },
   {
     id: "e5",
-    num: "E5",
+    num: "5",
     title: "Multipoles & Radiation",
     description:
       "Far-field electrostatics: any localized charge cloud's potential expands in monopole + dipole + quadrupole + … with each term falling off one power faster. And the radiation pattern of an accelerating charge — sin²θ at low speed, beamed to within $1/\\gamma$ at relativistic speed.",
@@ -2942,7 +2942,7 @@ const electrodynamics: Chapter[] = [
 const wavesOscillations: Chapter[] = [
   {
     id: "w1",
-    num: "W1",
+    num: "1",
     title: "Wave Equation in 1D",
     description:
       "The one-dimensional wave equation governs vibrations of strings, sound in tubes, and many other physical systems. Standing waves arise from boundary conditions, and any initial shape can be decomposed into a superposition of normal modes via Fourier analysis.",
@@ -3035,7 +3035,7 @@ const wavesOscillations: Chapter[] = [
   },
   {
     id: "w2",
-    num: "W2",
+    num: "2",
     title: "Wave Interference & Diffraction",
     description:
       "When waves pass through apertures or encounter obstacles, they spread out (diffract) and overlap (interfere). The resulting intensity patterns — from single slits to complex gratings — reveal the wave nature of light and are foundational to optics and quantum mechanics.",
@@ -3128,7 +3128,7 @@ const wavesOscillations: Chapter[] = [
   },
   {
     id: "w3",
-    num: "W3",
+    num: "3",
     title: "Doppler Effect",
     description:
       "When a wave source moves relative to an observer, the observed frequency shifts — higher when approaching, lower when receding. At supersonic speeds, a shock wave (Mach cone) forms. The Doppler effect is used in radar, medical ultrasound, and astrophysical redshift measurements.",
@@ -3221,7 +3221,7 @@ const wavesOscillations: Chapter[] = [
   },
   {
     id: "w4",
-    num: "W4",
+    num: "4",
     title: "Resonance & 2D Waves",
     description:
       "Driven-damped oscillators and 2D membrane modes. The Lorentzian amplitude-response curve near resonance, and the (m, n) mode patterns of a rectangular drum.",
@@ -3292,7 +3292,7 @@ const wavesOscillations: Chapter[] = [
 const optics: Chapter[] = [
   {
     id: "o1",
-    num: "O1",
+    num: "1",
     title: "Ray & Wave Optics",
     description:
       "Light as both rays (geometrical optics) and waves. Thin-lens imaging, polarization via Malus's law, and thin-film interference showing where soap-bubble colors come from.",
@@ -3388,7 +3388,7 @@ const optics: Chapter[] = [
 const relativity: Chapter[] = [
   {
     id: "r1",
-    num: "R1",
+    num: "1",
     title: "Special Relativity",
     description:
       "Spacetime rather than space-and-time. Minkowski diagrams, time dilation and length contraction, and the unified $E^2 = (pc)^2 + (mc^2)^2$ law that replaces classical kinetic energy at high speeds.",
@@ -3485,7 +3485,7 @@ const relativity: Chapter[] = [
 const nuclearPhysics: Chapter[] = [
   {
     id: "n1",
-    num: "N1",
+    num: "1",
     title: "Nuclear Physics",
     description:
       "Binding energy via the semi-empirical mass formula and radioactive decay as a Poisson process. Explains why iron is the most tightly bound nucleus and why fission and fusion both release energy.",
@@ -3551,7 +3551,7 @@ const nuclearPhysics: Chapter[] = [
   },
   {
     id: "n2",
-    num: "N2",
+    num: "2",
     title: "Scattering & the Standard Model",
     description:
       "How particles scatter and what matter is made of. Rutherford's hyperbolic trajectories (and the characteristic $\\csc^4(\\theta/2)$ cross-section), and the full zoo of Standard Model fermions and bosons.",
@@ -3622,7 +3622,7 @@ const nuclearPhysics: Chapter[] = [
 const generalRelativity: Chapter[] = [
   {
     id: "g1",
-    num: "G1",
+    num: "1",
     title: "General Relativity",
     description:
       "Schwarzschild geometry: the effective potential of a particle around a black hole, and the deflection of light that produces gravitational lensing and Einstein rings.",
@@ -3688,7 +3688,7 @@ const generalRelativity: Chapter[] = [
   },
   {
     id: "g2",
-    num: "G2",
+    num: "2",
     title: "Cosmology",
     description:
       "Friedmann's equation traces the scale factor $a(t)$ under four energy components — and the CMB power spectrum's acoustic peaks let us read off their densities from the sky.",
@@ -3754,7 +3754,7 @@ const generalRelativity: Chapter[] = [
   },
   {
     id: "g3",
-    num: "G3",
+    num: "3",
     title: "Embedding & Cosmic Distances",
     description:
       "Flamm's paraboloid — the geometric \"funnel\" that visualizes Schwarzschild curvature — and the three different cosmological distances (comoving, luminosity, angular diameter) that all coincide in flat space but diverge once spacetime expands.",
@@ -3825,7 +3825,7 @@ const generalRelativity: Chapter[] = [
 const mathMethods: Chapter[] = [
   {
     id: "m1",
-    num: "M1",
+    num: "1",
     title: "Mathematical Methods",
     description:
       "Tools every physics student needs: a phase-portrait generator for nonlinear 2D systems, and the three classical families of special functions (Bessel, Legendre, Hermite) that keep reappearing in boundary-value problems.",
@@ -3891,7 +3891,7 @@ const mathMethods: Chapter[] = [
   },
   {
     id: "m2",
-    num: "M2",
+    num: "2",
     title: "PDEs & Spherical Harmonics",
     description:
       "A live numerical solver for the 1D heat equation (a model parabolic PDE), and the angular eigenfunctions of the Laplacian on a sphere — the $Y_\\ell^m$ lobes that underlie hydrogen orbitals, gravity multipoles, and CMB sky maps.",
@@ -3962,7 +3962,7 @@ const mathMethods: Chapter[] = [
 const solidState: Chapter[] = [
   {
     id: "ss1",
-    num: "SS1",
+    num: "1",
     title: "Solid State Physics",
     description:
       "Crystals and band structure. The Bravais lattice + reciprocal lattice picture, and how a periodic potential opens band gaps that distinguish metals, semiconductors, and insulators.",
@@ -4028,7 +4028,7 @@ const solidState: Chapter[] = [
   },
   {
     id: "ss2",
-    num: "SS2",
+    num: "2",
     title: "Phonons & Semiconductors",
     description:
       "Lattice vibrations (phonons) and carrier physics in semiconductors. The diatomic-chain dispersion has two branches (acoustic and optical) separated by a gap; doping shifts the Fermi level toward either band edge.",
@@ -4094,7 +4094,7 @@ const solidState: Chapter[] = [
   },
   {
     id: "ss3",
-    num: "SS3",
+    num: "3",
     title: "Diffraction & the Free-Electron Gas",
     description:
       "How we measure crystals (X-ray powder patterns + Bragg's law + structure-factor selection rules) and how electrons inside them behave at finite temperature (Fermi-Dirac, Sommerfeld linear specific heat).",
@@ -4168,7 +4168,7 @@ const solidState: Chapter[] = [
 const foundations: Chapter[] = [
   {
     id: "f1",
-    num: "F1",
+    num: "1",
     title: "Vectors & Motion",
     description:
       "The grammar of physics. Before we can describe the universe in motion, we need to agree on how to measure things, point in directions, and talk about how objects move from place to place.",
@@ -4288,7 +4288,7 @@ const foundations: Chapter[] = [
   },
   {
     id: "f2",
-    num: "F2",
+    num: "2",
     title: "Matter, Pressure & Energy",
     description:
       "Once we understand motion and force, we can describe the bulk properties of matter — how heavy it is for its size (density), how it pushes on its surroundings (pressure), how hot it is (temperature), and how much it can do (energy).",
@@ -4408,7 +4408,7 @@ const foundations: Chapter[] = [
   },
   {
     id: "f3",
-    num: "F3",
+    num: "3",
     title: "Laws of Motion & Machines",
     description:
       "Newton's three laws in action, plus the simple machines and classic demos that bring them to life. Yank a rug out, drop a feather and a bowling ball, push off on frictionless ice, and watch Newton's cradle trade energy from one ball to another.",

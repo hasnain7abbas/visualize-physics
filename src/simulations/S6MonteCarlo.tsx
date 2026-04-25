@@ -40,7 +40,7 @@ export const S6PiEstimation: Component = () => {
   return (
     <div class="space-y-5">
       <div class="flex gap-4 justify-center">
-        <svg width="250" height="250" viewBox="-1.1 -1.1 2.2 2.2">
+        <svg width="100%" viewBox="-1.1 -1.1 2.2 2.2" preserveAspectRatio="xMidYMid meet" style={{ "max-width": "270px", "aspect-ratio": "1 / 1" }}>
           {/* Square boundary */}
           <rect x="-1" y="-1" width="2" height="2" fill="none" stroke="var(--border)" stroke-width="0.01" />
           {/* Circle */}

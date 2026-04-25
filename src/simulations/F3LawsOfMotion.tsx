@@ -87,13 +87,23 @@ export const F3Inertia: Component = () => {
             x + BLOCK > newRugX &&
             x < newRugX + RUG_W;
 
+          // Falling under gravity unless resting on rug or ground.
+          const onGround = y + BLOCK >= GROUND_Y - 0.5 && !onRug;
           if (onRug) {
-            // Friction pulls block toward rug velocity, bounded by maxDrag
+            // Kinetic friction with the rug pulls the block toward the rug velocity.
             const dv = rv - vx;
             const accel = Math.sign(dv) * Math.min(Math.abs(dv) / Math.max(dt, 1e-4), maxDrag);
             vx += accel * dt;
-          } else if (y + BLOCK < GROUND_Y) {
-            // Falling
+          } else if (onGround) {
+            // Kinetic friction with the floor decelerates the block.
+            const muGround = 0.6;
+            const friction = muGround * G;
+            const sign = Math.sign(vx);
+            const newVx = vx - sign * friction * dt;
+            // If friction would reverse the velocity, just stop the block.
+            vx = sign !== 0 && Math.sign(newVx) !== sign ? 0 : newVx;
+          } else {
+            // Free-fall.
             vy += G * dt;
           }
 
@@ -102,8 +112,6 @@ export const F3Inertia: Component = () => {
           if (y + BLOCK > GROUND_Y) {
             y = GROUND_Y - BLOCK;
             vy = 0;
-            vx *= 0.7; // friction with ground
-            if (Math.abs(vx) < 1) vx = 0;
           }
           return { x, y, vx, vy };
         })
