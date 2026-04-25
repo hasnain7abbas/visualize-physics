@@ -25,7 +25,7 @@
 [![Stars](https://img.shields.io/github/stars/hasnain7abbas/visualize-physics?style=flat-square&color=f59e0b)](https://github.com/hasnain7abbas/visualize-physics/stargazers)
 [![Deploy](https://img.shields.io/github/actions/workflow/status/hasnain7abbas/visualize-physics/deploy.yml?style=flat-square&label=deploy&color=10b981)](https://github.com/hasnain7abbas/visualize-physics/actions)
 
-[Try Online](https://hasnain7abbas.github.io/visualize-physics/) · [Download](#-download) · [Features](#-at-a-glance) · [All Chapters](#-all-29-chapters) · [Contributing](#-contributing)
+[Try Online](https://hasnain7abbas.github.io/visualize-physics/) · [Download](#-download) · [Features](#-at-a-glance) · [All Chapters](#-all-chapters) · [Contributing](#-contributing)
 
 ---
 
@@ -67,81 +67,128 @@
 
 | | |
 |:---:|:---:|
-| **32 Chapters** | **96 Interactive Sections** |
-| **56 Full Simulations** | **820+ Conceptual Tools** |
-| **5 Physics Modules** | **230+ LaTeX Equations** |
+| **52 Chapters** | **~90 Interactive Sections** |
+| **12 Physics Categories** | **Cmd/Ctrl + K Search** |
+| **Installable PWA** | **Bookmarks + Recently-Visited** |
 
 </div>
 
-- **56+ Interactive Simulations** — Every section has a hands-on, real-time physics visualization
-- **820+ Conceptual Tools** — Exhaustive coverage from Born rule to blackbody radiation, each with expandable explanations
-- **Beautiful Math** — KaTeX-rendered equations that look like a textbook
-- **Dark & Light Mode** — Easy on the eyes, any time of day
-- **Native Desktop App** — Runs offline on Windows (.exe / .msi), macOS (.dmg), and Linux (.AppImage)
-- **Web Version** — Try instantly at [hasnain7abbas.github.io/visualize-physics](https://hasnain7abbas.github.io/visualize-physics/)
-- **Fully Responsive** — Desktop, tablet, and mobile
-- **Optimized Build** — Code-split into module chunks, terser-minified, ~320 KB gzip total
+- **~90 Interactive Simulations** — Every section has a hands-on, real-time physics visualization
+- **1000+ Conceptual Tools** — Exhaustive coverage with expandable descriptions on every section
+- **Beautiful Math** — KaTeX-rendered equations everywhere — chapter cards, descriptions, definitions, and key-equation blocks
+- **Dark & Light Mode** — System-aware with manual override, persisted across sessions
+- **Native Desktop App** — Runs offline on Windows (.exe / .msi)
+- **Web Version (PWA)** — Installable from [hasnain7abbas.github.io/visualize-physics](https://hasnain7abbas.github.io/visualize-physics/), works offline after first load
+- **Cmd/Ctrl + K Global Search** — Fuzzy-ranked across every chapter and section
+- **Bookmarks + Recently Visited** — Pin favorites, jump back to recent work via the sidebar
+- **Fully Responsive** — Touch-friendly sliders, mobile-first SVG sizing, hamburger sidebar
+- **Optimized Build** — Per-chapter code-splitting; ~180 KB gzip total
 
 ---
 
-## All 32 Chapters
+## All Chapters
 
-### Quantum Physics (5 chapters)
+The app is organized into **12 categories** of physics. Each category numbers its chapters from 1.
 
-| # | Chapter | Key Simulations |
-|:-:|---------|-----------------|
-| Q1 | **Quantum Probability** | Superposition, Measurement & Collapse, Probability Amplitudes |
-| Q2 | **Spin & Stern-Gerlach** | Single SG, Sequential SG, Spin Expectation Values |
-| Q3 | **Wavefunctions** | Particle in a Box, Wavepackets, Heisenberg Uncertainty |
-| Q4 | **Quantum Tunneling** | Barrier Penetration, Alpha Decay, Resonant Tunneling |
-| Q5 | **Harmonic Oscillator** | Energy Levels, Coherent States, Zero-Point Energy |
+### Foundations *(3 chapters)*
+| # | Chapter | Sections |
+|:-:|---------|----------|
+| 1 | **Vectors & Motion** | scalars/vectors, displacement-velocity graphs, kinematics, Newton's laws |
+| 2 | **Matter, Pressure & Energy** | density & buoyancy, pressure & hydrostatics, temperature, work-energy |
+| 3 | **Laws of Motion & Machines** | inertia, free fall, action-reaction, balanced forces, kinetic theory, lever, Newton's cradle |
 
-### Statistical Physics & Thermodynamics (13 chapters)
+### Quantum Physics *(7 chapters)*
+| # | Chapter | Sections |
+|:-:|---------|----------|
+| 1 | **Quantum Probability** | superposition, measurement & collapse, probability amplitudes |
+| 2 | **Spin & Stern-Gerlach** | single SG, sequential SG, spin expectation |
+| 3 | **Wavefunctions & Uncertainty** | particle in a box, Gaussian wavepackets, Heisenberg uncertainty |
+| 4 | **Quantum Tunneling** | barrier penetration, alpha decay, resonant tunneling |
+| 5 | **Harmonic Oscillator** | energy levels, coherent states, zero-point energy |
+| 6 | **Advanced Quantum** | hydrogen orbitals, Bell/CHSH inequality |
+| 7 | **TDSE & Perturbation** | wavepacket scattering, perturbation theory |
 
-| # | Chapter | Key Simulations |
-|:-:|---------|-----------------|
-| S1 | **The Boltzmann World** | Maxwell-Boltzmann Distribution, Energy Distribution, Partition Functions |
-| S2 | **Quantum Statistics** | Fermions vs Bosons, Fermi-Dirac, Bose-Einstein |
-| S3 | **Entropy & Information** | Microstates, Entropy of Mixing, Shannon Entropy |
-| S4 | **Random Walks** | 1D Walk, 2D Brownian Motion, Diffusion Equation |
-| S5 | **Ising Model** | 2D Ising Lattice, Phase Transition, Critical Phenomena |
-| S6 | **Monte Carlo Methods** | Pi Estimation, MC Integration, MCMC Sampling |
-| S7 | **Ideal Gas & Equipartition** | Ideal Gas Law, Equipartition Theorem, Heat Capacity |
-| S8 | **Heat Engines & Carnot** | Carnot Cycle, Engine Efficiency, Second Law |
-| S9 | **Free Energy & Phases** | Helmholtz Free Energy, Van der Waals, Phase Diagrams |
-| S10 | **Fluctuations & Response** | Energy Fluctuations, Fluctuation-Dissipation, Brownian Motion |
-| S11 | **PV Diagrams & Cycles** | Isothermal & Adiabatic, Thermodynamic Cycles, Cycle Efficiency |
-| S12 | **Molecular Dynamics** | Lennard-Jones Particles, Velocity Distribution, Radial Distribution |
-| S13 | **Blackbody Radiation** | Planck's Law, Wien's Displacement, UV Catastrophe |
+### Statistical Physics *(13 chapters)*
+| # | Chapter | Sections |
+|:-:|---------|----------|
+| 1 | **The Boltzmann World** | Maxwell-Boltzmann, energy distribution, partition function |
+| 2 | **Quantum Statistics** | fermions vs bosons, Fermi-Dirac, Bose-Einstein |
+| 3 | **Entropy & Information** | microstates, entropy of mixing, Shannon entropy |
+| 4 | **Random Walks** | 1D walk, 2D Brownian, diffusion |
+| 5 | **Ising Model** | 2D lattice, phase transition, criticality |
+| 6 | **Monte Carlo Methods** | π estimation, MC integration, MCMC |
+| 7 | **Ideal Gas & Equipartition** | ideal gas law, equipartition, heat capacity |
+| 8 | **Heat Engines & Carnot** | Carnot cycle, engine efficiency, second law |
+| 9 | **Free Energy & Phases** | Helmholtz free energy, van der Waals, phase diagrams |
+| 10 | **Fluctuations & Response** | energy fluctuations, fluctuation-dissipation, Brownian motion |
+| 11 | **PV Diagrams & Cycles** | isothermal/adiabatic, thermodynamic cycles, efficiency comparison |
+| 12 | **Molecular Dynamics** | Lennard-Jones, velocity distribution, radial distribution |
+| 13 | **Blackbody Radiation** | Planck spectrum, Wien's law, UV catastrophe |
 
-### Classical Mechanics (8 chapters)
+### Classical Mechanics *(8 chapters)*
+| # | Chapter | Sections |
+|:-:|---------|----------|
+| 1 | **Projectile Motion** | ideal trajectory, drag, Coriolis & wind |
+| 2 | **Double Pendulum** | dynamics, phase space, chaos & Lyapunov |
+| 3 | **Central Force Orbits** | Kepler orbits, effective potential, Bertrand's theorem |
+| 4 | **Rigid Body Rotation** | Euler's equations, polhode, tennis-racket theorem |
+| 5 | **Coupled Oscillators** | normal modes, mode superposition, dispersion |
+| 6 | **Lagrangian Mechanics** | Atwood machine, bead on hoop, sliding wedge |
+| 7 | **Hamiltonian Phase Space** | phase portraits, Liouville, fixed points |
+| 8 | **Noether's Theorem** | time-energy, space-momentum, rotation-angular momentum |
 
-| # | Chapter | Key Simulations |
-|:-:|---------|-----------------|
-| C1 | **Projectile Motion** | Ideal Trajectory, Air Drag Effects, Coriolis & Wind |
-| C2 | **Double Pendulum** | Pendulum Dynamics, Phase Space, Chaos & Lyapunov |
-| C3 | **Central Force Orbits** | Kepler Orbits, Effective Potential, Force Law Variation |
-| C4 | **Rigid Body Rotation** | Euler's Equations, Polhode Curves, Tennis Racket Theorem |
-| C5 | **Coupled Oscillators** | Normal Modes, Mode Superposition, Dispersion Relation |
-| C6 | **Lagrangian Mechanics** | Atwood Machine, Bead on Hoop, Sliding Wedge |
-| C7 | **Hamiltonian Phase Space** | Phase Portraits, Liouville's Theorem, Fixed Points |
-| C8 | **Noether's Theorem** | Time-Energy, Space-Momentum, Rotation-Angular Momentum |
+### Electrodynamics *(5 chapters)*
+| # | Chapter | Sections |
+|:-:|---------|----------|
+| 1 | **Electric Fields & Coulomb** | point charges, field lines, equipotentials |
+| 2 | **Magnetic Fields & Biot-Savart** | wire field, Helmholtz coils, Ampère's law |
+| 3 | **Electromagnetic Waves** | plane wave, polarization, Poynting vector |
+| 4 | **Induction & Lorentz Force** | Faraday rotating-loop generator, charge in E×B fields |
+| 5 | **Multipoles & Radiation** | multipole expansion error map, Larmor radiation pattern |
 
-### Electrodynamics (3 chapters)
+### Waves & Oscillations *(4 chapters)*
+| # | Chapter | Sections |
+|:-:|---------|----------|
+| 1 | **Wave Equation in 1D** | standing waves, Fourier modes, energy density |
+| 2 | **Interference & Diffraction** | single slit, double slit, diffraction grating |
+| 3 | **Doppler Effect** | moving source, Mach cone, observer frequency |
+| 4 | **Resonance & 2D Waves** | damped-driven oscillator, rectangular drum modes |
 
-| # | Chapter | Key Simulations |
-|:-:|---------|-----------------|
-| E1 | **Electric Fields & Coulomb's Law** | Point Charges, Field Lines, Equipotential Surfaces |
-| E2 | **Magnetic Fields & Ampere's Law** | Wire Field, Helmholtz Coils, Ampere's Law |
-| E3 | **Electromagnetic Waves** | Plane Wave Propagation, Polarization States, Poynting Vector |
+### Optics *(1 chapter)*
+| # | Chapter | Sections |
+|:-:|---------|----------|
+| 1 | **Ray & Wave Optics** | thin-lens imaging, polarization & Malus's law, thin-film interference |
 
-### Waves & Oscillations (3 chapters) — *NEW in v0.6.0*
+### Special Relativity *(1 chapter)*
+| # | Chapter | Sections |
+|:-:|---------|----------|
+| 1 | **Special Relativity** | Minkowski spacetime diagrams, time dilation, energy-momentum |
 
-| # | Chapter | Key Simulations |
-|:-:|---------|-----------------|
-| W1 | **Wave Equation in 1D** | Standing Waves & Modes, Fourier Decomposition, Energy Density |
-| W2 | **Interference & Diffraction** | Single Slit, Young's Double Slit, Diffraction Grating |
-| W3 | **Doppler Effect** | Moving Source Wavefronts, Mach Cone & Shock Waves, Angular Frequency |
+### Nuclear Physics *(2 chapters)*
+| # | Chapter | Sections |
+|:-:|---------|----------|
+| 1 | **Nuclear Physics** | binding energy via SEMF, radioactive decay & Bateman chains |
+| 2 | **Scattering & Standard Model** | Rutherford scattering, Standard Model explorer |
+
+### General Relativity *(3 chapters)*
+| # | Chapter | Sections |
+|:-:|---------|----------|
+| 1 | **General Relativity** | Schwarzschild geodesics, gravitational lensing |
+| 2 | **Cosmology** | Friedmann a(t), CMB acoustic peaks |
+| 3 | **Embedding & Cosmic Distances** | Flamm's paraboloid, comoving / luminosity / angular-diameter D(z) |
+
+### Mathematical Methods *(2 chapters)*
+| # | Chapter | Sections |
+|:-:|---------|----------|
+| 1 | **Mathematical Methods** | 2D phase portraits, Bessel/Legendre/Hermite |
+| 2 | **PDEs & Spherical Harmonics** | 1D heat equation FTCS, spherical-harmonic lobes |
+
+### Solid State Physics *(3 chapters)*
+| # | Chapter | Sections |
+|:-:|---------|----------|
+| 1 | **Solid State Physics** | crystal & reciprocal lattices, nearly-free-electron bands |
+| 2 | **Phonons & Semiconductors** | diatomic phonon dispersion, semiconductor band diagram |
+| 3 | **Diffraction & Fermi Gas** | X-ray Bragg/structure-factor, degenerate Fermi gas + Sommerfeld |
 
 ---
 
@@ -153,25 +200,23 @@
 |:--------:|------|-------|
 | **Windows** | [**.msi** Installer](https://github.com/hasnain7abbas/visualize-physics/releases/latest) | Standard Windows installer (recommended) |
 | **Windows** | [**.exe** Setup](https://github.com/hasnain7abbas/visualize-physics/releases/latest) | NSIS installer (smaller download) |
-| **macOS** | [**.dmg**](https://github.com/hasnain7abbas/visualize-physics/releases/latest) | Universal binary (Intel + Apple Silicon) |
-| **Linux** | [**.AppImage** / **.deb**](https://github.com/hasnain7abbas/visualize-physics/releases/latest) | AppImage works on any distro |
 
 ### Web App (no install required)
 
-**[hasnain7abbas.github.io/visualize-physics](https://hasnain7abbas.github.io/visualize-physics/)**
+**[hasnain7abbas.github.io/visualize-physics](https://hasnain7abbas.github.io/visualize-physics/)** — also installable as a PWA from the browser.
 
 ### Build from Source
 
 ```bash
-# Prerequisites: Node.js 20+, Rust 1.70+
+# Prerequisites: Node.js 20+, Rust 1.70+ (for desktop), Visual Studio Build Tools on Windows
 git clone https://github.com/hasnain7abbas/visualize-physics.git
 cd visualize-physics
 npm install
 
-# Web only
+# Web build
 npm run build && npm run preview
 
-# Desktop app
+# Desktop installer (.exe + .msi on Windows)
 npm run tauri build
 ```
 
@@ -183,13 +228,14 @@ npm run tauri build
 
 | Layer | Technology | Purpose |
 |:-----:|-----------|---------|
-| **Shell** | [Tauri 2](https://tauri.app) | Native desktop packaging, security, auto-update |
-| **Backend** | [Rust](https://rust-lang.org) | High-performance physics engine |
-| **Frontend** | [SolidJS](https://solidjs.com) | Fine-grained reactive UI (no virtual DOM) |
+| **Shell** | [Tauri 2](https://tauri.app) | Native desktop packaging |
+| **Backend** | [Rust](https://rust-lang.org) | Tauri runtime |
+| **Frontend** | [SolidJS](https://solidjs.com) | Fine-grained reactive UI |
 | **Styling** | [Tailwind CSS](https://tailwindcss.com) | Utility-first responsive design |
 | **Math** | [KaTeX](https://katex.org) | Publication-quality LaTeX rendering |
 | **Bundler** | [Vite 6](https://vitejs.dev) | Sub-second HMR, optimized code-splitting |
-| **CI/CD** | [GitHub Actions](https://github.com/features/actions) | Automated deploy to GitHub Pages |
+| **CI/CD** | [GitHub Actions](https://github.com/features/actions) | Auto-deploy to GitHub Pages |
+| **PWA** | Service Worker + Web Manifest | Installable + offline-capable |
 
 </div>
 
@@ -200,61 +246,59 @@ npm run tauri build
 ```
 visualize-physics/
 ├── src/
-│   ├── chapters/          Home page with module grid
-│   ├── components/        Layout, Sidebar, ChapterPage, MathBlock
-│   ├── simulations/       56 interactive simulation components
-│   │   ├── Q*.tsx         Quantum Physics (11 sims)
-│   │   ├── S*.tsx         Statistical Physics & Thermo (25 sims)
-│   │   ├── C*.tsx         Classical Mechanics (8 sims)
-│   │   ├── E*.tsx         Electrodynamics (3 sims)
-│   │   └── W*.tsx         Waves & Oscillations (9 sims)
-│   ├── lib/               Chapter data, theme, exports
+│   ├── chapters/          Home page with category grid
+│   ├── components/        Layout, Sidebar, ChapterPage, CommandPalette, MathBlock
+│   ├── simulations/       ~50 interactive simulation files (.tsx)
+│   │   ├── F*.tsx         Foundations (3 files)
+│   │   ├── Q*.tsx         Quantum (8 files)
+│   │   ├── S*.tsx         Statistical (13 files)
+│   │   ├── C*.tsx         Classical (8 files)
+│   │   ├── E*.tsx         Electrodynamics (5 files)
+│   │   ├── W*.tsx         Waves (4 files)
+│   │   ├── O*.tsx         Optics
+│   │   ├── R*.tsx         Special Relativity
+│   │   ├── N*.tsx         Nuclear (2 files)
+│   │   ├── G*.tsx         General Relativity (3 files)
+│   │   ├── M*.tsx         Math Methods (2 files)
+│   │   └── SS*.tsx        Solid State (3 files)
+│   ├── lib/               Chapter data, theme, bookmarks
 │   └── styles/            Global CSS + Tailwind
+├── public/                manifest.webmanifest, sw.js, app icons
 ├── src-tauri/             Rust backend + Tauri config
 ├── .github/workflows/     CI/CD deploy pipeline
 └── vite.config.ts         Optimized build with code-splitting
 ```
 
-**Build output** (code-split chunks, gzip sizes):
-| Chunk | Size |
-|-------|------|
-| vendor-solid | 12 KB |
-| vendor-katex | 76 KB |
-| sim-quantum | 13 KB |
-| sim-statistical | 45 KB |
-| sim-classical | 33 KB |
-| sim-electrodynamics | 17 KB |
-| sim-waves | 15 KB |
-| app + styles | 98 KB |
-
 ---
 
 ## Roadmap
 
-- [x] Quantum Physics module (5 chapters, 11 simulations)
-- [x] Statistical Physics module (13 chapters, 25 simulations)
-- [x] Classical Mechanics module (8 chapters, 8 simulations)
-- [x] Electrodynamics module (3 chapters, 3 simulations)
-- [x] Waves & Oscillations module (3 chapters, 9 simulations)
-- [x] Thermodynamics expansion: PV diagrams, molecular dynamics, blackbody radiation
-- [x] 820+ conceptual tools with expandable descriptions
-- [x] KaTeX math rendering throughout
-- [x] Dark / Light theme with smooth animations
-- [x] Welcome hero with floating equations
+- [x] Quantum Physics (7 chapters)
+- [x] Statistical Physics (13 chapters)
+- [x] Classical Mechanics (8 chapters)
+- [x] Electrodynamics (5 chapters)
+- [x] Waves & Oscillations (4 chapters)
+- [x] Optics — lens system, polarization, thin films
+- [x] Special Relativity — Minkowski, time dilation, energy-momentum
+- [x] Nuclear & Particle Physics — SEMF, decay chains, Rutherford, Standard Model
+- [x] General Relativity & Cosmology — Schwarzschild, lensing, Friedmann, CMB, Flamm embedding
+- [x] Mathematical Methods — phase portraits, special functions, PDE solver, Y_l^m
+- [x] Solid State Physics — Bravais lattices, bands, phonons, semiconductors, X-ray, Fermi gas
+- [x] Foundations chapter for high-school / undergraduate students
+- [x] KaTeX math rendering throughout (with auto-wrap for bare LaTeX)
+- [x] Dark / Light theme
 - [x] Windows .exe and .msi installers
 - [x] GitHub Pages web deployment with CI/CD
-- [x] Mobile responsive design
-- [x] Optimized build with code-splitting
-- [x] Enhanced UI: card shine effects, smooth transitions, spring animations
-- [ ] Waves & Oscillations expansion (Fourier Transform, Resonance, 2D Membrane)
-- [ ] Optics module (lenses, mirrors, ray tracing)
-- [ ] Special Relativity module (Lorentz transforms, spacetime diagrams)
-- [ ] Quantum Mechanics II (angular momentum, hydrogen atom)
-- [ ] Solid State Physics (band theory, Brillouin zones)
-- [ ] D3.js advanced visualizations
-- [ ] macOS and Linux builds
-- [ ] Bloch sphere 3D visualization
-- [ ] Export simulation data as CSV
+- [x] Mobile responsive design (touch-friendly sliders, mobile sidebar, swipeable tabs)
+- [x] Code-split per chapter (each `*Sim.tsx` is its own chunk)
+- [x] PWA support — installable manifest + service worker
+- [x] Cmd/Ctrl + K global search palette
+- [x] Bookmarks + Recently-visited via localStorage
+- [ ] Feynman diagram builder (drag-and-drop)
+- [ ] Tensor calculator (Christoffel, Ricci, Riemann from a metric)
+- [ ] URL-shareable simulation parameter state
+- [ ] macOS and Linux installer builds
+- [ ] CSV export of simulation data
 - [ ] Localization (i18n)
 
 ---
