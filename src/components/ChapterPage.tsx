@@ -1,4 +1,4 @@
-import { Component, For, Show, createSignal } from "solid-js";
+import { Component, For, Show, createSignal, createEffect } from "solid-js";
 import { Dynamic } from "solid-js/web";
 import { useParams, A } from "@solidjs/router";
 import { getChapter, type Chapter, type Section, type StatTool } from "../lib/chapters-data";
@@ -6,6 +6,7 @@ import { MathBlock } from "./MathBlock";
 import { InlineMathText } from "./InlineMath";
 import { ToolMiniSim } from "./ToolMiniSim";
 import { getSimulation } from "../simulations";
+import { isBookmarked, toggleBookmark, recordVisit } from "../lib/bookmarks";
 
 // ─── Interactive tool item ───────────────────────────────────────────
 
@@ -247,6 +248,15 @@ export const ChapterPage: Component = () => {
   const chapter = () => getChapter(params.id);
   const [activeSection, setActiveSection] = createSignal(0);
 
+  // Track visits + reset section when chapter changes
+  createEffect(() => {
+    const ch = chapter();
+    if (ch) {
+      recordVisit(ch.id);
+      setActiveSection(0);
+    }
+  });
+
   return (
     <Show
       when={chapter()}
@@ -275,10 +285,24 @@ export const ChapterPage: Component = () => {
                 <span class="w-9 h-9 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center text-lg sm:text-xl" style={{ background: `${ch().color}15` }}>
                   {ch().icon}
                 </span>
-                <div>
+                <div class="flex-1 min-w-0">
                   <div class="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest" style={{ color: ch().color }}>Chapter {ch().num}</div>
                   <h1 class="text-base sm:text-xl font-bold" style={{ color: "var(--text-primary)" }}>{ch().title}</h1>
                 </div>
+                <button
+                  onClick={() => toggleBookmark(ch().id)}
+                  title={isBookmarked(ch().id) ? "Unpin chapter" : "Pin chapter"}
+                  aria-label={isBookmarked(ch().id) ? "Unpin chapter" : "Pin chapter"}
+                  class="ml-auto w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center transition-all flex-shrink-0"
+                  style={{
+                    background: isBookmarked(ch().id) ? `${ch().color}20` : "var(--bg-secondary)",
+                    border: `1px solid ${isBookmarked(ch().id) ? ch().color : "var(--border)"}`,
+                  }}
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill={isBookmarked(ch().id) ? ch().color : "none"} stroke={isBookmarked(ch().id) ? ch().color : "var(--text-muted)"} stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                </button>
               </div>
 
               <p class="text-xs sm:text-sm max-w-2xl mb-3 sm:mb-5 hidden sm:block" style={{ color: "var(--text-secondary)" }}>

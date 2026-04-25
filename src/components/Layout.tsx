@@ -1,5 +1,6 @@
 import { Component, JSX, createSignal } from "solid-js";
 import { Sidebar } from "./Sidebar";
+import { CommandPalette } from "./CommandPalette";
 
 const [sidebarOpen, setSidebarOpen] = createSignal(false);
 export { sidebarOpen, setSidebarOpen };
@@ -7,6 +8,7 @@ export { sidebarOpen, setSidebarOpen };
 export const Layout: Component<{ children?: JSX.Element }> = (props) => {
   return (
     <div class="flex h-screen w-screen overflow-hidden">
+      <CommandPalette />
       {/* Mobile overlay */}
       {sidebarOpen() && (
         <div
@@ -25,6 +27,7 @@ export const Layout: Component<{ children?: JSX.Element }> = (props) => {
           onClick={() => setSidebarOpen(!sidebarOpen())}
           class="w-8 h-8 flex items-center justify-center rounded-lg"
           style={{ background: "var(--bg-secondary)" }}
+          aria-label="Open navigation"
         >
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2" stroke-linecap="round">
             <line x1="3" y1="6" x2="21" y2="6" />
@@ -33,6 +36,17 @@ export const Layout: Component<{ children?: JSX.Element }> = (props) => {
           </svg>
         </button>
         <span class="font-bold text-sm" style={{ color: "var(--text-primary)" }}>Visualize Physics</span>
+        <button
+          onClick={() => { import("./CommandPalette").then((m) => m.setPaletteOpen(true)); }}
+          class="ml-auto w-8 h-8 flex items-center justify-center rounded-lg"
+          style={{ background: "var(--bg-secondary)" }}
+          aria-label="Open search"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+        </button>
       </div>
 
       <main

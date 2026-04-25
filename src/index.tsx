@@ -9,6 +9,16 @@ import { initTheme } from "./lib/theme";
 
 initTheme();
 
+// Register the PWA service worker (production builds only — Vite dev serves
+// from a virtual filesystem where caching every fetch is counterproductive).
+if (import.meta.env.PROD && "serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register(`${import.meta.env.BASE_URL}sw.js`, { scope: import.meta.env.BASE_URL })
+      .catch(() => { /* offline support is best-effort */ });
+  });
+}
+
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 
 const App = () => (
