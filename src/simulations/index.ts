@@ -228,6 +228,11 @@ import { SS2Phonons, SS2Semiconductor } from "./SS2Phonons";
 simulations["ss2-phonons"] = SS2Phonons;
 simulations["ss2-semiconductor"] = SS2Semiconductor;
 
+// SS3 - X-ray diffraction + Fermi gas
+import { SS3XrayDiffraction, SS3FermiGas } from "./SS3XrayFermi";
+simulations["ss3-xray-diffraction"] = SS3XrayDiffraction;
+simulations["ss3-fermi-gas"] = SS3FermiGas;
+
 // N2 - Rutherford scattering + Standard Model
 import { N2RutherfordScattering, N2StandardModel } from "./N2Particle";
 simulations["n2-rutherford"] = N2RutherfordScattering;

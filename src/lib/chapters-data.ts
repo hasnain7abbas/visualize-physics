@@ -4026,6 +4026,72 @@ const solidState: Chapter[] = [
       },
     ],
   },
+  {
+    id: "ss3",
+    num: "SS3",
+    title: "Diffraction & the Free-Electron Gas",
+    description:
+      "How we measure crystals (X-ray powder patterns + Bragg's law + structure-factor selection rules) and how electrons inside them behave at finite temperature (Fermi-Dirac, Sommerfeld linear specific heat).",
+    color: "#0d9488",
+    icon: "\u{2728}",
+    shortDesc: "Bragg & Sommerfeld",
+    sections: [
+      {
+        id: "xray-diffraction",
+        title: "X-Ray Diffraction (Bragg's Law)",
+        description:
+          "$n\\lambda = 2 d_{hkl}\\sin\\theta$ predicts diffraction peaks. The structure factor of the basis kills certain peaks for BCC and FCC lattices — the chemical signature of the crystal.",
+        definition:
+          "**X-ray diffraction** is the workhorse technique for solving crystal structures. **Bragg's law** $n\\lambda = 2 d_{hkl}\\sin\\theta$ predicts that elastic scattering of an X-ray of wavelength $\\lambda$ produces a sharp peak whenever the path-length difference between adjacent lattice planes is an integer number of wavelengths. The peak positions encode the spacings $d_{hkl} = a/\\sqrt{h^2+k^2+l^2}$ (for cubic lattices), while the **structure factor** $F_{\\vec G} = \\sum_j f_j e^{i\\vec G \\cdot \\vec r_j}$ — summing over basis atoms — modulates their intensities and **systematically extinguishes** certain reflections: BCC kills all peaks with $h+k+l$ odd; FCC keeps only those where $h, k, l$ are all even or all odd. Reading off these selection rules tells a crystallographer the lattice type at a glance.",
+        statisticalTools: [
+          { name: "Bragg's Law", desc: "$n\\lambda = 2 d_{hkl}\\sin\\theta$. Constructive interference between scattering off adjacent planes. Same condition geometrically as the Laue equations." },
+          { name: "Laue Equations", desc: "$\\Delta\\vec k = \\vec G$ for some reciprocal lattice vector. Equivalent to Bragg but more natural in vector form." },
+          { name: "Reciprocal Lattice", desc: "Vectors $\\vec G_{hkl} = h\\vec b_1 + k\\vec b_2 + l\\vec b_3$. Each $(hkl)$ family of planes maps to one reciprocal vector with $|\\vec G| = 2\\pi/d_{hkl}$." },
+          { name: "Structure Factor", desc: "$F_{hkl} = \\sum_j f_j(\\vec G)\\,e^{2\\pi i (hx_j + ky_j + lz_j)}$. $f_j$ = atomic form factor. Drops to zero for forbidden reflections." },
+          { name: "Selection Rules", desc: "BCC: $h+k+l$ even. FCC: $h, k, l$ same parity. Diamond: even more restrictive. Diagnostic for lattice type from peak presence/absence." },
+          { name: "Powder Pattern", desc: "Random crystallite orientations average to a 1D plot vs $2\\theta$. All $\\vec G$ of the same magnitude collapse onto one peak." },
+          { name: "Lorentz-Polarization Factor", desc: "$LP = (1 + \\cos^2 2\\theta)/(\\sin^2\\theta\\cos\\theta)$. Geometric weighting that boosts peaks at small $2\\theta$." },
+          { name: "Multiplicity", desc: "Number of equivalent $(h,k,l)$ contributing to one $|\\vec G|$. (h00) has multiplicity 6, (hhh) is 8, generic (hkl) is 48." },
+          { name: "Ewald Sphere", desc: "Geometric construction: sphere of radius $|\\vec k|$ in reciprocal space. Reflections active when reciprocal lattice points lie on the sphere." },
+          { name: "Resolution Limit", desc: "Smallest resolvable $d$ is $\\lambda/2$ (Bragg at $\\theta = 90°$). Why we use X-rays for atoms (Å spacings) and visible light for nothing crystalline." },
+        ],
+        keyEquations: [
+          "n\\lambda = 2 d_{hkl}\\sin\\theta",
+          "d_{hkl} = \\frac{a}{\\sqrt{h^2 + k^2 + l^2}} \\quad \\text{(cubic)}",
+          "F_{hkl} = \\sum_j f_j e^{2\\pi i(h x_j + k y_j + l z_j)}",
+        ],
+        conceptSummary:
+          "Switch between SC, BCC, and FCC and watch peaks disappear. SC has a peak at every integer $\\sqrt{h^2+k^2+l^2}$; BCC drops every other one (forbidden $h+k+l$ odd); FCC keeps only specific combinations. The pattern *is* the lattice type's fingerprint.",
+      },
+      {
+        id: "fermi-gas",
+        title: "Free-Electron (Fermi) Gas",
+        description:
+          "Conduction electrons in a metal as a degenerate Fermi gas. Sommerfeld corrections give $\\mu(T) = E_F[1 - \\pi^2(T/T_F)^2/12]$ and $C_v \\propto T$.",
+        definition:
+          "The **free-electron** (or **Sommerfeld**) **model** treats conduction electrons in a metal as a non-interacting Fermi gas. At $T = 0$ they fill all single-particle states up to the Fermi energy $E_F = \\hbar^2 k_F^2/2m$, where $k_F = (3\\pi^2 n)^{1/3}$ for electron density $n$. At finite temperature only electrons within $\\sim k_BT$ of $E_F$ can be excited — only a fraction $T/T_F$ participates — so the **electronic specific heat** is **linear** in $T$: $C_v = \\frac{\\pi^2}{2}N k_B (T/T_F)$, vastly smaller than the classical $\\frac{3}{2} N k_B$. The chemical potential drops slightly with $T$: the **Sommerfeld expansion** gives $\\mu(T) = E_F[1 - (\\pi^2/12)(T/T_F)^2 + \\cdots]$. This explains why metals (with $T_F \\sim 10^4$–$10^5$ K) have such weak electronic heat capacities at room temperature.",
+        statisticalTools: [
+          { name: "Fermi Energy", desc: "$E_F = \\hbar^2 k_F^2/(2m)$, $k_F = (3\\pi^2 n)^{1/3}$. Highest occupied energy at $T=0$. Cu: $E_F = 7$ eV, $T_F = 8 \\times 10^4$ K." },
+          { name: "Density of States (3D)", desc: "$g(E) = (m^{3/2}/\\pi^2\\hbar^3)\\sqrt{2E}$. Increases as $\\sqrt{E}$. Total $\\int_0^{E_F} g\\,dE = N$ fixes $E_F$." },
+          { name: "Sommerfeld Expansion", desc: "$\\int g(E) f(E)\\,dE = \\int_0^\\mu g(E)\\,dE + (\\pi^2/6)(k_BT)^2 g'(\\mu) + \\cdots$. Power series in $(T/T_F)^2$." },
+          { name: "Specific Heat", desc: "$C_v^{\\text{elec}} = \\gamma T$, $\\gamma = (\\pi^2/3)k_B^2 g(E_F)$. Linear in $T$, dominant at low $T$ where the lattice $T^3$ piece dies faster." },
+          { name: "Pauli Susceptibility", desc: "$\\chi_P = \\mu_B^2 g(E_F)$. Temperature-independent paramagnetism from the Fermi surface. Smaller than naive Curie expectation." },
+          { name: "Chemical Potential μ(T)", desc: "$\\mu(T) = E_F[1 - (\\pi^2/12)(T/T_F)^2]$. Drops with $T$ to keep particle number constant as the step softens." },
+          { name: "Fermi Temperature T_F", desc: "$T_F = E_F/k_B$. Sets the scale of degeneracy: $T \\ll T_F$ means strongly degenerate (metals); $T \\gg T_F$ means classical (Maxwell-Boltzmann)." },
+          { name: "White Dwarf Pressure", desc: "Same physics: degenerate electrons supply pressure $P \\propto n^{5/3}$ that supports white dwarf stars against gravity until Chandrasekhar mass." },
+          { name: "Free-Electron Failure", desc: "Predicts the same number of conduction electrons in every metal — wrong! Band-structure effects (effective mass, hole bands) crucial in real materials." },
+          { name: "Wiedemann-Franz Law", desc: "$\\kappa/\\sigma T = (\\pi^2/3)(k_B/e)^2 \\equiv L$. Same conduction electrons carry both heat and charge → Lorenz number $L$ universal across metals." },
+        ],
+        keyEquations: [
+          "f(E,T) = \\frac{1}{\\exp[(E-\\mu)/k_BT] + 1}",
+          "C_v^{\\text{elec}} = \\frac{\\pi^2}{2}\\,N k_B\\,\\frac{T}{T_F}",
+          "\\mu(T) = E_F\\!\\left[1 - \\frac{\\pi^2}{12}\\left(\\frac{T}{T_F}\\right)^2 + \\cdots\\right]",
+        ],
+        conceptSummary:
+          "At very low $T$ the distribution is essentially a step at $E_F$. As $T$ climbs to $\\sim 0.2\\,T_F$ the step softens noticeably. Switch to the specific-heat view: $C_v$ rises linearly from zero at low $T$ — the Sommerfeld signature — and saturates at the classical $3/2\\,N k_B$ once $T \\gtrsim T_F$.",
+      },
+    ],
+  },
 ];
 
 // ─── FOUNDATIONS ────────────────────────────────────────────────────
